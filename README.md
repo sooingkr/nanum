@@ -1,3 +1,5 @@
+## Overview
+
 This project is to build a responsive web application which 1 recommends [HACCP](https://en.wikipedia.org/wiki/Hazard_analysis_and_critical_control_points)-certified food based on the user's concerns and 2 provides a AI-powered chat service for those who want to consult with technical stuff of HACCP.
 
 Several enterprises participate in this project:
@@ -13,9 +15,8 @@ Lecle has a contract with Nanum and build their webapp including story board, de
 
 For the details, see `index_en.html` of [haccp-doc-en.zip](haccp-doc-en.zip) for English and `index.html` of [haccp-doc-en.zip](haccp-doc-en.zip) for Korean. As for English version, it is translated by Google Translate but its quality is not that good. If you have any question in reading these docs, please ask @donghwan. Note that these documents might get out of date as time goes on, please check out the product backlog that contains the lastest infromation.
 
-
-The lastest stuff is the product backlog items.
-
----
+## Roadmap
 
 The official deadline is the end of November but the working schedule will depend on each meeting schedule between stakeholders. 
+
+TODO
