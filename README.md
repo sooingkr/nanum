@@ -20,3 +20,8 @@ For the details, see `index_en.html` of [haccp-doc-en.zip](haccp-doc-en.zip) for
 The official deadline is the end of November but the working schedule will depend on each meeting schedule between stakeholders. 
 
 TODO
+
+## Support policy
+
+* Chrome 61 and Chrome 60
+* MS Edge and IE 11
