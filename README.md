@@ -11,6 +11,8 @@ Several enterprises participate in this project:
 
 Lecle has a contract with Nanum and build their webapp including story board, design and development and deliver it to the client. However, we won't maintain the service. Since there are multiple stakholders in this project, our scope of the business may be somewhat ambiguous. Of course, we will try to reduce our scope as much as possible.
 
+For the details, see `index_en.html` of [haccp-doc-en.zip](haccp-doc-en.zip) for English and `index.html` of [haccp-doc-en.zip](haccp-doc-en.zip) for Korean. As for English version, it is translated by Google Translate but its quality is not that good. If you have any question in reading these docs, please ask @donghwan.
+
 ---
 
 The official deadline is the end of November but the working schedule will depend on each meeting schedule between stakeholders. 
