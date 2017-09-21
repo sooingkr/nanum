@@ -1,1 +1,0 @@
-this folder contains all dump-component
