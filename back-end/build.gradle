@@ -46,5 +46,7 @@ dependencies {
 	testCompile('org.springframework.security:spring-security-test')
 
     compile('com.zaxxer:HikariCP-java6:2.3.13')
-    compile('mysql:mysql-connector-java:5.1.44')
+    compile files('libs/ojdbc6.jar')
+
+
 }

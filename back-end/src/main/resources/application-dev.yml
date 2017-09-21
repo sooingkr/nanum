@@ -1,0 +1,4 @@
+spring:
+  datasource:
+    username: nanumdb
+    password: 1234
