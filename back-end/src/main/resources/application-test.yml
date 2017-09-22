@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:oracle:thin:@13.229.112.185:1521:XE
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    username: nanumdb
+    password: 1234
+logging:
+  level:
+    lecle.nanum: debug
