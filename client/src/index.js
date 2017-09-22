@@ -3,14 +3,13 @@ import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import './index.scss';
 import registerServiceWorker from './registerServiceWorker';
-import { store } from './config/Store';
+import configureStore from './store/configureStore';
 
-import {HomePage} from './home-page/HomePage';
-
+const store = configureStore();
 const AppView = () => (
   <Provider store={store}>
     <div>
-      <HomePage/>
+      Hello World
     </div>
   </Provider>
 );
