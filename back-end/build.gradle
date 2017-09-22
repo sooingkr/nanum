@@ -48,5 +48,6 @@ dependencies {
     compile('com.zaxxer:HikariCP-java6:2.3.13')
     compile files('libs/ojdbc6.jar')
 
-
+    compile('org.springframework.security.oauth:spring-security-oauth2')
+    compile('org.springframework.security:spring-security-jwt')
 }
