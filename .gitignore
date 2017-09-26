@@ -1,0 +1,10 @@
+back-end/out
+back-end/build
+
+back-end/log
+
+gradle/wrapper/gradle-wrapper.jar
+
+### IntelliJ IDEA ###
+.idea
+*.iml

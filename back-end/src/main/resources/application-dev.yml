@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    username: nanumdb
+    password: 1234
+logging:
+  level:
+    org.springframework.security: debug
+    lecle.nanum: debug
