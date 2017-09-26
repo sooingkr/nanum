@@ -6,6 +6,8 @@ import {
 } from 'react-router-dom';
 
 import Navigation from "../../components/Navigation/Navigation.js";
+
+import Home from "../Home/Home.js";
 import Dashboard from "../Dashboard/Dashboard.js";
 
 import './App.scss';
@@ -18,7 +20,8 @@ export default class App extends Component {
         <Router>
           <main>
             <Switch>
-              <Route exact path="/dashboard" component={ Dashboard } />
+              <Route exact path="/" component={ Home } />
+              <Route path="/dashboard" component={ Dashboard } />
             </Switch>
           </main>
         </Router>

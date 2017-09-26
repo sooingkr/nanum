@@ -1,0 +1,30 @@
+.search-box {
+  .form-group_border {
+    border: 1px solid #f1f1f1;
+    border-radius: 3px;
+  }
+  .form-control {
+    display: inline-block;
+    width: 84%;
+  }
+  .form-control, .btn-search_default {
+    border: none;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+       -moz-box-shadow: none;
+    &:focus, &:hover {
+      background-color: transparent;
+      border: none;
+      box-shadow: none;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+    }
+  }
+  .btn-search_default {
+    background-color: transparent;
+    background-image: none;
+    .glyphicon-search {
+      color: #a1a5a9;
+    }
+  }
+}

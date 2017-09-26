@@ -17,5 +17,7 @@ class IngredientsSuggestionContainer extends Component {
     )
   }
 }
-
+IngredientsSuggestionContainer.propTypes = {
+  data: PropTypes.object
+}
 export default IngredientsSuggestionContainer;
