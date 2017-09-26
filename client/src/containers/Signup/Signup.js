@@ -1,8 +1,15 @@
-import React from 'react';
+import React, {Component} from 'react';
 import FoodIntakeContainer from './FoodIntakeContainer';
 
-const DashboardPage = () => (
-  <FoodIntakeContainer />
-);
+export class DashboardPage extends Component {
+  render() {
+    return (
+      <div>
+        <h2>Dashboard Page</h2>
 
-export default DashboardPage;
+        <FoodIntakeContainer />
+      </div>
+    )
+  }
+}
+

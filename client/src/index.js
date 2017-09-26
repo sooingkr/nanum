@@ -1,16 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
-import './index.scss';
 import registerServiceWorker from './registerServiceWorker';
 import configureStore from './store/configureStore';
+
+import {App} from "./containers/App/App";
+
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap-theme.css';
+
+import './index.scss';
 
 const store = configureStore();
 const AppView = () => (
   <Provider store={store}>
-    <div>
-      Hello World
-    </div>
+    <App/>
   </Provider>
 );
 
