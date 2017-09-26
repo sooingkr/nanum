@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import registerServiceWorker from './registerServiceWorker';
 import configureStore from './store/configureStore';
-
-import {App} from "./containers/App/App";
-
+import App from "./containers/App/App";
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
+import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/slick.css';
 
 import './index.scss';
 
