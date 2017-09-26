@@ -1,28 +1,27 @@
 import React, { Component } from 'react';
-import {
-  BrowserRouter as Router, 
-  Route,
-  Switch,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, } from 'react-router-dom';
 
 import Navigation from "../../components/Navigation/Navigation.js";
 import Dashboard from "../Dashboard/Dashboard.js";
+import { LoginPage } from '../Login/LoginPage';
 
 import './App.scss';
 
 export default class App extends Component {
   render() {
     return (
-      <div className="App">
-        <Navigation/>
-        <Router>
+      <Router>
+        <div className="App">
+          <Navigation/>
+
           <main>
             <Switch>
-              <Route exact path="/dashboard" component={ Dashboard } />
+              <Route exact path="/dashboard" component={Dashboard}/>
+              <Route path="/login" component={LoginPage}/>
             </Switch>
           </main>
-        </Router>
-      </div>
+        </div>
+      </Router>
     );
   }
 }
