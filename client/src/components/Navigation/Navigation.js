@@ -13,8 +13,10 @@ const Navigation = withRouter(({ history }) => {
   return (
     <Navbar default collapseOnSelect>
       <Navbar.Header>
-        <Navbar.Brand onClick={navigateHelper('/')}>
-          <Image src={logo} alt="Fresh" className="img-responsive"/>
+        <Navbar.Brand>
+          <div onClick={navigateHelper('/')} style={{cursor: 'pointer'}}>
+            <Image src={logo} alt="Fresh" className="img-responsive"/>
+          </div>
         </Navbar.Brand>
       </Navbar.Header>
 
