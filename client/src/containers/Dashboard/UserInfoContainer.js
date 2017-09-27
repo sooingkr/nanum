@@ -42,7 +42,7 @@ class UserInfoContainer extends Component {
         </div>
         <div className="user-info__edit">
           {/* Link to Edit member page will be added later */}
-          <Link to="/">Edit</Link>
+          <Link to="/user/settings">Edit</Link>
         </div>
       </div>
     );
@@ -50,7 +50,7 @@ class UserInfoContainer extends Component {
 }
 
 UserInfoContainer.propTypes = {
-  user: PropTypes.objectOf(PropTypes.shape({
+  user: PropTypes.shape({
     male: PropTypes.bool.isRequired,
     name: PropTypes.string.isRequired,
     interests: PropTypes.arrayOf(PropTypes.shape({
@@ -61,7 +61,7 @@ UserInfoContainer.propTypes = {
       id: PropTypes.string.isRequired,
       text: PropTypes.string.isRequired,
     })).isRequired,
-  }))
+  })
 }
 
 export default UserInfoContainer;
