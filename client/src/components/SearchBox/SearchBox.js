@@ -15,9 +15,9 @@ class SearchBox extends Component {
     const { typeName } = this.props;
 
     return(
-      <div className="search-box" typeName={typeName}>
+      <div className="search-box">
         <Form>
-          <FormGroup className={(typeName === 'default') && 'form-group_border'}>
+          <FormGroup className={typeName === 'default' ? 'form-group_border' : ''}>
             <FormControl type="text" placeholder="Search" onChange={this.handleChange} className={ typeName === 'default' ? '' : 'hidden' }></FormControl>
             <Button className={'pull-right ' + (typeName === 'default') && 'btn-search_default' } type="submit" onClick={this.searchFood(typeName)}><span className="glyphicon glyphicon-search"></span>
             </Button>

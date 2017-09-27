@@ -1,6 +1,9 @@
 import React from "react";
 import { withRouter } from 'react-router-dom';
-import { Row, Col, Navbar, Nav, NavItem, Image, ButtonToolbar, Dropdown, MenuItem, Glyphicon} from "react-bootstrap";
+import {
+  Row, Col, Navbar, Nav, NavItem, Image, ButtonToolbar, Dropdown, MenuItem, Glyphicon,
+  NavDropdown
+} from "react-bootstrap";
 
 import SearchBox from "../../components/SearchBox/SearchBox.js";
 
@@ -15,43 +18,29 @@ const Navigation = withRouter(({ history }) => {
   return (
     <header>
       <Navbar default collapseOnSelect>
-        <Row>
-          <Col md={5}>
-            <Navbar.Header>
-              <Navbar.Brand>
-                <a className="pull-left" onClick={navigateHelper('/')} title="Home"><Image src={logo} alt="Fresh" className="img-responsive"/></a>
-              </Navbar.Brand>
-              <Navbar.Toggle />
-            </Navbar.Header>
-          </Col>
-          <Col md={7}>
-            <Navbar.Collapse>
-              <Nav>
-                <NavItem href="/" title="" eventKey={1}>Link</NavItem>
-                <NavItem onClick={navigateHelper('/dashboard')} title="Dashboard" eventKey={1}>Dashboard</NavItem>
-              </Nav>
-              <Nav pullRight>
-                <NavItem><SearchBox typeName=" "/></NavItem>
-                <NavItem>
-                  <ButtonToolbar>
-                    <Dropdown id="dropdown-user">
-                      <Dropdown.Toggle>
-                        <Glyphicon glyph="user" />
-                      </Dropdown.Toggle>
-                      <Dropdown.Menu className="super-colors">
-                        <MenuItem onClick={navigateHelper('/login')}>Login</MenuItem>
-                        <MenuItem eventKey="2">Another action</MenuItem>
-                        <MenuItem eventKey="3" active>Active Item</MenuItem>
-                        <MenuItem divider />
-                        <MenuItem eventKey="4">Separated link</MenuItem>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                  </ButtonToolbar>
-                </NavItem>
-              </Nav>
-            </Navbar.Collapse>
-          </Col>
-        </Row>
+        <Navbar.Header>
+          <Navbar.Brand>
+            <a className="pull-left" onClick={navigateHelper('/')} title="Home"><Image src={logo} alt="Fresh" className="img-responsive"/></a>
+          </Navbar.Brand>
+          <Navbar.Toggle />
+        </Navbar.Header>
+        <Navbar.Collapse>
+          <Nav>
+            <NavItem href="/">Link</NavItem>
+            <NavItem onClick={navigateHelper('/dashboard')}>Dashboard</NavItem>
+          </Nav>
+
+          <Nav pullRight>
+            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+              <MenuItem onClick={navigateHelper('/dashboard')}>Dashboard</MenuItem>
+              <MenuItem onClick={navigateHelper('/login')}>Login</MenuItem>
+              <MenuItem >Something else here</MenuItem>
+              <MenuItem divider />
+              <MenuItem href="/logout">Logout</MenuItem>
+            </NavDropdown>
+          </Nav>
+
+        </Navbar.Collapse>
       </Navbar>
     </header>
   )

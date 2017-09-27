@@ -16,8 +16,8 @@ import './App.scss';
 export default class App extends Component {
   render() {
     return (
-      <div className="App">
-        <Router>
+      <Router>
+        <div className="App">
           <Navigation/>
           <main>
             <Switch>
@@ -26,8 +26,8 @@ export default class App extends Component {
               <Route path="/login" component={LoginPage}/>
             </Switch>
           </main>
-        </Router>
-      </div>
+        </div>
+      </Router>
     );
   }
 }
