@@ -7,6 +7,20 @@ if (typeof Promise === 'undefined') {
   require('promise/lib/rejection-tracking').enable();
   window.Promise = require('promise/lib/es6-extensions.js');
 }
+// Polyfill for requestAnimationFrame
+// More info: http://fb.me/react-polyfills
+global.requestAnimationFrame = function(callback) {
+  setTimeout(callback, 0);
+};
+
+// Polyfill for matchMedia when using jest with react-slick
+window.matchMedia = window.matchMedia || function() {
+  return {
+  matches : false,
+  addListener : function() {},
+  removeListener: function() {}
+  };
+};
 
 // fetch() polyfill for making API calls.
 require('whatwg-fetch');

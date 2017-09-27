@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import { routeReducer } from 'react-router-redux';
+import {reducer as formReducer} from 'redux-form';
 // Import reducers as we need
-import foodIntake from './containers/DashboardPage/duck';
+import foodIntake from './containers/Dashboard/duck';
 
 export default combineReducers({
+  form: formReducer,
   foodIntake,
-  routing: routeReducer,
 });

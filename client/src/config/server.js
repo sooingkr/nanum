@@ -1,7 +1,7 @@
 import Axios from 'axios';
 
 export const server = Axios.create({
-  baseURL: 'http://localhost:8185/api/',
+  baseURL: 'http://localhost:8185',
   timeout: 10 * 60 * 60,
   headers: {
     'Nanum-Project': 'Hello Nanum :)'
@@ -31,3 +31,16 @@ const handleError = error => {
 
 // Add a response interceptor
 server.interceptors.response.use(response => response, handleError);
+
+// login method
+server.login = ({username, password}) => {
+
+  const formLogin = new FormData();
+  formLogin.append('username', username);
+  formLogin.append('password', password);
+
+  return server.post('/login', formLogin).then(res => {
+    server.defaults.headers.Authorization = res.data;
+    return res;
+  })
+};
