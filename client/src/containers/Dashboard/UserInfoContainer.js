@@ -3,21 +3,6 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import TagBox from '../../components/Dashboard/TagBox';
 
-const mockUserInfo = {
-  male: true,
-  name: "David Coffee",
-  interests: [
-    { id: "asdasd1", text: "soccer" },
-    { id: "asdd1", text: "Scala" },
-    { id: "asdd1asd", text: "penny" },
-  ],
-  diseases: [
-    { id: "123asd", text: "suck shti" },
-    { id: "123as2d", text: "psycho" },
-    { id: "123asggd", text: "obese" },
-  ]
-};
-
 class UserInfoContainer extends Component {
   onRemove = (id) => {
     // TODO
@@ -25,19 +10,20 @@ class UserInfoContainer extends Component {
   }
 
   render() {
+    const { male, name, interests, diseases } = this.props.user;
     // This will be replaced by icon url later
-    const genderIcon = mockUserInfo.male ? 'M' : 'Fe';
+    const genderIcon = male ? 'M' : 'Fe';
 
     return (
       <div className="user-info">
         <div className="user-info__basic">
           <h2>
-            {mockUserInfo.name}
-            <img src={genderIcon} alt={mockUserInfo.male ? 'male' : 'female'} />
+            {name}
+            <img src={genderIcon} alt={male ? 'male' : 'female'} />
           </h2>
         </div>
         <div className="user-info__interests-disease">
-          { mockUserInfo.interests.map(interest => (
+          { interests.map(interest => (
             <TagBox 
               key={interest.id} 
               id={interest.id}
@@ -45,7 +31,7 @@ class UserInfoContainer extends Component {
               onRemove={this.onRemove}
             />
           ))}
-          { mockUserInfo.diseases.map(disease => (
+          { diseases.map(disease => (
             <TagBox 
               key={disease.id}
               id={disease.id}
@@ -63,20 +49,19 @@ class UserInfoContainer extends Component {
   }
 }
 
-// Uncomment this after connect to the Redux store
-// UserInfoContainer.propTypes = {
-//   user: PropTypes.objectOf(PropTypes.shape({
-//     male: PropTypes.bool.isRequired,
-//     name: PropTypes.string.isRequired,
-//     interests: PropTypes.arrayOf(PropTypes.shape({
-//       id: PropTypes.string.isRequired,
-//       text: PropTypes.string.isRequired,
-//     })).isRequired,
-//     diseases: PropTypes.arrayOf(PropTypes.shape({
-//       id: PropTypes.string.isRequired,
-//       text: PropTypes.string.isRequired,
-//     })).isRequired,
-//   }))
-// }
+UserInfoContainer.propTypes = {
+  user: PropTypes.objectOf(PropTypes.shape({
+    male: PropTypes.bool.isRequired,
+    name: PropTypes.string.isRequired,
+    interests: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired,
+    })).isRequired,
+    diseases: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired,
+    })).isRequired,
+  }))
+}
 
 export default UserInfoContainer;
