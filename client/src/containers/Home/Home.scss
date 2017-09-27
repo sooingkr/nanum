@@ -1,4 +1,14 @@
+@import "../../stylesheets/base/_variables.scss";
+
 .home {
-  //background: url('../images/images.jpg') center no-repeat;
+  background: url('../../assets/images/food-bg.jpg') center no-repeat;
   background-size: cover;
+  .home-search {
+    margin-top: 167px;
+    margin-bottom: 330px;
+  }
+  .home-search__text {
+    color: $white;
+    font-size: 36px;
+  }
 }
