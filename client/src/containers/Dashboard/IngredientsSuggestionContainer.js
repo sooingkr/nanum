@@ -19,9 +19,13 @@ class IngredientsSuggestionContainer extends Component {
         <h3 className="ingredients-suggestion__heading">{heading}</h3>
         <div className="ingredients-suggestion__content">
           <p>{recommendation}</p>
-          { ingredients.map(ingredient => (
-            <p key={ingredient.id}>{ingredient.name}</p>
-          ))}
+          { ingredients && 
+            <ul className="ingredient-suggestion__list">
+              { ingredients.map(ingredient => (
+                <p className="ingredient-suggestion__item" key={ingredient.id}>{ingredient.name}</p>
+              ))}
+            </ul>
+          }
         </div>
       </div>
     )

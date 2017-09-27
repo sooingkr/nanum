@@ -58,6 +58,7 @@ class FoodIntakeTrackingContainer extends Component {
         {
           Object.keys(meals).map((mealTime, idx) => (
             <FoodIntakeList 
+              key={mealTime}
               mealTime={mealTime} 
               foods={meals[mealTime]}
               onAddFood={this.onAddFood}
