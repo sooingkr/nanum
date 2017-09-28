@@ -24,6 +24,40 @@ const mockUserInfo = {
   ]
 };
 
+const mockFoodIntake = {
+  calories: {
+    start: 780,
+    target: 1800,
+    current: 1560,
+  },
+  meals: {
+    breakfast: [
+      { 
+        id: '123', 
+        name: 'Banana', 
+        imageUrl: 'http://via.placeholder.com/20x20',
+        quantity: 'A truckload (15k kcal)',
+      },
+      { 
+        id: '123asd', 
+        name: 'Milk', 
+        imageUrl: 'http://via.placeholder.com/20x20',
+        quantity: 'A truckload (15k kcal)',
+      },
+
+    ],
+    lunch: [
+      { 
+        id: 'qwe', 
+        name: 'Pizza', 
+        imageUrl: 'http://via.placeholder.com/20x20',
+        quantity: 'A truckload (15k kcal)',
+      },
+    ],
+    dinner: []
+  }
+};
+
 class Dashboard extends Component {
   render() {
     return (
@@ -33,7 +67,7 @@ class Dashboard extends Component {
             <UserInfoContainer user={mockUserInfo}/>
           </Col>
           <Col sm={6} md={8}>
-            <FoodIntakeTrackingContainer />
+            <FoodIntakeTrackingContainer foodIntakeTracking={mockFoodIntake} />
           </Col>
         </Row>
         <Row>

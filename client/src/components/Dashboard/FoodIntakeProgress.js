@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ProgressBar } from 'react-bootstrap';
 
-const FoodIntakeProgress = ({ min, max, current }) => (
+const FoodIntakeProgress = ({ max, current }) => (
   <div className="food-intake__progress">
-    <span>Start:{min} calories</span>
+    <span>Target:{max} kcal</span>
     <ProgressBar now={calculateProgress(current, max)}/>
-    <span>Target:{max} calories</span>
+    <span>Current:{current} kcal</span>
   </div>
 )
 
@@ -15,7 +15,6 @@ function calculateProgress(current, max) {
 }
 
 FoodIntakeProgress.propTypes = {
-  min: PropTypes.number.isRequired,
   max: PropTypes.number.isRequired,
   current: PropTypes.number.isRequired,
 }
