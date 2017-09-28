@@ -1,24 +1,51 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import FoodIntakeItem from './FoodIntakeItem';
 import AddFoodButton from './AddFoodButton';
+import Dialog from './Dialog';
 
-const FoodIntakeList = ({ mealTime, foods, onAddFood }) => (
-  <div className="food-intake-list">
-    <h3 className="food-intake-list__label">{mealTime}</h3>
-    { foods.map(food => (
-      <FoodIntakeItem 
-        key={food.id} 
-        name={food.name}
-        imageUrl={food.imageUrl}
-        quantity={food.quantity}
-      />
-    ))}
-    <div className="food-intake-list__add">
-      <AddFoodButton onAddFood={onAddFood}/>
-    </div>
-  </div>
-)
+class FoodIntakeList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showDialog: false
+    };
+  }
+
+  onCloseDialog = () => {
+    this.setState({ showDialog: false });
+  }
+
+  onOpenDialog = () => {
+    this.setState({ showDialog: true });
+  }
+
+  render() {
+    const { mealTime, foods } = this.props;
+    return (
+      <div className="food-intake-list">
+        <h3 className="food-intake-list__label">{mealTime}</h3>
+        { foods.map(food => (
+          <FoodIntakeItem 
+            key={food.id} 
+            name={food.name}
+            imageUrl={food.imageUrl}
+            quantity={food.quantity}
+          />
+        ))}
+        <div className="food-intake-list__add">
+          <AddFoodButton onAddFood={this.onOpenDialog}/>
+        </div>
+        <Dialog 
+          show={this.state.showDialog} 
+          onClose={this.onCloseDialog} 
+        >
+          <p>Please add more food lah</p>
+        </Dialog>
+      </div>
+    )
+  }
+}
 
 FoodIntakeList.propTypes = {
   mealTime: PropTypes.string.isRequired,
@@ -28,7 +55,6 @@ FoodIntakeList.propTypes = {
     imageUrl: PropTypes.string.isRequired,
     quantity: PropTypes.string.isRequired,
   })).isRequired,
-  onAddFood: PropTypes.func.isRequired,
 }
 
 export default FoodIntakeList;
