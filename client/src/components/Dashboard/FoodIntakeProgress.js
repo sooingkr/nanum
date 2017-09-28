@@ -4,9 +4,9 @@ import { ProgressBar } from 'react-bootstrap';
 
 const FoodIntakeProgress = ({ max, current }) => (
   <div className="food-intake__progress">
-    <span>Target:{max} kcal</span>
+    <span>목표량 {max} kcal</span>
     <ProgressBar now={calculateProgress(current, max)}/>
-    <span>Current:{current} kcal</span>
+    <span>{current} kcal 남음</span>
   </div>
 )
 

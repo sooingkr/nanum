@@ -30,7 +30,7 @@ const mockFoodIntake = {
     target: 1800,
     current: 1560,
   },
-  meals: {
+  when: {
     breakfast: [
       { 
         id: '123', 

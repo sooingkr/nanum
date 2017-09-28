@@ -13,7 +13,7 @@ class FoodIntakeTrackingContainer extends Component {
   }
 
   render() {
-    const { foodIntakeTracking: { calories, meals } } = this.props;
+    const { foodIntakeTracking: { calories, when } } = this.props;
 
     return (
       <div className="food-intake" >
@@ -24,11 +24,11 @@ class FoodIntakeTrackingContainer extends Component {
 
         <Row className="food-intake__meals">
         {
-          Object.keys(meals).map((mealTime, idx) => (
+          Object.keys(when).map((mealTime, idx) => (
             <Col xs={12} md={4} key={mealTime}>
               <FoodIntakeList 
                 mealTime={mealTime} 
-                foods={meals[mealTime]}
+                foods={when[mealTime]}
                 onAddFood={this.onAddFood}
               />
             </Col>
@@ -46,7 +46,7 @@ FoodIntakeTrackingContainer.propTypes = {
       target: PropTypes.number.isRequired,
       current: PropTypes.number.isRequired,
     }).isRequired,
-    meals: PropTypes.shape({
+    when: PropTypes.shape({
       breakfast: PropTypes.array,
       lunch: PropTypes.array,
       dinner: PropTypes.array,
