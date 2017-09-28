@@ -11,7 +11,7 @@ import IngredientsSuggestionContainer from './IngredientsSuggestionContainer';
 
 const mockUserInfo = {
   male: true,
-  name: "David Coffee",
+  name: "김레클",
   interests: [
     { id: "asdasd1", text: "soccer" },
     { id: "asdd1", text: "Scala" },

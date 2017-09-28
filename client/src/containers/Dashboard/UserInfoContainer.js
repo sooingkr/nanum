@@ -18,7 +18,7 @@ class UserInfoContainer extends Component {
       <div className="user-info">
         <div className="user-info__basic">
           <h2>
-            {name}
+            {name} 님
             <img src={genderIcon} alt={male ? 'male' : 'female'} />
           </h2>
         </div>
