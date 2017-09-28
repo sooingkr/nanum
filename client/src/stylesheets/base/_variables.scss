@@ -1,12 +1,21 @@
 $breakpoints: (
-  'phone': 320px,
-  'iphone6': 375px,
-  'iphone6plus': 414px,
-  'big-phone': 700px,
-  'tablet': 768px,
-  'netbook': 924px,
-  'desktop': 1024px,
-  'da': 1224px
+   phone: 320px,
+   iphone6: 375px,
+   iphone6plus: 414px,
+   big-phone: 700px,
+   tablet: 768px,
+   netbook: 924px,
+   desktop: 1024px,
+   da: 1224px
+);
+
+$breakpoints-desktop: 992px;
+$breakpoints-tablet: 768px;
+$breakpoints-phone: 480px;
+
+$width-mq :(
+  min: 'min-width',
+  max: 'max-width'
 );
 
 $width-bound: 808px;
@@ -33,7 +42,7 @@ $small-spacing: $base-spacing / 2;
 $base-z-index: 0;
 
 // Colors
- $white: #fff;
+ $white: white;
 // $pale-orange: #faa05a;
 // $deep-sky-blue: #1e87f0;
 // $greenish-teal: #32d296;

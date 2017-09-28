@@ -1,3 +1,6 @@
+.hidden-xs-up {
+  visibility: hidden;
+}
 .search-box {
   position: relative;
   .form-group_border {
@@ -14,14 +17,19 @@
        -moz-box-shadow: none;
   }
   .btn {
+    position: absolute;
+
     &:hover {
       background-color: transparent;
     }
   }
+  .btn-default {
+    top: -3px;
+    right: 0;
+  }
   .btn-search_default {
-    position: absolute;
-    top: 0;
-    right:0;
+    top: 3px;
+    right: 3px;
     &:focus, &:hover {
       border: none;
       box-shadow: none;

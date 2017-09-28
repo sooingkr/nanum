@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { Row, Col, Navbar, Nav, NavItem, NavDropdown, Image, MenuItem} from "react-bootstrap";
 
 import SearchBox from "../../components/SearchBox/SearchBox.js";
@@ -16,22 +16,27 @@ const Navigation = withRouter(({ history }) => {
     <header>
       <Navbar default collapseOnSelect>
         <Row>
-          <Col md={5}>
+          <Col sm={4} md={5}>
             <Navbar.Header>
-              <Navbar.Brand>
-                <a className="pull-left" onClick={navigateHelper('/')} title="Home"><Image src={logo} alt="Fresh" className="img-responsive"/></a>
-              </Navbar.Brand>
-              <Navbar.Toggle />
+              <div className="logo-block pull-left">
+                <Navbar.Brand>
+                  <Link to="/" title="Home"><Image src={logo} alt="Fresh" className="img-responsive"/></Link>
+                </Navbar.Brand>
+                <Navbar.Toggle />
+              </div>
+              <div className="hidden-sm-up">
+                <SearchBox typeName=" "/>
+              </div>
             </Navbar.Header>
           </Col>
-          <Col md={7}>
+          <Col sm={8} md={7}>
             <Navbar.Collapse>
               <Nav>
-                <NavItem href="/" title="" eventKey={1}>Link</NavItem>
+                <NavItem onClick={navigateHelper('/')} title="" eventKey={1}>Link</NavItem>
                 <NavItem onClick={navigateHelper('/dashboard')} title="Dashboard" eventKey={1}>Dashboard</NavItem>
               </Nav>
               <Nav pullRight>
-                <NavItem><SearchBox typeName=" "/></NavItem>
+                <NavItem className="hidden-xs-down"><SearchBox typeName=" "/></NavItem>
                 <NavDropdown eventKey={3} title="" id="basic-nav-dropdown">
                   <MenuItem eventKey={3.1} onClick={navigateHelper('/login')}>Login</MenuItem>
                   <MenuItem eventKey={3.2}>Another action</MenuItem>
