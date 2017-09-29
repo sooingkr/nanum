@@ -1,24 +1,36 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import TagBox from '../../components/Dashboard/TagBox';
+import { dashboardDuck } from './DashboardDuck';
 
 class UserInfoContainer extends Component {
   onRemove = (id) => {
     // TODO
     console.log(id);
+  };
+
+  componentWillMount() {
+    const { init } = this.props;
+    init();
   }
 
   render() {
-    const { male, name, interests, diseases } = this.props.user;
+    const {user, user: {male, name, interests, diseases} } = this.props;
     // This will be replaced by icon url later
     const genderIcon = male ? 'M' : 'Fe';
+
+    if (_.isEmpty(user)) {
+      return (<div/>);
+    }
 
     return (
       <div className="user-info">
         <div className="user-info__basic">
           <h2>
-            {name}
+            {name} 님
             <img src={genderIcon} alt={male ? 'male' : 'female'} />
           </h2>
         </div>
@@ -62,6 +74,18 @@ UserInfoContainer.propTypes = {
       text: PropTypes.string.isRequired,
     })).isRequired,
   })
-}
+};
 
-export default UserInfoContainer;
+const mapStateToProps = state => {
+  const dashBoardState = state[dashboardDuck.storeName];
+
+  return {
+    user: dashBoardState.currentUser
+  }
+};
+
+const mapDispatchToProps = {
+  init: dashboardDuck.actions.initialize
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserInfoContainer);

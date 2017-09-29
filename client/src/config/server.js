@@ -1,6 +1,7 @@
 import Axios from 'axios';
+import { serverTest } from './server-test';
 
-export const server = Axios.create({
+const _server = Axios.create({
   baseURL: 'http://localhost:8185',
   timeout: 10 * 60 * 60,
   headers: {
@@ -30,17 +31,27 @@ const handleError = error => {
 };
 
 // Add a response interceptor
-server.interceptors.response.use(response => response, handleError);
+_server.interceptors.response.use(response => response, handleError);
 
 // login method
-server.login = ({username, password}) => {
+_server.login = ({username, password}) => {
 
   const formLogin = new FormData();
   formLogin.append('username', username);
   formLogin.append('password', password);
 
-  return server.post('/login', formLogin).then(res => {
-    server.defaults.headers.Authorization = res.data;
+  return _server.post('/login', formLogin).then(res => {
+    _server.defaults.headers.Authorization = res.data;
     return res;
   })
 };
+
+let tmp = _server;
+
+// console.log('--- current node-env:', process.env.NODE_ENV);
+
+if (process.env.NODE_ENV === 'test') {
+  tmp = serverTest;
+}
+
+export const server = tmp;
