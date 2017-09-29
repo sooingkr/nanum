@@ -3,10 +3,10 @@
  */
 import React from 'react';
 import { LoginForm } from '../../components/Login/LoginForm';
-import {server} from '../../config/server';
+import { loginUser } from '../../service/UserService';
 
 const handleLogin = formData => {
-  return server.login(formData).then(res => {
+  return loginUser(formData).then(res => {
     // TODO navigate to home after login success
   });
 };
