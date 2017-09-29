@@ -106,6 +106,7 @@
     "extends": "react-app"
   },
   "devDependencies": {
+    "axios-mock-adapter": "^1.9.0",
     "enzyme": "^3.0.0",
     "enzyme-adapter-react-16": "^1.0.0",
     "node-sass": "^4.5.3",
