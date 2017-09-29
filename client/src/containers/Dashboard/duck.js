@@ -9,10 +9,14 @@ const storeName = 'DashboardDuck';
 // define action type
 export const actionTypes = {
   initialize: storeName + '/initialize',
+  toggleDialog: storeName + '/toggleDialog',
 };
 
-// define action
-export const initialize = () => async (dispatch) => {
+// Actions creators 
+const toggleDialog = () => createAction(actionTypes.toggleDialog);
+
+// Thunks
+const initialize = () => async (dispatch) => {
   const currentUser = await userService.getCurrentUser();
   const foodIntake = await userService.getFoodIntakeTracking(currentUser.data.user.id);
   // Dispatch initialize action with all the data to
@@ -26,12 +30,16 @@ export const initialize = () => async (dispatch) => {
 // conveniently export actions
 const actions = {
   initialize,
+  toggleDialog,
 };
 
+// Initial Dashboard state tree
 export const initialState = {
-  currentUser: {}
+  currentUser: {},
+  showDialog: false,
 };
 
+// Dashboard reducer
 const reducer = createReducer(initialState, {
   [actionTypes.initialize]: (state, payload) => {
     return {
@@ -39,19 +47,28 @@ const reducer = createReducer(initialState, {
       currentUser: payload.currentUser,
       foodIntakeTracking: payload.foodIntakeTracking,
     };
+  },
+  [actionTypes.toggleDialog]: (state, payload) => {
+    return {
+      ...state,
+      showDialog: !state.showDialog,
+    }
   }
 });
 
 // Selectors
 const getCurrentUser = (state) => state[storeName].currentUser;
 const getFoodIntakeTracking = (state) => state[storeName].foodIntakeTracking;
+const getShowDialog = (state) => state[storeName].showDialog;
 
 export const dashboardDuck = {
   storeName,
   reducer,
   actions, 
-  selectors: {
-    getCurrentUser,
-    getFoodIntakeTracking,
-  }
 };
+
+export const selectors = {
+  getCurrentUser,
+  getFoodIntakeTracking,
+  getShowDialog,
+}

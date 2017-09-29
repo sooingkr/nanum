@@ -1,19 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import {
   Col,
   Row,
 } from 'react-bootstrap';
 import FoodIntakeProgress from '../../components/Dashboard/FoodIntakeProgress';
 import FoodIntakeList from '../../components/Dashboard/FoodIntakeList';
+import { dashboardDuck, selectors } from './duck';
 
-class FoodIntakeTrackingContainer extends Component {
-  onAddFood = () => {
-    // TODO
-  }
-
+export class FoodIntakeTrackingContainer extends Component {
   render() {
-    const foodIntakeTracking = this.props.foodIntakeTracking;
+    const { foodIntakeTracking, showDialog, toggleDialog } = this.props;
 
     if(!foodIntakeTracking) {
       return <div/>;
@@ -35,7 +33,8 @@ class FoodIntakeTrackingContainer extends Component {
               <FoodIntakeList 
                 mealTime={mealTime} 
                 foods={when[mealTime]}
-                onAddFood={this.onAddFood}
+                showDialog={showDialog}
+                toggleDialog={toggleDialog}
               />
             </Col>
           ))
@@ -60,4 +59,14 @@ FoodIntakeTrackingContainer.propTypes = {
   }),
 }
 
-export default FoodIntakeTrackingContainer;
+const mapStateToProps = (state) => ({
+  showDialog: selectors.getShowDialog(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  toggleDialog: () => { 
+    dispatch(dashboardDuck.actions.toggleDialog()); 
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(FoodIntakeTrackingContainer);

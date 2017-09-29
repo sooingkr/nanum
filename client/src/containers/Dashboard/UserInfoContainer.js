@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 import TagBox from '../../components/Dashboard/TagBox';
 
 class UserInfoContainer extends Component {

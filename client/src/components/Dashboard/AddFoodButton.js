@@ -8,7 +8,7 @@ const AddFoodButton = ({ onAddFood }) => (
 )
 
 AddFoodButton.propTypes = {
-  onAddFood: PropTypes.func.isRequired,
+  onAddFood: PropTypes.func,
 }
 
 export default AddFoodButton;

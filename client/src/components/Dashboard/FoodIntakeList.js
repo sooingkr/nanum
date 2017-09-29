@@ -5,23 +5,8 @@ import AddFoodButton from './AddFoodButton';
 import Dialog from './Dialog';
 
 class FoodIntakeList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showDialog: false
-    };
-  }
-
-  onCloseDialog = () => {
-    this.setState({ showDialog: false });
-  }
-
-  onOpenDialog = () => {
-    this.setState({ showDialog: true });
-  }
-
   render() {
-    const { mealTime, foods } = this.props;
+    const { mealTime, foods, showDialog, toggleDialog } = this.props;
     return (
       <div className="food-intake-list">
         <h3 className="food-intake-list__label">{mealTime}</h3>
@@ -34,11 +19,11 @@ class FoodIntakeList extends Component {
           />
         ))}
         <div className="food-intake-list__add">
-          <AddFoodButton onAddFood={this.onOpenDialog}/>
+          <AddFoodButton onAddFood={toggleDialog}/>
         </div>
         <Dialog 
-          show={this.state.showDialog} 
-          onClose={this.onCloseDialog} 
+          show={showDialog} 
+          onClose={toggleDialog} 
         >
           <p>Please add more food lah</p>
         </Dialog>

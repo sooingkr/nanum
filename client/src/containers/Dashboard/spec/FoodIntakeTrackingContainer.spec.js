@@ -1,7 +1,7 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { shallow, mount } from 'enzyme';
-import FoodIntakeTrackingContainer from '../FoodIntakeTrackingContainer';
+import { FoodIntakeTrackingContainer } from '../FoodIntakeTrackingContainer';
 
 describe("FoodIntakeTrackingContainer component", () => {
   let props;
@@ -84,6 +84,14 @@ describe("FoodIntakeTrackingContainer component", () => {
     it("should display exactly 3 lists of user's intake", () => {
       expect(mountedWithContext().find('.food-intake__meals').find('.food-intake-list'))
         .toHaveLength(3);
+    });
+  });
+
+  describe('when not given meals info (when) props', () => {
+    it("doesn't render lists of user's intake", () => {
+      props.foodIntakeTracking.when = {};
+      expect(mountedWithContext().find('.food-intake__meals').find('.food-intake-list'))
+        .toHaveLength(0);
     });
   });
 });
