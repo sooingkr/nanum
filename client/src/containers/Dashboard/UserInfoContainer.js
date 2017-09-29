@@ -1,43 +1,41 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import TagBox from '../../components/Dashboard/TagBox';
-
-const mockUserInfo = {
-  male: true,
-  name: "David Coffee",
-  interests: [
-    { id: "asdasd1", text: "soccer" },
-    { id: "asdd1", text: "Scala" },
-    { id: "asdd1asd", text: "penny" },
-  ],
-  diseases: [
-    { id: "123asd", text: "suck shti" },
-    { id: "123as2d", text: "psycho" },
-    { id: "123asggd", text: "obese" },
-  ]
-};
+import { dashboardDuck } from './DashboardDuck';
 
 class UserInfoContainer extends Component {
   onRemove = (id) => {
     // TODO
     console.log(id);
+  };
+
+  componentWillMount() {
+    const { init } = this.props;
+    init();
   }
 
   render() {
+    const {user, user: {male, name, interests, diseases} } = this.props;
     // This will be replaced by icon url later
-    const genderIcon = mockUserInfo.male ? 'M' : 'Fe';
+    const genderIcon = male ? 'M' : 'Fe';
+
+    if (_.isEmpty(user)) {
+      return (<div/>);
+    }
 
     return (
       <div className="user-info">
         <div className="user-info__basic">
           <h2>
-            {mockUserInfo.name}
-            <img src={genderIcon} alt={mockUserInfo.male ? 'male' : 'female'} />
+            {name} 님
+            <img src={genderIcon} alt={male ? 'male' : 'female'} />
           </h2>
         </div>
         <div className="user-info__interests-disease">
-          { mockUserInfo.interests.map(interest => (
+          { interests.map(interest => (
             <TagBox 
               key={interest.id} 
               id={interest.id}
@@ -45,7 +43,7 @@ class UserInfoContainer extends Component {
               onRemove={this.onRemove}
             />
           ))}
-          { mockUserInfo.diseases.map(disease => (
+          { diseases.map(disease => (
             <TagBox 
               key={disease.id}
               id={disease.id}
@@ -56,27 +54,38 @@ class UserInfoContainer extends Component {
         </div>
         <div className="user-info__edit">
           {/* Link to Edit member page will be added later */}
-          <Link to="/">Edit</Link>
+          <Link to="/user/settings">Edit</Link>
         </div>
       </div>
     );
   }
 }
 
-// Uncomment this after connect to the Redux store
-// UserInfoContainer.propTypes = {
-//   user: PropTypes.objectOf(PropTypes.shape({
-//     male: PropTypes.bool.isRequired,
-//     name: PropTypes.string.isRequired,
-//     interests: PropTypes.arrayOf(PropTypes.shape({
-//       id: PropTypes.string.isRequired,
-//       text: PropTypes.string.isRequired,
-//     })).isRequired,
-//     diseases: PropTypes.arrayOf(PropTypes.shape({
-//       id: PropTypes.string.isRequired,
-//       text: PropTypes.string.isRequired,
-//     })).isRequired,
-//   }))
-// }
+UserInfoContainer.propTypes = {
+  user: PropTypes.shape({
+    male: PropTypes.bool.isRequired,
+    name: PropTypes.string.isRequired,
+    interests: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired,
+    })).isRequired,
+    diseases: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired,
+    })).isRequired,
+  })
+};
 
-export default UserInfoContainer;
+const mapStateToProps = state => {
+  const dashBoardState = state[dashboardDuck.storeName];
+
+  return {
+    user: dashBoardState.currentUser
+  }
+};
+
+const mapDispatchToProps = {
+  init: dashboardDuck.actions.initialize
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserInfoContainer);
