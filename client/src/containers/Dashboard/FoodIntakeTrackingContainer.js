@@ -13,7 +13,13 @@ class FoodIntakeTrackingContainer extends Component {
   }
 
   render() {
-    const { foodIntakeTracking: { calories, when } } = this.props;
+    const foodIntakeTracking = this.props.foodIntakeTracking;
+
+    if(!foodIntakeTracking) {
+      return <div/>;
+    }
+
+    const { calories, when } = foodIntakeTracking;
 
     return (
       <div className="food-intake" >
@@ -43,15 +49,15 @@ class FoodIntakeTrackingContainer extends Component {
 FoodIntakeTrackingContainer.propTypes = {
   foodIntakeTracking: PropTypes.shape({
     calories: PropTypes.shape({
-      target: PropTypes.number.isRequired,
-      current: PropTypes.number.isRequired,
-    }).isRequired,
+      target: PropTypes.number,
+      current: PropTypes.number,
+    }),
     when: PropTypes.shape({
       breakfast: PropTypes.array,
       lunch: PropTypes.array,
       dinner: PropTypes.array,
     }),
-  })
+  }),
 }
 
 export default FoodIntakeTrackingContainer;

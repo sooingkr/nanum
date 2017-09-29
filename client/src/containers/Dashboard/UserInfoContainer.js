@@ -4,7 +4,6 @@ import _ from 'lodash';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import TagBox from '../../components/Dashboard/TagBox';
-import { dashboardDuck } from './DashboardDuck';
 
 class UserInfoContainer extends Component {
   onRemove = (id) => {
@@ -12,19 +11,17 @@ class UserInfoContainer extends Component {
     console.log(id);
   };
 
-  componentWillMount() {
-    const { init } = this.props;
-    init();
-  }
-
   render() {
-    const {user, user: {male, name, interests, diseases} } = this.props;
-    // This will be replaced by icon url later
-    const genderIcon = male ? 'M' : 'Fe';
+    const user = this.props.user;
 
     if (_.isEmpty(user)) {
       return (<div/>);
     }
+
+    const { male, name, interests, diseases } = user;
+
+    // This will be replaced by icon url later
+    const genderIcon = male ? 'M' : 'Fe';
 
     return (
       <div className="user-info">
@@ -63,29 +60,17 @@ class UserInfoContainer extends Component {
 
 UserInfoContainer.propTypes = {
   user: PropTypes.shape({
-    male: PropTypes.bool.isRequired,
-    name: PropTypes.string.isRequired,
+    male: PropTypes.bool,
+    name: PropTypes.string,
     interests: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      text: PropTypes.string.isRequired,
-    })).isRequired,
+      id: PropTypes.string,
+      text: PropTypes.string,
+    })),
     diseases: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      text: PropTypes.string.isRequired,
-    })).isRequired,
-  })
+      id: PropTypes.string,
+      text: PropTypes.string,
+    })),
+  }).isRequired,
 };
 
-const mapStateToProps = state => {
-  const dashBoardState = state[dashboardDuck.storeName];
-
-  return {
-    user: dashBoardState.currentUser
-  }
-};
-
-const mapDispatchToProps = {
-  init: dashboardDuck.actions.initialize
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(UserInfoContainer);
+export default UserInfoContainer;
