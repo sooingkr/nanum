@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { isEmpty } from 'lodash';
 import {
   Col,
   Row,
@@ -13,7 +14,7 @@ export class FoodIntakeTrackingContainer extends Component {
   render() {
     const { foodIntakeTracking, showDialog, toggleDialog } = this.props;
 
-    if(!foodIntakeTracking) {
+    if(!foodIntakeTracking || isEmpty(foodIntakeTracking)) {
       return <div/>;
     }
 

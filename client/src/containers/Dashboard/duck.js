@@ -18,12 +18,12 @@ const toggleDialog = () => createAction(actionTypes.toggleDialog);
 // Thunks
 const initialize = () => async (dispatch) => {
   const currentUser = await userService.getCurrentUser();
-  const foodIntake = await userService.getFoodIntakeTracking(currentUser.data.user.id);
+  const foodIntakeTracking = await userService.getFoodIntakeTracking(currentUser.id);
   // Dispatch initialize action with all the data to
   // supply smaller containers
   dispatch(createAction(actionTypes.initialize, {
-    currentUser: currentUser.data.user,
-    foodIntakeTracking: foodIntake.data.foodIntakeTracking,
+    currentUser,
+    foodIntakeTracking,
   }));
 };
 
@@ -36,6 +36,7 @@ const actions = {
 // Initial Dashboard state tree
 export const initialState = {
   currentUser: {},
+  foodIntakeTracking: {},
   showDialog: false,
 };
 
