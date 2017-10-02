@@ -1,4 +1,125 @@
-.home {
-  //background: url('../images/images.jpg') center no-repeat;
-  background-size: cover;
+@import "../../stylesheets/base/_variables.scss";
+@import "../../stylesheets/mixin/mixin.scss";
+@import "../../stylesheets/bourbon/assets/stylesheets/_bourbon.scss";
+
+.App {
+  .home {
+    background: url('../../assets/images/food-bg.jpg') center no-repeat;
+    background-size: cover;
+
+    .home-search {
+      @include margin(167px null 330px 0);
+    }
+
+    .home-search__text {
+      color: $white;
+      font-size: rem(36);
+    }
+  }
+
+  .chat-box {
+    background-color: $chatbox-background;
+    @include box-shadow(2px, 10px, 0, rgba(76, 76, 76, 0.45), false);
+
+    .btn-chat-open {
+      @include position(fixed, null 92px 40px null);
+      @include size(221px 55px);
+      background-image: none;
+      background-color: $white;
+      @include border-radius(25px);
+
+      &:after {
+        content: " ";
+        @include position(absolute, 21px -5px null null);
+        @include size(10px);
+        background-color: $white;
+        border-right: 1px solid $chatbox-border;
+        border-bottom: 1px solid $chatbox-border;
+        @include transform(rotate(-45deg));
+      }
+
+      .fa-arrow-circle-right {
+        float: right;
+        font-size: rem(23);
+        color: $color-green;
+      }
+    }
+
+    .well {
+      @include position(fixed, null 26px -21px null);
+      @include size(300px 435px);
+      z-index: 1;
+    }
+
+    .title-block {
+      .title {
+        font-size: rem(10);
+        margin: 0;
+      }
+
+      .fa {
+        color: $color-green;
+      }
+
+      .fa-comment-o {
+        font-size: rem(24);
+        margin-right: rem(6);
+      }
+
+      .btn-close {
+        border: none;
+        background-image: none;
+        background-color: transparent;
+        @include box-shadow(null, null, null, null, null, true);
+      }
+
+      .line {
+        display: inline-block;
+        border-bottom: 3px solid $color-green;
+        @include size(20px);
+      }
+    }
+
+    .chat-messages_form {
+      @include position(relative, 310px null null null);
+      background-color: $white;
+      @include border-radius(4px);
+      .form-control {
+        @include size(89% 40px);
+        border: none;
+        @include border-radius(0);
+      }
+      .btn-send {
+        @include position(absolute, 8px 0 null null);
+        @include size(28px);
+        @include border-radius(25px);
+        padding: 0;
+        color: $white;
+        background: $color-green;
+      }
+    }
+
+    .image-block {
+      @include size(44px);
+      @include position(fixed, null 35px 46px null);
+      background-color: $chatbox-border;
+      border: 3px solid $chatbox-border;
+      @include border-radius(25px);
+
+      .img-circle {
+        @include size(40px);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $breakpoints-phone) {
+  .App {
+    .chat-box {
+      .well {
+        @include position(fixed, 76px 0 -21px 0);
+        @include size(100%);
+      }
+    }
+  }
 }

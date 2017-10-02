@@ -1,13 +1,102 @@
-//nav {
-//  .dropdown-toggle {
-//    background-color: transparent;
-//    background-image: none;
-//    border: none;
-//    box-shadow: none;
-//    -webkit-box-shadow: none;
-//       -moz-box-shadow: none;
-//  }
-//  .caret {
-//    display: none;
-//  }
-//}
+@import "../../stylesheets/base/_variables.scss";
+@import "../../stylesheets/base/common.scss";
+@import "../../stylesheets/mixin/mixin.scss";
+
+.App {
+  .navbar {
+    background-color: $white;
+    background-image: none;
+    border: none;
+    height: 76px;
+    margin-bottom: 0;
+    .logo-block {
+      margin-top: 17px;
+    }
+    .logo {
+      float: left;
+      width: 107px;
+      height: 42px;
+      margin-top: 5px;
+    }
+    .dropdown-toggle {
+      background-color: transparent;
+      background-image: none;
+      border: none;
+      box-shadow: none;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+
+      &:before {
+        font-family: 'Glyphicons Halflings';
+        content: "\e008";
+      }
+    }
+    .caret {
+      display: none;
+    }
+  }
+}
+
+@media screen and (min-width: $breakpoints-tablet) {
+  .App {
+    .navbar {
+      .navbar-brand, .navbar-nav {
+        position: absolute;
+        top: 16px;
+      }
+      .navbar-nav {
+        &:last-child {
+          right: 0;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $breakpoints-phone) {
+  html {
+    font-size: 14px !important;
+  }
+  .App {
+    .navbar {
+      .navbar-header {
+        height: 76px;
+
+        .navbar-toggle {
+          float: none;
+          background-color: transparent;
+          border: none;
+          &:before {
+            font-family: 'Glyphicons Halflings';
+            content: "\e252";
+          }
+          .icon-bar {
+            display: none;
+          }
+        }
+      }
+      .search-box {
+        top: 28px;
+        left: 37%;
+        width: 63%;
+
+        .form-control, .btn-default {
+          position: absolute;
+          top: -18px;
+        }
+        .btn-default {
+          right: 0;
+        }
+      }
+      .navbar-collapse {
+        background-color: $white;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 9999;
+        min-height: 360px;
+      }
+    }
+  }
+}
