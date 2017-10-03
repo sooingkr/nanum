@@ -6,20 +6,38 @@ import {
   Col,
   Row,
 } from 'react-bootstrap';
+import Dialog from '../../components/Dashboard/Dialog';
+import { AddFoodForm } from '../../components/Dashboard/AddFoodForm';
 import FoodIntakeProgress from '../../components/Dashboard/FoodIntakeProgress';
 import FoodIntakeList from '../../components/Dashboard/FoodIntakeList';
-import { dashboardDuck, selectors } from './duck';
+import { DashboardDuck, selectors } from './DashboardDuck';
 
 export class FoodIntakeTrackingContainer extends Component {
+  handleAddFood = (formData) => {
+    const payload = this.constructAddFoodPayload(formData);
+    this.props.addFood(payload);
+  }
+
+  constructAddFoodPayload = (formData) => {
+    const { whichDialog } = this.props;
+    return {
+      mealTime: whichDialog,
+      foodDetails: formData.food.value,
+    }
+  }
+
   render() {
-    const { foodIntakeTracking, showDialog, toggleDialog } = this.props;
+    const { foodIntakeTracking, showDialog, openDialog, closeDialog } = this.props;
 
     if(!foodIntakeTracking || isEmpty(foodIntakeTracking)) {
       return <div/>;
     }
 
     const { calories, when } = foodIntakeTracking;
-
+    if(isEmpty(calories) || isEmpty(when)) {
+      return <div/>;
+    }
+    
     return (
       <div className="food-intake" >
         <FoodIntakeProgress 
@@ -34,12 +52,18 @@ export class FoodIntakeTrackingContainer extends Component {
               <FoodIntakeList 
                 mealTime={mealTime} 
                 foods={when[mealTime]}
-                showDialog={showDialog}
-                toggleDialog={toggleDialog}
+                openDialog={openDialog}
               />
             </Col>
           ))
         }
+
+        <Dialog 
+          show={showDialog} 
+          onClose={closeDialog} 
+        >
+          <AddFoodForm onSubmit={this.handleAddFood} />
+        </Dialog>
         </Row>
       </div>
     );
@@ -56,18 +80,26 @@ FoodIntakeTrackingContainer.propTypes = {
       breakfast: PropTypes.array,
       lunch: PropTypes.array,
       dinner: PropTypes.array,
-    }),
-  }),
+    })
+  })
 }
 
 const mapStateToProps = (state) => ({
   showDialog: selectors.getShowDialog(state),
+  foodIntakeTracking: selectors.getFoodIntakeTracking(state),
+  whichDialog: selectors.getWhichDialog(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  toggleDialog: () => { 
-    dispatch(dashboardDuck.actions.toggleDialog()); 
+  openDialog: (mealTime) => { 
+    dispatch(DashboardDuck.actions.openDialog(mealTime)); 
   },
+  closeDialog: () => { 
+    dispatch(DashboardDuck.actions.closeDialog()); 
+  },
+  addFood: (foodPayload) => {
+    dispatch(DashboardDuck.actions.addFood(foodPayload));
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FoodIntakeTrackingContainer);

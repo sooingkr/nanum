@@ -1,28 +1,77 @@
-import { dashboardDuck, actionTypes } from '../duck';
+import { DashboardDuck, actionTypes } from '../DashboardDuck';
+import _ from 'lodash';
 
 describe('dashboard reducer', () => {
-  it('should return the initial state', () => {
-    expect(dashboardDuck.reducer(undefined, {})).toEqual({
+  let initialState;
+
+  beforeEach(() => {
+    initialState = {
       currentUser: {},
-      foodIntakeTracking: {},
+      breakfast: [],
+      lunch: [],
+      dinner: [],
+      calories: {},
       showDialog: false,
-    });
+      whichDialog: "",
+    };
   });
 
-  it('should handle DashboardDuck/toggleDialog', () => {
-    expect(dashboardDuck.reducer([], {
-      type: actionTypes.toggleDialog,
+  it('should return the initial state', () => {
+    expect(DashboardDuck.reducer(undefined, {})).toEqual(initialState);
+  });
+
+  it('should handle DashboardDuck/openDialog', () => {
+    const expectedState = {
+      ...initialState,
+      showDialog: true,
+      whichDialog: "dinner",
+    };
+
+    expect(DashboardDuck.reducer(initialState, {
+      type: actionTypes.openDialog,
+      payload: { mealTime: 'dinner' },
     }
-    )).toEqual({ showDialog: true })
+    )).toEqual(expectedState)
+  });
+
+  it('should handle DashboardDuck/closeDialog', () => {
+    const expectedState = {
+      ...initialState,
+      showDialog: false,
+    };
+
+    expect(DashboardDuck.reducer(initialState, {
+      type: actionTypes.closeDialog,
+    }
+    )).toEqual(expectedState);
   });
 
   it('should handle DashboardDuck/initialize', () => {
-    const expectedState = {
-      currentUser: { mock: "Some mock" }, foodIntakeTracking: { mock: "Some other mock" } 
+    const payloadBody = {
+      currentUser: {"mock": "Some mock"}, 
+      foodIntakeTracking: {
+        breakfast: [], 
+        lunch: [],
+        dinner: [], 
+        calories: {}, 
+      },
     };
-    expect(dashboardDuck.reducer([], {
+
+    const expectedState = {
+      currentUser: {"mock": "Some mock"},
+      breakfast: [],
+      lunch: [],
+      dinner: [],
+      calories: {},
+      showDialog: false,
+      whichDialog: "",
+    }
+
+    expect(DashboardDuck.reducer(initialState, {
       type: actionTypes.initialize,
-      payload: expectedState
+      payload: { 
+        ...payloadBody 
+      }
     }
     )).toEqual(expectedState);
   })

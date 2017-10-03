@@ -1,16 +1,27 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { dashboardDuck, actionTypes } from '../duck';
+import { DashboardDuck, actionTypes } from '../DashboardDuck';
 import { getCurrentUser, getFoodIntakeTracking } from '../../../service/UserService';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
 describe('dashboard actions', () => {
-  it('should create an action to toggleDialog', () => {
-    const expectedAction = { type: actionTypes.toggleDialog };
-    expect(dashboardDuck.actions.toggleDialog()).toEqual(expectedAction);
+  it('should create an action to openDialog', () => {
+    const expectedAction = { 
+      type: actionTypes.openDialog, 
+      payload: {
+        mealTime: 'dinner',  
+      } 
+    };
+    expect(DashboardDuck.actions.openDialog('dinner')).toEqual(expectedAction);
   });
+
+  it('should create an action to closeDialog', () => {
+    const expectedAction = { type: actionTypes.closeDialog };
+    expect(DashboardDuck.actions.closeDialog()).toEqual(expectedAction);
+  });
+
 });
 
 describe('dashboard async actions', () => {
@@ -19,11 +30,13 @@ describe('dashboard async actions', () => {
       type: actionTypes.initialize,
       payload: {
         currentUser: await getCurrentUser(),
-        foodIntakeTracking: await getFoodIntakeTracking(),
+        foodIntakeTracking: {
+          ...(await getFoodIntakeTracking())
+        },
       }
     }];
     const store = mockStore({ currentUser: {} });
-    return store.dispatch(dashboardDuck.actions.initialize()).then(() => {
+    return store.dispatch(DashboardDuck.actions.initialize()).then(() => {
       expect(store.getActions()).toEqual(expectedAction);
     })
   });

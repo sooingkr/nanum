@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const AddFoodButton = ({ onAddFood }) => (
-  <button className="button--add-food" onClick={onAddFood}>
+const AddFoodButton = ({ onAddFood, mealTime }) => (
+  <button className="button--add-food" onClick={() => onAddFood(mealTime)}>
     <span>Add</span>
   </button>
 )
