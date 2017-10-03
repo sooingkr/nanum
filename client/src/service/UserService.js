@@ -1,15 +1,5 @@
-import axios from 'axios';
+import axios from './config';
 import { API_BASE_URL } from '../constants/api';
-import initializeMockAPI from './mockAPI/api';
-
-if (process.env.NODE_ENV === 'development' ) {
-  initializeMockAPI(axios);
-}
-
-if(process.env.NODE_ENV === 'test') {
-  // No delay when in test mode
-  initializeMockAPI(axios, 0);
-}
 
 export const getCurrentUser = async () => {
   let currentUser;
@@ -32,7 +22,13 @@ export const getFoodIntakeTracking = async (userId) => {
   } catch(error) {
     throw new Error(`UserService error - <getFoodIntakeTracking()>: ${error}`);
   }
-  return intakeTracking.data.foodIntakeTracking;
+
+  return {
+    calories: intakeTracking.data.foodIntakeTracking.calories,
+    breakfast: intakeTracking.data.foodIntakeTracking.when.breakfast,
+    lunch: intakeTracking.data.foodIntakeTracking.when.lunch,
+    dinner: intakeTracking.data.foodIntakeTracking.when.dinner,
+  };
 }
 
 export const loginUser = async () => {

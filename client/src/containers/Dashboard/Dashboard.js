@@ -9,7 +9,7 @@ import UserInfoContainer from './UserInfoContainer';
 import FoodIntakeTrackingContainer from './FoodIntakeTrackingContainer';
 import FoodSuggestionContainer from './FoodSuggestionContainer';
 import IngredientsSuggestionContainer from './IngredientsSuggestionContainer';
-import { dashboardDuck, selectors } from './duck';
+import { DashboardDuck, selectors } from './DashboardDuck';
 
 class Dashboard extends Component {
   componentWillMount() {
@@ -50,7 +50,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  init: dashboardDuck.actions.initialize,
+  init: DashboardDuck.actions.initialize,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

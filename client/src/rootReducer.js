@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 import {reducer as formReducer} from 'redux-form';
 // Import reducers as we need
-import { dashboardDuck } from './containers/Dashboard/duck';
+import { DashboardDuck } from './containers/Dashboard/DashboardDuck';
 
 export default combineReducers({
   form: formReducer,
-  [dashboardDuck.storeName]: dashboardDuck.reducer,
+  [DashboardDuck.storeName]: DashboardDuck.reducer,
 });
