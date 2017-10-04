@@ -71,6 +71,12 @@ $placeholder-color: #a1a5a9;
 // $base-border-color: $light-gray;
 // $base-border: 1px solid $base-border-color;
 $chatbox-border: #f3f1f2;
+$message-border: rgba(76, 76, 76, 0.15);
+//$message-border-user: rgba(0, 192, 60, 0.3);
+$message-border-user: rgba(127, 213, 149, 1);
+$message-border-user-arrow: rgba(0, 192, 60, 0.2);
+$chat-box-input-border: #00c03c;
+$chat-box-input-shadow: rgba(0, 192, 60, 0.15);
 
 // Background Colors
 $base-background-color: #2ea2f3;
