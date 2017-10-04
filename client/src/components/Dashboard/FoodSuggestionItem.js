@@ -5,12 +5,14 @@ import { Image } from 'react-bootstrap';
 
 const FoodSuggestionItem = ({ data: { id, thumbUrl, name } }) => (
   <div className="food-suggestion-item" id={id}>
-    <Link to={`/foods/${id}`}>
-      <figure className="food-suggestion-item__thumbnail">
-        <Image src={thumbUrl} alt={name} responsive />
-      </figure>
-    </Link>
-    <p className="food-suggestion-item__name">{name}</p>
+    <figure className="food-suggestion-item__thumbnail">
+      <Image src={thumbUrl} alt={name} responsive />
+    </figure>
+    <p className="food-suggestion-item__name">
+      <Link to={`/foods/${id}`}>
+        {name}
+      </Link>
+    </p>
   </div>
 );
 
