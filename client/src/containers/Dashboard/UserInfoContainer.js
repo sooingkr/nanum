@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import TagBox from '../../components/Dashboard/TagBox';
 import { selectors } from './DashboardDuck';
 
-class UserInfoContainer extends Component {
+export class UserInfoContainer extends Component {
   onRemove = (id) => {
     // TODO
     console.log(id);

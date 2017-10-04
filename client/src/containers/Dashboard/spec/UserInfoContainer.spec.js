@@ -1,7 +1,7 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { shallow, mount } from 'enzyme';
-import UserInfoContainer from '../UserInfoContainer';
+import { UserInfoContainer } from '../UserInfoContainer';
 
 describe('UserInfoContainer component', () => {
   let props;
