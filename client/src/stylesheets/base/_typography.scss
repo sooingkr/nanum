@@ -1,0 +1,62 @@
+@import "~modularscale-sass/stylesheets/modularscale";
+// For modular scale font sizes, refer to this page:
+// http://www.modularscale.com/?14&px&1.126
+// Doing this way we only have to use ms(<step>), no need to hard-code font-size
+// aka no magic numbers
+
+$modularscale: (
+  base: 14px,
+  ratio: 1.126
+);
+
+body {
+  color: $black;
+  font-family: $base-font-family;
+  font-size: $base-font-size;
+  letter-spacing: $base-letter-spacing;
+  line-height: $base-line-height;
+  -webkit-font-smoothing: antialiased;
+}
+
+#nanum input {
+  color: $white;
+  font-family: $base-font-family;
+  font-size: $base-font-size !important;
+  letter-spacing: 0.2px;
+  line-height: $base-line-height;
+  font-weight: 400;
+  padding: 8px;
+}
+
+#nanum {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: $white;
+    font-family: $heading-font-family;
+    line-height: $heading-line-height;
+    margin: 0 0 $small-spacing;
+    letter-spacing: $base-letter-spacing;
+  }
+  
+  p {
+    font-family: $base-font-family;
+    margin: 0 0 $small-spacing;
+    letter-spacing: $base-letter-spacing;
+  }
+  
+  a {
+    color: $gray;
+    font-family: $base-font-family;
+    text-decoration: none;
+    
+    &:active,
+    &:focus,
+    &:hover {
+      color: $green;
+    }
+  }
+}
