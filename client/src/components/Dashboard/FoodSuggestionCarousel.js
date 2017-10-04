@@ -4,7 +4,6 @@ import Carousel from '../Carousel';
 import FoodSuggestionItem from './FoodSuggestionItem';
 
 const carouselSettings = {
-  draggable: true,
   arrows: false,
   dots: false,
   infinite: true,
@@ -26,7 +25,7 @@ const FoodSuggestionCarousel = (props) => (
 FoodSuggestionCarousel.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
-    imageUrl: PropTypes.string.isRequired,
+    thumbUrl: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
   }))
 }

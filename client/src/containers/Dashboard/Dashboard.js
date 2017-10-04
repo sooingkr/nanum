@@ -8,7 +8,6 @@ import {
 import UserInfoContainer from './UserInfoContainer';
 import FoodIntakeTrackingContainer from './FoodIntakeTrackingContainer';
 import FoodSuggestionContainer from './FoodSuggestionContainer';
-import IngredientsSuggestionContainer from './IngredientsSuggestionContainer';
 import { DashboardDuck } from './DashboardDuck';
 
 class Dashboard extends Component {
@@ -29,10 +28,7 @@ class Dashboard extends Component {
           </Col>
         </Row>
         <Row>
-          <Col sm={6} md={2}>
-            <IngredientsSuggestionContainer />
-          </Col>
-          <Col sm={6} md={10}>
+          <Col sm={12} md={12}>
             <FoodSuggestionContainer />
           </Col>
         </Row>

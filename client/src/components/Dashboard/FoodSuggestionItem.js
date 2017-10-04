@@ -1,12 +1,15 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Image } from 'react-bootstrap';
 
-const FoodSuggestionItem = ({ data: { id, imageUrl, name } }) => (
+const FoodSuggestionItem = ({ data: { id, thumbUrl, name } }) => (
   <div className="food-suggestion-item" id={id}>
-    <figure className="food-suggestion-item__image">
-      <Image src={imageUrl} alt={name} responsive />
-    </figure>
+    <Link to={`/foods/${id}`}>
+      <figure className="food-suggestion-item__thumbnail">
+        <Image src={thumbUrl} alt={name} responsive />
+      </figure>
+    </Link>
     <p className="food-suggestion-item__name">{name}</p>
   </div>
 );
@@ -14,7 +17,7 @@ const FoodSuggestionItem = ({ data: { id, imageUrl, name } }) => (
 FoodSuggestionItem.propTypes = {
   data: PropTypes.shape({
     id: PropTypes.string.isRequired,
-    imageUrl: PropTypes.string.isRequired,
+    thumbUrl: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
   })
 };

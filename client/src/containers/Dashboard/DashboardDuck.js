@@ -3,6 +3,7 @@
  */
 import { createAction, createReducer } from '../../utils/store';
 import * as UserService from '../../service/UserService';
+import * as FoodService from '../../service/FoodService';
 
 const storeName = 'DashboardDuck';
 
@@ -22,12 +23,15 @@ const closeDialog = () => createAction(actionTypes.closeDialog);
 // Thunks
 const initialize = () => async (dispatch) => {
   const currentUser = await UserService.getCurrentUser();
-  const foodIntakeTracking = await UserService.getFoodIntakeTracking(currentUser.id);
+  const foodIntakeTracking = await FoodService.getFoodIntakeTracking(currentUser.id);
+  const foodSuggestions = await FoodService.getFoodSuggestions(currentUser.id);
+
   // Dispatch initialize action with all the data to
   // supply smaller containers
   dispatch(createAction(actionTypes.initialize, {
     currentUser,
     foodIntakeTracking,
+    foodSuggestions,
   }));
 };
 
@@ -60,6 +64,7 @@ export const initialState = {
   calories: {},
   showDialog: false,
   whichDialog: "",
+  foodSuggestions: {},
 };
 
 // Dashboard reducer
@@ -72,6 +77,7 @@ const reducer = createReducer(initialState, {
       lunch: payload.foodIntakeTracking.lunch,
       dinner: payload.foodIntakeTracking.dinner,
       calories: payload.foodIntakeTracking.calories,
+      foodSuggestions: payload.foodSuggestions,
     };
   },
   [actionTypes.openDialog]: (state, payload) => {
@@ -115,6 +121,7 @@ const getFoodIntakeTracking = (state) => ({
 const getShowDialog = (state) => state[storeName].showDialog;
 const getWhichDialog = (state) => state[storeName].whichDialog;
 const getFoodsWhen = (state, when) => state[when];
+const getFoodSuggestions = (state) => state[storeName].foodSuggestions;
 
 export const DashboardDuck = {
   storeName,
@@ -127,4 +134,5 @@ export const selectors = {
   getFoodIntakeTracking,
   getShowDialog,
   getWhichDialog,
+  getFoodSuggestions,
 }

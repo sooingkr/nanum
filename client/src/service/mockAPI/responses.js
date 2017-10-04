@@ -3,7 +3,7 @@ import { random } from 'lodash';
 export const currentUser = () => {
   return {
     user: {
-      id: random(100, 500),
+      id: String(random(100, 500)),
       male: true,
       name: "김레클",
       interests: [
@@ -95,4 +95,56 @@ export const searchFood = (query) => {
       },
     ]
   }
+}
+
+export const foodSuggestions = userId => {
+  return {
+    foodSuggestions: {
+      reason: "이들은 당신의 건강에 아주 좋습니다",
+      foods: [
+        { 
+          id: '123', 
+          name: 'Banana', 
+          thumbUrl: 'http://via.placeholder.com/200x150',
+          quantity: 'A truckload (150 gram)',
+          calories: 128,
+        },
+        { 
+          id: '123asd', 
+          name: 'Milk', 
+          thumbUrl: 'http://via.placeholder.com/200x150',
+          quantity: 'A truckload (150 gram)',
+          calories: 234,
+        },
+        { 
+          id: '123alqw', 
+          name: 'Fried eggs', 
+          thumbUrl: 'http://via.placeholder.com/200x150',
+          quantity: 'A truckload (150 gram)',
+          calories: 128,
+        },
+        { 
+          id: '123qwepo', 
+          name: 'Pasta', 
+          thumbUrl: 'http://via.placeholder.com/200x150',
+          quantity: 'A truckload (150 gram)',
+          calories: 654,
+        },
+        { 
+          id: '123masmdq', 
+          name: 'Steak', 
+          thumbUrl: 'http://via.placeholder.com/200x150',
+          quantity: 'A truckload (150 gram)',
+          calories: 345,
+        },
+        { 
+          id: '123qweqweo', 
+          name: 'Beef noodles', 
+          thumbUrl: 'http://via.placeholder.com/200x150',
+          quantity: 'A truckload (150 gram)',
+          calories: 228,
+        },
+      ]
+    }
+  } 
 }
