@@ -90,16 +90,10 @@ const mapStateToProps = (state) => ({
   whichDialog: selectors.getWhichDialog(state),
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  openDialog: (mealTime) => { 
-    dispatch(DashboardDuck.actions.openDialog(mealTime)); 
-  },
-  closeDialog: () => { 
-    dispatch(DashboardDuck.actions.closeDialog()); 
-  },
-  addFood: (foodPayload) => {
-    dispatch(DashboardDuck.actions.addFood(foodPayload));
-  }
-});
+const mapDispatchToProps = {
+  openDialog: DashboardDuck.actions.openDialog,
+  closeDialog: DashboardDuck.actions.closeDialog,
+  addFood: DashboardDuck.actions.addFood,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(FoodIntakeTrackingContainer);

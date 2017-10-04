@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { Link } from 'react-router-dom';
 import TagBox from '../../components/Dashboard/TagBox';
+import { selectors } from './DashboardDuck';
 
 class UserInfoContainer extends Component {
   onRemove = (id) => {
@@ -72,4 +74,8 @@ UserInfoContainer.propTypes = {
   }).isRequired,
 };
 
-export default UserInfoContainer;
+const mapStateToProps = state => ({
+  user: selectors.getCurrentUser(state),
+});
+
+export default connect(mapStateToProps)(UserInfoContainer);

@@ -9,7 +9,7 @@ import UserInfoContainer from './UserInfoContainer';
 import FoodIntakeTrackingContainer from './FoodIntakeTrackingContainer';
 import FoodSuggestionContainer from './FoodSuggestionContainer';
 import IngredientsSuggestionContainer from './IngredientsSuggestionContainer';
-import { DashboardDuck, selectors } from './DashboardDuck';
+import { DashboardDuck } from './DashboardDuck';
 
 class Dashboard extends Component {
   componentWillMount() {
@@ -18,17 +18,14 @@ class Dashboard extends Component {
   }
   
   render() {
-    const { currentUser, foodIntakeTracking } = this.props;
     return (
       <Grid>
         <Row>
           <Col sm={6} md={4}>
-            <UserInfoContainer user={currentUser}/>
+            <UserInfoContainer />
           </Col>
           <Col sm={6} md={8}>
-            <FoodIntakeTrackingContainer 
-              foodIntakeTracking={foodIntakeTracking}
-            />
+            <FoodIntakeTrackingContainer />
           </Col>
         </Row>
         <Row>
@@ -44,13 +41,8 @@ class Dashboard extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  currentUser: selectors.getCurrentUser(state),
-  foodIntakeTracking: selectors.getFoodIntakeTracking(state),
-});
-
 const mapDispatchToProps = {
   init: DashboardDuck.actions.initialize,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+export default connect(null, mapDispatchToProps)(Dashboard);
