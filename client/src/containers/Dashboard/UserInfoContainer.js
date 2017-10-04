@@ -5,6 +5,9 @@ import _ from 'lodash';
 import { Link } from 'react-router-dom';
 import TagBox from '../../components/Dashboard/TagBox';
 import { selectors } from './DashboardDuck';
+import './UserInfo.scss';
+import MaleIcon from '../../assets/images/icons/male.svg';
+import FemaleIcon from '../../assets/images/icons/female.svg';
 
 class UserInfoContainer extends Component {
   onRemove = (id) => {
@@ -22,17 +25,22 @@ class UserInfoContainer extends Component {
     const { male, name, interests, diseases } = user;
 
     // This will be replaced by icon url later
-    const genderIcon = male ? 'M' : 'Fe';
+    const genderIcon = male ? MaleIcon : FemaleIcon;
 
     return (
       <div className="user-info">
-        <div className="user-info__basic">
-          <h2>
-            {name} 님
+        <div className="user-info__heading">
+          <div className="user-info__name">
+            <h2>{name} 님 </h2>
             <img src={genderIcon} alt={male ? 'male' : 'female'} />
-          </h2>
+          </div>
+          
+          <div className="user-info__edit">
+            {/* Link to Edit member page will be added later */}
+            <Link to="/user/settings">Edit</Link>
+          </div>
         </div>
-        <div className="user-info__interests-disease">
+        <div className="user-info__details">
           { interests.map(interest => (
             <TagBox 
               key={interest.id} 
@@ -49,10 +57,6 @@ class UserInfoContainer extends Component {
               onRemove={this.onRemove}
             />
           ))}
-        </div>
-        <div className="user-info__edit">
-          {/* Link to Edit member page will be added later */}
-          <Link to="/user/settings">Edit</Link>
         </div>
       </div>
     );

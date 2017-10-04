@@ -7,14 +7,11 @@ export const currentUser = () => {
       male: true,
       name: "김레클",
       interests: [
-        { id: "asdasd1", text: "soccer" },
-        { id: "asdd1", text: "Scala" },
-        { id: "asdd1asd", text: "penny" },
+        { id: "asdasd1", text: "고혈압" },
+        { id: "asdd1", text: "아토피" },
       ],
       diseases: [
-        { id: "123asd", text: "suck shti" },
-        { id: "123as2d", text: "psycho" },
-        { id: "123asggd", text: "obese" },
+        { id: "123asd", text: "근육량" },
       ],
     }
   };
