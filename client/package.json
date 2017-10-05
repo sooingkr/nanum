@@ -110,6 +110,8 @@
     "axios-mock-adapter": "^1.9.0",
     "enzyme": "^3.0.0",
     "enzyme-adapter-react-16": "^1.0.0",
+    "include-media": "^1.4.9",
+    "modularscale-sass": "^3.0.3",
     "node-sass": "^4.5.3",
     "node-sass-chokidar": "^0.0.3",
     "react-test-renderer": "^16.0.0",

@@ -11,6 +11,7 @@ import { AddFoodForm } from '../../components/Dashboard/AddFoodForm';
 import FoodIntakeProgress from '../../components/Dashboard/FoodIntakeProgress';
 import FoodIntakeList from '../../components/Dashboard/FoodIntakeList';
 import { DashboardDuck, selectors } from './DashboardDuck';
+import './FoodIntake.scss';
 
 export class FoodIntakeTrackingContainer extends Component {
   handleAddFood = (formData) => {

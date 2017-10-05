@@ -9,6 +9,7 @@ import UserInfoContainer from './UserInfoContainer';
 import FoodIntakeTrackingContainer from './FoodIntakeTrackingContainer';
 import FoodSuggestionContainer from './FoodSuggestionContainer';
 import { DashboardDuck } from './DashboardDuck';
+import './Dashboard.scss';
 
 class Dashboard extends Component {
   componentWillMount() {
@@ -18,21 +19,23 @@ class Dashboard extends Component {
   
   render() {
     return (
-      <Grid>
-        <Row>
-          <Col sm={6} md={4}>
-            <UserInfoContainer />
-          </Col>
-          <Col sm={6} md={8}>
-            <FoodIntakeTrackingContainer />
-          </Col>
-        </Row>
-        <Row>
-          <Col sm={12} md={12}>
-            <FoodSuggestionContainer />
-          </Col>
-        </Row>
-      </Grid>
+      <div className="dashboard">
+        <Grid>
+          <Row className="dashboard-tracking">
+            <Col sm={6} md={4}>
+              <UserInfoContainer />
+            </Col>
+            <Col sm={6} md={8}>
+              <FoodIntakeTrackingContainer />
+            </Col>
+          </Row>
+          <Row className="dashboard-suggestion">
+            <Col sm={12} md={12}>
+              <FoodSuggestionContainer />
+            </Col>
+          </Row>
+        </Grid>
+      </div>
     )
   }
 }

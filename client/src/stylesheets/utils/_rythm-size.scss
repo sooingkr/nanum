@@ -1,0 +1,8 @@
+@function rhythm-size($sizes) {
+  @for $i from 1 through length($sizes) {
+    $size: nth($sizes, $i);
+    $sizes: set-nth($sizes, $i, ceil($size / $rhythm-unit) * $rhythm-unit);
+  }
+
+  @return if(length($sizes) > 1, $sizes, nth($sizes, 1));
+}
