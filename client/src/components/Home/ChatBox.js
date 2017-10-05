@@ -11,19 +11,18 @@ class ChatBox extends Component {
     const { message: { index, content, admes } } = this.props;
 
     return (
-      <div className="chat-messages__text" key={index}>
-        { isEmpty(content) ? null
+      <div className="chat-messages__text" key={ index }>
+        { isEmpty( content ) ? null
           :
           <div className="chat-messages__user">
-            <div className="image-block user-message">
-              <Image
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/220px-User_icon_2.svg.png"
+            <div className="image-block pull-left">
+              <Image src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/220px-User_icon_2.svg.png"
                 circle/></div>
-            <div className="chat-messages__box user">{content}</div>
+            <div className="chat-messages__box user">{ content }</div>
           </div>
         }
 
-        { isEmpty(admes) ? null
+        { isEmpty( admes ) ? null
           :
           <div className="chat-messages__box supporter">
             { admes }

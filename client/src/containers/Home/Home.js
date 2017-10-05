@@ -6,7 +6,6 @@ import ChatBoxContainer from "./ChatBoxContainer.js";
 
 import "./Home.scss";
 
-
 class Home extends Component {
   render() {
     const userId = '1';

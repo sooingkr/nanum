@@ -6,13 +6,10 @@ const storeName = 'HomeDuck';
 
 // define action type
 export const actionTypes = {
-  // initialize: storeName + '/initialize',
   toggleChatBox: storeName + '/toggleChatBox',
 };
 
 // define action
-// export const initialize = () => dispatch => {
-// };
 
 const toggleChatBox = () => dispatch => {
   dispatch(createAction(actionTypes.toggleChatBox));
@@ -29,9 +26,6 @@ export const initialState = {
 };
 
 const reducer = createReducer(initialState, {
-  // [actionTypes.initialize]: (state, currentUser) => {
-  //   return {};
-  // },
 
   [actionTypes.toggleChatBox]: (state) => {
 

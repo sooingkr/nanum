@@ -44,6 +44,12 @@
     background-color: transparent;
     @include box-shadow(null, null, null, null, null, null, true);
 
+    &:hover {
+      border: none;
+      outline: none;
+      background-color: transparent;
+
+    }
     .line {
       display: inline-block;
       border-bottom: 3px solid $color-green;
@@ -72,11 +78,12 @@
 
   .chat-box__title-text {
     font-size: rem(10);
+    text-align: center;
     margin: 0;
 
     .fa-comment-o {
       font-size: rem(24);
-      margin-right: rem(6);
+      margin-right: 6px;
     }
   }
 
@@ -113,10 +120,6 @@
     &.user-icon {
       @include position(fixed, null 35px 46px null);
       @include size(44px);
-    }
-
-    &.user-message {
-      float: left;
     }
 
     .img-circle {
@@ -174,6 +177,31 @@
       }
     }
   }
+
+  .block-alert__bg {
+    @include position(fixed, 0 0 0 0);
+    background-color: $black;
+    opacity: .5;
+    z-index: 1;
+
+  }
+  .chat-box__alert {
+    .well {
+      @include position(fixed, 50% 0 0 38%);
+      height: 80px;
+      z-index: 1;
+    }
+  }
+}
+
+@media screen and (min-width: $breakpoints-phone) and (max-width: $breakpoints-tablet) {
+  .chat-box {
+    .chat-box__alert {
+      .well {
+        @include position(fixed, 50% 0 0 30%);
+      }
+    }
+  }
 }
 
 @media screen and (max-width: $breakpoints-phone) {
@@ -183,8 +211,15 @@
       @include size(100%);
       border-radius: 0;
     }
+
     .chat-messages__block {
       max-height: 335px !important;
+    }
+
+    .chat-box__alert {
+      .well {
+        @include position(fixed, 50% 0 0 0);
+      }
     }
   }
 }
