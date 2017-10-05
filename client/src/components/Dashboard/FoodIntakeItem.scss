@@ -1,0 +1,26 @@
+@import "../../stylesheets/common";
+
+.food-intake-item {
+  margin-bottom: 14px;
+}
+
+.food-intake-item__image {
+  width: 30px;
+  height: 30px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  }
+}
+
+.food-intake-item__name {
+  font-size: ms(-1);
+  color: $black;
+}
+
+.food-intake-item__quantity {
+  font-size: ms(-3);
+  color: $gray;
+}

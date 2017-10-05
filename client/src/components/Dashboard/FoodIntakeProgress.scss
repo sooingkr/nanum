@@ -1,0 +1,47 @@
+@import "../../stylesheets/common";
+
+.food-intake__progress {
+}
+
+.food-intake__progress-heading {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+  
+.food-intake__progress-heading > .target,
+.food-intake__progress-heading > .current {
+  text-align: center;
+  font-size: ms(-1);
+  line-height: 1.33;
+  font-weight: 400;
+}  
+
+.food-intake__progress-heading > .target {
+  color: $black;
+}
+
+.food-intake__progress-heading > .current {
+  color: $gray;
+}  
+
+// Progress bar
+#nanum {
+  .progress, 
+  .progress-bar {
+    background-image: none;
+    box-shadow: none;
+  }
+
+  .progress {
+    max-height: 8px;
+    background-color: $progress-bar-background;
+    margin-bottom: 0;
+  }
+
+  .progress-bar {
+    line-height: 8px;
+    background-color: $green;
+  }
+}
+
