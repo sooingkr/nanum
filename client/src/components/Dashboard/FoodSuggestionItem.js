@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Image } from 'react-bootstrap';
+import './FoodSuggestionItem.scss';
 
 const FoodSuggestionItem = ({ data: { id, thumbUrl, name } }) => (
   <div className="food-suggestion-item" id={id}>

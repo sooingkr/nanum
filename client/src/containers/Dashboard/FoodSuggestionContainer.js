@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { isEmpty } from 'lodash';
 import FoodSuggestionCarousel from '../../components/Dashboard/FoodSuggestionCarousel';
 import { selectors } from './DashboardDuck';
+import './FoodSuggestion.scss';
 
 class FoodSuggestionContainer extends Component {
   render() {

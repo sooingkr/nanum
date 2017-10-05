@@ -14,11 +14,18 @@ $dashboard-max-width: 1040px;
 }
 
 .dashboard-tracking {
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .15);
-  border-radius: 10px;
-  background-color: $white;
-
   @include media(">big-phone") {
     display: flex;
+  }
+}
+
+// Override bootstrap padding
+#nanum .dashboard div[class^="col"] {
+  padding-left: 8px;
+  padding-right: 8px;
+
+  @include media(">=netbook") {
+    padding-left: 0;
+    padding-right: 0;
   }
 }

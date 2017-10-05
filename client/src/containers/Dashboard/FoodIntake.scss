@@ -3,10 +3,33 @@
 .food-intake {
   max-width: 260px;
   margin: 0 auto;
-  padding: 24px 20px 20px;
+  padding: 24px 0 20px;
 
   @include media(">=tablet") {
     max-width: 100%;
-    padding-bottom: 0;
+  }
+
+  @include media(">=netbook") {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+}
+
+.food-intake__progress {
+  margin-bottom: 16px;
+}
+  
+.food-intake__meals {
+  background-color: $white-gray;
+
+  @include media(">=netbook") {
+    padding: 0 32px;
+  }
+
+  .row {
+    @include media(">=netbook") {
+      margin-right: 0;
+      margin-left: 0;
+    }
   }
 }

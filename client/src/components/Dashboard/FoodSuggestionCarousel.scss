@@ -1,0 +1,51 @@
+@import '../../stylesheets/common';
+
+#nanum .food-suggestions .slick-list {
+  padding: 0 !important;
+}
+
+#nanum .food-suggestions .slick-slide {
+  width: initial !important;
+}
+
+#nanum .food-suggestions .slick-track {
+  @include media(">=big-phone") {
+    transform: translate3d(0px, 0px, 0px) !important;
+  }
+}  
+
+// Slider
+.food-suggestions-slider {
+  position: relative;
+}
+
+// Carousel arrows
+.carousel-arrow-wrapper {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  right: -10px;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.carousel-arrow {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: $yellow;
+  position: relative;
+  border: none;
+  box-shadow: none;
+}
+
+.carousel-arrow--next:after {
+  position: absolute;
+  content: '\f178';
+  font-family: 'FontAwesome';
+  color: $white;
+  font-size: ms(2);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

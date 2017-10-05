@@ -1,0 +1,23 @@
+@import '../../stylesheets/common';
+
+@mixin section-spacing {
+  @include media(">=tablet") {
+    margin-bottom: 28px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.section--shadow {
+  @include media(">=tablet") {
+    @include with-shadow;
+    @include section-spacing;
+  }
+}
+
+.section--shadow-mobile {
+  @include with-shadow;
+  @include section-spacing;
+}

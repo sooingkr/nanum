@@ -21,7 +21,7 @@ class Dashboard extends Component {
     return (
       <div className="dashboard">
         <Grid>
-          <Row className="dashboard-tracking">
+          <Row className="dashboard-tracking section--shadow">
             <Col sm={6} md={4}>
               <UserInfoContainer />
             </Col>
@@ -29,7 +29,7 @@ class Dashboard extends Component {
               <FoodIntakeTrackingContainer />
             </Col>
           </Row>
-          <Row className="dashboard-suggestion">
+          <Row className="dashboard-suggestion section--shadow-mobile">
             <Col sm={12} md={12}>
               <FoodSuggestionContainer />
             </Col>

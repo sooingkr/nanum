@@ -1,0 +1,37 @@
+@import '../../stylesheets/common';
+
+.food-suggestions {
+  padding: 24px 20px 30px;
+  overflow-x: hidden;
+  
+  @include media(">=desktop") {
+    display: flex;
+  }
+}
+
+.food-suggestions__reason {
+  color: $black;
+  font-size: ms(0);
+  font-weight: 400;
+
+  @include media(">=desktop") {
+    flex-shrink: 0;
+    max-width: 74px;
+    margin-right: 48px;    
+  }
+}
+
+// Blur overlay
+.food-suggestions__carousel {
+  position: relative;
+
+  &:after {
+    position: absolute;
+    content: ' ';
+    height: 100%;
+    width: 30px;
+    background-image: linear-gradient(to left, rgba(183, 188, 192, 0.1), rgba(255, 255, 255, 0.2));
+    top: 0;
+    right: 0;
+  }
+}

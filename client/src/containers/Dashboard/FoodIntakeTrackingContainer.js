@@ -46,26 +46,28 @@ export class FoodIntakeTrackingContainer extends Component {
           current={calories.current}
         />
 
-        <Row className="food-intake__meals">
-        {
-          Object.keys(when).map((mealTime, idx) => (
-            <Col xs={12} md={4} key={mealTime}>
-              <FoodIntakeList 
-                mealTime={mealTime} 
-                foods={when[mealTime]}
-                openDialog={openDialog}
-              />
-            </Col>
-          ))
-        }
+        <div className="food-intake__meals">
+          <Row>
+          {
+            Object.keys(when).map((mealTime, idx) => (
+              <Col xs={12} md={4} key={mealTime}>
+                <FoodIntakeList 
+                  mealTime={mealTime} 
+                  foods={when[mealTime]}
+                  openDialog={openDialog}
+                />
+              </Col>
+            ))
+          }
 
-        <Dialog 
-          show={showDialog} 
-          onClose={closeDialog} 
-        >
-          <AddFoodForm onSubmit={this.handleAddFood} />
-        </Dialog>
-        </Row>
+            <Dialog 
+              show={showDialog} 
+              onClose={closeDialog} 
+            >
+              <AddFoodForm onSubmit={this.handleAddFood} />
+            </Dialog>
+          </Row>
+        </div>
       </div>
     );
   }
