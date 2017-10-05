@@ -6,6 +6,10 @@ $button-size: 30px;
   position: relative;
   padding-left: $button-size;
 
+  // Reset style
+  border: none;
+  background-color: $white;
+
   &:before {
     content: '+';
     position: absolute;

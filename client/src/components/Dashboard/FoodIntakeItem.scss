@@ -2,6 +2,12 @@
 
 .food-intake-item {
   margin-bottom: 14px;
+
+  &:last-of-type {
+    @include media(">=tablet") {
+      border-bottom: 1px solid #d0d2d3;
+    }
+  }
 }
 
 .food-intake-item__image {

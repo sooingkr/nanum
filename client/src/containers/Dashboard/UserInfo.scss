@@ -6,6 +6,14 @@
   padding: 20px;
   text-align: left;
   border-bottom: 1px solid rgba(159, 163, 167, .2);
+
+  @include media(">big-phone") {
+    border-bottom: none;
+    border-right: 1px solid rgba(159, 163, 167, .2);
+    height: 100%;
+    max-width: 100%;
+    margin: 0;
+  }
 }
 
 .user-info__heading {
@@ -34,6 +42,7 @@
   a {
     font-family: "Montserrat", $base-font-family;
     font-size: ms(-3);
+    font-weight: 400;
     color: $black;
     text-transform: uppercase;
   }
@@ -43,3 +52,14 @@
   padding: 28px 0 20px;
 }
 
+@include media(">=netbook") {
+  .user-info__heading {
+    position: relative;
+  }  
+
+  .user-info__edit {
+    position: absolute;
+    right: 0;
+    top: -4px;
+  }
+}

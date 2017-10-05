@@ -18,8 +18,8 @@
   padding-bottom: 12px;
   border-bottom: 1px solid #d0d2d3;
   width: 100%;
-}
 
-.food-intake-list__add {
-  display: inline-block;
+  @include media(">=tablet") {
+    border-bottom: none;
+  }
 }

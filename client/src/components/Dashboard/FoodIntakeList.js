@@ -20,9 +20,7 @@ class FoodIntakeList extends Component {
             />
           ))}
 
-          <div className="food-intake-list__add">
-            <AddFoodButton onAddFood={openDialog} mealTime={mealTime}/>
-          </div>
+          <AddFoodButton onAddFood={openDialog} mealTime={mealTime}/>
         </div>
       </div>
     )
