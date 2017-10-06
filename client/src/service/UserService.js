@@ -15,3 +15,19 @@ export const getCurrentUser = async () => {
 export const loginUser = async () => {
   // TODO
 }
+
+export const checkValidToken = async (token) => {
+  let isValid;
+
+  try {
+    isValid = await axios.post(`${API_BASE_URL}/check-valid-authorization-token`, {
+      headers: {
+        'Authorization': token,
+      }
+    });
+  } catch(error) {
+    throw new Error(`UserService error - <checkValidToken()>: ${error}`);
+  }
+
+  return isValid.data;
+}

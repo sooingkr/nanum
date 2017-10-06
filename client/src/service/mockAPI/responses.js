@@ -145,3 +145,11 @@ export const foodSuggestions = userId => {
     }
   } 
 }
+
+export const login = () => {
+  return "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6bnVsbCwidXNlcm5hbWUiOiJhZG1pbiIsImVuYWJsZWQiOnRydWUsImV4cGlyZSI6bnVsbCwiYXV0aG9yaXRpZXMiOlt7ImF1dGhvcml0eSI6IlJPTEVfQURNSU4ifV19.X1fGk2j3zkqEPDAPOScKmFudlO_Z48tHEbVLWlgkIIU";
+}
+
+export const checkValidToken = (token) => {
+  return true;
+}
