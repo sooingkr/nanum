@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Media } from 'react-bootstrap';
+import './FoodIntakeItem.scss';
 
 const FoodIntakeItem = ({ name, imageUrl, quantity }) => (
   <div className="food-intake-item">

@@ -4,7 +4,7 @@ import { mount } from 'enzyme';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
-import ChatBoxContainer from '../ChatBoxContainer';
+import { ChatBoxContainer } from '../ChatBoxContainer';
 import ChatBox from "../../../components/Home/ChatBox";
 
 describe('ChatBoxContainer component', () => {
@@ -59,16 +59,23 @@ describe('ChatBoxContainer component', () => {
 
         }
       ],
-      openChatBox: undefined,
+      openChatBox: false,
       toggleChatBox: undefined
     };
+
     mountedChatBox = undefined;
-
-
   });
+
   it('renders without crashing', () => {
     shallow(<ChatBoxContainer {...props} />);
   });
+
+  it ("always render ChatBox component", () => {
+      expect(chatBoxContainer().find(ChatBox).length).toBeGreaterThanOrEqual(1);
+  });
+
+
+
 });
 
 

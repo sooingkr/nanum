@@ -1,12 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ProgressBar } from 'react-bootstrap';
+import './FoodIntakeProgress.scss';
 
-const FoodIntakeProgress = ({ min, max, current }) => (
+const FoodIntakeProgress = ({ max, current }) => (
   <div className="food-intake__progress">
-    <span>Start:{min} calories</span>
+    <div className="food-intake__progress-heading">
+      <span className="target">목표량 {max} kcal</span>
+      <span className="current">{current} kcal 남음</span>
+    </div>
     <ProgressBar now={calculateProgress(current, max)}/>
-    <span>Target:{max} calories</span>
   </div>
 )
 
@@ -15,7 +18,6 @@ function calculateProgress(current, max) {
 }
 
 FoodIntakeProgress.propTypes = {
-  min: PropTypes.number.isRequired,
   max: PropTypes.number.isRequired,
   current: PropTypes.number.isRequired,
 }

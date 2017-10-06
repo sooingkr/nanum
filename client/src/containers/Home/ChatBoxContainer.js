@@ -82,7 +82,9 @@ ChatBoxContainer.propTypes = {
     PropTypes.string,
     PropTypes.number
   ]).isRequired,
-  messages: PropTypes.array.isRequired
+  messages: PropTypes.array.isRequired,
+  openChatBox: PropTypes.bool.isRequired,
+  toggleChatBox: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => {
