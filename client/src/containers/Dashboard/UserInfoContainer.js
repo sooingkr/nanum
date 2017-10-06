@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 import TagBox from '../../components/Dashboard/TagBox';
-import { dashboardDuck } from './DashboardDuck';
+import { selectors } from './DashboardDuck';
+import './UserInfo.scss';
+import MaleIcon from '../../assets/images/icons/male.svg';
+import FemaleIcon from '../../assets/images/icons/female.svg';
 
 class UserInfoContainer extends Component {
   onRemove = (id) => {
@@ -12,29 +15,32 @@ class UserInfoContainer extends Component {
     console.log(id);
   };
 
-  componentWillMount() {
-    const { init } = this.props;
-    init();
-  }
-
   render() {
-    const {user, user: {male, name, interests, diseases} } = this.props;
-    // This will be replaced by icon url later
-    const genderIcon = male ? 'M' : 'Fe';
+    const user = this.props.user;
 
     if (_.isEmpty(user)) {
       return (<div/>);
     }
 
+    const { male, name, interests, diseases } = user;
+
+    // This will be replaced by icon url later
+    const genderIcon = male ? MaleIcon : FemaleIcon;
+
     return (
       <div className="user-info">
-        <div className="user-info__basic">
-          <h2>
-            {name} 님
+        <div className="user-info__heading">
+          <div className="user-info__name">
+            <h2>{name} 님 </h2>
             <img src={genderIcon} alt={male ? 'male' : 'female'} />
-          </h2>
+          </div>
+          
+          <div className="user-info__edit">
+            {/* Link to Edit member page will be added later */}
+            <Link to="/user/settings">Edit</Link>
+          </div>
         </div>
-        <div className="user-info__interests-disease">
+        <div className="user-info__details">
           { interests.map(interest => (
             <TagBox 
               key={interest.id} 
@@ -52,10 +58,6 @@ class UserInfoContainer extends Component {
             />
           ))}
         </div>
-        <div className="user-info__edit">
-          {/* Link to Edit member page will be added later */}
-          <Link to="/user/settings">Edit</Link>
-        </div>
       </div>
     );
   }
@@ -63,29 +65,21 @@ class UserInfoContainer extends Component {
 
 UserInfoContainer.propTypes = {
   user: PropTypes.shape({
-    male: PropTypes.bool.isRequired,
-    name: PropTypes.string.isRequired,
+    male: PropTypes.bool,
+    name: PropTypes.string,
     interests: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      text: PropTypes.string.isRequired,
-    })).isRequired,
+      id: PropTypes.string,
+      text: PropTypes.string,
+    })),
     diseases: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      text: PropTypes.string.isRequired,
-    })).isRequired,
-  })
+      id: PropTypes.string,
+      text: PropTypes.string,
+    })),
+  }).isRequired,
 };
 
-const mapStateToProps = state => {
-  const dashBoardState = state[dashboardDuck.storeName];
+const mapStateToProps = state => ({
+  user: selectors.getCurrentUser(state),
+});
 
-  return {
-    user: dashBoardState.currentUser
-  }
-};
-
-const mapDispatchToProps = {
-  init: dashboardDuck.actions.initialize
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(UserInfoContainer);
+export default connect(mapStateToProps)(UserInfoContainer);

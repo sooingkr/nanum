@@ -1,6 +1,7 @@
 @import "../../stylesheets/base/_variables.scss";
 @import "../../stylesheets/base/common.scss";
 @import "../../stylesheets/mixin/mixin.scss";
+@import "../../stylesheets/bourbon/assets/stylesheets/_bourbon.scss";
 
 .App {
   .navbar {
@@ -9,22 +10,23 @@
     border: none;
     height: 76px;
     margin-bottom: 0;
+    .navbar-nav > li > a {
+      @include padding(10px 12px);
+    }
     .logo-block {
       margin-top: 17px;
     }
     .logo {
       float: left;
-      width: 107px;
-      height: 42px;
+      @include size(107px 42px);
       margin-top: 5px;
     }
     .dropdown-toggle {
       background-color: transparent;
       background-image: none;
       border: none;
-      box-shadow: none;
-      -webkit-box-shadow: none;
-      -moz-box-shadow: none;
+      @include box-shadow(null, null, null, null, null, null, true);
+
 
       &:before {
         font-family: 'Glyphicons Halflings';
@@ -41,8 +43,8 @@
   .App {
     .navbar {
       .navbar-brand, .navbar-nav {
-        position: absolute;
-        top: 16px;
+        @include position(absolute, 16px null null null);
+
       }
       .navbar-nav {
         &:last-child {
@@ -52,25 +54,40 @@
     }
   }
 }
+@media screen and (max-width: $breakpoints-tablet - 1) {
+  .App {
+    .navbar {
+      .navbar-toggle {
+        float: none;
+        background-color: transparent;
+        border: none;
+        &:before {
+          font-family: 'Glyphicons Halflings';
+          content: "\e252";
+        }
+        .icon-bar {
+          display: none;
+        }
+      }
+    }
+    .navbar-collapse {
+      background-color: $white;
+      @include position(absolute, 0 0 null 0);
+      z-index: 9999;
+      min-height: 360px;
+    }
+  }
+}
+
 
 @media screen and (max-width: $breakpoints-phone) {
+  html {
+    font-size: 14px !important;
+  }
   .App {
     .navbar {
       .navbar-header {
         height: 76px;
-
-        .navbar-toggle {
-          float: none;
-          background-color: transparent;
-          border: none;
-          &:before {
-            font-family: 'Glyphicons Halflings';
-            content: "\e252";
-          }
-          .icon-bar {
-            display: none;
-          }
-        }
       }
       .search-box {
         top: 28px;
@@ -78,22 +95,13 @@
         width: 63%;
 
         .form-control, .btn-default {
-          position: absolute;
-          top: -18px;
+          @include position(absolute, -18px null null null);
         }
         .btn-default {
           right: 0;
         }
       }
-      .navbar-collapse {
-        background-color: $white;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 9999;
-        min-height: 360px;
-      }
+
     }
   }
 }

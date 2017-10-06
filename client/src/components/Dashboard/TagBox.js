@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Glyphicon } from 'react-bootstrap';
+import './TagBox.scss';
 
 const TagBox = ({ id, text, onRemove }) => (
   <button className="tagbox" onClick={() => onRemove(id)}>

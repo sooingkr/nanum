@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './AddFoodButton.scss';
 
-const AddFoodButton = ({ onAddFood }) => (
-  <button className="button--add-food" onClick={onAddFood}>
+const AddFoodButton = ({ onAddFood, mealTime }) => (
+  <button className="button--add-food" onClick={() => onAddFood(mealTime)}>
     <span>Add</span>
   </button>
 )
 
 AddFoodButton.propTypes = {
-  onAddFood: PropTypes.func.isRequired,
+  onAddFood: PropTypes.func,
 }
 
 export default AddFoodButton;

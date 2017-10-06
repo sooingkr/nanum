@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
   Grid,
   Row,
@@ -8,45 +9,43 @@ import UserInfoContainer from './UserInfoContainer';
 import FoodIntakeTrackingContainer from './FoodIntakeTrackingContainer';
 import FoodSuggestionContainer from './FoodSuggestionContainer';
 import IngredientsSuggestionContainer from './IngredientsSuggestionContainer';
-
-const mockUserInfo = {
-  male: true,
-  name: "김레클",
-  interests: [
-    { id: "asdasd1", text: "soccer" },
-    { id: "asdd1", text: "Scala" },
-    { id: "asdd1asd", text: "penny" },
-  ],
-  diseases: [
-    { id: "123asd", text: "suck shti" },
-    { id: "123as2d", text: "psycho" },
-    { id: "123asggd", text: "obese" },
-  ]
-};
+import { DashboardDuck } from './DashboardDuck';
+import './Dashboard.scss';
 
 class Dashboard extends Component {
+  componentWillMount() {
+    const { init } = this.props;
+    init();
+  }
+  
   render() {
     return (
-      <Grid>
-        <Row>
-          <Col sm={6} md={4}>
-            <UserInfoContainer user={mockUserInfo}/>
-          </Col>
-          <Col sm={6} md={8}>
-            <FoodIntakeTrackingContainer />
-          </Col>
-        </Row>
-        <Row>
-          <Col sm={6} md={2}>
-            <IngredientsSuggestionContainer />
-          </Col>
-          <Col sm={6} md={10}>
-            <FoodSuggestionContainer />
-          </Col>
-        </Row>
-      </Grid>
+      <div className="dashboard">
+        <Grid>
+          <Row className="dashboard-tracking">
+            <Col sm={6} md={4}>
+              <UserInfoContainer />
+            </Col>
+            <Col sm={6} md={8}>
+              <FoodIntakeTrackingContainer />
+            </Col>
+          </Row>
+          <Row className="dashboard-suggestion">
+            <Col sm={6} md={2}>
+              <IngredientsSuggestionContainer />
+            </Col>
+            <Col sm={6} md={10}>
+              <FoodSuggestionContainer />
+            </Col>
+          </Row>
+        </Grid>
+      </div>
     )
   }
 }
 
-export default Dashboard;
+const mapDispatchToProps = {
+  init: DashboardDuck.actions.initialize,
+};
+
+export default connect(null, mapDispatchToProps)(Dashboard);

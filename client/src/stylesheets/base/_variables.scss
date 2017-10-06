@@ -1,12 +1,12 @@
 $breakpoints: (
-   phone: 320px,
-   iphone6: 375px,
-   iphone6plus: 414px,
-   big-phone: 700px,
-   tablet: 768px,
-   netbook: 924px,
-   desktop: 1024px,
-   da: 1224px
+        phone: 320px,
+        iphone6: 375px,
+        iphone6plus: 414px,
+        big-phone: 700px,
+        tablet: 768px,
+        netbook: 924px,
+        desktop: 1024px,
+        da: 1224px
 );
 
 $breakpoints-desktop: 992px;
@@ -14,8 +14,8 @@ $breakpoints-tablet: 768px;
 $breakpoints-phone: 480px;
 
 $width-mq :(
-  min: 'min-width',
-  max: 'max-width'
+        min: 'min-width',
+        max: 'max-width'
 );
 
 $width-bound: 808px;
@@ -24,16 +24,16 @@ $width-bound: 808px;
 $rhythm-unit: 2px;
 
 // Typography
-// $base-font-family: "Oxygen", 'Source Sans Pro', 'Arial', sans-serif;
-// $heading-font-family: $base-font-family;
+$base-font-family: "Nanum", 'Source Sans Pro', 'Arial', sans-serif;
+$heading-font-family: $base-font-family;
 
 // Font Sizes
-// $base-font-size: 16px;
-// $base-letter-spacing: 0.01em;
+$base-font-size: 14px;
+$base-letter-spacing: 0.1em;
 
 // Line height
-$base-line-height: 1.571428571;
-$heading-line-height: 1.2;
+$base-line-height: 1.143;
+$heading-line-height: 1;
 
 // Other Sizes
 $base-border-radius: 1px;
@@ -42,25 +42,19 @@ $small-spacing: $base-spacing / 2;
 $base-z-index: 0;
 
 // Colors
- $white: white;
-// $pale-orange: #faa05a;
-// $deep-sky-blue: #1e87f0;
-// $greenish-teal: #32d296;
-// $warm-pink: #f0506e;
-// $dark-navy-blue: #000a12;
-// $dodger-blue: #2d9ef4;
-// $tomato: #f2452a;
-// $dodger-blue-two: #2d9df3;
-// $bluey-grey: #8ca0b3;
-// $tomato-two: #f43928;
-// $dodger-blue-three: #30a4f5;
-// $turquoise-blue: #0db9dd;
-// $tomato-three: #f44336;
-// $bright-lime: #76ff03;
-// $marine: #043361;
-// $dodger-blue-four: #2fa2f4;
-// $reddish-orange: #f7652b;
-// $darkblue: #0b086d;
+$white: white;
+$black: black;
+$white-gray: #f7f8f9;
+$lesser-gray: #d0d2d3;
+$light-gray: #b7bcc0;
+$gray: #9fa3a7;
+$dark-gray: #4c4c4c;
+$black: #242424;
+$green: #00c03c;
+$red: #f65a41;
+$yellow: #ffc80a;
+$color-green: #00c03c;
+
 
 // Font Colors
 $base-font-color: $white;
@@ -69,8 +63,18 @@ $placeholder-color: #a1a5a9;
 // Border
 // $base-border-color: $light-gray;
 // $base-border: 1px solid $base-border-color;
+$chatbox-border: #f3f1f2;
+$message-border: rgba(76, 76, 76, 0.15);
+//$message-border-user: rgba(0, 192, 60, 0.3);
+$message-border-user: rgba(127, 213, 149, 1);
+$message-border-user-arrow: rgba(0, 192, 60, 0.2);
+$chat-box-input-border: #00c03c;
+$chat-box-input-shadow: rgba(0, 192, 60, 0.15);
 
 // Background Colors
-$base-background-color: #2ea2f3;
+$base-background-color: #d8d8d8;
 $secondary-background-color: #f1f1f1;
 $profile-edit-background: #e4f6f6;
+$progress-bar-background: #e9eaec;
+$chatbox-background: #f6f6f6;
+

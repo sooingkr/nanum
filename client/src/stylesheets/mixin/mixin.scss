@@ -14,3 +14,21 @@
   -ms-border-radius: $radius;
   border-radius: $radius;
 }
+
+@mixin box-shadow($top: null, $left: null, $blur: null, $color: null, $spread:null, $inset: null, $none: false) {
+  @if ($inset == true) {
+    -webkit-box-shadow:inset $top $left $blur $spread $color;
+    -moz-box-shadow:inset $top $left $blur $spread $color;
+    box-shadow:inset $top $left $blur $spread $color;
+  }
+  @else if $none {
+    -webkit-box-shadow: none;
+    -moz-box-shadow:none;
+    box-shadow:none;
+  }
+  @else {
+    -webkit-box-shadow: $top $left $blur $spread $color;
+    -moz-box-shadow: $top $left $blur $spread $color;
+    box-shadow: $top $left $blur $spread $color;
+  }
+}

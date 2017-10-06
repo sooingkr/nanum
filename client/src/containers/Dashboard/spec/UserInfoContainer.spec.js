@@ -47,7 +47,7 @@ describe('UserInfoContainer component', () => {
     it('should display user name', () => {
       expect(mountedUserInfo.text()).toContain("David Coffee");
     });
-    
+
     it("should display the user's interests and diseases", () => {
       expect(mountedUserInfo.find('.user-info__interests-disease').children().exists())
         .toBeTruthy();
