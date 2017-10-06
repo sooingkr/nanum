@@ -9,11 +9,11 @@ const FoodSuggestionItem = ({ data: { id, thumbUrl, name } }) => (
     <figure className="food-suggestion-item__thumbnail">
       <Image src={thumbUrl} alt={name} responsive />
     </figure>
-    <p className="food-suggestion-item__name">
-      <Link to={`/foods/${id}`}>
+    <Link to={`/foods/${id}`} className="food-suggestion-item__name">
+      <span>
         {name}
-      </Link>
-    </p>
+      </span>
+    </Link>
   </div>
 );
 
