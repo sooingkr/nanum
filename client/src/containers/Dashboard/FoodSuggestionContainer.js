@@ -6,7 +6,7 @@ import FoodSuggestionCarousel from '../../components/Dashboard/FoodSuggestionCar
 import { selectors } from './DashboardDuck';
 import './FoodSuggestion.scss';
 
-class FoodSuggestionContainer extends Component {
+export class FoodSuggestionContainer extends Component {
   render() {
     const { foodSuggestions } = this.props;
     if(!foodSuggestions || isEmpty(foodSuggestions)) {
