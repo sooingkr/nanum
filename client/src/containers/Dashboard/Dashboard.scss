@@ -14,7 +14,9 @@ $dashboard-max-width: 1040px;
 }
 
 .dashboard-tracking {
-  @include media(">big-phone") {
+  padding: 0 30px;
+  
+  @include media(">tablet") {
     display: flex;
   }
 }

@@ -1,7 +1,6 @@
 @import '../../stylesheets/common';
 
 .food-intake {
-  max-width: 260px;
   margin: 0 auto;
   padding: 24px 0 20px;
 
@@ -22,14 +21,12 @@
 .food-intake__meals {
   background-color: $white-gray;
 
-  @include media(">=netbook") {
-    padding: 0 32px;
+  .row {
+    margin-right: 0;
+    margin-left: 0;
   }
 
-  .row {
-    @include media(">=netbook") {
-      margin-right: 0;
-      margin-left: 0;
-    }
+  @include media(">=netbook") {
+    padding: 0 32px;
   }
 }

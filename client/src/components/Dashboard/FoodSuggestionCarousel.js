@@ -18,6 +18,7 @@ const basicCarouselSettings = {
   speed: 500,
   centerMode: true,
   draggable: false,
+  slidesToScroll: 1,
 };
 
 const carouselSettings = {
@@ -31,7 +32,6 @@ const carouselSettings = {
       settings: {
         ...basicCarouselSettings,
         slidesToShow: 1,
-        slidesToScroll: 1,
       }
     },
     {
@@ -39,7 +39,6 @@ const carouselSettings = {
       settings: {
         ...basicCarouselSettings,
         slidesToShow: 4,
-        slidesToScroll: 1,
       }
     },
     {
@@ -47,7 +46,6 @@ const carouselSettings = {
       settings: {
         ...basicCarouselSettings,
         slidesToShow: 4,
-        slidesToScroll: 1,
       }
     }
   ]
