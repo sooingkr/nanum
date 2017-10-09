@@ -1,0 +1,225 @@
+@import "../../stylesheets/base/_variables.scss";
+@import "../../stylesheets/mixin/mixin.scss";
+@import "../../stylesheets/bourbon/assets/stylesheets/_bourbon.scss";
+
+.chat-box {
+  background-color: $chatbox-background;
+  @include box-shadow(2px, 10px, 0, rgba(76, 76, 76, 0.45), false);
+
+  .fa {
+    color: $color-green;
+  }
+
+  .btn-open {
+    @include position(fixed, null 92px 40px null);
+    @include size(221px 55px);
+    background-image: none;
+    background-color: $white;
+    @include border-radius(25px);
+
+    &:after {
+      content: " ";
+      @include position(absolute, 21px -5px null null);
+      @include size(10px);
+      background-color: $white;
+      border-right: 1px solid $chatbox-border;
+      border-bottom: 1px solid $chatbox-border;
+      @include transform(rotate(-45deg));
+    }
+
+    .fa-arrow-circle-right {
+      float: right;
+      font-size: rem(23);
+      color: $color-green;
+    }
+
+    &:hover, &:focus {
+      background-color: $white;
+    }
+  }
+
+  .btn-close {
+    border: none;
+    background-image: none;
+    background-color: transparent;
+    @include box-shadow(null, null, null, null, null, null, true);
+
+    &:hover {
+      border: none;
+      outline: none;
+      background-color: transparent;
+
+    }
+    .line {
+      display: inline-block;
+      border-bottom: 3px solid $color-green;
+      @include size(20px);
+    }
+  }
+
+  .btn-send {
+    @include position(absolute, null 12px 6px null);
+    @include size(28px);
+    @include border-radius(25px);
+    padding: 0;
+    background-color: $color-green;
+    background-image: none;
+
+    .fa {
+      color: $white;
+    }
+  }
+
+  .well {
+    @include position(fixed, null 26px -21px null);
+    @include size(300px 435px);
+    z-index: 1;
+  }
+
+  .chat-box__title-text {
+    font-size: rem(10);
+    text-align: center;
+    margin: 0;
+
+    .fa-comment-o {
+      font-size: rem(24);
+      margin-right: 6px;
+    }
+  }
+
+  .chat-messages__form {
+    position: relative;
+    min-width: 280px;
+    height: 42px;
+    @include border-radius(4px);
+    border: 1px solid $chat-box-input-border;
+    @include box-shadow(0, 0, 0, 3px, $chat-box-input-shadow, true);
+    margin-left: -10px;
+    overflow: hidden;
+    background-color: $white;
+
+    .form-control {
+      @include size(89% 40px);
+      border: none;
+      @include border-radius(0);
+      @include box-shadow(null, null, null, null, null, null, true);
+
+      &:focus {
+        border: none;
+        outline: none;
+        @include box-shadow(null, null, null, null, null, null, true);
+      }
+    }
+  }
+
+  .image-block {
+    background-color: $chatbox-border;
+    border: 3px solid $chatbox-border;
+    @include border-radius(25px);
+
+    &.user-icon {
+      @include position(fixed, null 35px 46px null);
+      @include size(44px);
+    }
+
+    .img-circle {
+      @include size(40px);
+    }
+  }
+
+  .chat-messages {
+    .block__chat-messages {
+      overflow-y: scroll;
+      max-height: 315px;
+    }
+    .chat-messages__text {
+      overflow: hidden;
+      @include margin(15px 5px 15px 0);
+    }
+  }
+
+  .chat-messages__box {
+    position: relative;
+    @include border-radius(25px);
+    @include padding(15px 25px);
+
+    &:before, &:after {
+      content: " ";
+      @include size(10px);
+    }
+
+    &.user {
+      float: left;
+      background-color: $white;
+      margin-left: 10px;
+      border: 2px solid $message-border;
+
+      &:before {
+        @include position(absolute, 22px null null -6px);
+        background-color: $white;
+        border-right: 2px solid $message-border;
+        border-bottom: 2px solid $message-border;
+        @include transform(rotate(132deg));
+      }
+    }
+    &.supporter {
+      float: right;
+      background-color: $message-border-user;
+      border: 2px solid $message-border-user-arrow;
+      @include margin(15px 10px 0 0);
+
+      &:after {
+        @include position(absolute, 20px -6px null null);
+        background-color: $message-border-user;
+        border-right: 2px solid $message-border-user-arrow;
+        border-bottom: 2px solid $message-border-user-arrow;
+        @include transform(rotate(310deg));
+      }
+    }
+  }
+
+  .block-alert__bg {
+    @include position(fixed, 0 0 0 0);
+    background-color: $black;
+    opacity: .5;
+    z-index: 1;
+
+  }
+  .chat-box__alert {
+    .well {
+      @include position(fixed, 50% 0 0 38%);
+      height: 80px;
+      z-index: 1;
+    }
+  }
+}
+
+@media screen and (min-width: $breakpoints-phone) and (max-width: $breakpoints-tablet) {
+  .chat-box {
+    .chat-box__alert {
+      .well {
+        @include position(fixed, 50% 0 0 30%);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $breakpoints-phone) {
+  .chat-box {
+    .well {
+      @include position(fixed, 76px 0 -21px 0);
+      @include size(100%);
+      border-radius: 0;
+    }
+
+    .block__chat-messages {
+      max-height: 335px !important;
+    }
+
+    .chat-box__alert {
+      .well {
+        @include position(fixed, 50% 0 0 0);
+      }
+    }
+  }
+}

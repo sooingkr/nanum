@@ -1,14 +1,10 @@
 import React from "react";
-import { withRouter } from 'react-router-dom';
-import {
-  Row, Col, Navbar, Nav, NavItem, Image, ButtonToolbar, Dropdown, MenuItem, Glyphicon,
-  NavDropdown
-} from "react-bootstrap";
-
-import SearchBox from "../../components/SearchBox/SearchBox.js";
+import { withRouter, Link } from 'react-router-dom';
+import { Row, Col, Navbar, Nav, NavItem, NavDropdown, Image, MenuItem } from "react-bootstrap";
 
 import "./Navigation.scss";
-import { logo } from '../../assets/images/logo.svg';
+// import { logo } from '../../assets/images/logo.png';
+
 
 const Navigation = withRouter(({ history }) => {
   const navigateHelper = path => () => {
@@ -18,29 +14,37 @@ const Navigation = withRouter(({ history }) => {
   return (
     <header>
       <Navbar default collapseOnSelect>
-        <Navbar.Header>
-          <Navbar.Brand>
-            <a className="pull-left" onClick={navigateHelper('/')} title="Home"><Image src={logo} alt="Fresh" className="img-responsive"/></a>
-          </Navbar.Brand>
-          <Navbar.Toggle />
-        </Navbar.Header>
-        <Navbar.Collapse>
-          <Nav>
-            <NavItem href="/">Link</NavItem>
-            <NavItem onClick={navigateHelper('/dashboard')}>Dashboard</NavItem>
-          </Nav>
+        <Row>
+          <Col md={3}>
+            <Navbar.Header>
+              <div className="logo-block pull-left">
+                  {/*<Link to="/" title="Home"><Image src={logo} alt="Fresh" className="img-responsive"/></Link>*/}
+                  <Link to="/" title="신 안전먹거리" className='logo'><Image src="https://images-na.ssl-images-amazon.com/images/G/01/omaha/images/yoda/logos/fresh-modal-3x._CB315803244_.png" alt="Fresh" className="img-responsive"/></Link>
 
-          <Nav pullRight>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <MenuItem onClick={navigateHelper('/dashboard')}>Dashboard</MenuItem>
-              <MenuItem onClick={navigateHelper('/login')}>Login</MenuItem>
-              <MenuItem >Something else here</MenuItem>
-              <MenuItem divider />
-              <MenuItem href="/logout">Logout</MenuItem>
-            </NavDropdown>
-          </Nav>
-
-        </Navbar.Collapse>
+                <Navbar.Toggle />
+              </div>
+            </Navbar.Header>
+          </Col>
+          <Col md={9}>
+            <Navbar.Collapse>
+              <Nav pullRight>
+                <NavItem onClick={navigateHelper('/')} title="신 안전먹거리" eventKey={1}>신 안전먹거리</NavItem>
+                <NavItem onClick={navigateHelper('/safety/searchProduct.do')} title="구 안전먹거리" eventKey={2}>구 안전먹거리</NavItem>
+                <NavItem onClick={navigateHelper('/company/companyMain.do')} title="HACCP관리 전산기준서" eventKey={3}>HACCP관리 전산기준서</NavItem>
+                <NavItem onClick={navigateHelper('/board/boardList.do?board=21')} title="민원" eventKey={4}>민원</NavItem>
+                <NavItem onClick={navigateHelper('/lod/info.do')} title="데이터활용" eventKey={5}>데이터활용</NavItem>
+                <NavItem onClick={navigateHelper('/search?q=query')} title="통합검색" eventKey={6}><span className="glyphicon glyphicon-search"></span></NavItem>
+                <NavDropdown eventKey={7} title="" id="basic-nav-dropdown">
+                  <MenuItem eventKey={7.1} onClick={navigateHelper('/login')}>Login</MenuItem>
+                  <MenuItem eventKey={7.2}>Another action</MenuItem>
+                  <MenuItem eventKey={7.3}>Something else here</MenuItem>
+                  <MenuItem divider />
+                  <MenuItem eventKey={7.4}>Separated link</MenuItem>
+                </NavDropdown>
+              </Nav>
+            </Navbar.Collapse>
+          </Col>
+        </Row>
       </Navbar>
     </header>
   )
