@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
+import { reduxForm, Field } from 'redux-form';
 import { PropTypes } from "prop-types";
 import { isEmpty } from "lodash";
 
@@ -8,14 +9,36 @@ import ChatBox from "../../components/Home/ChatBox.js";
 
 import { homeDuck } from "./HomeDuck";
 
+const InputMessageBoxView = ({input, pristine, submitting}) => (
+  <FormGroup>
+    <FormControl type="text" placeholder="네, 작업장입니다|" { ...input }/>
+
+    <Button className="btn-send" type="submit" disabled={pristine || submitting}>
+      <i className="fa fa-paper-plane" aria-hidden="true"/>
+    </Button>
+  </FormGroup>
+);
+
+class SendMessageFormView extends Component {
+  render () {
+    const { handleSubmit, pristine, submitting } = this.props;
+
+    return (
+      <Form onSubmit={handleSubmit}>
+        <Field name="message" component={InputMessageBoxView} {...{pristine, submitting}}/>
+      </Form>
+    );
+  }
+}
+
+const SendMessageForm = reduxForm({
+  form: 'SendMessageForm',
+})(SendMessageFormView);
+
 export class ChatBoxContainer extends Component {
 
-  componentWillMount() {
-
-  }
-
   render() {
-    const { userId, messages, openChatBox, toggleChatBox } = this.props;
+    const { userId, messages, openChatBox, toggleChatBox, formData } = this.props;
     return (
       <div className="chat-box">
         <div className="block__chat-box">
@@ -37,17 +60,12 @@ export class ChatBoxContainer extends Component {
                     <div className="block__chat-messages">
                       {
                         messages.map((message, index) =>
-                          <ChatBox key={ index } message={ message }></ChatBox>
+                          <ChatBox key={ index } index={ index } message={ message }></ChatBox>
                         )
                       }
                     </div>
                     <div className="chat-messages__form">
-                      <Form>
-                        <FormGroup>
-                          <FormControl type="text" placeholder="네, 작업장입니다|"/>
-                          <Button className="btn-send"><i className="fa fa-paper-plane" aria-hidden="true"></i></Button>
-                        </FormGroup>
-                      </Form>
+                      <SendMessageForm onSubmit={ formData }/>
                     </div>
                   </div>
                 </Well>
@@ -91,6 +109,7 @@ const mapStateToProps = state => {
   const homeState = state[homeDuck.storeName];
   return {
     openChatBox: homeState.openChatBox
+
   };
 };
 

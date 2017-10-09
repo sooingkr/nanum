@@ -1,6 +1,4 @@
-@import "../../stylesheets/base/_variables.scss";
-@import "../../stylesheets/mixin/mixin.scss";
-@import "../../stylesheets/bourbon/assets/stylesheets/_bourbon.scss";
+@import "../../stylesheets/common.scss";
 
 .chat-box {
   background-color: $chatbox-background;
@@ -25,6 +23,10 @@
       border-right: 1px solid $chatbox-border;
       border-bottom: 1px solid $chatbox-border;
       @include transform(rotate(-45deg));
+
+      &:hover, &:focus {
+        background-color: $white;
+      }
     }
 
     .fa-arrow-circle-right {
@@ -180,6 +182,7 @@
 
   .block-alert__bg {
     @include position(fixed, 0 0 0 0);
+
     background-color: $black;
     opacity: .5;
     z-index: 1;
