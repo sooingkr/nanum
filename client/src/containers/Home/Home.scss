@@ -1,19 +1,15 @@
-@import "../../stylesheets/base/_variables.scss";
-@import "../../stylesheets/mixin/mixin.scss";
-@import "../../stylesheets/bourbon/assets/stylesheets/_bourbon.scss";
+@import "../../stylesheets/common";
 
-.App {
-  .home {
-    background: url('../../assets/images/food-bg.jpg') center no-repeat;
-    background-size: cover;
+.home {
+  background: url('../../assets/images/food-bg.jpg') center no-repeat;
+  background-size: cover;
 
-    .home-search {
-      @include margin(167px null 330px 0);
-    }
+  .home-search {
+    @include margin(167px null 330px 0);
+  }
 
-    .home-search__text {
-      color: $white;
-      font-size: rem(36);
-    }
+  .home-search__text {
+    color: $white;
+    font-size: rem(36);
   }
 }

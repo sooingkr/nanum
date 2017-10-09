@@ -1,5 +1,3 @@
-@import "./stylesheets/bourbon/assets/stylesheets/_bourbon.scss";
-
 html {
   font-size: 100%;
 }
@@ -92,4 +90,5 @@ body {
   url(./assets/fonts/NanumBarunGothicUltraLight.ttf) format("truetype");
 }
 
+@import "./stylesheets/base/base";
 
