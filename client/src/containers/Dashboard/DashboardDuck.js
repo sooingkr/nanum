@@ -2,8 +2,8 @@
  * Created by manhvu on 9/28/17.
  */
 import { createAction, createReducer } from '../../utils/store';
-import * as UserService from '../../service/UserService';
-import * as FoodService from '../../service/FoodService';
+import UserService from '../../service/UserService';
+import FoodService from '../../service/FoodService';
 
 const storeName = 'DashboardDuck';
 

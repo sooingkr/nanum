@@ -1,7 +1,7 @@
 import axios from './config';
 import { API_BASE_URL } from '../constants/api';
 
-export const searchFood = async (query) => {
+const searchFood = async (query) => {
   let results;
   
   try {
@@ -17,7 +17,7 @@ export const searchFood = async (query) => {
   };
 }
 
-export const getFoodIntakeTracking = async (userId) => {
+const getFoodIntakeTracking = async (userId) => {
   let intakeTracking;
   
   try {
@@ -36,7 +36,7 @@ export const getFoodIntakeTracking = async (userId) => {
   };
 }
 
-export const getFoodSuggestions = async (userId) => {
+const getFoodSuggestions = async (userId) => {
   let result;
 
   try {
@@ -50,4 +50,10 @@ export const getFoodSuggestions = async (userId) => {
   return {
     ...result.data.foodSuggestions
   }
+}
+
+export default {
+  searchFood,
+  getFoodIntakeTracking,
+  getFoodSuggestions,
 }

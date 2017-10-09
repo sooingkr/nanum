@@ -1,7 +1,7 @@
 import axios from './config';
 import { API_BASE_URL } from '../constants/api';
 
-export const getCurrentUser = async () => {
+const getCurrentUser = async () => {
   let currentUser;
 
   try {
@@ -12,13 +12,26 @@ export const getCurrentUser = async () => {
   return currentUser.data.user;
 };
 
-export const loginUser = async () => {
-  return 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQwMjg4MDlhNWVlYjk1MzYwMTVlZWI5YWQzYjYwMDAxIiwidXNlcm5hbWUiOiJuZ3V5ZW5hbmh2dS5jc0BnbWFpbC5jb20iLCJlbmFibGVkIjp0cnVlLCJleHBpcmUiOm51bGwsImF1dGhvcml0aWVzIjpbeyJhdXRob3JpdHkiOiJST0xFX1VTRVIifV19.UuTiFCFlSnmBhaiKhMunufuR6vm9IO4t1ASdECXnSfg';
+const loginUser = async (username, password) => {
+  let token;
+  
+  try {
+    token = await axios.post(`${API_BASE_URL}/login`, null, {
+      auth: {
+        username,
+        password,
+      }
+    });
+  } catch(error) {
+    throw new Error(`UserService error - <loginUser()>: ${error}`);
+  }
+
+
 };
 
-export const checkValidToken = async (token) => {
+const checkValidToken = async (token) => {
   let isValid;
-
+  
   try {
     isValid = await axios.post(`${API_BASE_URL}/check-valid-authorization-token`, {
       headers: {
@@ -31,3 +44,9 @@ export const checkValidToken = async (token) => {
 
   return isValid.data;
 };
+
+export default {
+  getCurrentUser,
+  loginUser,
+  checkValidToken,
+}

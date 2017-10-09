@@ -2,7 +2,7 @@
  * Created by manhvu on 10/6/17.
  */
 import { createAction, createReducer } from '../../utils/store';
-import {loginUser} from '../../service/UserService';
+import UserService from '../../service/UserService';
 import jwtDecode from 'jwt-decode';
 
 // import service
@@ -16,7 +16,7 @@ export const actionTypes = {
 
 // define action
 export const login = ({username, password}) => dispatch => {
-  loginUser(username, password).then(res => {
+  UserService.loginUser(username, password).then(res => {
     const s = res.split(' ')[1];
     const dc = jwtDecode(s);
 

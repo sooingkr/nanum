@@ -11,6 +11,7 @@ describe('dashboard reducer', () => {
       lunch: [],
       dinner: [],
       calories: {},
+      foodSuggestions: {},
       showDialog: false,
       whichDialog: "",
     };

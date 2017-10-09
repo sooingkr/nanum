@@ -1,12 +1,12 @@
-export const saveToken = (token) => {
-  localStorage.setItem('Authorization', token);
+export function saveToken(token) {
+  window.localStorage.setItem('Authorization', token);
 }
 
-export const getToken = () => {
+export function getToken() {
   let token;
-
+  
   try {
-    token = localStorage.getItem('Authorization');
+    token = window.localStorage.getItem('Authorization');
   } catch(error) {
     console.error("Error getting Token from localStorage in <getToken()> " + error);
   }
