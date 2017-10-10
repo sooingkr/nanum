@@ -7,17 +7,58 @@
     border: none;
     height: 76px;
     margin-bottom: 0;
-    .navbar-nav > li > a {
-      @include padding(10px 12px);
+    .navbar-header {
+      @include media("<screen-xs") {
+        height: 76px;
+      }
     }
+
+    .search-box {
+      @include media("<screen-xs") {
+        top: 28px;
+        left: 37%;
+        width: 63%;
+      }
+      .form-control, .btn-default {
+        @include media("<screen-xs") {
+          @include position(absolute, -18px null null null);
+        }
+      }
+      .btn-default {
+        @include media("<screen-xs") {
+          right: 0;
+        }
+      }
+    }
+
+    .navbar-nav {
+      >li {
+        >a {
+          @include padding(10px 12px);
+        }
+      }
+
+      @include media(">=tablet") {
+
+        @include position(absolute, 16px null null null);
+
+        &:last-child {
+          top: 20px;
+          right: 15px;
+        }
+      }
+    }
+
     .logo-block {
       margin-top: 17px;
     }
+
     .logo {
       float: left;
       @include size(107px 42px);
       margin-top: 5px;
     }
+
     .dropdown-toggle {
       background-color: transparent;
       background-image: none;
@@ -33,28 +74,9 @@
     .caret {
       display: none;
     }
-  }
-}
 
-@media screen and (min-width: $breakpoints-tablet) {
-  .App {
-    .navbar {
-      .navbar-brand, .navbar-nav {
-        @include position(absolute, 16px null null null);
-
-      }
-      .navbar-nav {
-        &:last-child {
-          right: 0;
-        }
-      }
-    }
-  }
-}
-@media screen and (max-width: $breakpoints-tablet - 1) {
-  .App {
-    .navbar {
-      .navbar-toggle {
+    .navbar-toggle {
+      @include media("<=tablet-min") {
         float: none;
         background-color: transparent;
         border: none;
@@ -67,38 +89,19 @@
         }
       }
     }
+
     .navbar-collapse {
-      background-color: $white;
-      @include position(absolute, 0 0 null 0);
-      z-index: 9999;
-      min-height: 360px;
+      @include media("<=tablet-min") {
+        background-color: $white;
+        @include position(absolute, 0 0 null 0);
+        z-index: 9999;
+        min-height: 385px;
+      }
+      @include media("<=phone") {
+        min-height: 325px;
+
+      }
     }
   }
 }
 
-
-@media screen and (max-width: $breakpoints-phone) {
-  html {
-    font-size: 14px !important;
-  }
-  .App {
-    .navbar {
-      .navbar-header {
-        height: 76px;
-      }
-      .search-box {
-        top: 28px;
-        left: 37%;
-        width: 63%;
-
-        .form-control, .btn-default {
-          @include position(absolute, -18px null null null);
-        }
-        .btn-default {
-          right: 0;
-        }
-      }
-
-    }
-  }
-}

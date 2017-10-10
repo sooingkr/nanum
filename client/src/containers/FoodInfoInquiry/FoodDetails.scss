@@ -1,0 +1,59 @@
+@import "../../stylesheets/common";
+.product {
+  margin-top: 5px;
+  .product__detail {
+    @include padding(72px 75px 38px);
+  }
+
+  .product__image {
+    @include media(">screen-md") {
+      @include size(720px 715px);
+    }
+  }
+
+  .product__title {
+    font-size: rem(36);
+    line-height: 48px;
+  }
+
+  .product__kcal {
+    font-size: rem(16);
+    font-weight: bold;
+    margin-top: 5px;
+
+    strong {
+      font-family: $font-montserrat;
+    }
+  }
+
+  .product__foodInfo {
+    background-color: $green-light-bg;
+    border: 1px solid $green;
+    @include border-radius(15px);
+    @include margin(15px 0 25px);
+    @include padding(15px 20px);
+    font-size: rem(12);
+    font-weight: bold;
+    line-height: 18px;
+    word-spacing: -4px;
+  }
+
+  .product__kcalLevel {
+    border-bottom: 1px solid $lesser-gray;
+    padding-bottom: 15px;
+    .row {
+      @include margin(10px -15px);
+    }
+
+    .product__title {
+      font-size: rem(12);
+      line-height: normal;
+      color: $black-1;
+    }
+
+    .progress {
+      border-radius: 0;
+      max-height: 15px;
+    }
+  }
+}

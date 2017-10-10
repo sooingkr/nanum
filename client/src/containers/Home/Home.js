@@ -8,7 +8,7 @@ import "./Home.scss";
 
 class Home extends Component {
   render() {
-    const userId = '1';
+    const userId = '';
     const messages = [
       {
         id: '1',

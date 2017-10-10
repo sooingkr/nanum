@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 import { PropTypes } from "prop-types";
@@ -9,9 +10,9 @@ import ChatBox from "../../components/Home/ChatBox.js";
 
 import { homeDuck } from "./HomeDuck";
 
-const InputMessageBoxView = ({input, pristine, submitting}) => (
+const InputMessageBoxView = ({ input, pristine, submitting }) => (
   <FormGroup>
-    <FormControl type="text" placeholder="네, 작업장입니다|" { ...input }/>
+    <FormControl type="text" placeholder="네, 작업장입니다|" {...input}/>
 
     <Button className="btn-send" type="submit" disabled={pristine || submitting}>
       <i className="fa fa-paper-plane" aria-hidden="true"/>
@@ -20,12 +21,12 @@ const InputMessageBoxView = ({input, pristine, submitting}) => (
 );
 
 class SendMessageFormView extends Component {
-  render () {
+  render() {
     const { handleSubmit, pristine, submitting } = this.props;
 
     return (
       <Form onSubmit={handleSubmit}>
-        <Field name="message" component={InputMessageBoxView} {...{pristine, submitting}}/>
+        <Field name="message" component={InputMessageBoxView} {...{ pristine, submitting }}/>
       </Form>
     );
   }
@@ -37,35 +38,42 @@ const SendMessageForm = reduxForm({
 
 export class ChatBoxContainer extends Component {
 
+  closeAlert() {
+    return <Redirect to={{ pathname: '/' }}/>;
+  }
+
   render() {
+
     const { userId, messages, openChatBox, toggleChatBox, formData } = this.props;
+
     return (
       <div className="chat-box">
         <div className="block__chat-box">
-          <Button className="btn-open" title="무엇을 도와드릴까요?" onClick={ toggleChatBox }>
+          <Button className="btn-open" title="무엇을 도와드릴까요?" onClick={toggleChatBox}>
             무엇을 도와드릴까요? <i className="fa fa-arrow-circle-right" aria-hidden="true"></i>
           </Button>
           {!isEmpty(userId) ?
-            <Collapse in={ openChatBox }>
+            <Collapse in={openChatBox}>
               <div>
                 <Well>
                   <div className="chat-box__title">
                     <Row>
                       <Col xs={8} xsPush={2}><h5 className="chat-box__title-text"><i
                         className="fa fa-comment-o"></i><span>기술상담</span></h5></Col>
-                      <Col xs={1} xsPush={1}><Button className="btn-close" onClick={ toggleChatBox }><span className="line"></span></Button></Col>
+                      <Col xs={1} xsPush={1}><Button className="btn-close" onClick={toggleChatBox}><span
+                        className="line"></span></Button></Col>
                     </Row>
                   </div>
                   <div className="chat-messages">
                     <div className="block__chat-messages">
                       {
                         messages.map((message, index) =>
-                          <ChatBox key={ index } index={ index } message={ message }></ChatBox>
+                          <ChatBox key={index} index={index} message={message}></ChatBox>
                         )
                       }
                     </div>
                     <div className="chat-messages__form">
-                      <SendMessageForm onSubmit={ formData }/>
+                      <SendMessageForm onSubmit={formData}/>
                     </div>
                   </div>
                 </Well>
@@ -73,11 +81,12 @@ export class ChatBoxContainer extends Component {
             </Collapse>
             :
             <div className="block-alert">
-              <div className={ openChatBox ? 'block-alert__bg' : 'hidden block-alert__bg' }></div>
-              <Collapse in={ openChatBox } className="chat-box__alert">
+              <div className={openChatBox ? 'block-alert__bg' : 'hidden block-alert__bg'}></div>
+              <Collapse in={openChatBox} className="chat-box__alert">
                 <div>
                   <Well>
-                    <Button className="btn-close pull-right" onClick={ toggleChatBox }><i className="fa fa-times" aria-hidden="true"></i></Button>
+                    <Button className="btn-close pull-right" onClick={this.closeAlert}><i
+                      className="fa fa-times" aria-hidden="true"></i></Button>
                     <h5 className="chat-box__title text-center">로그인 해야 이용하실 수 있습니다</h5>
                   </Well>
                 </div>
@@ -102,7 +111,8 @@ ChatBoxContainer.propTypes = {
   ]).isRequired,
   messages: PropTypes.array.isRequired,
   openChatBox: PropTypes.bool.isRequired,
-  toggleChatBox: PropTypes.func.isRequired
+  toggleChatBox: PropTypes.func.isRequired,
+  closeAlert: PropTypes.func
 };
 
 const mapStateToProps = state => {

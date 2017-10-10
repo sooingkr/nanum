@@ -1,13 +1,3 @@
-@mixin mediaResponsive($mq-breakpoint, $mq-breakpoints: $breakpoints ) {
-  @if map-has-key($mq-breakpoints, $mq-breakpoint) {
-    $mq-breakpoint: map-get($mq-breakpoints, $mq-breakpoint);
-  }
-
-  @media screen and (min-width: #{$mq-breakpoint}) {
-    @content;
-  }
-}
-
 @mixin border-radius($radius) {
   -webkit-border-radius: $radius;
   -moz-border-radius: $radius;
