@@ -147,9 +147,9 @@ export const foodSuggestions = userId => {
 }
 
 export const login = () => {
-  return "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6bnVsbCwidXNlcm5hbWUiOiJhZG1pbiIsImVuYWJsZWQiOnRydWUsImV4cGlyZSI6bnVsbCwiYXV0aG9yaXRpZXMiOlt7ImF1dGhvcml0eSI6IlJPTEVfQURNSU4ifV19.X1fGk2j3zkqEPDAPOScKmFudlO_Z48tHEbVLWlgkIIU";
+  return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQwMjg4MDlhNWVlYjk1MzYwMTVlZWI5YWQzYjYwMDAxIiwidXNlcm5hbWUiOiJuZ3V5ZW5hbmh2dS5jc0BnbWFpbC5jb20iLCJlbmFibGVkIjp0cnVlLCJleHBpcmUiOm51bGwsImF1dGhvcml0aWVzIjpbeyJhdXRob3JpdHkiOiJST0xFX1VTRVIifV19.UuTiFCFlSnmBhaiKhMunufuR6vm9IO4t1ASdECXnSfg";
 }
 
-export const checkValidToken = (token) => {
+export const checkValidToken = () => {
   return true;
 }

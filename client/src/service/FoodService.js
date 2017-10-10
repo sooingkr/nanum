@@ -1,5 +1,5 @@
 import axios from './config';
-import { API_BASE_URL } from '../constants/api';
+import { API_BASE_URL } from '../constants';
 
 const searchFood = async (query) => {
   let results;

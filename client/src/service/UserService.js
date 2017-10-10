@@ -1,5 +1,7 @@
 import axios from './config';
-import { API_BASE_URL } from '../constants/api';
+import { saveAuth } from '../utils/auth';
+import { API_BASE_URL } from '../constants';
+import jwtDecode from 'jwt-decode';
 
 const getCurrentUser = async () => {
   let currentUser;
@@ -12,21 +14,29 @@ const getCurrentUser = async () => {
   return currentUser.data.user;
 };
 
-const loginUser = async (username, password) => {
+const decodeUserToken = token => {
+  return jwtDecode(token);
+};
+
+const loginUser = async (email, password) => {
   let token;
-  
+  let decodedToken;
+  const formLogin = new FormData();
+  formLogin.append('username', email);
+  formLogin.append('password', password);
+
   try {
-    token = await axios.post(`${API_BASE_URL}/login`, null, {
-      auth: {
-        username,
-        password,
-      }
-    });
+    token = await axios.post(`${API_BASE_URL}/post-login`, formLogin);
+    decodedToken = decodeUserToken(token.data);
+
+    // Save auth to localstorage
+    saveAuth(decodedToken.id, token.data);
   } catch(error) {
     throw new Error(`UserService error - <loginUser()>: ${error}`);
   }
-
-
+  
+  // decode jwt
+  return decodeUserToken(token.data);
 };
 
 const checkValidToken = async (token) => {
@@ -49,4 +59,5 @@ export default {
   getCurrentUser,
   loginUser,
   checkValidToken,
+  decodeUserToken,
 }

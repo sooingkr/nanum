@@ -3,7 +3,7 @@
  */
 import { createAction, createReducer } from '../../utils/store';
 import UserService from '../../service/UserService';
-import jwtDecode from 'jwt-decode';
+import { AppDuck } from '../App/AppDuck';
 
 // import service
 
@@ -11,31 +11,66 @@ export const storeName = 'LoginDuck';
 
 // define action type
 export const actionTypes = {
-  initialize: storeName + '/initialize',
+  requestLogin: storeName + '/REQUEST_LOGIN',
+  succeedLogin: storeName + '/SUCCEED_LOGIN',
+  failLogin: storeName + '/FAIL_LOGIN',
+  logout: storeName + '/LOGOUT',
 };
 
-// define action
-export const login = ({username, password}) => dispatch => {
-  UserService.loginUser(username, password).then(res => {
-    const s = res.split(' ')[1];
-    const dc = jwtDecode(s);
+// define actions
+const requestLogin = () => createAction(actionTypes.requestLogin);
+const succeedLogin = (decodedToken) => createAction(actionTypes.succeedLogin, { decodedToken });
+const failLogin = (error) => createAction(actionTypes.failLogin, { error });
 
-    dispatch(createAction(actionTypes.initialize, dc));
-  });
+// define thunks
+export const login = ({ email, password }) => async dispatch => {
+  dispatch(requestLogin());
+  
+  try {
+    const userData = await UserService.loginUser(email, password);
+    dispatch(succeedLogin(userData));
+    dispatch(AppDuck.actions.successAuthenticate());
+  } catch(error) {
+    dispatch(failLogin(error));
+  }
 };
 
 // conveniently export actions
 export const actions = {
   login,
+  succeedLogin,
 };
 
 export const initialState = {
-  user: {}
+  user: {},
+  isFetching: false,
+  error: {},
 };
 
 const reducer = createReducer(initialState, {
-  [actionTypes.initialize]: (state, user) => {
-    return { ...state, user };
+  [actionTypes.requestLogin]: (state) => {
+    return {
+      ...state,
+      isFetching: true,
+    };
+  },
+  [actionTypes.failLogin]: (state, payload) => {
+    return {
+      ...state,
+      isFetching: false,
+      error: payload.error,
+    }
+  },
+  [actionTypes.succeedLogin]: (state, payload) => {
+    return {
+      ...state,
+      user: {
+        id: payload.decodedToken.id,
+        username: payload.decodedToken.username,
+      },
+      isFetching: false,
+      error: {},
+    };
   }
 });
 

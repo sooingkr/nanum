@@ -9,11 +9,11 @@ const storeName = 'DashboardDuck';
 
 // define action type
 export const actionTypes = {
-  initialize: storeName + '/initialize',
-  openDialog: storeName + '/openDialog',
-  closeDialog: storeName + '/closeDialog',
-  addFood: storeName + '/addFood',
-  abortAddFood: storeName + '/abortAddFood',
+  initialize: storeName + '/INITIALIZE',
+  openDialog: storeName + '/OPEN_DIALOG',
+  closeDialog: storeName + '/CLOSE_DIALOG',
+  addFood: storeName + '/ADD_FOOD',
+  abortAddFood: storeName + '/ABORT_ADD_FOOD',
 };
 
 // Actions creators 

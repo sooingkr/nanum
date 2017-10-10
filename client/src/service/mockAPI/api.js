@@ -5,9 +5,9 @@ import {
   searchFood,
   foodSuggestions,
   login,
-
+  checkValidToken,
 } from './responses';
-import { API_BASE_URL } from '../../constants/api';
+import { API_BASE_URL } from '../../constants';
 
 // Call this function with the default instance of axios when in development
 export default function initializeMockAPI(client, delay=500) {
@@ -18,7 +18,7 @@ export default function initializeMockAPI(client, delay=500) {
   mock.onGet(`${API_BASE_URL}/tracking`).reply(200, foodIntakeTracking());
   mock.onGet(`${API_BASE_URL}/foods/search`).reply(200, searchFood());
   mock.onGet(`${API_BASE_URL}/foods/suggest`).reply(200, foodSuggestions());
-  mock.onGet(`${API_BASE_URL}/login`).reply(200, login());
-  mock.onPost(`${API_BASE_URL}/check-valid-authorization-token`).reply(200, )
+  mock.onPost(`${API_BASE_URL}/post-login`).reply(200, login());
+  mock.onPost(`${API_BASE_URL}/check-valid-authorization-token`).reply(200, checkValidToken());
   return mock;
 }

@@ -1,7 +1,6 @@
 import axios from 'axios';
 import initializeMockAPI from './mockAPI/api';
-import { API_BASE_URL } from '../constants/api';
-import { saveToken } from '../utils/authToken';
+import { API_BASE_URL } from '../constants';
 
 const client = axios.create({
   baseURL: API_BASE_URL,
@@ -34,20 +33,6 @@ const handleError = error => {
 
 // Add a response interceptor
 client.interceptors.response.use(response => response, handleError);
-
-// login method
-client.login = ({username, password}) => {
-
-  const formLogin = new FormData();
-  formLogin.append('username', username);
-  formLogin.append('password', password);
-
-  return client.post('/login', formLogin).then(res => {
-    client.defaults.headers.Authorization = res.data;
-    saveToken(res.data);
-    return res;
-  });
-};
 
 if (process.env.NODE_ENV === 'development' ) {
   initializeMockAPI(client);
