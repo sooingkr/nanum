@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './DiagnosticMessage.scss';
 
 const DiagnosticMessage = ({ type, message }) => (
   <div className={`diagnostic-message diagnostic-message--${type}`}>

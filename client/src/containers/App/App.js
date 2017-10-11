@@ -12,7 +12,6 @@ import Dashboard from "../Dashboard/Dashboard.js";
 import PrivateRoute from '../../components/PrivateRoute';
 import Login from '../Login/Login.js';
 import { AppDuck } from './AppDuck';
-import './App.scss';
 
 export class App extends Component {
   componentWillMount() {

@@ -10,7 +10,6 @@ import FoodIntakeTrackingContainer from './FoodIntakeTrackingContainer';
 import FoodSuggestionContainer from './FoodSuggestionContainer';
 import DiagnosticContainer from './DiagnosticContainer';
 import { DashboardDuck } from './DashboardDuck';
-import './Dashboard.scss';
 
 class Dashboard extends Component {
   componentWillMount() {

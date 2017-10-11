@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import FoodIntakeItem from './FoodIntakeItem';
 import AddFoodButton from './AddFoodButton';
-import './FoodIntakeList.scss';
 
 class FoodIntakeList extends Component {
   render() {

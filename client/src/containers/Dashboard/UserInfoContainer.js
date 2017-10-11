@@ -5,7 +5,6 @@ import _ from 'lodash';
 import { Link } from 'react-router-dom';
 import TagBox from '../../components/Dashboard/TagBox';
 import { selectors } from './DashboardDuck';
-import './UserInfo.scss';
 import MaleIcon from '../../assets/images/icons/male.svg';
 import FemaleIcon from '../../assets/images/icons/female.svg';
 

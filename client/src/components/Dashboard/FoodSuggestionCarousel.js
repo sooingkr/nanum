@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Carousel from '../Carousel';
 import FoodSuggestionItem from './FoodSuggestionItem';
-import './FoodSuggestionCarousel.scss';
 
 const FoodSuggestionCarouselArrow = ({ direction, onClick }) => (
   <div className="carousel-arrow-wrapper">
