@@ -38,6 +38,10 @@ export const searchFood = (query) => {
 }
 
 export const tracking = () => ({
+  diagnostic: {
+    type: 'danger',
+    message: '김레클 님은 아토피가 있습니다. 단백질 섭취 제한을 추천합니다. 단백질 식사를 줄여주세요.',
+  },
   foodIntakeTracking: {
     calories: {
       target: 1800,

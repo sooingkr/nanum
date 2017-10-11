@@ -10,14 +10,21 @@ $dashboard-max-width: 1040px;
 }
 
 .dashboard .container {
-  max-width: $dashboard-max-width;
+  width: 100%;
 }
 
-.dashboard-tracking {
+.dashboard-tracking,
+.dashboard-diagnostic {
   padding: 0 30px;
   
   @include media(">tablet") {
     display: flex;
+  }
+}
+
+.dashboard-diagnostic {
+  @include media(">=big-phone") {
+    padding: 0;
   }
 }
 
@@ -30,4 +37,9 @@ $dashboard-max-width: 1040px;
     padding-left: 0;
     padding-right: 0;
   }
+}
+
+#nanum .section > div[class^="col"] {
+  padding-left: 0;
+  padding-right: 0;
 }
