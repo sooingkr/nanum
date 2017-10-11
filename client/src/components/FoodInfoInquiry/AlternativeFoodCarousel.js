@@ -1,22 +1,42 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { PropTypes } from 'prop-types';
 
-import { Image } from "react-bootstrap";
+import Carousel from '../Carousel';
+import AlternativeFoodItem from './AlternativeFoodItem';
 
 import "./AlternativeFoodCarousel.scss";
 
 class AlternativeFoodCarousel extends Component {
   render() {
-    const { alternativeFood: { foodId, foodName, imgSrc, foodInfo } } = this.props;
-    return(
-      <div className="food-slider">
-        <Link to={{pathname: "/product/id/" + foodId}}>
-          <Image responsive src={imgSrc} alt={foodName}></Image>
-          <div className="food-slider__info">{foodInfo}</div>
-        </Link>
-      </div>
+    const { foods } = this.props;
+
+    const foodCarouselSettings = {
+      arrows: true,
+      dots: false,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 2,
+      slidesToScroll: 2,
+      responsive: [
+        { breakpoint: 480, settings: { slidesToShow: 1, slidesToScroll: 1 } }]
+    };
+
+    return (
+      <Carousel className='food-carousel__sliders' settings={foodCarouselSettings}>
+        {
+          foods.map((food, index) =>
+            <div className="food-carousel__item" key={ index }>
+              <AlternativeFoodItem food={food}/>
+            </div>
+          )
+        }
+      </Carousel>
     );
   }
+}
+
+AlternativeFoodCarousel.propTypes = {
+  foods: PropTypes.array.isRequired
 }
 
 export default AlternativeFoodCarousel;

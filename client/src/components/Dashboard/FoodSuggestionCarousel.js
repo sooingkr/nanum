@@ -4,8 +4,8 @@ import Carousel from '../Carousel';
 import FoodSuggestionItem from './FoodSuggestionItem';
 
 const carouselSettings = {
-  draggable: true,
-  arrows: false,
+  // draggable: true,
+  arrows: true,
   dots: false,
   infinite: true,
   speed: 500,

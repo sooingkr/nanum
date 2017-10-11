@@ -1,24 +1,28 @@
 @import "../../stylesheets/common";
 .product {
-  margin-top: 5px;
+  .col-md-7, .col-md-5 {
+    padding: 0;
+  }
   .product__detail {
     @include padding(72px 75px 38px);
   }
 
   .product__image {
-    @include media(">screen-md") {
-      @include size(720px 715px);
-    }
+    width: 100%;
   }
 
   .product__title {
     font-size: rem(36);
     line-height: 48px;
+    @include media("<=tablet") {
+      @include position(absolute, -180px null null null);
+    }
   }
 
   .product__kcal {
     font-size: rem(16);
     font-weight: bold;
+    text-align: right;
     margin-top: 5px;
 
     strong {
@@ -45,7 +49,7 @@
       @include margin(10px -15px);
     }
 
-    .product__title {
+    .product__title--small {
       font-size: rem(12);
       line-height: normal;
       color: $black-1;
@@ -54,6 +58,21 @@
     .progress {
       border-radius: 0;
       max-height: 15px;
+    }
+  }
+  .food-carousel {
+    .food-carousel__title {
+      font-size: rem(16);
+      color: $gray;
+      margin-top: 20px;
+
+      .arrow-icon {
+        display: inline-block;
+        @include size(19px 18px);
+        margin-left: 5px;
+        background: url("../../assets/images/icons/icon-arrow-green.png") center no-repeat;
+        vertical-align: middle;
+      }
     }
   }
 }

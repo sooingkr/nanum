@@ -1,8 +1,10 @@
 $breakpoints: (
    phone: 320px,
-   iphone6: 375px,
-   iphone6plus: 414px,
    screen-xs: 480px,
+   iphone5-landscape: 568px,
+   iphone6: 375px,
+   iphone6-landscape: 667px,
+   iphone6plus: 414px,
    big-phone: 700px,
    tablet: 768px,
    tablet-min: 767px,
@@ -61,6 +63,7 @@ $message-border: rgba(76, 76, 76, 0.15);
 $message-border-user: rgba(127, 213, 149, 1);
 $chat-box-input-border: #00c03c;
 $chat-box-input-shadow: rgba(0, 192, 60, 0.15);
+$carousel-box-shadow: rgba(0, 0, 0, 0.15);
 
 // Background Colors
 $base-background-color: #d8d8d8;
