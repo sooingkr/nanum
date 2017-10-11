@@ -17,43 +17,6 @@ const searchFood = async (query) => {
   };
 }
 
-const getFoodIntakeTracking = async (userId) => {
-  let intakeTracking;
-  
-  try {
-    intakeTracking = await axios.get(`${API_BASE_URL}/tracking`, {
-      params: { userId }
-    });
-  } catch(error) {
-    throw new Error(`FoodService error - <getFoodIntakeTracking()>: ${error}`);
-  }
-
-  return {
-    calories: intakeTracking.data.foodIntakeTracking.calories,
-    breakfast: intakeTracking.data.foodIntakeTracking.when.breakfast,
-    lunch: intakeTracking.data.foodIntakeTracking.when.lunch,
-    dinner: intakeTracking.data.foodIntakeTracking.when.dinner,
-  };
-}
-
-const getFoodSuggestions = async (userId) => {
-  let result;
-
-  try {
-    result = await axios.get(`${API_BASE_URL}/foods/suggest`, {
-      params: { userId }
-    });
-  } catch(error) {
-    throw new Error(`FoodService error - <getFoodSuggestions()>: ${error}`);
-  }
-
-  return {
-    ...result.data.foodSuggestions
-  }
-}
-
 export default {
   searchFood,
-  getFoodIntakeTracking,
-  getFoodSuggestions,
 }

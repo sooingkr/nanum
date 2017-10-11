@@ -3,7 +3,8 @@
  */
 import { createAction, createReducer } from '../../utils/store';
 import UserService from '../../service/UserService';
-import FoodService from '../../service/FoodService';
+import { storeName as LoginStore } from '../Login/LoginDuck';
+import moment from 'moment';
 
 const storeName = 'DashboardDuck';
 
@@ -14,24 +15,27 @@ export const actionTypes = {
   closeDialog: storeName + '/CLOSE_DIALOG',
   addFood: storeName + '/ADD_FOOD',
   abortAddFood: storeName + '/ABORT_ADD_FOOD',
+  pickQueryTime: storeName + '/PICK_QUERY_TIME',
 };
 
 // Actions creators 
 const openDialog = (mealTime) => createAction(actionTypes.openDialog, { mealTime });
 const closeDialog = () => createAction(actionTypes.closeDialog);
+const pickQueryTime = (queryTime) => createAction(actionTypes.pickQueryTime, { queryTime });  
 
 // Thunks
-const initialize = () => async (dispatch) => {
-  const currentUser = await UserService.getCurrentUser();
-  const foodIntakeTracking = await FoodService.getFoodIntakeTracking(currentUser.id);
-  const foodSuggestions = await FoodService.getFoodSuggestions(currentUser.id);
+const initialize = (queryTime) => async (dispatch, getState) => {
+  if(!queryTime) {
+    queryTime = getState()[storeName].queryTime;
+  }
+  const userId = getState()[LoginStore].user.id;
+  dispatch(pickQueryTime(queryTime));
 
+  const tracking = await UserService.getTrackingData(userId, queryTime);
   // Dispatch initialize action with all the data to
   // supply smaller containers
-  dispatch(createAction(actionTypes.initialize, {
-    currentUser,
-    foodIntakeTracking,
-    foodSuggestions,
+  dispatch(createAction(actionTypes.initialize, { 
+    ...tracking,
   }));
 };
 
@@ -57,6 +61,7 @@ const actions = {
 
 // Initial Dashboard state tree
 export const initialState = {
+  queryTime: moment(new Date()).format(),
   currentUser: {},
   breakfast: [],
   lunch: [],
@@ -72,13 +77,19 @@ const reducer = createReducer(initialState, {
   [actionTypes.initialize]: (state, payload) => {
     return {
       ...state,
-      currentUser: payload.currentUser,
-      breakfast: payload.foodIntakeTracking.breakfast,
-      lunch: payload.foodIntakeTracking.lunch,
-      dinner: payload.foodIntakeTracking.dinner,
+      currentUser: payload.user,
+      breakfast: payload.foodIntakeTracking.when.breakfast,
+      lunch: payload.foodIntakeTracking.when.lunch,
+      dinner: payload.foodIntakeTracking.when.dinner,
       calories: payload.foodIntakeTracking.calories,
       foodSuggestions: payload.foodSuggestions,
     };
+  },
+  [actionTypes.pickQueryTime]: (state, payload) => {
+    return {
+      ...state,
+      queryTime: payload.queryTime,
+    }
   },
   [actionTypes.openDialog]: (state, payload) => {
     return {
