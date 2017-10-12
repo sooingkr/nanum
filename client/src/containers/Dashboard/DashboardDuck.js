@@ -134,6 +134,7 @@ const getWhichDialog = (state) => state[storeName].whichDialog;
 const getFoodsWhen = (state, when) => state[when];
 const getFoodSuggestions = (state) => state[storeName].foodSuggestions;
 const getDiagnostic = (state) => state[storeName].diagnostic;
+const getTime = (state) => state[storeName].queryTime;
 
 export const DashboardDuck = {
   storeName,
@@ -148,4 +149,5 @@ export const selectors = {
   getWhichDialog,
   getFoodSuggestions,
   getDiagnostic,
+  getTime,
 }
