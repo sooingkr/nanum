@@ -4,7 +4,6 @@
 import { createAction, createReducer } from '../../utils/store';
 import UserService from '../../service/UserService';
 import { 
-  storeName as LoginStore,
   selectors as LoginSelectors,
 } from '../Login/LoginDuck';
 import moment from 'moment';
