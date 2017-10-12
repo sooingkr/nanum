@@ -3,20 +3,57 @@ import PropTypes from 'prop-types';
 import Carousel from '../Carousel';
 import FoodSuggestionItem from './FoodSuggestionItem';
 
-const carouselSettings = {
-  // draggable: true,
+const FoodSuggestionCarouselArrow = ({ direction, onClick }) => (
+  <div className="carousel-arrow-wrapper">
+    <button className={"carousel-arrow carousel-arrow--" + direction} onClick={onClick}>
+    </button>
+  </div>
+);
+
+const basicCarouselSettings = {
   arrows: true,
   dots: false,
-  infinite: true,
+  infinite: false,
   speed: 500,
-  slidesToShow: 4,
+  centerMode: true,
+  draggable: false,
   slidesToScroll: 1,
+};
+
+const carouselSettings = {
+  ...basicCarouselSettings,  
+  className: "food-suggestion-slider",
+  nextArrow: <FoodSuggestionCarouselArrow direction="next"/>,
+  prevArrow: null,
+  responsive: [
+    {
+      breakpoint: 700,
+      settings: {
+        ...basicCarouselSettings,
+        slidesToShow: 1,
+      }
+    },
+    {
+      breakpoint: 924,
+      settings: {
+        ...basicCarouselSettings,
+        slidesToShow: 4,
+      }
+    },
+    {
+      breakpoint: 1800,
+      settings: {
+        ...basicCarouselSettings,
+        slidesToShow: 4,
+      }
+    }
+  ]
 };
 
 const FoodSuggestionCarousel = (props) => (
   <Carousel settings={carouselSettings}>
     { props.data.map(foodItem => (
-      <div key={foodItem.id}>
+      <div key={foodItem.id} className="food-suggestion">
         <FoodSuggestionItem data={foodItem}/>
       </div>
     ))}
@@ -26,7 +63,7 @@ const FoodSuggestionCarousel = (props) => (
 FoodSuggestionCarousel.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
-    imageUrl: PropTypes.string.isRequired,
+    thumbUrl: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
   }))
 }

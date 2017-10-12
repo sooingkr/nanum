@@ -1,0 +1,62 @@
+.user-info {
+  margin: 0 auto;
+  padding: 20px;
+  text-align: left;
+  border-bottom: 1px solid rgba(159, 163, 167, .2);
+
+  @include media(">tablet") {
+    border-bottom: none;
+    border-right: 1px solid rgba(159, 163, 167, .2);
+    height: 100%;
+    max-width: 100%;
+    margin: 0;
+  }
+}
+
+.user-info__heading {
+  display: flex;
+  align-items: baseline;
+}
+
+.user-info__name {
+  display: flex;
+  align-items: center;
+  margin-right: 16px;
+  
+  h2 {
+    margin: 0;
+    margin-right: 6px;
+    font-size: ms(5);
+  }
+
+  img {
+    width: 12px;
+    height: 12px;    
+  }
+}
+
+.user-info__edit {
+  a {
+    font-family: "Montserrat", $base-font-family;
+    font-size: ms(-3);
+    font-weight: 400;
+    color: $black;
+    text-transform: uppercase;
+  }
+}
+
+.user-info__details {
+  padding: 28px 0 20px;
+}
+
+@include media(">=netbook") {
+  .user-info__heading {
+    position: relative;
+  }  
+
+  .user-info__edit {
+    position: absolute;
+    right: 0;
+    top: -4px;
+  }
+}

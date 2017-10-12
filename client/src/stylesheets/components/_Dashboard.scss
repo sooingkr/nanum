@@ -1,0 +1,44 @@
+$dashboard-max-width: 1040px;
+
+.dashboard {
+  @include media(">iphone6plus") {
+    @include background-opacity($base-background-color, 0.1);
+    padding: 32px 38px;
+    min-height: 100vh;
+  }
+}
+
+.dashboard .container {
+  width: 100%;
+}
+
+.dashboard-tracking,
+.dashboard-diagnostic {
+  padding: 0 30px;
+  
+  @include media(">tablet") {
+    display: flex;
+  }
+}
+
+.dashboard-diagnostic {
+  @include media(">=big-phone") {
+    padding: 0;
+  }
+}
+
+// Override bootstrap padding
+#nanum .dashboard div[class^="col"] {
+  padding-left: 8px;
+  padding-right: 8px;
+
+  @include media(">=netbook") {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+#nanum .section > div[class^="col"] {
+  padding-left: 0;
+  padding-right: 0;
+}

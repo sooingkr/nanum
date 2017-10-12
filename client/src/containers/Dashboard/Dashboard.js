@@ -8,9 +8,8 @@ import {
 import UserInfoContainer from './UserInfoContainer';
 import FoodIntakeTrackingContainer from './FoodIntakeTrackingContainer';
 import FoodSuggestionContainer from './FoodSuggestionContainer';
-import IngredientsSuggestionContainer from './IngredientsSuggestionContainer';
+import DiagnosticContainer from './DiagnosticContainer';
 import { DashboardDuck } from './DashboardDuck';
-import './Dashboard.scss';
 
 class Dashboard extends Component {
   componentWillMount() {
@@ -22,7 +21,12 @@ class Dashboard extends Component {
     return (
       <div className="dashboard">
         <Grid>
-          <Row className="dashboard-tracking">
+          <Row className="dashboard-diagnostic section">
+            <Col sm={12}>
+              <DiagnosticContainer />
+            </Col>
+          </Row>
+          <Row className="dashboard-tracking section section--sm-shadow">
             <Col sm={6} md={4}>
               <UserInfoContainer />
             </Col>
@@ -30,11 +34,8 @@ class Dashboard extends Component {
               <FoodIntakeTrackingContainer />
             </Col>
           </Row>
-          <Row className="dashboard-suggestion">
-            <Col sm={6} md={2}>
-              <IngredientsSuggestionContainer />
-            </Col>
-            <Col sm={6} md={10}>
+          <Row className="dashboard-suggestion section section--shadow">
+            <Col sm={12} md={12}>
               <FoodSuggestionContainer />
             </Col>
           </Row>

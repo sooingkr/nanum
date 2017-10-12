@@ -1,0 +1,15 @@
+@mixin section-spacing {
+  @include media(">=tablet") {
+    margin-bottom: 28px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+@mixin with-shadow {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .15);
+  border-radius: 10px;
+  background-color: #fff;
+}

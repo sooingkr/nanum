@@ -1,52 +1,39 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { isEmpty } from 'lodash';
 import FoodSuggestionCarousel from '../../components/Dashboard/FoodSuggestionCarousel';
+import { selectors } from './DashboardDuck';
 
-const mockFoodSuggestions = [
-  {
-    id: "1234",
-    name: "chiecken",
-    imageUrl: "http://via.placeholder.com/200x150",
-  },
-  {
-    id: "123",
-    name: "chiecken 1",
-    imageUrl: "http://via.placeholder.com/200x150",
-  },
-  {
-    id: "14",
-    name: "chiecken 2",
-    imageUrl: "http://via.placeholder.com/200x150",
-  },
-  {
-    id: "155",
-    name: "chiecken 3",
-    imageUrl: "http://via.placeholder.com/200x150",
-  },
-  {
-    id: "14545",
-    name: "chiecken 4",
-    imageUrl: "http://via.placeholder.com/200x150",
-  }
-];
-
-class FoodSuggestionContainer extends Component {
+export class FoodSuggestionContainer extends Component {
   render() {
+    const { foodSuggestions } = this.props;
+    if(!foodSuggestions || isEmpty(foodSuggestions)) {
+      return <div/>;
+    }
+
     return (
-      <div className="food-suggestion">
-        <FoodSuggestionCarousel data={mockFoodSuggestions}/>
+      <div className="food-suggestions">
+        <div className="food-suggestions__reason">
+          <p>{foodSuggestions.reason}</p>
+        </div>
+        <div className="food-suggestions__carousel">
+          <FoodSuggestionCarousel data={foodSuggestions.foods}/>
+        </div>
       </div>
     );
   }
 }
 
-// Uncomment this after connecting to Redux store
-// FoodSuggestionContainer.propTypes = {
-//   foodSuggestions: PropTypes.arrayOf(PropTypes.shape({
-//     id: PropTypes.string.isRequired,
-//     name: PropTypes.string.isRequired,
-//     imageUrl: PropTypes.string.isRequired,
-//   })).isRequired,
-// }
+FoodSuggestionContainer.propTypes = {
+  foodSuggestions: PropTypes.shape({
+    foods: PropTypes.array,
+    reason: PropTypes.string,
+  }).isRequired,
+}
 
-export default FoodSuggestionContainer;
+const mapStateToProps = (state) => ({
+  foodSuggestions: selectors.getFoodSuggestions(state),
+});
+
+export default connect(mapStateToProps)(FoodSuggestionContainer);

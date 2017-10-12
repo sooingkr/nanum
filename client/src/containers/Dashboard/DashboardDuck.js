@@ -2,32 +2,41 @@
  * Created by manhvu on 9/28/17.
  */
 import { createAction, createReducer } from '../../utils/store';
-import * as UserService from '../../service/UserService';
+import UserService from '../../service/UserService';
+import { 
+  selectors as LoginSelectors,
+} from '../Login/LoginDuck';
+import moment from 'moment';
 
 const storeName = 'DashboardDuck';
 
 // define action type
 export const actionTypes = {
-  initialize: storeName + '/initialize',
-  openDialog: storeName + '/openDialog',
-  closeDialog: storeName + '/closeDialog',
-  addFood: storeName + '/addFood',
-  abortAddFood: storeName + '/abortAddFood',
+  initialize: storeName + '/INITIALIZE',
+  openDialog: storeName + '/OPEN_DIALOG',
+  closeDialog: storeName + '/CLOSE_DIALOG',
+  addFood: storeName + '/ADD_FOOD',
+  abortAddFood: storeName + '/ABORT_ADD_FOOD',
+  pickQueryTime: storeName + '/PICK_QUERY_TIME',
 };
 
 // Actions creators 
 const openDialog = (mealTime) => createAction(actionTypes.openDialog, { mealTime });
 const closeDialog = () => createAction(actionTypes.closeDialog);
+const pickQueryTime = (queryTime) => createAction(actionTypes.pickQueryTime, { queryTime });  
 
 // Thunks
-const initialize = () => async (dispatch) => {
-  const currentUser = await UserService.getCurrentUser();
-  const foodIntakeTracking = await UserService.getFoodIntakeTracking(currentUser.id);
-  // Dispatch initialize action with all the data to
-  // supply smaller containers
-  dispatch(createAction(actionTypes.initialize, {
-    currentUser,
-    foodIntakeTracking,
+const initialize = (queryTime) => async (dispatch, getState) => {
+  if(!queryTime) {
+    queryTime = moment(new Date()).format();
+  }
+  const state = getState();
+  const userId = LoginSelectors.getUser(state).id;
+  dispatch(pickQueryTime(queryTime));
+
+  const tracking = await UserService.getTrackingData(userId, queryTime);
+  dispatch(createAction(actionTypes.initialize, { 
+    ...tracking,
   }));
 };
 
@@ -41,6 +50,9 @@ const addFood = (foodData) => (dispatch, getState) => {
   dispatch(createAction(actionTypes.addFood, {
     foodData
   }));
+
+  // Refetch the diagnostic
+  dispatch(initialize(state.queryTime));
 }
 
 // conveniently export actions
@@ -53,6 +65,8 @@ const actions = {
 
 // Initial Dashboard state tree
 export const initialState = {
+  queryTime: "",
+  diagnostic: {},
   currentUser: {},
   breakfast: [],
   lunch: [],
@@ -60,6 +74,7 @@ export const initialState = {
   calories: {},
   showDialog: false,
   whichDialog: "",
+  foodSuggestions: {},
 };
 
 // Dashboard reducer
@@ -67,12 +82,20 @@ const reducer = createReducer(initialState, {
   [actionTypes.initialize]: (state, payload) => {
     return {
       ...state,
-      currentUser: payload.currentUser,
-      breakfast: payload.foodIntakeTracking.breakfast,
-      lunch: payload.foodIntakeTracking.lunch,
-      dinner: payload.foodIntakeTracking.dinner,
+      currentUser: payload.user,
+      diagnostic: payload.diagnostic,
+      breakfast: payload.foodIntakeTracking.when.breakfast,
+      lunch: payload.foodIntakeTracking.when.lunch,
+      dinner: payload.foodIntakeTracking.when.dinner,
       calories: payload.foodIntakeTracking.calories,
+      foodSuggestions: payload.foodSuggestions,
     };
+  },
+  [actionTypes.pickQueryTime]: (state, payload) => {
+    return {
+      ...state,
+      queryTime: payload.queryTime,
+    }
   },
   [actionTypes.openDialog]: (state, payload) => {
     return {
@@ -115,6 +138,9 @@ const getFoodIntakeTracking = (state) => ({
 const getShowDialog = (state) => state[storeName].showDialog;
 const getWhichDialog = (state) => state[storeName].whichDialog;
 const getFoodsWhen = (state, when) => state[when];
+const getFoodSuggestions = (state) => state[storeName].foodSuggestions;
+const getDiagnostic = (state) => state[storeName].diagnostic;
+const getTime = (state) => state[storeName].queryTime;
 
 export const DashboardDuck = {
   storeName,
@@ -127,4 +153,7 @@ export const selectors = {
   getFoodIntakeTracking,
   getShowDialog,
   getWhichDialog,
+  getFoodSuggestions,
+  getDiagnostic,
+  getTime,
 }

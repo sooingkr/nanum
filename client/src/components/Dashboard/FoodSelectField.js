@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
 import { Field } from 'redux-form';
-import { searchFood } from '../../service/FoodService';
+import FoodService from '../../service/FoodService';
 import 'react-select/dist/react-select.css';
 
 class FoodSelectField extends Component {
@@ -14,7 +14,7 @@ class FoodSelectField extends Component {
             value={props.input.value}
             onChange={props.input.onChange}
             onBlur={() => props.input.onBlur(props.input.value)}
-            loadOptions={() => searchFood(props.input.value)}
+            loadOptions={() => FoodService.searchFood(props.input.value)}
             placeholder="Search for your food"
           />
         }

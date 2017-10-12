@@ -2,6 +2,7 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { shallow, mount } from 'enzyme';
 import { FoodIntakeTrackingContainer } from '../FoodIntakeTrackingContainer';
+import { foodIntakeTracking } from '../../../service/mockAPI/responses';
 
 describe("FoodIntakeTrackingContainer component", () => {
   let props;
@@ -18,40 +19,7 @@ describe("FoodIntakeTrackingContainer component", () => {
   }
 
   beforeEach(() => {
-    props = {
-      foodIntakeTracking: {
-        calories: {
-          target: 1800,
-          current: 1560,
-        },
-        when: {
-          breakfast: [
-            { 
-              id: '123', 
-              name: 'Banana', 
-              imageUrl: 'http://via.placeholder.com/20x20',
-              quantity: 'A truckload (15k kcal)',
-            },
-            { 
-              id: '123asd', 
-              name: 'Milk', 
-              imageUrl: 'http://via.placeholder.com/20x20',
-              quantity: 'A truckload (15k kcal)',
-            },
-      
-          ],
-          lunch: [
-            { 
-              id: 'qwe', 
-              name: 'Pizza', 
-              imageUrl: 'http://via.placeholder.com/20x20',
-              quantity: 'A truckload (15k kcal)',
-            },
-          ],
-          dinner: []
-        }
-      }
-    };
+    props = foodIntakeTracking();
 
     mountedFoodIntake = undefined;
   });

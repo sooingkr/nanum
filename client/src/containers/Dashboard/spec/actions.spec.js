@@ -1,7 +1,8 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { DashboardDuck, actionTypes } from '../DashboardDuck';
-import { getCurrentUser, getFoodIntakeTracking } from '../../../service/UserService';
+import UserService from '../../../service/UserService';
+import FoodService from '../../../service/FoodService';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -29,9 +30,9 @@ describe('dashboard async actions', () => {
     const expectedAction = [{ 
       type: actionTypes.initialize,
       payload: {
-        currentUser: await getCurrentUser(),
+        currentUser: await UserService.getCurrentUser(),
         foodIntakeTracking: {
-          ...(await getFoodIntakeTracking())
+          ...(await FoodService.getFoodIntakeTracking())
         },
       }
     }];

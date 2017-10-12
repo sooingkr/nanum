@@ -9,7 +9,7 @@ import { FieldGroupView } from '../FieldGroupView';
 
 const LoginFormView = ({ handleSubmit, pristine, reset, submitting }) => (
   <Form horizontal onSubmit={handleSubmit}>
-    <Field component={FieldGroupView} label="Email *" type="email" name="username" placeholder="Email" required/>
+    <Field component={FieldGroupView} label="Email *" type="email" name="email" placeholder="Email" required/>
     <Field component={FieldGroupView} label="Password *" type="password" name="password" placeholder="Password" required/>
 
     <Button bsStyle="default" type="submit" className="pull-right" disabled={pristine || submitting}>Login</Button>
@@ -18,14 +18,14 @@ const LoginFormView = ({ handleSubmit, pristine, reset, submitting }) => (
 
 const validate = values => {
   const errors = {};
-  const {username, password} = values;
+  const {email, password} = values;
 
-  if (!username) {
-    errors.username = 'Please input your email';
+  if (!email) {
+    errors.email = 'Email cannot be blank';
   }
 
   if (!password) {
-    errors.password = 'Please input password';
+    errors.password = 'Please enter your password';
   }
 
   return errors;

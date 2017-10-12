@@ -1,0 +1,21 @@
+.diagnostic {
+  text-align: right;  
+}
+
+@include media(">=netbook") {
+  .diagnostic {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .time-selector {
+    margin-bottom: 0;
+    order: 2;
+  }
+
+  .diagnostic-message {
+    flex-shrink: 0;
+    order: 1;
+    align-self: flex-start;
+  }
+}
