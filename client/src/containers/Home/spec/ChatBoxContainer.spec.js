@@ -52,8 +52,6 @@ describe('ChatBoxContainer component', () => {
           admes: ''
         }
       ],
-      openChatBox: false,
-      toggleChatBox: []
     };
 
     mountedChatBox = undefined;
@@ -84,6 +82,13 @@ describe('ChatBoxContainer component', () => {
           chatBoxContainer().find('form').childAt(0).props().value).toBe('');
       });
 
+    });
+
+    describe('<button/> element', () => {
+      it('should have a `<button>` element', () => {
+        const form = chatBoxContainer().find('form');
+        expect(form.find("button").length).toBe(1);
+      });
     });
   });
 
