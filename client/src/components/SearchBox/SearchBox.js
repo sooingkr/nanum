@@ -18,8 +18,8 @@ class SearchBox extends Component {
       <div className="search-box">
         <Form>
           <FormGroup className={typeName === 'default' ? 'form-group_border' : ''}>
-            <FormControl type="text" placeholder="Search" onChange={this.handleChange} className={ typeName === 'default' ? '' : 'hidden' }></FormControl>
-            <Button className={'pull-right ' + (typeName === 'default') && 'btn-search_default' } type="submit" onClick={this.searchFood(typeName)}><span className="glyphicon glyphicon-search"></span>
+            <FormControl type="text" placeholder="Search" onChange={this.handleChange} className={ typeName === 'default' ? '' : 'hidden-xs-up' }></FormControl>
+            <Button className={typeName === 'default' ? 'btn-search_default' : ''} type="submit" onClick={this.searchFood(typeName)}><span className="glyphicon glyphicon-search"></span>
             </Button>
           </FormGroup>
         </Form>

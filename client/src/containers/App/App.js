@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
-  BrowserRouter as Router, 
+  BrowserRouter as Router,
   Route,
   Switch,
 } from 'react-router-dom';
@@ -12,6 +12,7 @@ import Dashboard from "../Dashboard/Dashboard.js";
 import PrivateRoute from '../../components/PrivateRoute';
 import Login from '../Login/Login.js';
 import { AppDuck } from './AppDuck';
+import SearchResultList from '../../components/FoodSearch/SearchResultList.js';
 
 export class App extends Component {
   componentWillMount() {
@@ -29,6 +30,7 @@ export class App extends Component {
               <Route exact path="/" component={ Home } />
               <PrivateRoute exact path="/dashboard" component={ Dashboard } isAuthenticated={isAuthenticated}/>
               <Route exact path="/login" component={Login}/>
+              <Route path="/search" component={SearchResultList}/>
             </Switch>
           </main>
         </div>
