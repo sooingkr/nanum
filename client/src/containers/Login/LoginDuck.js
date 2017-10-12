@@ -74,8 +74,14 @@ const reducer = createReducer(initialState, {
   }
 });
 
+const getUser = (state) => state[storeName].user;
+
 export const LoginDuck = {
   storeName,
   actions,
   reducer
+};
+
+export const selectors = {
+  getUser,
 };

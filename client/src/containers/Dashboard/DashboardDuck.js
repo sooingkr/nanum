@@ -3,7 +3,10 @@
  */
 import { createAction, createReducer } from '../../utils/store';
 import UserService from '../../service/UserService';
-import { storeName as LoginStore } from '../Login/LoginDuck';
+import { 
+  storeName as LoginStore,
+  selectors as LoginSelectors,
+} from '../Login/LoginDuck';
 import moment from 'moment';
 
 const storeName = 'DashboardDuck';
@@ -26,9 +29,10 @@ const pickQueryTime = (queryTime) => createAction(actionTypes.pickQueryTime, { q
 // Thunks
 const initialize = (queryTime) => async (dispatch, getState) => {
   if(!queryTime) {
-    queryTime = getState()[storeName].queryTime;
+    queryTime = moment(new Date()).format();
   }
-  const userId = getState()[LoginStore].user.id;
+  const state = getState();
+  const userId = LoginSelectors.getUser(state).id;
   dispatch(pickQueryTime(queryTime));
 
   const tracking = await UserService.getTrackingData(userId, queryTime);
@@ -47,6 +51,9 @@ const addFood = (foodData) => (dispatch, getState) => {
   dispatch(createAction(actionTypes.addFood, {
     foodData
   }));
+
+  // Refetch the diagnostic
+  dispatch(initialize(state.queryTime));
 }
 
 // conveniently export actions
@@ -59,7 +66,7 @@ const actions = {
 
 // Initial Dashboard state tree
 export const initialState = {
-  queryTime: moment(new Date()).format(),
+  queryTime: "",
   diagnostic: {},
   currentUser: {},
   breakfast: [],
