@@ -20,9 +20,10 @@ const Navigation = withRouter(({ history }) => {
               <div className="logo-block pull-left">
                   {/*<Link to="/" title="Home"><Image src={logo} alt="Fresh" className="img-responsive"/></Link>*/}
                   <Link to="/" title="신 안전먹거리" className='logo'><Image src="https://images-na.ssl-images-amazon.com/images/G/01/omaha/images/yoda/logos/fresh-modal-3x._CB315803244_.png" alt="Fresh" className="img-responsive"/></Link>
-
                 <Navbar.Toggle />
               </div>
+              <Link className="pull-right visible-xs btn-search" to={{pathname:'/search?q=query'}} title="통합검색"><span className="glyphicon glyphicon-search"></span></Link>
+
             </Navbar.Header>
           </Col>
           <Col md={9}>
@@ -33,7 +34,7 @@ const Navigation = withRouter(({ history }) => {
                 <NavItem onClick={navigateHelper('/company/companyMain.do')} title="HACCP관리 전산기준서" eventKey={3}>HACCP관리 전산기준서</NavItem>
                 <NavItem onClick={navigateHelper('/board/boardList.do?board=21')} title="민원" eventKey={4}>민원</NavItem>
                 <NavItem onClick={navigateHelper('/lod/info.do')} title="데이터활용" eventKey={5}>데이터활용</NavItem>
-                <NavItem onClick={navigateHelper('/search?q=query')} title="통합검색" eventKey={6}><span className="glyphicon glyphicon-search"></span></NavItem>
+                <NavItem className="hidden-xs" onClick={navigateHelper('/search?q=query')} title="통합검색" eventKey={6}><span className="glyphicon glyphicon-search"></span></NavItem>
                 <NavDropdown eventKey={7} title="" id="basic-nav-dropdown">
                   <MenuItem eventKey={7.1} onClick={navigateHelper('/login')}>Login</MenuItem>
                   <MenuItem eventKey={7.2}>Another action</MenuItem>

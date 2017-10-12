@@ -1,21 +1,37 @@
 @import "../../stylesheets/common";
 .product {
+
   .col-md-7, .col-md-5 {
-    padding: 0;
+      padding: 0;
+  }
+
+  .visible-xs {
+    margin-left: 15px;
+    margin-right: 15px;
   }
   .product__detail {
-    @include padding(72px 75px 38px);
+    @include padding(15px 45px 20px);
+
+    @include media(">=screen-md") {
+      @include padding(72px 75px 38px);
+    }
   }
 
   .product__image {
     width: 100%;
+    @include media("<=screen-xs") {
+      margin-top: -10px;
+    }
   }
 
   .product__title {
     font-size: rem(36);
     line-height: 48px;
+    word-spacing: 4px;
     @include media("<=tablet") {
-      @include position(absolute, -180px null null null);
+      @include position(absolute, -160px null null null);
+      color: $white;
+      font-weight: bold;
     }
   }
 
@@ -51,8 +67,9 @@
 
     .product__title--small {
       font-size: rem(12);
-      line-height: normal;
+      line-height: 15px;
       color: $black-1;
+      margin-bottom: 5px;
     }
 
     .progress {

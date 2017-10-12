@@ -11,6 +11,13 @@
       @include media("<screen-xs") {
         height: 76px;
       }
+
+      .btn-search {
+        margin-top: 35px;
+      }
+    }
+    .glyphicon {
+      color: $black;
     }
 
     .search-box {
@@ -64,11 +71,12 @@
       background-image: none;
       border: none;
       @include box-shadow(null, null, null, null, null, null, true);
-
+      padding: 8px 12px 10px!important;
 
       &:before {
         font-family: 'Glyphicons Halflings';
         content: "\e008";
+        color: $black;
       }
     }
     .caret {
@@ -86,6 +94,10 @@
         }
         .icon-bar {
           display: none;
+        }
+
+        &:hover, &:focus {
+          background-color: transparent;
         }
       }
     }

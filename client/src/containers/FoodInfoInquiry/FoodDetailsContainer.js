@@ -12,7 +12,7 @@ class FoodDetailsContainer extends Component {
 
     const foodDetail = {
       imgSrc: 'https://i.pinimg.com/originals/46/48/25/4648254906b1203aa8775a7f02f63473.jpg',
-      foodName: '캔모아 딸기 아이스크림',
+      foodName: '캔모아딸기아이스크림',
       foodKcal: '1200',
       foodInfo: '임산부인 김레클 님에게 좋지 않은 비타민 c 와 비타민 e 가 다량 함유된 제품입니다. 김레클 님에게 추천하지 않습니다.',
       carbonKcal: 95,
@@ -63,23 +63,25 @@ class FoodDetailsContainer extends Component {
       <div className="product">
         <Grid fluid>
           <Row>
+            <Col md={12} className="visible-xs"><div className="product__foodInfo">{foodDetail.foodInfo}</div>
+            </Col>
             <Col md={7}>
               <Image className="product__image" responsive src={foodDetail.imgSrc} alt={foodDetail.foodName}></Image>
             </Col>
             <Col md={5} className="product__detail">
               <Row>
-                <Col md={7}><h2 className="product__title">{foodDetail.foodName}</h2></Col>
+                <Col xs={9} md={7}><h2 className="product__title">{foodDetail.foodName}</h2></Col>
                 <Col md={5} className="product__kcal"><strong>{foodDetail.foodKcal}</strong> kcal</Col>
               </Row>
               <Row>
-                <div className="product__foodInfo">{foodDetail.foodInfo}</div>
+                <div className="product__foodInfo hidden-xs">{foodDetail.foodInfo}</div>
                 <div className="product__kcalLevel">
                   <Row>
                     <Col sm={3} className="product__title--small">탄수화물</Col>
                     <Col sm={9}><ProgressBar now={foodDetail.carbonKcal}></ProgressBar></Col>
                   </Row>
                   <Row>
-                    <Col sm={3} className="product__titile--small">단백질</Col>
+                    <Col sm={3} className="product__title--small">단백질</Col>
                     <Col sm={9}><ProgressBar now={foodDetail.proteinKcal}></ProgressBar></Col>
                   </Row>
                   <Row>
