@@ -1,7 +1,7 @@
 import axios from './config';
-import { API_BASE_URL } from '../constants/api';
+import { API_BASE_URL } from '../constants';
 
-export const searchFood = async (query) => {
+const searchFood = async (query) => {
   let results;
   
   try {
@@ -15,4 +15,8 @@ export const searchFood = async (query) => {
   return { 
     options: results.data.matches 
   };
+}
+
+export default {
+  searchFood,
 }

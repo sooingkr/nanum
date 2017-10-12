@@ -1,36 +1,70 @@
 import axios from './config';
-import { API_BASE_URL } from '../constants/api';
+import jwtDecode from 'jwt-decode';
+import { saveAuth } from '../utils/auth';
+import { API_BASE_URL } from '../constants';
 
-export const getCurrentUser = async () => {
-  let currentUser;
+const decodeUserToken = token => {
+  return jwtDecode(token);
+};
+
+const loginUser = async (email, password) => {
+  let token;
+  let decodedToken;
+  const formLogin = new FormData();
+  formLogin.append('username', email);
+  formLogin.append('password', password);
 
   try {
-    currentUser = await axios.get(`${API_BASE_URL}/user/current`);
-  } catch(error) {
-    throw new Error(`UserService error - <getCurrentUser()>: ${error}`);
-  }
-  return currentUser.data.user;
-}
+    token = await axios.post(`${API_BASE_URL}/post-login`, formLogin);
+    decodedToken = decodeUserToken(token.data);
 
-export const getFoodIntakeTracking = async (userId) => {
-  let intakeTracking;
+    // Save auth to localstorage
+    saveAuth(decodedToken.id, token.data);
+  } catch(error) {
+    throw new Error(`UserService error - <loginUser()>: ${error}`);
+  }
+  
+  // decode jwt
+  return decodeUserToken(token.data);
+};
+
+const checkValidToken = async (token) => {
+  let isValid;
   
   try {
-    intakeTracking = await axios.get(`${API_BASE_URL}/tracking`, {
-      params: { userId }
+    isValid = await axios.post(`${API_BASE_URL}/check-valid-authorization-token`, {
+      headers: {
+        'Authorization': token,
+      }
     });
   } catch(error) {
-    throw new Error(`UserService error - <getFoodIntakeTracking()>: ${error}`);
+    throw new Error(`UserService error - <checkValidToken()>: ${error}`);
   }
 
-  return {
-    calories: intakeTracking.data.foodIntakeTracking.calories,
-    breakfast: intakeTracking.data.foodIntakeTracking.when.breakfast,
-    lunch: intakeTracking.data.foodIntakeTracking.when.lunch,
-    dinner: intakeTracking.data.foodIntakeTracking.when.dinner,
-  };
+  return isValid.data;
+};
+
+const getTrackingData = async (userId, queryTime) => {
+  // const foodIntakeTracking = await FoodService.getFoodIntakeTracking(userId);
+  // const foodSuggestions = await FoodService.getFoodSuggestions(userId);
+  let trackingData;
+  try {
+    trackingData = await axios.get(`${API_BASE_URL}/tracking`, {
+      params: {
+        userId,
+        queryTime,
+      }
+    });
+  } catch(error) {
+    throw new Error(`UserService error - <getTrackingData()>: ${error}`);
+  }
+
+  return { ...trackingData.data };
 }
 
-export const loginUser = async () => {
-  // TODO
+export default {
+  getTrackingData,
+  loginUser,
+  checkValidToken,
+  decodeUserToken,
 }

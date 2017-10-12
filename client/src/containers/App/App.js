@@ -1,21 +1,26 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
   BrowserRouter as Router,
   Route,
   Switch,
 } from 'react-router-dom';
-
 import Navigation from "../../components/Navigation/Navigation.js";
 
 import Home from "../Home/Home.js";
 import Dashboard from "../Dashboard/Dashboard.js";
-import { LoginPage } from '../Login/LoginPage';
+import PrivateRoute from '../../components/PrivateRoute';
+import Login from '../Login/Login.js';
+import { AppDuck } from './AppDuck';
 import SearchResultList from '../../components/FoodSearch/SearchResultList.js';
 
-import './App.scss';
+export class App extends Component {
+  componentWillMount() {
+    this.props.initialize();
+  }
 
-export default class App extends Component {
   render() {
+    const { isAuthenticated } = this.props;
     return (
       <Router>
         <div className="App" id="nanum">
@@ -23,8 +28,8 @@ export default class App extends Component {
           <main>
             <Switch>
               <Route exact path="/" component={ Home } />
-              <Route path="/dashboard" component={ Dashboard } />
-              <Route path="/login" component={LoginPage}/>
+              <PrivateRoute exact path="/dashboard" component={ Dashboard } isAuthenticated={isAuthenticated}/>
+              <Route exact path="/login" component={Login}/>
               <Route path="/search" component={SearchResultList}/>
             </Switch>
           </main>
@@ -33,3 +38,13 @@ export default class App extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  isAuthenticated: state[AppDuck.storeName].isAuthenticated,
+});
+
+const mapDispatchToProps = {
+  initialize: AppDuck.actions.initialize,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -1,0 +1,27 @@
+.food-intake {
+  margin: 0 auto;
+  padding: 24px 0 20px;
+
+  @include media(">=tablet") {
+    max-width: 100%;
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+}
+
+.food-intake__progress {
+  margin-bottom: 16px;
+}
+  
+.food-intake__meals {
+  background-color: $white-gray;
+
+  .row {
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  @include media(">=netbook") {
+    padding: 0 32px;
+  }
+}

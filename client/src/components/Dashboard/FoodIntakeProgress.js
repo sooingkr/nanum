@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ProgressBar } from 'react-bootstrap';
-import './FoodIntakeProgress.scss';
 
 const FoodIntakeProgress = ({ max, current }) => (
   <div className="food-intake__progress">

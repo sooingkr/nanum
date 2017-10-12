@@ -1,13 +1,10 @@
-@import '../../stylesheets/common';
-
 .user-info {
-  max-width: 260px;
   margin: 0 auto;
   padding: 20px;
   text-align: left;
   border-bottom: 1px solid rgba(159, 163, 167, .2);
 
-  @include media(">big-phone") {
+  @include media(">tablet") {
     border-bottom: none;
     border-right: 1px solid rgba(159, 163, 167, .2);
     height: 100%;

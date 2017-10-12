@@ -1,30 +1,15 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { shallow, mount } from 'enzyme';
-import UserInfoContainer from '../UserInfoContainer';
+import { UserInfoContainer } from '../UserInfoContainer';
+import { currentUser } from '../../../service/mockAPI/responses';
 
 describe('UserInfoContainer component', () => {
   let props;
   let mountedUserInfo;
 
   beforeEach(() => {
-    props = {
-      user: {
-        male: true,
-        name: "David Coffee",
-        interests: [
-          { id: "asdasd1", text: "soccer" },
-          { id: "asdd1", text: "Scala" },
-          { id: "asdd1asd", text: "penny" },
-        ],
-        diseases: [
-          { id: "123asd", text: "suck shti" },
-          { id: "123as2d", text: "psycho" },
-          { id: "123asggd", text: "obese" },
-        ]
-      }
-    };
-
+    props = currentUser();
     mountedUserInfo = undefined;
   });
 
@@ -45,11 +30,11 @@ describe('UserInfoContainer component', () => {
     });
 
     it('should display user name', () => {
-      expect(mountedUserInfo.text()).toContain("David Coffee");
+      expect(mountedUserInfo.text()).toContain("김레클 님");
     });
 
     it("should display the user's interests and diseases", () => {
-      expect(mountedUserInfo.find('.user-info__interests-disease').children().exists())
+      expect(mountedUserInfo.find('.user-info__details').children().exists())
         .toBeTruthy();
     });
   });
