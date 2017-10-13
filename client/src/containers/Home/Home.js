@@ -51,11 +51,7 @@ class Home extends Component {
               <SearchBox typeName="default"/>
             </Col>
           </Row>
-          <Row>
-            <Col md={12}>
-              <ChatBoxContainer userId={userId} messages={messages}/>
-            </Col>
-          </Row>
+          <ChatBoxContainer userId={userId} messages={messages}/>
         </Grid>
       </div>
     );
