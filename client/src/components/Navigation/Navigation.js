@@ -35,7 +35,7 @@ const Navigation = withRouter(({ history }) => {
                 <NavItem className="hidden-xs" onClick={navigateHelper('/search?q=query')} title="통합검색" eventKey={6}><span className="glyphicon glyphicon-search"></span></NavItem>
                 <NavDropdown eventKey={7} title="" id="basic-nav-dropdown">
                   <MenuItem eventKey={7.1} onClick={navigateHelper('/login')}>Login</MenuItem>
-                  <MenuItem eventKey={7.2}>Another action</MenuItem>
+                  <MenuItem eventKey={7.2} onClick={navigateHelper('/dashboard')}>Dashboard</MenuItem>
                   <MenuItem eventKey={7.3}>Something else here</MenuItem>
                   <MenuItem divider />
                   <MenuItem eventKey={7.4}>Separated link</MenuItem>
