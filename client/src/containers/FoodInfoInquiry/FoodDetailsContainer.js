@@ -116,4 +116,5 @@ FoodDetailsContainer.propsType = {
     lipidKcal:PropTypes.number.isRequired
   }).isRequired
 }
+
 export default FoodDetailsContainer;
