@@ -2,7 +2,7 @@ import axios from 'axios';
 import initializeMockAPI from './mockAPI/api';
 
 const isProd = (process.env.NODE_ENV === 'production');
-let _baseUrl = 'http://localhost:8080/fresh';
+let _baseUrl = 'http://test.baikal.io:8080/fresh';
 if (isProd) {
   _baseUrl = '/';
 }
