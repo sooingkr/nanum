@@ -1,11 +1,11 @@
 import axios from './config';
-import { API_BASE_URL } from '../constants';
+import { API_BASE_PATH } from '../constants';
 
 const searchFood = async (query) => {
   let results;
   
   try {
-    results = await axios.get(`${API_BASE_URL}/foods/search`, {
+    results = await axios.get(`${API_BASE_PATH}/foods/search`, {
       params: { query }
     });
   } catch(error) {
