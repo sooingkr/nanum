@@ -2,7 +2,7 @@ import axios from 'axios';
 import initializeMockAPI from './mockAPI/api';
 
 const isProd = (process.env.NODE_ENV === 'production');
-let _baseUrl = 'http://test.baikal.io:8080/fresh';
+let _baseUrl = 'http://localhost:8080/fresh';
 if (isProd) {
   _baseUrl = '/';
 }
@@ -10,9 +10,6 @@ if (isProd) {
 const client = axios.create({
   baseURL: _baseUrl,
   timeout: 10 * 60 * 60,
-  headers: {
-    'Nanum-Project': 'Hello Nanum :)'
-  }
 });
 
 const handleError = error => {
@@ -38,10 +35,6 @@ const handleError = error => {
 
 // Add a response interceptor
 client.interceptors.response.use(response => response, handleError);
-
-if (process.env.NODE_ENV === 'development' ) {
-  initializeMockAPI(client);
-}
 
 if(process.env.NODE_ENV === 'test') {
   // No delay when in test mode
