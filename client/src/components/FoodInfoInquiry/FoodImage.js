@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { PropTypes } from "prop-types";
 
 import { Image } from 'react-bootstrap';
-import './FoodImage.scss';
+import '../../stylesheets/components/_FoodImage.scss';
 
 class FoodImage extends Component {
 

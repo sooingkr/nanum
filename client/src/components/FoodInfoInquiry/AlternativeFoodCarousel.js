@@ -4,8 +4,6 @@ import { PropTypes } from 'prop-types';
 import Carousel from '../Carousel';
 import AlternativeFoodItem from './AlternativeFoodItem';
 
-import "./AlternativeFoodCarousel.scss";
-
 class AlternativeFoodCarousel extends Component {
   render() {
     const { foods } = this.props;

@@ -2,9 +2,7 @@ import React from "react";
 import { withRouter, Link } from 'react-router-dom';
 import { Row, Col, Navbar, Nav, NavItem, NavDropdown, Image, MenuItem } from "react-bootstrap";
 
-import "./Navigation.scss";
 // import { logo } from '../../assets/images/logo.png';
-
 
 const Navigation = withRouter(({ history }) => {
   const navigateHelper = path => () => {

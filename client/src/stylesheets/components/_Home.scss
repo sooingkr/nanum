@@ -1,8 +1,9 @@
-@import "../../stylesheets/common";
-
 .home {
-  background: url('../../assets/images/food-bg.jpg') center no-repeat;
+  background: url("./assets/images/food-bg.jpg") center no-repeat;
   background-size: cover;
+  @include media(">=srceen-lg") {
+    height: 100vh;
+  }
 
   .home-search {
     @include margin(167px null 330px 0);

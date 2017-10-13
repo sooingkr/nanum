@@ -13,7 +13,7 @@ import FoodDetailsContainer from "../FoodInfoInquiry/FoodDetailsContainer";
 import PrivateRoute from '../../components/PrivateRoute';
 import Login from '../Login/Login.js';
 import { AppDuck } from './AppDuck';
-import SearchResultList from '../../components/FoodSearch/SearchResultList.js';
+// import SearchResultList from '../../components/FoodSearch/SearchResultList.js';
 
 export class App extends Component {
   componentWillMount() {
@@ -30,9 +30,9 @@ export class App extends Component {
             <Switch>
               <Route exact path="/" component={ Home }/>
               <Route path="/product" component={FoodDetailsContainer}/>
-              <PrivateRoute exact path="/dashboard" component={ Dashboard } isAuthenticated={isAuthenticated}/>
+              <PrivateRoute path="/dashboard" component={ Dashboard } isAuthenticated={isAuthenticated}/>
               <Route exact path="/login" component={Login}/>
-              <Route path="/search" component={SearchResultList}/>
+              {/*<Route path="/search" component={SearchResultList}/>*/}
             </Switch>
           </main>
         </div>

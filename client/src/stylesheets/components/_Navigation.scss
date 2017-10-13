@@ -1,5 +1,3 @@
-@import "../../stylesheets/common";
-
 .App {
   .navbar {
     background-color: $white;
@@ -8,7 +6,7 @@
     height: 76px;
     margin-bottom: 0;
     .navbar-header {
-      @include media("<screen-xs") {
+      @include media("<=screen-xs") {
         height: 76px;
       }
 
@@ -21,18 +19,18 @@
     }
 
     .search-box {
-      @include media("<screen-xs") {
+      @include media("<=screen-xs") {
         top: 28px;
         left: 37%;
         width: 63%;
       }
       .form-control, .btn-default {
-        @include media("<screen-xs") {
+        @include media("<=screen-xs") {
           @include position(absolute, -18px null null null);
         }
       }
       .btn-default {
-        @include media("<screen-xs") {
+        @include media("<=screen-xs") {
           right: 0;
         }
       }

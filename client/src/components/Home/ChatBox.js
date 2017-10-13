@@ -4,8 +4,6 @@ import { PropTypes } from 'prop-types';
 
 import { Image } from "react-bootstrap";
 
-import "./ChatBox.scss";
-
 class ChatBox extends Component {
   render() {
     const { index, message: { content, admes } } = this.props;
