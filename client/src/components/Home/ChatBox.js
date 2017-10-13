@@ -1,14 +1,12 @@
 import React, { Component } from "react";
-import { Image } from "react-bootstrap";
-
 import { isEmpty } from "lodash";
 import { PropTypes } from 'prop-types';
 
-import "./ChatBox.scss";
+import { Image } from "react-bootstrap";
 
 class ChatBox extends Component {
   render() {
-    const { message: { index, content, admes } } = this.props;
+    const { index, message: { content, admes } } = this.props;
 
     return (
       <div className="chat-messages__text" key={ index }>
@@ -34,8 +32,8 @@ class ChatBox extends Component {
 }
 
 ChatBox.propTypes = {
+  index: PropTypes.number.isRequired,
   message: PropTypes.shape({
-    index: PropTypes.number,
     content: PropTypes.string.isRequired,
     admes: PropTypes.string
   }).isRequired

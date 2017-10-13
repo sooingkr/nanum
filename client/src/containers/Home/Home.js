@@ -1,14 +1,12 @@
 import React, { Component } from "react";
 import { Grid, Row, Col } from 'react-bootstrap';
 
-import SearchBox from "../../components/SearchBox/SearchBox.js";
-import ChatBoxContainer from "./ChatBoxContainer.js";
-
-import "./Home.scss";
+import SearchBox from "../../components/SearchBox/SearchBox";
+import ChatBoxContainer from "./ChatBoxContainer";
 
 class Home extends Component {
   render() {
-    const userId = '1';
+    const userId = '';
     const messages = [
       {
         id: '1',
@@ -24,26 +22,21 @@ class Home extends Component {
         id: '3',
         content: '무엇을 도와드릴까요?',
         admes: ''
-
       },
       {
         id: '1',
         content: '무엇을 도와드릴까요?',
         admes: 'HACCP 교육 일정을 알려주세요.'
-
       },
       {
         id: '1',
         content: '무엇을 도와드릴까요?',
         admes: 'ad message 2'
-
-
       },
       {
         id: '1',
         content: '무엇을 도와드릴까요?',
         admes: ''
-
       }
     ];
     return (
@@ -58,11 +51,7 @@ class Home extends Component {
               <SearchBox typeName="default"/>
             </Col>
           </Row>
-          <Row>
-            <Col md={12}>
-              <ChatBoxContainer userId={userId} messages={messages}/>
-            </Col>
-          </Row>
+          <ChatBoxContainer userId={userId} messages={messages}/>
         </Grid>
       </div>
     );

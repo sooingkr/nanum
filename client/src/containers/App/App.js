@@ -9,10 +9,11 @@ import Navigation from "../../components/Navigation/Navigation.js";
 
 import Home from "../Home/Home.js";
 import Dashboard from "../Dashboard/Dashboard.js";
+import FoodDetailsContainer from "../FoodInfoInquiry/FoodDetailsContainer";
 import PrivateRoute from '../../components/PrivateRoute';
 import Login from '../Login/Login.js';
 import { AppDuck } from './AppDuck';
-import SearchResultList from '../../components/FoodSearch/SearchResultList.js';
+// import SearchResultList from '../../components/FoodSearch/SearchResultList.js';
 
 export class App extends Component {
   componentWillMount() {
@@ -27,10 +28,11 @@ export class App extends Component {
           <Navigation/>
           <main>
             <Switch>
-              <Route exact path="/" component={ Home } />
-              <PrivateRoute exact path="/dashboard" component={ Dashboard } isAuthenticated={isAuthenticated}/>
+              <Route exact path="/" component={ Home }/>
+              <Route path="/product" component={FoodDetailsContainer}/>
+              <PrivateRoute path="/dashboard" component={ Dashboard } isAuthenticated={isAuthenticated}/>
               <Route exact path="/login" component={Login}/>
-              <Route path="/search" component={SearchResultList}/>
+              {/*<Route path="/search" component={SearchResultList}/>*/}
             </Switch>
           </main>
         </div>

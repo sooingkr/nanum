@@ -4,9 +4,10 @@ import Slider from 'react-slick';
 
 class Carousel extends Component {
   render() {
+    const { className } = this.props;
     const settings = this.props.settings;
     return (
-      <Slider {...settings}>
+      <Slider className={className} {...settings}>
         { this.props.children }
       </Slider>
     )
@@ -24,7 +25,8 @@ Carousel.defaultProps = {
 }
 
 Carousel.propTypes = {
-  settings: PropTypes.object,
+  className: PropTypes.string.isRequired,
+  settings: PropTypes.object.isRequired
 }
 
 export default Carousel;

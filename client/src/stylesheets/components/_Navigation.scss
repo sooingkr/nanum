@@ -1,0 +1,117 @@
+.App {
+  .navbar {
+    background-color: $white;
+    background-image: none;
+    border: none;
+    height: 76px;
+    margin-bottom: 0;
+    .navbar-header {
+      @include media("<=screen-xs") {
+        height: 76px;
+      }
+
+      .btn-search {
+        margin-top: 35px;
+      }
+    }
+    .glyphicon {
+      color: $black;
+    }
+
+    .search-box {
+      @include media("<=screen-xs") {
+        top: 28px;
+        left: 37%;
+        width: 63%;
+      }
+      .form-control, .btn-default {
+        @include media("<=screen-xs") {
+          @include position(absolute, -18px null null null);
+        }
+      }
+      .btn-default {
+        @include media("<=screen-xs") {
+          right: 0;
+        }
+      }
+    }
+
+    .navbar-nav {
+      >li {
+        >a {
+          @include padding(10px 12px);
+        }
+      }
+
+      @include media(">=tablet") {
+
+        @include position(absolute, 16px null null null);
+
+        &:last-child {
+          top: 20px;
+          right: 15px;
+        }
+      }
+    }
+
+    .logo-block {
+      margin-top: 17px;
+    }
+
+    .logo {
+      float: left;
+      @include size(107px 42px);
+      margin-top: 5px;
+    }
+
+    .dropdown-toggle {
+      background-color: transparent;
+      background-image: none;
+      border: none;
+      @include box-shadow(null, null, null, null, null, null, true);
+      padding: 8px 12px 10px!important;
+
+      &:before {
+        font-family: 'Glyphicons Halflings';
+        content: "\e008";
+        color: $black;
+      }
+    }
+    .caret {
+      display: none;
+    }
+
+    .navbar-toggle {
+      @include media("<=tablet-min") {
+        float: none;
+        background-color: transparent;
+        border: none;
+        &:before {
+          font-family: 'Glyphicons Halflings';
+          content: "\e252";
+        }
+        .icon-bar {
+          display: none;
+        }
+
+        &:hover, &:focus {
+          background-color: transparent;
+        }
+      }
+    }
+
+    .navbar-collapse {
+      @include media("<=tablet-min") {
+        background-color: $white;
+        @include position(absolute, 0 0 null 0);
+        z-index: 9999;
+        min-height: 385px;
+      }
+      @include media("<=phone") {
+        min-height: 325px;
+
+      }
+    }
+  }
+}
+
