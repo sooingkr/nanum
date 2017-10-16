@@ -48,7 +48,7 @@
   .product__foodInfo {
     background-color: $green-light-bg;
     border: 1px solid $green;
-    @include border-radius(15px);
+    border-radius: 15px;
     @include margin(15px 0 25px);
     @include padding(15px 20px);
     font-size: rem(12);

@@ -68,7 +68,7 @@
       background-color: transparent;
       background-image: none;
       border: none;
-      @include box-shadow(null, null, null, null, null, null, true);
+      box-shadow: none;
       padding: 8px 12px 10px!important;
 
       &:before {
@@ -82,7 +82,7 @@
     }
 
     .navbar-toggle {
-      @include media("<=tablet-min") {
+      @include media("<tablet") {
         float: none;
         background-color: transparent;
         border: none;
@@ -101,7 +101,7 @@
     }
 
     .navbar-collapse {
-      @include media("<=tablet-min") {
+      @include media("<tablet") {
         background-color: $white;
         @include position(absolute, 0 0 null 0);
         z-index: 9999;
@@ -109,7 +109,6 @@
       }
       @include media("<=phone") {
         min-height: 325px;
-
       }
     }
   }

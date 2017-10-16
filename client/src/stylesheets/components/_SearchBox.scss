@@ -16,7 +16,7 @@
     background-image: none;
     border: none;
     border-radius: 0;
-    @include box-shadow(null, null, null, null, null, null, true);
+    box-shadow: none;
   }
   .btn {
     position: absolute;
@@ -35,7 +35,7 @@
 
     &:focus, &:hover {
       border: none;
-      @include box-shadow(null, null, null, null, null, null, true);
+      box-shadow: none;
 
     }
     .glyphicon-search {
