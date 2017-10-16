@@ -39,7 +39,9 @@ const SendMessageForm = reduxForm({
 export class ChatBoxContainer extends Component {
 
   closeAlert() {
-    return <Redirect to={{ pathname: '/' }}/>;
+    return (
+      <Redirect to={{ pathname: '/join'}}/>
+    );
   }
 
   render() {
@@ -119,7 +121,6 @@ const mapStateToProps = state => {
   const homeState = state[homeDuck.storeName];
   return {
     openChatBox: homeState.openChatBox
-
   };
 };
 
