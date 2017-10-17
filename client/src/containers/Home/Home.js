@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Grid, Row, Col } from 'react-bootstrap';
 
-import SearchBox from "../../components/SearchBox/SearchBox";
 import ChatBoxContainer from "./ChatBoxContainer";
 
 class Home extends Component {
@@ -48,7 +47,6 @@ class Home extends Component {
                 <span>안심하고 먹을 수 있는</span><br/>
                 <span>HACCP</span>
               </div>
-              <SearchBox typeName="default"/>
             </Col>
           </Row>
           <ChatBoxContainer userId={userId} messages={messages}/>

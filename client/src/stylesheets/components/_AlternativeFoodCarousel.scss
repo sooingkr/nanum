@@ -43,8 +43,6 @@
     border: 1px solid $base-background-color;
     border-radius: 5px;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, .15), 0 1px 5px rgba(0, 0, 0, .075);
-    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .15), 0 1px 5px rgba(0, 0, 0, .075);
-    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .15), 0 1px 5px rgba(0, 0, 0, .075);
     width: 96%;
     @include margin(0 2%);
 
@@ -59,7 +57,7 @@
         height: 160px;
       }
 
-      @include media(">=srceen-lg") {
+      @include media(">=screen-lg") {
         height: 300px;
       }
     }
@@ -71,7 +69,7 @@
       @include border-top-radius(5px);
       background-color: $white;
       font-size: rem(12);
-      color: $black-1;
+      color: $lesser-black;
       line-height: 20px;
       font-weight: bolder;
       word-spacing: -4px;

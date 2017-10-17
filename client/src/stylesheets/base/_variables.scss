@@ -7,12 +7,11 @@ $breakpoints: (
    iphone6plus: 414px,
    big-phone: 700px,
    tablet: 768px,
-   tablet-min: 767px,
    netbook: 924px,
    screen-md: 992px,
    desktop: 1024px,
    da: 1224px,
-   srceen-lg: 2560px,
+   screen-lg: 2560px,
 );
 
 //Rhythm unit
@@ -46,7 +45,7 @@ $light-gray: #b7bcc0;
 $gray: #9fa3a7;
 $dark-gray: #4c4c4c;
 $black: #242424;
-$black-1: #4e5665;
+$lesser-black: #4e5665;
 $green: #00c03c;
 $red: #e34c4c;
 $yellow: #ffc80a;

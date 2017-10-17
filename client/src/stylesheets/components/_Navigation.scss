@@ -1,117 +1,128 @@
-.App {
-  .navbar {
-    background-color: $white;
-    background-image: none;
-    border: none;
-    height: 76px;
-    margin-bottom: 0;
-    .navbar-header {
-      @include media("<=screen-xs") {
-        height: 76px;
-      }
+$nav-top-padding: 16px;
+$nav-side-padding: 24px;
 
-      .btn-search {
-        margin-top: 35px;
-      }
-    }
-    .glyphicon {
-      color: $black;
-    }
+.navigation__logo {
+  height: 42px;
+  max-width: 130px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
 
-    .search-box {
-      @include media("<=screen-xs") {
-        top: 28px;
-        left: 37%;
-        width: 63%;
-      }
-      .form-control, .btn-default {
-        @include media("<=screen-xs") {
-          @include position(absolute, -18px null null null);
-        }
-      }
-      .btn-default {
-        @include media("<=screen-xs") {
-          right: 0;
-        }
-      }
-    }
+  .logo {
+    margin-right: 10px;
+  }
+}
 
-    .navbar-nav {
-      >li {
-        >a {
-          @include padding(10px 12px);
-        }
-      }
+.navigation__toggle {
+  font-size: 20px;
+  background: $white;
+  border: none;
 
-      @include media(">=tablet") {
+  @include media(">=netbook") {
+    display: none;
+  }
+}
 
-        @include position(absolute, 16px null null null);
+.navigation__main {
+  position: absolute;
+  z-index: 3;
+  background-color: $white;
+  width: 100%;
+  left: 50%;
+  transform: translate(-50%, $nav-top-padding);
 
-        &:last-child {
-          top: 20px;
-          right: 15px;
-        }
-      }
-    }
-
-    .logo-block {
-      margin-top: 17px;
-    }
-
-    .logo {
-      float: left;
-      @include size(107px 42px);
-      margin-top: 5px;
-    }
-
-    .dropdown-toggle {
-      background-color: transparent;
-      background-image: none;
-      border: none;
-      @include box-shadow(null, null, null, null, null, null, true);
-      padding: 8px 12px 10px!important;
-
-      &:before {
-        font-family: 'Glyphicons Halflings';
-        content: "\e008";
-        color: $black;
-      }
-    }
-    .caret {
-      display: none;
-    }
-
-    .navbar-toggle {
-      @include media("<=tablet-min") {
-        float: none;
-        background-color: transparent;
-        border: none;
-        &:before {
-          font-family: 'Glyphicons Halflings';
-          content: "\e252";
-        }
-        .icon-bar {
-          display: none;
-        }
-
-        &:hover, &:focus {
-          background-color: transparent;
-        }
-      }
-    }
-
-    .navbar-collapse {
-      @include media("<=tablet-min") {
-        background-color: $white;
-        @include position(absolute, 0 0 null 0);
-        z-index: 9999;
-        min-height: 385px;
-      }
-      @include media("<=phone") {
-        min-height: 325px;
-
-      }
+  // Always show nav for bigger screens
+  @include media(">=netbook") {
+    width: auto;
+    position: relative;
+    left: initial;
+    transform: none;
+    
+    .collapse {
+      display: block;
+      height: auto !important;
+      float: none !important;
     }
   }
 }
 
+.navigation__secondary {
+  display: block;
+  position: absolute;
+  right: $nav-side-padding;
+  top: 50%;
+  transform: translateY(-50%);
+
+  @include media(">=netbook") {
+    position: relative;
+    transform: none;
+    right: initial;
+
+    .nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    ul.dropdown-menu {
+      left: -48px;
+    }
+  }
+}
+
+#secondary-nav-dropdown {
+  display: none;
+  box-shadow: none;
+  background-image: none;
+  background-color: $white;
+
+  @include media(">=netbook") {
+    display: block;
+  }
+
+  .caret {
+    border: none;
+    margin: 0;
+    position: relative;
+    width: 12px;
+    height: 14px;
+
+    &:after {
+      position: absolute;
+      content: "\f007";
+      font-family: "FontAwesome";
+      color: $black;
+      line-height: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}
+
+// Override bootstrap
+#nanum .navbar-default {
+  margin-bottom: 0;
+  border: none;
+  background-image: none;
+  background-color: $white;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.15);
+
+  .container {
+    position: relative;
+    padding: $nav-top-padding $nav-side-padding;
+    height: 100%;
+    justify-content: space-between;
+
+    @include media(">=netbook") {
+      display: flex;
+    }
+  }
+}
+
+#nanum .navbar-nav {
+  margin: 0;
+}
+
+#nanum .navbar {
+  min-height: initial;
+}
