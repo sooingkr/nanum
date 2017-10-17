@@ -60,8 +60,8 @@ class Navigation extends Component {
             <Nav>
               <FoodSearchBoxContainer />
               <NavDropdown eventKey={7} title="" id="secondary-nav-dropdown">
-                <MenuItem eventKey={7.1} onClick={navigateHelper('/login')}>Login</MenuItem>
-                <MenuItem eventKey={7.2} onClick={navigateHelper('/dashboard')}>Dashboard</MenuItem>
+                <MenuItem eventKey={7.1} onClick={navigateHelper('/login', history)}>Login</MenuItem>
+                <MenuItem eventKey={7.2} onClick={navigateHelper('/dashboard', history)}>Dashboard</MenuItem>
               </NavDropdown>
             </Nav>
           </div>

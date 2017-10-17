@@ -25,7 +25,7 @@ Carousel.defaultProps = {
 }
 
 Carousel.propTypes = {
-  className: PropTypes.string.isRequired,
+  className: PropTypes.string,
   settings: PropTypes.object.isRequired
 }
 
