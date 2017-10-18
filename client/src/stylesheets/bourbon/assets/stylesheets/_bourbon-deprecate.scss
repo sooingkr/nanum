@@ -6,7 +6,7 @@
 /// @access private
 
 @mixin _bourbon-deprecate($feature, $message: null) {
-  @if $output-bourbon-deprecation-warnings == true {
+  @if $output-bourbon-deprecation-warnings == false {
     @warn "[Bourbon] [Deprecation] `#{$feature}` is deprecated and will be " +
       "removed in 5.0.0. #{$message}";
     @content;

@@ -1,0 +1,17 @@
+#nanum {
+  .progress,
+  .progress-bar {
+    background-image: none;
+    box-shadow: none;
+  }
+
+  .progress {
+    background-color: $progress-bar-background;
+    margin-bottom: 0;
+  }
+
+  .progress-bar {
+    line-height: 8px;
+    background-color: $green;
+  }
+}

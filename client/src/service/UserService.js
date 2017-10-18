@@ -2,7 +2,7 @@ import axios from './config';
 import jwtDecode from 'jwt-decode';
 import { saveAuth } from '../utils/auth';
 import { API_BASE_PATH } from '../constants';
-import {stringify} from 'querystring';
+import { stringify } from 'querystring';
 
 const decodeUserToken = token => {
   return jwtDecode(token);
@@ -36,14 +36,14 @@ const checkValidToken = async (token) => {
   return isValid.data;
 };
 
-const getTrackingData = async (userId, queryTime) => {
-  // const foodIntakeTracking = await FoodService.getFoodIntakeTracking(userId);
-  // const foodSuggestions = await FoodService.getFoodSuggestions(userId);
+const getTrackingData = async (token, queryTime) => {
   let trackingData;
   try {
     trackingData = await axios.get(`${API_BASE_PATH}/users/daily-report`, {
+      headers: {
+        'Authorization': token,
+      },
       params: {
-        userId,
         queryTime,
       }
     });

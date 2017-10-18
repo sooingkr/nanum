@@ -1,0 +1,128 @@
+$nav-top-padding: 16px;
+$nav-side-padding: 24px;
+
+.navigation__logo {
+  height: 42px;
+  max-width: 130px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  .logo {
+    margin-right: 10px;
+  }
+}
+
+.navigation__toggle {
+  font-size: 20px;
+  background: $white;
+  border: none;
+
+  @include media(">=netbook") {
+    display: none;
+  }
+}
+
+.navigation__main {
+  position: absolute;
+  z-index: 3;
+  background-color: $white;
+  width: 100%;
+  left: 50%;
+  transform: translate(-50%, $nav-top-padding);
+
+  // Always show nav for bigger screens
+  @include media(">=netbook") {
+    width: auto;
+    position: relative;
+    left: initial;
+    transform: none;
+    
+    .collapse {
+      display: block;
+      height: auto !important;
+      float: none !important;
+    }
+  }
+}
+
+.navigation__secondary {
+  display: block;
+  position: absolute;
+  right: $nav-side-padding;
+  top: 50%;
+  transform: translateY(-50%);
+
+  @include media(">=netbook") {
+    position: relative;
+    transform: none;
+    right: initial;
+
+    .nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    ul.dropdown-menu {
+      left: -48px;
+    }
+  }
+}
+
+#secondary-nav-dropdown {
+  display: none;
+  box-shadow: none;
+  background-image: none;
+  background-color: $white;
+
+  @include media(">=netbook") {
+    display: block;
+  }
+
+  .caret {
+    border: none;
+    margin: 0;
+    position: relative;
+    width: 12px;
+    height: 14px;
+
+    &:after {
+      position: absolute;
+      content: "\f007";
+      font-family: "FontAwesome";
+      color: $black;
+      line-height: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}
+
+// Override bootstrap
+#nanum .navbar-default {
+  margin-bottom: 0;
+  border: none;
+  background-image: none;
+  background-color: $white;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.15);
+
+  .container {
+    position: relative;
+    padding: $nav-top-padding $nav-side-padding;
+    height: 100%;
+    justify-content: space-between;
+
+    @include media(">=netbook") {
+      display: flex;
+    }
+  }
+}
+
+#nanum .navbar-nav {
+  margin: 0;
+}
+
+#nanum .navbar {
+  min-height: initial;
+}

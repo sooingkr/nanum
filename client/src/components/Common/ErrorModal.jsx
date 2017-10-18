@@ -3,10 +3,10 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
-import {Modal, Button} from 'react-bootstrap';
-import {toggleModal} from '../../utils/AppUtils';
-import {AppDuck} from '../../containers/App/AppDuck';
+import { connect } from 'react-redux';
+import { Modal, Button } from 'react-bootstrap';
+import { toggleModal } from '../../utils/AppUtils';
+import { AppDuck } from '../../containers/App/AppDuck';
 
 const mapStateToProps = state => {
   const appState = state[AppDuck.storeName];

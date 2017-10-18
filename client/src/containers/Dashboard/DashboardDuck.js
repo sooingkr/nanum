@@ -3,9 +3,7 @@
  */
 import { createAction, createReducer } from '../../utils/store';
 import UserService from '../../service/UserService';
-import { 
-  selectors as LoginSelectors,
-} from '../Login/LoginDuck';
+import { getAuth } from '../../utils/auth';
 import moment from 'moment';
 
 const storeName = 'DashboardDuck';
@@ -30,11 +28,11 @@ const initialize = (queryTime) => async (dispatch, getState) => {
   if(!queryTime) {
     queryTime = moment(new Date()).format();
   }
-  const state = getState();
-  const userId = LoginSelectors.getUser(state).id;
+  // Get auth data from localstorage
+  const auth = getAuth();
   dispatch(pickQueryTime(queryTime));
 
-  const tracking = await UserService.getTrackingData(userId, queryTime);
+  const tracking = await UserService.getTrackingData(auth.token, queryTime);
   dispatch(createAction(actionTypes.initialize, { 
     ...tracking,
   }));

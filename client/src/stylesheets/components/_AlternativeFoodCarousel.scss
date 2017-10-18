@@ -1,0 +1,81 @@
+.food-carousel__sliders {
+  .slick-arrow {
+    @include size(43px);
+    z-index: 1;
+
+    &:before {
+      display: block;
+      @include size(43px);
+      font-size: 0;
+      border-radius: 50%;
+      background: url("./assets/images/icons/icon-arrow-slider.png") center no-repeat;
+      background-color: transparent;
+    }
+  }
+
+  .slick-prev {
+    @include media(">=tablet") {
+      left: -45px;
+    }
+
+    @include media("<=tablet") {
+      left: 5px;
+    }
+
+    &:before {
+      @include transform(rotate(180deg));
+    }
+  }
+
+  .slick-next {
+    @include media(">=tablet") {
+      right: -40px;
+    }
+
+    @include media("<=tablet") {
+      right: 5px;
+    }
+  }
+
+  .food-carousel__food {
+    display: inline-block;
+    overflow: hidden;
+    border: 1px solid $base-background-color;
+    border-radius: 5px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .15), 0 1px 5px rgba(0, 0, 0, .075);
+    width: 96%;
+    @include margin(0 2%);
+
+    @include media(">=screen-md") {
+      width: 93%;
+    }
+    .img-responsive {
+      width: 100%;
+      height: 210px;
+
+      @include media(">=screen-md") {
+        height: 160px;
+      }
+
+      @include media(">=screen-lg") {
+        height: 300px;
+      }
+    }
+
+    .food-slider__info {
+      @include position(relative, -4px null null null);
+      @include padding(15px 15px 10px);
+      border-top: 1px solid $base-background-color;
+      @include border-top-radius(5px);
+      background-color: $white;
+      font-size: rem(12);
+      color: $lesser-black;
+      line-height: 20px;
+      font-weight: bolder;
+      word-spacing: -4px;
+      a {
+        color: $green;
+      }
+    }
+  }
+}

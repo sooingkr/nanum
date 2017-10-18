@@ -6,7 +6,7 @@ const storeName = 'HomeDuck';
 
 // define action type
 export const actionTypes = {
-  toggleChatBox: storeName + '/toggleChatBox',
+  toggleChatBox: storeName + '/toggleChatBox'
 };
 
 // define action
@@ -17,8 +17,7 @@ const toggleChatBox = () => dispatch => {
 
 // conveniently export actions
 const actions = {
-  // initialize,
-  toggleChatBox
+  toggleChatBox,
 };
 
 export const initialState = {
@@ -28,7 +27,6 @@ export const initialState = {
 const reducer = createReducer(initialState, {
 
   [actionTypes.toggleChatBox]: (state) => {
-
     return {
       ...state,
       openChatBox: !state.openChatBox
@@ -36,7 +34,7 @@ const reducer = createReducer(initialState, {
   }
 });
 
-export const homeDuck = {
+export const HomeDuck = {
   storeName,
   reducer,
   actions

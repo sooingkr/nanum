@@ -1,0 +1,73 @@
+.search-form {
+  position: relative;
+  align-self: center;
+
+  form {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+// when search form is expanded
+.search-form.is-expanded {
+  width: 100%;
+
+  @include media(">=netbook") {
+    max-width: 500px;
+  }
+
+  .search-form__input {
+    animation: expand .4s 1;
+    width: 100%;
+    border-bottom: 1px solid tint(#979797, 80%);
+  }
+  
+  .search-form__close {
+    display: block;
+  }
+
+  .search-form__submit {
+    display: none;
+  }
+}
+
+#nanum .search-form__submit,
+#nanum .search-form__close {
+  border: none;
+  background-image: none;
+  box-shadow: none;
+  background-color: transparent;
+}
+
+.search-form__input {
+  border: none;
+  width: 0;
+  color: $black;
+}
+
+// Position close button
+.search-form.is-expanded {
+  position: relative;
+
+  .search-form__close {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+.search-form__close {
+  display: none;
+  padding: 0;
+}
+
+@keyframes expand {
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: 100%;
+  }
+}

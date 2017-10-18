@@ -6,13 +6,23 @@
 @import 'FoodIntakeProgress';
 @import 'FoodSuggestionCarousel';
 @import 'FoodSuggestionItem';
+@import 'FoodImage';
+@import 'FoodImageLink';
 @import 'TagBox';
 @import 'TimeSelector';
+@import 'Navigation';
+@import 'SearchBox';
+@import 'ChatBox';
+@import 'AlternativeFoodCarousel';
+@import 'SearchForm';
 
 // Containers
 @import 'App';
+@import 'Home';
 @import 'Dashboard';
+@import 'FoodDetails';
 @import 'FoodSuggestion';
 @import 'UserInfo';
 @import 'FoodIntake';
 @import 'Diagnostic';
+@import 'FoodSearchBox';
