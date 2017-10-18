@@ -8,15 +8,15 @@ const storeName = 'App';
 export const actionTypes = {
   checkTokenValid: storeName + '/CHECK_TOKEN_VALID',
   failTokenValid: storeName + '/FAIL_TOKEN_VALID',
-  successAuthenticate: storeName + '/SUCCESS_AUTHENTICATE',
+  succeedAuthenticate: storeName + '/SUCCEED_AUTHENTICATE',
   toggleModal: storeName + '/TOGGLE_MODAL',
-  initializeError: storeName + '/initializeError',
-  clearInitializeError: storeName + '/clearInitializeError',
+  failInitialize: storeName + '/FAIL_INITIALIZE',
+  clearInitializeError: storeName + '/CLEAR_INITIALIZE_ERROR',
 };
 
 // define actions
 const checkTokenValid = () => createAction(actionTypes.checkTokenValid);
-const successAuthenticate = () => createAction(actionTypes.successAuthenticate);
+const succeedAuthenticate = () => createAction(actionTypes.succeedAuthenticate);
 const failTokenValid = () => createAction(actionTypes.failTokenValid);
 
 // define thunks
@@ -36,7 +36,7 @@ const initialize = () => async (dispatch) => {
   try {
     const isValid = await UserService.checkValidToken(auth.token);
     if (isValid) {
-      dispatch(successAuthenticate());
+      dispatch(succeedAuthenticate());
     } else {
       dispatch(failTokenValid());
     }
@@ -52,7 +52,7 @@ const initialize = () => async (dispatch) => {
       errObj.statusText = error.response.statusText;
     }
 
-    dispatch(createAction(actionTypes.initializeError, errObj));
+    dispatch(createAction(actionTypes.failInitialize, errObj));
     dispatch(toggleModal('modal-app-error'));
   }
 };
@@ -64,7 +64,7 @@ export const toggleModal = modalId => dispatch => {
 // conveniently export actions
 export const actions = {
   checkTokenValid,
-  successAuthenticate,
+  succeedAuthenticate,
   failTokenValid,
   initialize,
   toggleModal,
@@ -101,7 +101,7 @@ const reducer = createReducer(initialState, {
       openModalId
     }
   },
-  [actionTypes.initializeError]: (state, initializeError) => {
+  [actionTypes.failInitialize]: (state, initializeError) => {
     return {
       ...state,
       initializeError

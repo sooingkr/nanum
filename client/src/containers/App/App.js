@@ -12,7 +12,6 @@ import FoodDetailsContainer from "../FoodInfoInquiry/FoodDetailsContainer";
 import PrivateRoute from '../../components/PrivateRoute';
 import Login from '../Login/Login.js';
 import { AppDuck } from './AppDuck';
-import SearchResultList from '../../components/FoodSearch/SearchResultList.js';
 import {ErrorModal} from '../../components/Common/ErrorModal';
 
 export class App extends Component {
