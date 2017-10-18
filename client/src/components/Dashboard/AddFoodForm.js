@@ -7,7 +7,12 @@ import FoodSelectField from './FoodSelectField';
 const AddFoodFormView = ({ handleSubmit, pristine, reset, submitting }) => (
   <Form horizontal onSubmit={handleSubmit}>
     <FoodSelectField />
-    <Button bsStyle="default" type="submit" className="pull-right" disabled={pristine || submitting}>Add</Button>
+    <Button bsStyle="default" 
+            type="submit" 
+            className="pull-right" 
+            disabled={pristine || submitting} >
+      Add
+    </Button>
   </Form>
 );
 

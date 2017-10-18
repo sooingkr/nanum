@@ -1,9 +1,14 @@
 import axios from 'axios';
 import initializeMockAPI from './mockAPI/api';
-import { API_BASE_URL } from '../constants';
+
+const isProd = (process.env.NODE_ENV === 'production');
+let _baseUrl = 'http://test.baikal.io:8080/fresh';
+if (isProd) {
+  _baseUrl = '/';
+}
 
 const client = axios.create({
-  baseURL: API_BASE_URL,
+  baseURL: _baseUrl,
   timeout: 10 * 60 * 60,
   headers: {
     'Nanum-Project': 'Hello Nanum :)'

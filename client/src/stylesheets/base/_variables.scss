@@ -11,7 +11,7 @@ $breakpoints: (
    screen-md: 992px,
    desktop: 1024px,
    da: 1224px,
-   screen-lg: 2560px
+   screen-lg: 2560px,
 );
 
 //Rhythm unit
@@ -45,8 +45,7 @@ $light-gray: #b7bcc0;
 $gray: #9fa3a7;
 $dark-gray: #4c4c4c;
 $black: #242424;
-$black-1: #4e5665;
-$black-2: #313541;
+$lesser-black: #4e5665;
 $green: #00c03c;
 $red: #e34c4c;
 $yellow: #ffc80a;
@@ -54,7 +53,6 @@ $yellow: #ffc80a;
 // Font Colors
 $base-font-color: $white;
 $placeholder-color: #a1a5a9;
-
 
 // Border
 // $base-border-color: $light-gray;

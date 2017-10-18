@@ -1,19 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Route,
   Switch,
 } from 'react-router-dom';
-import Navigation from "../../components/Navigation/Navigation.js";
-
+import Navigation from "../../components/Navigation";
 import Home from "../Home/Home.js";
 import Dashboard from "../Dashboard/Dashboard.js";
 import FoodDetailsContainer from "../FoodInfoInquiry/FoodDetailsContainer";
 import PrivateRoute from '../../components/PrivateRoute';
 import Login from '../Login/Login.js';
 import { AppDuck } from './AppDuck';
-// import SearchResultList from '../../components/FoodSearch/SearchResultList.js';
 
 export class App extends Component {
   componentWillMount() {

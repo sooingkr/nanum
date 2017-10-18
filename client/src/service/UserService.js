@@ -1,7 +1,7 @@
 import axios from './config';
 import jwtDecode from 'jwt-decode';
 import { saveAuth } from '../utils/auth';
-import { API_BASE_URL } from '../constants';
+import { API_BASE_PATH } from '../constants';
 
 const decodeUserToken = token => {
   return jwtDecode(token);
@@ -15,7 +15,7 @@ const loginUser = async (email, password) => {
   formLogin.append('password', password);
 
   try {
-    token = await axios.post(`${API_BASE_URL}/post-login`, formLogin);
+    token = await axios.post(`${API_BASE_PATH}/post-login`, formLogin);
     decodedToken = decodeUserToken(token.data);
 
     // Save auth to localstorage
@@ -32,7 +32,7 @@ const checkValidToken = async (token) => {
   let isValid;
   
   try {
-    isValid = await axios.post(`${API_BASE_URL}/check-valid-authorization-token`, {
+    isValid = await axios.post(`${API_BASE_PATH}/check-valid-authorization-token`, {
       headers: {
         'Authorization': token,
       }
@@ -49,7 +49,7 @@ const getTrackingData = async (userId, queryTime) => {
   // const foodSuggestions = await FoodService.getFoodSuggestions(userId);
   let trackingData;
   try {
-    trackingData = await axios.get(`${API_BASE_URL}/tracking`, {
+    trackingData = await axios.get(`${API_BASE_PATH}/tracking`, {
       params: {
         userId,
         queryTime,
