@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import SearchForm from '../../components/SearchForm';
+import { FoodSearchDuck } from './FoodSearchDuck';
 
 class FoodSearchBoxContainer extends Component {
   constructor(props) {
@@ -10,15 +13,23 @@ class FoodSearchBoxContainer extends Component {
   }
   
   handleSubmit = (values) => {
-    console.log(values);
+    const currentLocation = this.props.location.pathname;
+    // If already in search result page
+    if (currentLocation === '/search') {
+      // fetch results
+      this.props.searchFood(values.foodQuery);
+    } else {
+      // Navigate to search result page
+      this.props.history.push('/search');
+    }
   }
 
   onExpand = () => {
-    this.setState({isExpanded: true});
+    this.setState({ isExpanded: true });
   }
 
   onClose = () => {
-    this.setState({isExpanded: false});
+    this.setState({ isExpanded: false });
   }
 
   render() {
@@ -36,4 +47,8 @@ class FoodSearchBoxContainer extends Component {
   }
 }
 
-export default FoodSearchBoxContainer;
+const mapDispatchToProps = {
+  searchFood: FoodSearchDuck.actions.searchFood,
+}
+
+export default withRouter(connect(null, mapDispatchToProps)(FoodSearchBoxContainer));

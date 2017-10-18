@@ -30,7 +30,7 @@ export class App extends Component {
               <Route path="/product" component={FoodDetailsContainer}/>
               <PrivateRoute path="/dashboard" component={ Dashboard } isAuthenticated={isAuthenticated}/>
               <Route exact path="/login" component={Login}/>
-              {/*<Route path="/search" component={SearchResultList}/>*/}
+              {/* <Route path="/search" component={SearchResultList}/> */}
             </Switch>
           </main>
         </div>
