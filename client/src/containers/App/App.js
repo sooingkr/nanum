@@ -5,11 +5,11 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
-import Navigation from "../../components/Navigation";
+import Navigation from "../../components/Common/Navigation";
 import Home from "../Home/Home.js";
 import Dashboard from "../Dashboard/Dashboard.js";
 import FoodDetailsContainer from "../FoodInfoInquiry/FoodDetailsContainer";
-import PrivateRoute from '../../components/PrivateRoute';
+import PrivateRoute from '../../components/Common/PrivateRoute';
 import Login from '../Login/Login.js';
 import { AppDuck } from './AppDuck';
 import {ErrorModal} from '../../components/Common/ErrorModal';

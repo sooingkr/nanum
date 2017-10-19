@@ -1,11 +1,11 @@
 // Third-party libs
-@import "~include-media/dist/include-media";
-@import "~react-day-picker/lib/style.css";
+@import '~include-media/dist/include-media';
+@import '~react-day-picker/lib/style.css';
+@import '~bourbon/app/assets/stylesheets/bourbon';
 
 @import 'base/base';
 @import 'utils/utils';
 @import 'mixin/mixin';
-@import "bourbon/assets/stylesheets/bourbon.scss";
 @import 'components/components';
 
 

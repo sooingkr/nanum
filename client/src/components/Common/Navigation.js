@@ -9,7 +9,7 @@ import {
   MenuItem,
   Collapse,
 } from "react-bootstrap";
-import FoodSearchBoxContainer from '../containers/FoodSearch/FoodSearchBoxContainer';
+import FoodSearchBoxContainer from '../../containers/FoodSearch/FoodSearchBoxContainer';
 
 class Navigation extends Component {
   constructor(props) {

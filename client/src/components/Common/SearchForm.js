@@ -11,12 +11,14 @@ class SearchFormView extends Component {
   }
   
   render() {
-    const { handleSubmit, 
+    const { 
+      handleSubmit, 
       reset, 
       theme="light", 
       onExpand,
       onClose, 
-      isExpanded } = this.props;
+      isExpanded 
+    } = this.props;
 
     const expandClass = isExpanded ? 'is-expanded' : ''; 
 

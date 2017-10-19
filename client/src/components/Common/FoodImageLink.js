@@ -4,8 +4,6 @@ import { Image } from "react-bootstrap";
 // import PropTypes from 'prop-types';
 import _ from 'lodash';
 
-import '../../stylesheets/components/_FoodImageLink.scss';
-
 class FoodImageLink extends Component {
   render() {
     const { foodData } = this.props;
