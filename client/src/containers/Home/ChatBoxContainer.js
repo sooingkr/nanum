@@ -8,7 +8,7 @@ import { isEmpty } from "lodash";
 import { Row, Col, Button, Collapse, Well, Form, FormGroup, FormControl, Image} from "react-bootstrap";
 import ChatBox from "../../components/Home/ChatBox.js";
 
-import { homeDuck } from "./HomeDuck";
+import { HomeDuck } from "./HomeDuck";
 
 const InputMessageBoxView = ({ input, pristine, submitting }) => (
   <FormGroup>
@@ -123,7 +123,7 @@ ChatBoxContainer.propTypes = {
 };
 
 const mapStateToProps = state => {
-  const homeState = state[homeDuck.storeName];
+  const homeState = state[HomeDuck.storeName];
   return {
     openChatBox: homeState.openChatBox,
     isTyping: homeState.isTyping,
@@ -131,8 +131,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  toggleChatBox: homeDuck.actions.toggleChatBox,
-  typingMessage: homeDuck.actions.typingMessage
+  toggleChatBox: HomeDuck.actions.toggleChatBox,
+  typingMessage: HomeDuck.actions.typingMessage
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChatBoxContainer);
