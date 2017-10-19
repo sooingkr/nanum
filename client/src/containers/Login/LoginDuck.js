@@ -28,8 +28,9 @@ export const login = ({ email, password }) => async dispatch => {
   
   try {
     const userData = await UserService.loginUser(email, password);
+    console.log("Succeeded login");
     dispatch(succeedLogin(userData));
-    dispatch(AppDuck.actions.successAuthenticate());
+    dispatch(AppDuck.actions.succeedAuthenticate());
   } catch(error) {
     dispatch(failLogin(error));
   }

@@ -86,7 +86,7 @@ const reducer = createReducer(initialState, {
       isAuthenticated: false,
     }
   },
-  [actionTypes.successAuthenticate]: (state) => {
+  [actionTypes.succeedAuthenticate]: (state) => {
     return {
       ...state,
       isAuthenticated: true,
