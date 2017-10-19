@@ -12,6 +12,7 @@ import FoodDetailsContainer from "../FoodInfoInquiry/FoodDetailsContainer";
 import PrivateRoute from '../../components/PrivateRoute';
 import Login from '../Login/Login.js';
 import { AppDuck } from './AppDuck';
+import {ErrorModal} from '../../components/Common/ErrorModal';
 
 export class App extends Component {
   componentWillMount() {
@@ -19,7 +20,7 @@ export class App extends Component {
   }
 
   render() {
-    const { isAuthenticated } = this.props;
+    const { isAuthenticated, initializeError } = this.props;
     return (
       <Router>
         <div className="App" id="nanum">
@@ -30,21 +31,35 @@ export class App extends Component {
               <Route path="/product" component={FoodDetailsContainer}/>
               <PrivateRoute path="/dashboard" component={ Dashboard } isAuthenticated={isAuthenticated}/>
               <Route exact path="/login" component={Login}/>
-              {/*<Route path="/search" component={SearchResultList}/>*/}
+              {/* <Route path="/search" component={SearchResultList}/> */}
             </Switch>
           </main>
+
+          {!!initializeError &&
+            <ErrorModal modalId={'modal-app-error'}>
+              <h4 className="text-danger">{initializeError.msg}</h4>
+              <p>
+                {`${initializeError.status} - ${initializeError.statusText}`}
+              </p>
+            </ErrorModal>
+          }
         </div>
       </Router>
     );
   }
 }
 
-const mapStateToProps = (state) => ({
-  isAuthenticated: state[AppDuck.storeName].isAuthenticated,
-});
+const mapStateToProps = (state) => {
+  const appState = state[AppDuck.storeName];
+
+  return {
+    isAuthenticated: appState.isAuthenticated,
+    initializeError: appState.initializeError,
+  }
+};
 
 const mapDispatchToProps = {
   initialize: AppDuck.actions.initialize,
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

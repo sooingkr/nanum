@@ -1,5 +1,5 @@
 import { createAction, createReducer } from '../../utils/store';
-// import FoodService from '../../service/FoodService';
+import FoodService from '../../service/FoodService';
 
 const storeName = 'FoodSearch';
 
@@ -17,7 +17,19 @@ const succeedSearch = (results) => createAction(actionTypes.succeedSearch, { res
 
 // define thunks
 const searchFood = (foodQuery) => async (dispatch) => {
-  // TODO
+  // Init search query
+  dispatch(requestSearch(foodQuery));
+  // Make search api request
+  let searchResult;
+
+  try {
+    searchResult = await FoodService.searchFood(foodQuery);
+  } catch (error) {
+    dispatch(failSearch(error));
+  }
+
+  // Search success 
+  dispatch(succeedSearch(searchResult));
 }
 
 // conveniently export actions
@@ -55,7 +67,7 @@ const reducer = createReducer(initialState, {
   }
 });
 
-export const AppDuck = {
+export const FoodSearchDuck = {
   storeName,
   actions,
   reducer

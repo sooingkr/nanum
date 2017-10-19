@@ -8,16 +8,21 @@ const storeName = 'App';
 export const actionTypes = {
   checkTokenValid: storeName + '/CHECK_TOKEN_VALID',
   failTokenValid: storeName + '/FAIL_TOKEN_VALID',
-  successAuthenticate: storeName + '/SUCCESS_AUTHENTICATE',
+  succeedAuthenticate: storeName + '/SUCCEED_AUTHENTICATE',
+  toggleModal: storeName + '/TOGGLE_MODAL',
+  failInitialize: storeName + '/FAIL_INITIALIZE',
+  clearInitializeError: storeName + '/CLEAR_INITIALIZE_ERROR',
 };
 
 // define actions
 const checkTokenValid = () => createAction(actionTypes.checkTokenValid);
-const successAuthenticate = () => createAction(actionTypes.successAuthenticate);
+const succeedAuthenticate = () => createAction(actionTypes.succeedAuthenticate);
 const failTokenValid = () => createAction(actionTypes.failTokenValid);
 
 // define thunks
 const initialize = () => async (dispatch) => {
+  dispatch(createAction(actionTypes.clearInitializeError));
+
   dispatch(checkTokenValid());
   // Get auth data from localstorage
   const auth = getAuth();
@@ -28,24 +33,47 @@ const initialize = () => async (dispatch) => {
   }
 
   // Check token validity on Server
-  const isValid = await UserService.checkValidToken(auth.token);
-  if (isValid) {
-    dispatch(successAuthenticate());
-  } else {
-    dispatch(failTokenValid());
+  try {
+    const isValid = await UserService.checkValidToken(auth.token);
+    if (isValid) {
+      dispatch(succeedAuthenticate());
+    } else {
+      dispatch(failTokenValid());
+    }
+  } catch (error) {
+    const errObj = {
+      status: null,
+      statusText: null,
+      msg: 'Token is not valid',
+    };
+
+    if (error.response) {
+      errObj.status = error.response.status;
+      errObj.statusText = error.response.statusText;
+    }
+
+    dispatch(createAction(actionTypes.failInitialize, errObj));
+    dispatch(toggleModal('modal-app-error'));
   }
-}
+};
+
+export const toggleModal = modalId => dispatch => {
+  dispatch(createAction(actionTypes.toggleModal, modalId));
+};
 
 // conveniently export actions
 export const actions = {
   checkTokenValid,
-  successAuthenticate,
+  succeedAuthenticate,
   failTokenValid,
   initialize,
+  toggleModal,
 };
 
 export const initialState = {
   isAuthenticated: false,
+  openModalId: '',
+  initializeError: null,
 };
 
 const reducer = createReducer(initialState, {
@@ -62,6 +90,27 @@ const reducer = createReducer(initialState, {
     return {
       ...state,
       isAuthenticated: true,
+    }
+  },
+  [actionTypes.toggleModal]: (state, openModalId) => {
+    if (state.openModalId === openModalId) {
+      openModalId = '';
+    }
+    return {
+      ...state,
+      openModalId
+    }
+  },
+  [actionTypes.failInitialize]: (state, initializeError) => {
+    return {
+      ...state,
+      initializeError
+    }
+  },
+  [actionTypes.clearInitializeError]: (state) => {
+    return {
+      ...state,
+      initializeError: null
     }
   }
 });

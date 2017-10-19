@@ -50,7 +50,7 @@ const reducer = createReducer(initialState, {
 
 });
 
-export const homeDuck = {
+export const HomeDuck = {
   storeName,
   reducer,
   actions
