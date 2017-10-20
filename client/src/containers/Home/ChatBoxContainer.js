@@ -48,7 +48,6 @@ export class ChatBoxContainer extends Component {
   }
 
   render() {
-
     const { userId, messages, openChatBox, toggleChatBox, typingMessage, formData, isTyping } = this.props;
 
     return (
@@ -57,7 +56,7 @@ export class ChatBoxContainer extends Component {
           <Button className="btn-open" title="무엇을 도와드릴까요?" onClick={toggleChatBox}>
             무엇을 도와드릴까요? <i className="fa fa-arrow-circle-right" aria-hidden="true"></i>
           </Button>
-          {!isEmpty(userId) ?
+          {!isEmpty(userId) &&
             <Collapse in={openChatBox}>
               <div>
                 <Well>
@@ -72,9 +71,10 @@ export class ChatBoxContainer extends Component {
                   <div className="chat-messages">
                     <div className="block__chat-messages">
                       {
+                        !(isEmpty(messages)) ?
                           messages.map((message, index) =>
                             <ChatBox key={index} index={index} message={message} isTyping={isTyping}></ChatBox>
-                        )
+                        ) : null
                       }
                     </div>
                     <div className="chat-messages__form">
@@ -84,24 +84,11 @@ export class ChatBoxContainer extends Component {
                 </Well>
               </div>
             </Collapse>
-            :
-            <div className="block-alert">
-              <div className={openChatBox ? 'block-alert__bg' : 'hidden block-alert__bg'}></div>
-              <Collapse in={openChatBox} className="chat-box__alert">
-                <div>
-                  <Well>
-                    <Button className="btn-close pull-right" onClick={this.closeAlert}><i
-                      className="fa fa-times" aria-hidden="true"></i></Button>
-                    <h5 className="chat-box__title text-center">로그인 해야 이용하실 수 있습니다</h5>
-                  </Well>
-                </div>
-              </Collapse>
-            </div>
           }
         </div>
         <div className="image-block user-icon">
           <Image
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/220px-User_icon_2.svg.png"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/220px-User_icon_2.svg.png" alt="user-image"
             circle/>
         </div>
       </div>
@@ -114,7 +101,7 @@ ChatBoxContainer.propTypes = {
     PropTypes.string,
     PropTypes.number
   ]).isRequired,
-  messages: PropTypes.array.isRequired,
+  messages: PropTypes.array,
   openChatBox: PropTypes.bool.isRequired,
   toggleChatBox: PropTypes.func.isRequired,
   isTyping: PropTypes.bool.isRequired,

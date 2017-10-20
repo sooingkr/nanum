@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 import { 
   Navbar, 
@@ -9,7 +10,10 @@ import {
   MenuItem,
   Collapse,
 } from "react-bootstrap";
+
 import FoodSearchBoxContainer from '../containers/FoodSearch/FoodSearchBoxContainer';
+
+import {HomeDuck} from '../containers/Home/HomeDuck';
 
 class Navigation extends Component {
   constructor(props) {
@@ -21,7 +25,20 @@ class Navigation extends Component {
 
   toggleNav = () => {
     this.setState({ showNavMenu: !this.state.showNavMenu });
-  }
+  };
+
+  handleHaccpButton = () => {
+    const { toggleChatBox, history } = this.props;
+    const userId = '1';
+
+    if (userId) { /* user logged in */
+      toggleChatBox();
+
+    } else { /* not logged in */
+      history.push('/staticpage');
+
+    }
+  };
 
   render() {
     const { history } = this.props;
@@ -31,11 +48,8 @@ class Navigation extends Component {
         <Navbar default collapseOnSelect>
           <div className="navigation__logo">
             <Link to="/" title="신 안전먹거리" className='logo'>
-              <Image 
-                src="https://images-na.ssl-images-amazon.com/images/G/01/omaha/images/yoda/logos/fresh-modal-3x._CB315803244_.png" 
-                alt="Fresh" 
-                className="img-responsive"
-              />
+              <Image className="logo-circle" responsive src="https://fresh.ihaccp.or.kr/images/fresh/common/header_icon01.gif" alt="Fresh"/>
+              <Image className="logo-fresh" responsive src="https://fresh.ihaccp.or.kr/images/fresh/common/header_logo02.gif" alt="Fresh"/>
             </Link>
             <button className="navigation__toggle" 
                     type="button"
@@ -47,9 +61,9 @@ class Navigation extends Component {
           <div className="navigation__main">
             <Collapse in={this.state.showNavMenu}>
               <Nav pullRight>
-                <NavItem onClick={navigateHelper('/', history)} title="신 안전먹거리" eventKey={1}>신 안전먹거리</NavItem>
-                <NavItem onClick={navigateHelper('/safety/searchProduct.do', history)} title="구 안전먹거리" eventKey={2}>구 안전먹거리</NavItem>
-                <NavItem onClick={navigateHelper('/company/companyMain.do', history)} title="HACCP관리 전산기준서" eventKey={3}>HACCP관리 전산기준서</NavItem>
+                <NavItem onClick={navigateHelper('/', history)} title="추천먹거리정보" eventKey={1}>추천먹거리정보</NavItem>
+                <NavItem onClick={this.handleHaccpButton} title="HACCP 기술상담" eventKey={2}>HACCP 기술상담</NavItem>
+                <NavItem onClick={navigateHelper('/safety/searchProduct.do', history)} title="안전먹거리정보" eventKey={3}>안전먹거리정보</NavItem>
                 <NavItem onClick={navigateHelper('/board/boardList.do?board=21', history)} title="민원" eventKey={4}>민원</NavItem>
                 <NavItem onClick={navigateHelper('/lod/info.do', history)} title="데이터활용" eventKey={5}>데이터활용</NavItem>
                 <NavItem onClick={navigateHelper('/product/2', history)} title="데이터활용" eventKey={6}>데이터활용</NavItem>
@@ -72,7 +86,11 @@ class Navigation extends Component {
   }
 } 
 
-export default withRouter(Navigation);
+export default withRouter(
+  connect(null, {
+    toggleChatBox: HomeDuck.actions.toggleChatBox,
+  })(Navigation)
+);
 
 function navigateHelper(path, history) {
   return function() {
