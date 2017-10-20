@@ -9,14 +9,31 @@ const searchFood = async (query) => {
       params: { query }
     });
   } catch(error) {
-    throw new Error(`UserService error - <searchFood()>: ${error}`);
+    throw new Error(`FoodService error - <searchFood()>: ${error}`);
+  }
+  return {
+    options: results.data.matches 
+  };
+}
+
+
+const foodDetail = async (foodid) => {
+  let result;
+
+  try {
+    result = await axios.get(`${API_BASE_PATH}/product/`, {
+      params: { foodid }
+    });
+  } catch(error) {
+    throw new Error(`FoodService error - <foodDetail()>: ${error}`);
   }
 
-  return { 
-    options: results.data.matches 
+  return {
+    foodDetail: result.data.foodDetail
   };
 }
 
 export default {
   searchFood,
+  foodDetail
 }

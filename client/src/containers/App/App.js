@@ -28,7 +28,7 @@ export class App extends Component {
           <main>
             <Switch>
               <Route exact path="/" component={ Home }/>
-              <Route path="/product" component={FoodDetailsContainer}/>
+              <Route path="/product/:id" component={FoodDetailsContainer}/>
               <PrivateRoute path="/dashboard" component={ Dashboard } isAuthenticated={isAuthenticated}/>
               <Route exact path="/login" component={Login}/>
               {/* <Route path="/search" component={SearchResultList}/> */}

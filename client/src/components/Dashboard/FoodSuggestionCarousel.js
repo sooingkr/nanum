@@ -22,7 +22,6 @@ const basicCarouselSettings = {
 
 const carouselSettings = {
   ...basicCarouselSettings,  
-  className: "food-suggestion-slider",
   nextArrow: <FoodSuggestionCarouselArrow direction="next"/>,
   prevArrow: null,
   responsive: [
@@ -51,7 +50,7 @@ const carouselSettings = {
 };
 
 const FoodSuggestionCarousel = (props) => (
-  <Carousel settings={carouselSettings}>
+  <Carousel settings={carouselSettings}  className="food-suggestion-slider">
     { props.data.map(foodItem => (
       <div key={foodItem.id} className="food-suggestion">
         <FoodSuggestionItem data={foodItem}/>
