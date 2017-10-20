@@ -6,11 +6,11 @@ import {
   Switch,
 } from 'react-router-dom';
 import Navigation from "../../components/Navigation";
-import Home from "../Home/Home.js";
+import Home from "../Home/Home";
 import Dashboard from "../Dashboard/Dashboard.js";
 import FoodDetailsContainer from "../FoodInfoInquiry/FoodDetailsContainer";
 import PrivateRoute from '../../components/PrivateRoute';
-import Login from '../Login/Login.js';
+import Login from '../Login/Login';
 import { AppDuck } from './AppDuck';
 import {ErrorModal} from '../../components/Common/ErrorModal';
 
