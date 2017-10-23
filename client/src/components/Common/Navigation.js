@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
+import { PropTypes } from "prop-types";
+
 import { 
   Navbar, 
   Nav, 
@@ -13,7 +15,7 @@ import {
 
 import FoodSearchBoxContainer from '../../containers/FoodSearch/FoodSearchBoxContainer';
 
-import {HomeDuck} from '../containers/Home/HomeDuck';
+import {HomeDuck} from '../../containers/Home/HomeDuck';
 
 class Navigation extends Component {
   constructor(props) {
@@ -91,6 +93,14 @@ export default withRouter(
     toggleChatBox: HomeDuck.actions.toggleChatBox,
   })(Navigation)
 );
+
+Navigation.propTypes = {
+  toggleNav: PropTypes.func,
+  handleHaccpButton: PropTypes.func,
+  navigateHelper: PropTypes.func,
+  toggleChatBox: PropTypes.func,
+  history: PropTypes.object.isRequired,
+}
 
 function navigateHelper(path, history) {
   return function() {
