@@ -13,7 +13,7 @@ export default function initializeMockAPI(client, delay=500) {
   const mock = new MockAdapter(client, { delayResponse: delay });
   
   // Mock endpoints
-  mock.onGet(`${API_BASE_PATH}/tracking`).reply(200, tracking());
+  mock.onGet(`${API_BASE_PATH}/users/daily-report`).reply(200, tracking());
   mock.onGet(`${API_BASE_PATH}/foods/search`).reply(200, searchFood());
   mock.onGet(`${API_BASE_PATH}/product`).reply(200, foodDetail());
 

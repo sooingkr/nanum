@@ -5,11 +5,11 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
-import Navigation from "../../components/Navigation";
+import Navigation from "../../components/Common/Navigation";
 import Home from "../Home/Home";
 import Dashboard from "../Dashboard/Dashboard";
 import FoodDetailsContainer from "../FoodInfoInquiry/FoodDetailsContainer";
-import PrivateRoute from '../../components/PrivateRoute';
+import PrivateRoute from '../../components/Common/PrivateRoute';
 import Login from '../Login/Login';
 import { AppDuck } from './AppDuck';
 import {ErrorModal} from '../../components/Common/ErrorModal';
@@ -28,7 +28,7 @@ export class App extends Component {
           <main>
             <Switch>
               <Route exact path="/" component={ Home }/>
-              <Route path="/product/:id" component={FoodDetailsContainer}/>
+              <Route path="/product" component={FoodDetailsContainer}/>
               <PrivateRoute path="/dashboard" component={ Dashboard } isAuthenticated={isAuthenticated}/>
               <Route exact path="/login" component={Login}/>
               {/* <Route path="/search" component={SearchResultList}/> */}

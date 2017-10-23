@@ -1,11 +1,10 @@
 import axios from 'axios';
 import initializeMockAPI from './mockAPI/api';
+import { 
+  API_BASE_PATH,
+} from '../constants';
 
-const isProd = (process.env.NODE_ENV === 'production');
-let _baseUrl = 'http://test.baikal.io:8080/fresh';
-if (isProd) {
-  _baseUrl = '/fresh';
-}
+const _baseUrl = API_BASE_PATH;
 
 const client = axios.create({
   baseURL: _baseUrl,
