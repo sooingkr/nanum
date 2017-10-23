@@ -6,7 +6,7 @@ import { PropTypes } from "prop-types";
 import { isEmpty } from "lodash";
 
 import { Row, Col, Button, Collapse, Well, Form, FormGroup, FormControl, Image} from "react-bootstrap";
-import ChatBox from "../../components/Home/ChatBox.js";
+import ChatBox from "../../components/Home/ChatBox";
 
 import { HomeDuck } from "./HomeDuck";
 

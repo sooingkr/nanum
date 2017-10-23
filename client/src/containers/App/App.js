@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 import Navigation from "../../components/Navigation";
 import Home from "../Home/Home";
-import Dashboard from "../Dashboard/Dashboard.js";
+import Dashboard from "../Dashboard/Dashboard";
 import FoodDetailsContainer from "../FoodInfoInquiry/FoodDetailsContainer";
 import PrivateRoute from '../../components/PrivateRoute';
 import Login from '../Login/Login';
