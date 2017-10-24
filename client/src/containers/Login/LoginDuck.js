@@ -7,7 +7,7 @@ import { AppDuck } from '../App/AppDuck';
 
 // import service
 
-export const storeName = 'LoginDuck';
+export const storeName = 'Login';
 
 // define action type
 export const actionTypes = {
@@ -28,7 +28,6 @@ export const login = ({ email, password }) => async dispatch => {
   
   try {
     const userData = await UserService.loginUser(email, password);
-    console.log("Succeeded login");
     dispatch(succeedLogin(userData));
     dispatch(AppDuck.actions.succeedAuthenticate());
   } catch(error) {
