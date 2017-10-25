@@ -16,14 +16,14 @@ const failSearch = (error) => createAction(actionTypes.failSearch, { error });
 const succeedSearch = (results) => createAction(actionTypes.succeedSearch, { results });
 
 // define thunks
-const searchFood = (foodQuery) => async (dispatch) => {
+const searchFood = (foodQuery, page) => async (dispatch) => {
   // Init search query
   dispatch(requestSearch(foodQuery));
   // Make search api request
   let searchResult;
 
   try {
-    searchResult = await FoodService.searchFood(foodQuery);
+    searchResult = await FoodService.searchFood(foodQuery, page);
   } catch (error) {
     dispatch(failSearch(error));
   }
@@ -43,7 +43,10 @@ export const actions = {
 export const initialState = {
   foodQuery: "",
   error: {},
-  results: [],
+  hasError: false,
+  hits: [],
+  page: 0,
+  isLoading: false,
 };
 
 const reducer = createReducer(initialState, {
@@ -51,18 +54,28 @@ const reducer = createReducer(initialState, {
     return {
       ...state,
       foodQuery: payload.foodQuery,
+      isLoading: true,
     }
   },
   [actionTypes.failSearch]: (state, payload) => {
     return {
       ...state,
       error: payload.error,
+      hasError: true,
+      isLoading: false,
     }
   },
   [actionTypes.succeedSearch]: (state, payload) => {
     return {
       ...state,
-      results: payload.results,
+      hits: [ 
+        ...state.hits, 
+        ...payload.results 
+      ],
+      error: {},
+      page: state.page + 1,
+      hasError: false,
+      isLoading: false,
     }
   }
 });

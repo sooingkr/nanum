@@ -1,11 +1,23 @@
 import { random, times } from 'lodash';
-import faker from 'faker';
 
-const MAX_FOOD = 100;
+const MAX_FOOD = 5;
+
+function guid() {
+  var seed = Date.now();
+
+  function s4() {
+    return Math.floor((1 + Math.random()) * 0x10000)
+      .toString(16)
+      .substring(1);
+  }
+
+  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+    s4() + '-' + s4() + s4() + s4() + seed;
+}
 
 export const searchFood = {
   results: times(MAX_FOOD, () => ({
-    id: faker.random.uuid(),
+    id: guid(),
     type: '아이스크림',
     flavor: '캔모아 딸기',
     company: '캔모아',
