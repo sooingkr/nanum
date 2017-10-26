@@ -2,13 +2,13 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
-import AlternativeFoodContainer from '../AlternativeFoodContainer';
-import AlternativeFoodCarousel from "../../../components/FoodInfoInquiry/AlternativeFoodCarousel";
+import FoodDetailCarousel from '../../../components/FoodInfoInquiry/FoodDetailCarousel';
+import AlternativeFoodCarousel from "../AlternativeFoodCarousel";
 
-describe('AlternativeFoodContainer component', () => {
-  const wrapper = shallow(<AlternativeFoodContainer/>);
+describe('FoodDetailCarousel component', () => {
+  const wrapper = shallow(<FoodDetailCarousel/>);
 
-  it('should render <AlternativeFoodContainer /> components', () => {
+  it('should render <FoodDetailCarousel /> components', () => {
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 

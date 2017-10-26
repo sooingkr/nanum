@@ -10,8 +10,8 @@ import {
   Image,
 } from "react-bootstrap";
 
-import Navigation from "../Common/Navigation";
-import FoodSearchBoxContainer from '../../containers/FoodSearch/FoodSearchBoxContainer';
+import Navigation from "../Navigation";
+import FoodSearchBoxContainer from '../../../containers/FoodSearch/FoodSearchBoxContainer';
 
 describe('<Navigation /> component', () => {
 

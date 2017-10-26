@@ -2,13 +2,13 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
-import FoodDetailsContainer from '../FoodDetailsContainer';
-import AlternativeFoodContainer from '../AlternativeFoodContainer';
+import FoodDetails from '../FoodDetails';
+import FoodDetailCarousel from '../FoodDetailCarousel';
 
 describe('FoodDetailContainer component', () => {
-  const wrapper = shallow(<FoodDetailsContainer/>);
+  const wrapper = shallow(<FoodDetails/>);
 
-  it('should render <FoodDetailContainer /> components', () => {
+  it('should render <FoodDetails /> components', () => {
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 
@@ -74,10 +74,10 @@ describe('FoodDetailContainer component', () => {
       expect(foodCarousel.children().find(".food-carousel__title").length).toBe(1);
     });
 
-    describe('AlternativeFoodContainer component with props', () => {
+    describe('FoodDetailCarousel component with props', () => {
 
-      it('should render <AlternativeFoodContainer foods/> ', () => {
-        expect(foodCarousel.find(AlternativeFoodContainer).prop('foods').length).toBeGreaterThanOrEqual(1);
+      it('should render <FoodDetailCarousel foods/> ', () => {
+        expect(foodCarousel.find(FoodDetailCarousel).prop('foods').length).toBeGreaterThanOrEqual(1);
       });
     });
   });

@@ -1,15 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { PropTypes } from 'prop-types';
 
 // import FoodService from '../../service/FoodService';
 
 import { Grid, Row, Col, Image, ProgressBar } from 'react-bootstrap';
-import AlternativeFoodContainer from './AlternativeFoodContainer';
+import FoodDetailCarousel from '../../components/FoodInfoInquiry/FoodDetailCarousel';
 
+// const FoodDetails = ({match, foodId, foodDetail: {imgSrc, foodName, foodKcal, foodInfo, carbonKcal, proteinKcal, lipidKcal}, alternativeFoods}) => {
+  const FoodDetails = ({props}) => {
 
-
-class FoodDetailsContainer extends Component {
-  render() {
     // const { foodId, foodDetail: {imgSrc, foodName, foodKcal, foodInfo, carbonKcal, proteinKcal, lipidKcal}, alternativeFoods } = this.props;
     // const { match } = this.props;
     // const { id } = match.params;
@@ -99,7 +98,7 @@ class FoodDetailsContainer extends Component {
               <Row>
                 <div className="food-carousel">
                   <h4 className="food-carousel__title">대체식품 추천 <span className="arrow-icon"></span></h4>
-                  <AlternativeFoodContainer foods={alternativeFoods}/>
+                  <FoodDetailCarousel foods={alternativeFoods}/>
                 </div>
               </Row>
             </Col>
@@ -107,10 +106,9 @@ class FoodDetailsContainer extends Component {
         </Grid>
       </div>
     )
-  }
 }
 
-FoodDetailsContainer.propsType = {
+FoodDetails.propsType = {
   foodId: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string
@@ -126,4 +124,4 @@ FoodDetailsContainer.propsType = {
   }).isRequired
 }
 
-export default FoodDetailsContainer;
+export default FoodDetails;
