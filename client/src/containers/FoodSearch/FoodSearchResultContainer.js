@@ -4,21 +4,25 @@ import SearchResultList from '../../components/FoodSearch/SearchResultList';
 import { FoodSearchDuck } from '../FoodSearch/FoodSearchDuck';
 
 export class FoodSearchResultContainer extends Component {
-  componentWillMount() {
-    this.props.load(this.props.foodQuery);
+  onPaginateLoad = () => {
+    this.props.loadNextPage(this.props.foodQuery);
   }
 
   render() {
-    const { data, isLoading, hasError, error, page, load } = this.props;
+    const { 
+      hasNextPage,
+      isLoading,
+      list,
+      hasError,
+    } = this.props;
 
     return (
-      <SearchResultList 
-        data={data} 
+      <SearchResultList
+        hasNextPage={hasNextPage}
         isLoading={isLoading}
         hasError={hasError}
-        error={error}
-        page={page}
-        onPaginateLoad={load}
+        list={list}
+        onPaginateLoad={this.onPaginateLoad}
       />
     );
   }
@@ -26,15 +30,15 @@ export class FoodSearchResultContainer extends Component {
 
 const mapStateToProps = (state) => ({
   foodQuery: state[FoodSearchDuck.storeName].foodQuery,
-  data: state[FoodSearchDuck.storeName].hits,
-  page: state[FoodSearchDuck.storeName].page,
+  hasNextPage: state[FoodSearchDuck.storeName].list.hasNextPage,
   isLoading: state[FoodSearchDuck.storeName].isLoading,
+  list: state[FoodSearchDuck.storeName].list.hits,
   hasError: state[FoodSearchDuck.storeName].hasError,
   error: state[FoodSearchDuck.storeName].error,
 });
 
 const mapDispatchToProps = {
-  load: FoodSearchDuck.actions.searchFood,
-}
+  loadNextPage: FoodSearchDuck.actions.searchFood,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(FoodSearchResultContainer);

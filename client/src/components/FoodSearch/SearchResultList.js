@@ -10,20 +10,20 @@ import withLoader from '../HOCs/withLoader';
 import withPagination from '../HOCs/withPagination';
 import withInfiniteScroll from '../HOCs/withInfiniteScroll';
 
-const SearchResultList = ({ data }) => {
+const SearchResultList = ({ list }) => {
   return (
     <div className="search-result-list">
-      { data &&
-        data.length > 0 && 
+      { list &&
+        list.length > 0 && 
         <Row>
-          { data.map( (result, idx) => (
-              <Col key={result.id + '-' + idx} xs={12} sm={4} md={3}>
+          { list.map( (item, idx) => (
+              <Col key={item.id + '-' + idx} xs={12} sm={4} md={3}>
                 <SearchResultItem 
-                  id={result.id}
-                  flavor={result.flavor}
-                  type={result.type}
-                  company={result.company}
-                  imageUrl={result.imageUrl}
+                  id={item.id}
+                  flavor={item.flavor}
+                  type={item.type}
+                  company={item.company}
+                  imageUrl={item.imageUrl}
                 />
               </Col>
             )
@@ -35,13 +35,13 @@ const SearchResultList = ({ data }) => {
 }
 
 const paginationConditions = props => 
-  props.page !== null && !props.isLoading && props.hasError;
+  props.list.page !== -1 && !props.isLoading && props.hasError;
 
 const loaderConditions = props => props.isLoading;
 
 const infiniteScrollConditions = props => 
   (window.innerHeight + window.scrollY) >= (document.body.offsetHeight * 90 / 100)
-  && props.data.length  
+  && props.list.length
   && !props.isLoading
   && !props.hasError;
 
@@ -53,7 +53,7 @@ const EnhancedSearchResultList = compose(
 
 EnhancedSearchResultList.displayName = 'EnhancedSearchResultList';
 EnhancedSearchResultList.propTypes = {
-  data: PropTypes.array,
+  list: PropTypes.array,
   onPaginateLoad: PropTypes.func.isRequired,
 }
 

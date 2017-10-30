@@ -17,7 +17,7 @@ const searchFood = async (query, page=0, size=20, sort='createTime,asc') => {
     throw new Error(`UserService error - <searchFood()>: ${error}`);
   }
 
-  return response.data.results;
+  return response.data;
 }
 
 const suggestFood = async (query) => {

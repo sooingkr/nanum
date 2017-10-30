@@ -14,11 +14,10 @@ class FoodSearchBoxContainer extends Component {
   
   handleSubmit = (values) => {
     const currentLocation = this.props.location.pathname;
+    this.props.searchFood(values.foodQuery);
+
     // If already in search result page
-    if (currentLocation === '/search') {
-      // fetch results
-      this.props.searchFood(values.foodQuery);
-    } else {
+    if (currentLocation !== '/search') {
       // Navigate to search result page
       this.props.history.push('/search');
     }

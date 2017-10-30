@@ -6,30 +6,60 @@ const storeName = 'FoodSearch';
 // define action type
 export const actionTypes = {
   requestSearch: storeName + '/REQUEST_FOOD_SEARCH',
+  rejectSearch: storeName + '/REJECT_FOOD_SEARCH',
   failSearch: storeName + '/FAIL_FOOD_SEARCH',
   succeedSearch: storeName + '/SUCCEED_FOOD_SEARCH',
+  resetSearch: storeName + '/RESET_FOOD_SEARCH',
 };
 
 // define actions
 const requestSearch = (foodQuery) => createAction(actionTypes.requestSearch, { foodQuery });
 const failSearch = (error) => createAction(actionTypes.failSearch, { error });
-const succeedSearch = (results) => createAction(actionTypes.succeedSearch, { results });
+const succeedSearch = (results) => createAction(actionTypes.succeedSearch, { ...results });
+const rejectSearch = createAction(actionTypes.rejectSearch);
+const resetSearch = createAction(actionTypes.resetSearch);
 
 // define thunks
-const searchFood = (foodQuery, page) => async (dispatch) => {
+const searchFood = (foodQuery, page) => async (dispatch, getState) => {
+  const currentState = getState()[storeName];
+  const currentQuery = currentState.foodQuery;
+  const currentPage = currentState.page;
+  const hasNextPage = currentState.list.hasNextPage;
+
+  if (!page) page = currentPage;
+
+  // If the query if different, clear cache
+  const isNewQuery = currentQuery !== foodQuery;
+    
+  const shouldFetch = hasNextPage && 
+      (foodQuery !== '' 
+      || isNewQuery 
+      || (!isNewQuery && page !== currentPage && currentQuery !== ''));
+
+  // If query is different from previous query, 
+  // reset redux store
+  if (isNewQuery) {
+    dispatch(resetSearch);
+  }
+
   // Init search query
   dispatch(requestSearch(foodQuery));
-  // Make search api request
-  let searchResult;
+  let searchResponse;
 
   try {
-    searchResult = await FoodService.searchFood(foodQuery, page);
+    searchResponse = shouldFetch ? await FoodService.searchFood(foodQuery, page) : { results: [] };
+    console.log(searchResponse);
   } catch (error) {
     dispatch(failSearch(error));
   }
 
-  // Search success 
-  dispatch(succeedSearch(searchResult));
+  if (searchResponse.results.length === 0) {
+    // No results, reject
+    dispatch(rejectSearch);
+  } else {
+    // Search success 
+    dispatch(succeedSearch(searchResponse));
+  }
 }
 
 // conveniently export actions
@@ -38,15 +68,20 @@ export const actions = {
   failSearch,
   succeedSearch,
   searchFood,
+  resetSearch,
 };
 
 export const initialState = {
-  foodQuery: "",
+  foodQuery: '',
   error: {},
   hasError: false,
-  hits: [],
-  page: 0,
   isLoading: false,
+  list: {
+    hits: [],
+    hasNextPage: true,
+    page: -1,
+    total: 0,
+  },
 };
 
 const reducer = createReducer(initialState, {
@@ -57,6 +92,14 @@ const reducer = createReducer(initialState, {
       isLoading: true,
     }
   },
+  [actionTypes.rejectSearch]: (state, payload) => {
+    return {
+      ...state,
+      error: {},
+      hasError: false,
+      isLoading: false,
+    }
+  },
   [actionTypes.failSearch]: (state, payload) => {
     return {
       ...state,
@@ -65,17 +108,36 @@ const reducer = createReducer(initialState, {
       isLoading: false,
     }
   },
+  [actionTypes.resetSearch]: (state, payload) => {
+    return {
+      ...state,
+      foodQuery: '',
+      error: {},
+      hasError: false,
+      isLoading: false,
+      list: {
+        hits: [],
+        hasNextPage: true,
+        page: -1,
+        total: 0,
+      },
+    }
+  },
   [actionTypes.succeedSearch]: (state, payload) => {
     return {
       ...state,
-      hits: [ 
-        ...state.hits, 
-        ...payload.results 
-      ],
       error: {},
-      page: state.page + 1,
       hasError: false,
       isLoading: false,
+      list: {
+        hits: [ 
+          ...state.list.hits, 
+          ...payload.results 
+        ],
+        page: state.list.page + 1,
+        hasNextPage: payload.hasNextPage,
+        total: payload.total,
+      },
     }
   }
 });

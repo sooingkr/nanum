@@ -1,6 +1,6 @@
 import { random, times } from 'lodash';
 
-const MAX_FOOD = 5;
+const MAX_FOOD = 20;
 
 function guid() {
   var seed = Date.now();
@@ -22,7 +22,9 @@ export const searchFood = {
     flavor: '캔모아 딸기',
     company: '캔모아',
     imageUrl: "https://images.pexels.com/photos/46239/salmon-dish-food-meal-46239.jpeg?w=940&h=650&auto=compress&cs=tinysrgb",
-  }))
+  })),
+  total: 300,
+  hasNextPage: true,
 };
 
 export const suggestFood = {

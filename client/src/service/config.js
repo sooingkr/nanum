@@ -35,6 +35,11 @@ const handleError = error => {
 // Add a response interceptor
 client.interceptors.response.use(response => response, handleError);
 
+if(process.env.NODE_ENV === 'mock') {
+  // When in mock api mode, add some default delay to simulate network
+  initializeMockAPI(client);
+}
+
 if(process.env.NODE_ENV === 'test') {
   // No delay when in test mode
   initializeMockAPI(client, 0);
