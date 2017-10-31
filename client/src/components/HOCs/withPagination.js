@@ -11,7 +11,7 @@ const withPagination = (conditionFn) => (Component) => (props) => (
         <button
           type="button"
           className="paginated__button"
-          onClick={props.onPaginatedLoad}
+          onClick={props.onPaginateLoad}
         >
           Try Again
         </button>

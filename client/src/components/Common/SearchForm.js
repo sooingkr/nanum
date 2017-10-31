@@ -4,12 +4,6 @@ import { reduxForm, Field } from 'redux-form';
 import { Form, Button } from 'react-bootstrap';
 
 class SearchFormView extends Component {
-  handleEnter = (e) => {
-    if(e.keyCode === 13 && e.shiftKey === false) {
-      this.props.handleSubmit(this.props.values);
-    }
-  }
-  
   render() {
     const { 
       handleSubmit, 
@@ -29,7 +23,6 @@ class SearchFormView extends Component {
                 className="search-form__input"
                 component="input"
                 type="text"
-                onKeyDown={this.handleEnter}
           />
           <Button bsStyle="default" 
                   type="button"

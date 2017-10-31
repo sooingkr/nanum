@@ -26,15 +26,18 @@ const searchFood = (foodQuery, page) => async (dispatch, getState) => {
   const currentPage = currentState.page;
   const hasNextPage = currentState.list.hasNextPage;
 
+  // if page not provided, default to current page
   if (!page) page = currentPage;
 
   // If the query if different, clear cache
-  const isNewQuery = currentQuery !== foodQuery;
+  const isNewQuery = 
+    currentQuery !== '' 
+    && currentQuery !== foodQuery;
     
   const shouldFetch = hasNextPage && 
-      (foodQuery !== '' 
-      || isNewQuery 
-      || (!isNewQuery && page !== currentPage && currentQuery !== ''));
+    (foodQuery !== '' 
+    || currentQuery !== foodQuery 
+    || (currentQuery === foodQuery && page !== currentPage && currentQuery !== ''));
 
   // If query is different from previous query, 
   // reset redux store
@@ -48,7 +51,6 @@ const searchFood = (foodQuery, page) => async (dispatch, getState) => {
 
   try {
     searchResponse = shouldFetch ? await FoodService.searchFood(foodQuery, page) : { results: [] };
-    console.log(searchResponse);
   } catch (error) {
     dispatch(failSearch(error));
   }
