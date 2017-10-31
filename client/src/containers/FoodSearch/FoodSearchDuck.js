@@ -30,15 +30,13 @@ const searchFood = (foodQuery, page) => async (dispatch, getState) => {
   if (!page) page = currentPage;
 
   // If the query if different, clear cache
-  const isNewQuery = 
-    currentQuery !== '' 
-    && currentQuery !== foodQuery;
+  const isNewQuery = currentQuery !== foodQuery;
     
   const shouldFetch = hasNextPage && 
-    (foodQuery !== '' 
-    || currentQuery !== foodQuery 
-    || (currentQuery === foodQuery && page !== currentPage && currentQuery !== ''));
-
+    (isNewQuery 
+    || currentQuery === '' // Initial fetch
+    || (!isNewQuery && page !== currentPage && currentQuery !== ''));
+  
   // If query is different from previous query, 
   // reset redux store
   if (isNewQuery) {
@@ -82,7 +80,7 @@ export const initialState = {
     hits: [],
     hasNextPage: true,
     page: -1,
-    total: 0,
+    total: null,
   },
 };
 
@@ -121,7 +119,7 @@ const reducer = createReducer(initialState, {
         hits: [],
         hasNextPage: true,
         page: -1,
-        total: 0,
+        total: null,
       },
     }
   },

@@ -7,10 +7,8 @@ class SearchFormView extends Component {
   render() {
     const { 
       handleSubmit, 
-      reset, 
       theme="light", 
       onExpand,
-      onClose, 
       isExpanded 
     } = this.props;
 
@@ -25,18 +23,11 @@ class SearchFormView extends Component {
                 type="text"
           />
           <Button bsStyle="default" 
-                  type="button"
+                  type="submit"
                   className="search-form__submit" 
                   onClick={onExpand} >
             <i className="fa fa-search" aria-hidden="true"></i>
           </Button>
-          <Button bsStyle="default"
-                  type="button"
-                  className="search-form__close" 
-                  onClick={() => { reset(); onClose();} }>
-            <i className="fa fa-times" aria-hidden="true"></i>
-          </Button>
-          <Button type="submit" style={{visibility: "hidden", padding: 0, border:'none'}}/>
         </Form>
       </div>
     );

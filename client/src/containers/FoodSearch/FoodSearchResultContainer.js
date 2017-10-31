@@ -4,6 +4,10 @@ import SearchResultList from '../../components/FoodSearch/SearchResultList';
 import { FoodSearchDuck } from '../FoodSearch/FoodSearchDuck';
 
 export class FoodSearchResultContainer extends Component {
+  componentDidMount() {
+    this.onPaginateLoad();
+  }
+
   onPaginateLoad = () => {
     this.props.loadNextPage(this.props.foodQuery);
   }

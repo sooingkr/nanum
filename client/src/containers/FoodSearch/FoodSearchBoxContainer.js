@@ -32,22 +32,37 @@ class FoodSearchBoxContainer extends Component {
   }
 
   render() {
-    const classNames = this.state.isExpanded ? "food-search__box is-expanded" : "food-search__box";
+    const { total, foodQuery } = this.props;
     return (
-      <div className={classNames}>
+      <div className="food-search__box">
         <SearchForm 
           onSubmit={this.handleSubmit} 
           isExpanded={this.state.isExpanded}
           onExpand={this.onExpand}
           onClose={this.onClose}
         />
+        { total &&
+          foodQuery !== '' &&
+          <p className="food-search__total">
+            <span>{`"${foodQuery}"`}</span>
+            &nbsp;
+            <span>에 대한 검색결과 총</span>
+            &nbsp;
+            <span>{`"${total}"건`}</span>
+          </p>
+        }
       </div>
     );
   }
 }
 
+const mapStateToProps = (state) => ({
+  foodQuery: state[FoodSearchDuck.storeName].foodQuery,
+  total: state[FoodSearchDuck.storeName].list.total,
+});
+
 const mapDispatchToProps = {
   searchFood: FoodSearchDuck.actions.searchFood,
 }
 
-export default withRouter(connect(null, mapDispatchToProps)(FoodSearchBoxContainer));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(FoodSearchBoxContainer));

@@ -5,7 +5,6 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
-import Navigation from "../../components/Common/Navigation";
 import Home from "../Home/Home.js";
 import Dashboard from "../Dashboard/Dashboard.js";
 import FoodDetailsContainer from "../FoodInfoInquiry/FoodDetailsContainer";
@@ -25,7 +24,6 @@ export class App extends Component {
     return (
       <Router>
         <div className="App" id="nanum">
-          <Navigation/>
           <main>
             <Switch>
               <Route exact path="/" component={ Home }/>
