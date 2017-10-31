@@ -1,11 +1,10 @@
 import axios from 'axios';
 import initializeMockAPI from './mockAPI/api';
+import { 
+  API_BASE_PATH,
+} from '../constants';
 
-const isProd = (process.env.NODE_ENV === 'production');
-let _baseUrl = 'http://test.baikal.io:8080/fresh';
-if (isProd) {
-  _baseUrl = '/fresh';
-}
+const _baseUrl = API_BASE_PATH;
 
 const client = axios.create({
   baseURL: _baseUrl,
@@ -35,6 +34,11 @@ const handleError = error => {
 
 // Add a response interceptor
 client.interceptors.response.use(response => response, handleError);
+
+if(process.env.NODE_ENV === 'mock') {
+  // When in mock api mode, add some default delay to simulate network
+  initializeMockAPI(client);
+}
 
 if(process.env.NODE_ENV === 'test') {
   // No delay when in test mode

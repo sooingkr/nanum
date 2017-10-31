@@ -1,43 +1,68 @@
-import { random } from 'lodash';
+import { random, times } from 'lodash';
 
-export const searchFood = (query) => {
-  return {
-    matches: [
-      {
-        label: 'Pizza',
-        value: {
-          id: 'qwea',
-          imageUrl: 'http://via.placeholder.com/20x20',
-          name: 'pizza',
-          quantity: 'one slice',
-          calories: 325,
-        }
-      },
-      {
-        label: 'Pineapple',
-        value: {
-          id: 'qwea1',
-          imageUrl: 'http://via.placeholder.com/20x20',
-          name: 'pineapple',
-          quantity: 'one slice',
-          calories: 112,
-        }
-      },
-      {
-        label: 'Chocolate',
-        value: {
-          id: 'qwe12a',
-          imageUrl: 'http://via.placeholder.com/20x20',
-          name: 'chocolate',
-          quantity: 'one bag',
-          calories: 554,
-        }
-      },
-    ]
+const MAX_FOOD = 20;
+
+function guid() {
+  var seed = Date.now();
+
+  function s4() {
+    return Math.floor((1 + Math.random()) * 0x10000)
+      .toString(16)
+      .substring(1);
   }
+
+  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+    s4() + '-' + s4() + s4() + s4() + seed;
 }
 
-export const tracking = () => ({
+export const searchFood = {
+  results: times(MAX_FOOD, () => ({
+    id: guid(),
+    type: '아이스크림',
+    flavor: '캔모아 딸기',
+    company: '캔모아',
+    imageUrl: "https://images.pexels.com/photos/46239/salmon-dish-food-meal-46239.jpeg?w=940&h=650&auto=compress&cs=tinysrgb",
+  })),
+  total: 300,
+  hasNextPage: true,
+};
+
+export const suggestFood = {
+  matches: [
+    { 
+      label: 'Pizza',
+      value: {
+        id: 'qwea',
+        imageUrl: 'http://via.placeholder.com/20x20',
+        name: 'pizza',
+        quantity: 'one slice',
+        calories: 325,
+      }
+    },
+    {
+      label: 'Pineapple',
+      value: {
+        id: 'qwea1',
+        imageUrl: 'http://via.placeholder.com/20x20',
+        name: 'pineapple',
+        quantity: 'one slice',
+        calories: 112,
+      }
+    },
+    {
+      label: 'Chocolate',
+      value: {
+        id: 'qwe12a',
+        imageUrl: 'http://via.placeholder.com/20x20',
+        name: 'chocolate',
+        quantity: 'one bag',
+        calories: 554,
+      }
+    },
+  ]
+};
+
+export const tracking = {
   diagnostic: {
     type: 'danger',
     message: '김레클 님은 아토피가 있습니다. 단백질 섭취 제한을 추천합니다. 단백질 식사를 줄여주세요.',
@@ -136,26 +161,22 @@ export const tracking = () => ({
       { id: "123asd", text: "근육량" },
     ],
   }
-});
+};
 
-export const login = () => {
-  return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQwMjg4MDlhNWVlYjk1MzYwMTVlZWI5YWQzYjYwMDAxIiwidXNlcm5hbWUiOiJuZ3V5ZW5hbmh2dS5jc0BnbWFpbC5jb20iLCJlbmFibGVkIjp0cnVlLCJleHBpcmUiOm51bGwsImF1dGhvcml0aWVzIjpbeyJhdXRob3JpdHkiOiJST0xFX1VTRVIifV19.UuTiFCFlSnmBhaiKhMunufuR6vm9IO4t1ASdECXnSfg";
-}
+export const login = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQwMjg4MDlhNWVlYjk1MzYwMTVlZWI5YWQzYjYwMDAxIiwidXNlcm5hbWUiOiJuZ3V5ZW5hbmh2dS5jc0BnbWFpbC5jb20iLCJlbmFibGVkIjp0cnVlLCJleHBpcmUiOm51bGwsImF1dGhvcml0aWVzIjpbeyJhdXRob3JpdHkiOiJST0xFX1VTRVIifV19.UuTiFCFlSnmBhaiKhMunufuR6vm9IO4t1ASdECXnSfg";
 
-export const checkValidToken = () => true;
+export const checkValidToken = true;
 
-export const foodDetail = (foodid) => {
-  return {
-    foodDetail: [
-      {
-        imgSrc: 'https://i.pinimg.com/originals/46/48/25/4648254906b1203aa8775a7f02f63473.jpg',
-        foodName: '캔모아딸기아이스크림',
-        foodKcal: '1200',
-        foodInfo: '임산부인 김레클 님에게 좋지 않은 비타민 c 와 비타민 e 가 다량 함유된 제품입니다. 김레클 님에게 추천하지 않습니다.',
-        carbonKcal: 95,
-        proteinKcal: 90,
-        lipidKcal: 5
-      }
-    ]
-  }
+export const foodDetail = {
+  foodDetail: [
+    {
+      imgSrc: 'https://i.pinimg.com/originals/46/48/25/4648254906b1203aa8775a7f02f63473.jpg',
+      foodName: '캔모아딸기아이스크림',
+      foodKcal: '1200',
+      foodInfo: '임산부인 김레클 님에게 좋지 않은 비타민 c 와 비타민 e 가 다량 함유된 제품입니다. 김레클 님에게 추천하지 않습니다.',
+      carbonKcal: 95,
+      proteinKcal: 90,
+      lipidKcal: 5
+    }
+  ]
 }

@@ -2,7 +2,7 @@ import { createAction, createReducer } from '../../utils/store';
 
 // import service
 
-const storeName = 'HomeDuck';
+const storeName = 'Home';
 
 //define state
 export const initialState = {

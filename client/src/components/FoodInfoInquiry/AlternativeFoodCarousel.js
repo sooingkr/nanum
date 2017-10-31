@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 
-import Carousel from '../Carousel';
+import Carousel from '../Common/Carousel';
 import AlternativeFoodItem from './AlternativeFoodItem';
 
 class AlternativeFoodCarousel extends Component {

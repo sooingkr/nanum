@@ -13,7 +13,7 @@ const loginUser = async (email, password) => {
   let decodedToken;
 
   try {
-    token = await axios.post(`${API_BASE_PATH}/login`, stringify({username: email, password}));
+    token = await axios.post(`${API_BASE_PATH}/post-login`, stringify({username: email, password}));
     decodedToken = decodeUserToken(token.data);
 
     // Save auth to localstorage

@@ -6,7 +6,7 @@ import UserService from '../../service/UserService';
 import { getAuth } from '../../utils/auth';
 import moment from 'moment';
 
-const storeName = 'DashboardDuck';
+const storeName = 'Dashboard';
 
 // define action type
 export const actionTypes = {

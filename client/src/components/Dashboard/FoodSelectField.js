@@ -14,7 +14,7 @@ class FoodSelectField extends Component {
             value={props.input.value}
             onChange={props.input.onChange}
             onBlur={() => props.input.onBlur(props.input.value)}
-            loadOptions={() => FoodService.searchFood(props.input.value)}
+            loadOptions={() => FoodService.suggestFood(props.input.value)}
             placeholder="Search for your food"
           />
         }

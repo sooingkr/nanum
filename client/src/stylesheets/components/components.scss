@@ -1,5 +1,5 @@
 // Pure components
-@import 'AddFoodButton';
+@import 'Buttons';
 @import 'DiagnosticMessage';
 @import 'FoodIntakeItem';
 @import 'FoodIntakeList';
@@ -15,6 +15,9 @@
 @import 'ChatBox';
 @import 'AlternativeFoodCarousel';
 @import 'SearchForm';
+@import 'Loader';
+@import 'SearchResultItem';
+@import 'SearchResultList';
 
 // Containers
 @import 'App';

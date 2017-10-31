@@ -1,63 +1,60 @@
-// import React, { Component } from "react";
-// // import PropTypes from 'prop-types';
-// import _ from 'lodash';
-//
-// import FoodImageLink from "../FoodImageLink/FoodImageLink";
-//
-// class SearchResultList extends Component {
-//
-//   render() {
-//     const foods = [
-//       {
-//         id: '1',
-//         name: 'Food 1',
-//         src: '../images/images.jpg'
-//       },
-//       {
-//         id: '2',
-//         name: 'Food 2',
-//         src: '../images/images.jpg'
-//       },
-//       {
-//         id: '3',
-//         name: 'Food 3',
-//         src: '../images/images.jpg'
-//       },
-//       {
-//         id: '4',
-//         name: 'Food 4',
-//         src: '../images/images.jpg'
-//       },
-//       {
-//         id: '5',
-//         name: 'Food 5',
-//         src: '../images/images.jpg'
-//       },
-//       {
-//         id: '6',
-//         name: 'Food 6',
-//         src: '../images/images.jpg'
-//       },
-//       {
-//         id: '7',
-//         name: 'Food 7',
-//         src: '../images/images.jpg'
-//       }
-//     ];
-//     return(
-//       <div className="search-food-list">
-//         {
-//           _.isArray(foods) && foods.map((food, i) => (
-//             <div className="image-link-outer" key={i}>
-//               <FoodImageLink foodData={ food }/>
-//             </div>
-//           ))
-//         }
-//       </div>
-//     );
-//   }
-// }
-// // SearchResultList.propTypes = {
-// //   foods: PropTypes.array.isRequired
-// // }
-// export default SearchResultList;
+import React from 'react';
+import PropTypes from 'prop-types';
+import { compose } from 'redux';
+import { 
+  Row,
+  Col,
+} from 'react-bootstrap';
+import SearchResultItem from './SearchResultItem';
+import withLoader from '../HOCs/withLoader';
+import withPagination from '../HOCs/withPagination';
+import withInfiniteScroll from '../HOCs/withInfiniteScroll';
+
+const SearchResultList = ({ list }) => {
+  return (
+    <div className="search-result-list">
+      { list &&
+        list.length > 0 && 
+        <Row>
+          { list.map( (item, idx) => (
+              <Col key={item.id + '-' + idx} xs={12} sm={4} md={3}>
+                <SearchResultItem 
+                  id={item.id}
+                  flavor={item.flavor}
+                  type={item.type}
+                  company={item.company}
+                  imageUrl={item.imageUrl}
+                />
+              </Col>
+            )
+          )}
+        </Row>
+      }
+    </div>
+  )
+}
+
+const paginationConditions = props => 
+  props.list.page !== -1 && !props.isLoading && props.hasError;
+
+const loaderConditions = props => props.isLoading;
+
+const infiniteScrollConditions = props => 
+  (window.innerHeight + window.scrollY) >= (document.body.offsetHeight * 90 / 100)
+  && props.list.length > 0
+  && !props.isLoading
+  && !props.hasError;
+
+const EnhancedSearchResultList = compose(
+  withPagination(paginationConditions),
+  withInfiniteScroll(infiniteScrollConditions),
+  withLoader(loaderConditions),
+)(SearchResultList);
+
+EnhancedSearchResultList.displayName = 'EnhancedSearchResultList';
+EnhancedSearchResultList.propTypes = {
+  list: PropTypes.array,
+  onPaginateLoad: PropTypes.func.isRequired,
+}
+
+export default EnhancedSearchResultList;

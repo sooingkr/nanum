@@ -5,7 +5,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Field, reduxForm} from 'redux-form';
 import {Form, Button} from 'react-bootstrap';
-import { FieldGroupView } from '../FieldGroupView';
+import { FieldGroupView } from '../Common/FieldGroupView';
 
 const LoginFormView = ({ handleSubmit, pristine, reset, submitting }) => (
   <Form horizontal onSubmit={handleSubmit}>

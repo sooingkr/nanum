@@ -1,11 +1,13 @@
-#nanum .button {
+.button {
+  // Reset style
+  border: none;
+  background-color: transparent;
   font-family: $base-font-family;
-  color: $white;
+  color: $black;
   font-weight: bold;
   text-align: center;
-  padding: 14px 30px;
+  padding: 0;
   border-radius: 24px;
-  border: none;
   cursor: pointer;
   font-size: ms(0);
 }

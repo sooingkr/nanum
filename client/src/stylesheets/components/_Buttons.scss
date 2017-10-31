@@ -1,0 +1,52 @@
+.button--plus {
+  $button-addfood-size: 30px;
+  position: relative;
+  padding-left: $button-addfood-size;
+
+  &:before {
+    content: '+';
+    position: absolute;
+    font-size: ms(3);
+    color: $green;
+    line-height: 1.6;
+    text-align: center;
+    width: $button-addfood-size;
+    height: $button-addfood-size;
+    border-radius: 50%;
+    border: 1px solid $green;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    @include background-opacity($green, .4);
+  }
+
+  span {
+    padding-left: 14px;
+    text-transform: uppercase;
+    font-size: ms(-2);
+  }
+}
+
+.button--arrow {
+  $button-arrow-size: 40px;
+  position: relative;
+  display: inline-block;
+  background-color: $yellow;
+  border-radius: 50%;
+  width: $button-arrow-size;
+  height: $button-arrow-size;
+
+  &:before {
+    content: ' ';
+    position: absolute;
+    background-image: url("./assets/images/icons/right-arrow.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 14px;
+    height: 10px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
