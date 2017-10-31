@@ -52,6 +52,7 @@ class Navigation extends Component {
                 <NavItem onClick={navigateHelper('/company/companyMain.do', history)} title="HACCP관리 전산기준서" eventKey={3}>HACCP관리 전산기준서</NavItem>
                 <NavItem onClick={navigateHelper('/board/boardList.do?board=21', history)} title="민원" eventKey={4}>민원</NavItem>
                 <NavItem onClick={navigateHelper('/lod/info.do', history)} title="데이터활용" eventKey={5}>데이터활용</NavItem>
+                <NavItem onClick={navigateHelper('/product/2', history)} title="데이터활용" eventKey={6}>데이터활용</NavItem>
               </Nav>
             </Collapse>
           </div> 

@@ -1,11 +1,20 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
+
+// import FoodService from '../../service/FoodService';
+
 import { Grid, Row, Col, Image, ProgressBar } from 'react-bootstrap';
 import AlternativeFoodContainer from './AlternativeFoodContainer';
+
+
 
 class FoodDetailsContainer extends Component {
   render() {
     // const { foodId, foodDetail: {imgSrc, foodName, foodKcal, foodInfo, carbonKcal, proteinKcal, lipidKcal}, alternativeFoods } = this.props;
+    // const { match } = this.props;
+    // const { id } = match.params;
+
+    // const foodDetail = FoodService.foodDetail(id);
 
     const foodDetail = {
       imgSrc: 'https://i.pinimg.com/originals/46/48/25/4648254906b1203aa8775a7f02f63473.jpg',
@@ -116,4 +125,5 @@ FoodDetailsContainer.propsType = {
     lipidKcal:PropTypes.number.isRequired
   }).isRequired
 }
+
 export default FoodDetailsContainer;

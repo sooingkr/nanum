@@ -4,9 +4,16 @@ import { createAction, createReducer } from '../../utils/store';
 
 const storeName = 'Home';
 
+//define state
+export const initialState = {
+  openChatBox: false,
+  isTyping: false,
+};
+
 // define action type
 export const actionTypes = {
-  toggleChatBox: storeName + '/toggleChatBox'
+  toggleChatBox: storeName + '/toggleChatBox',
+  typingMessage: storeName + '/typingMessage'
 };
 
 // define action
@@ -15,13 +22,14 @@ const toggleChatBox = () => dispatch => {
   dispatch(createAction(actionTypes.toggleChatBox));
 };
 
+const typingMessage = (isTyping) => dispatch => {
+  dispatch(createAction(actionTypes.typingMessage, isTyping));
+};
+
 // conveniently export actions
 const actions = {
   toggleChatBox,
-};
-
-export const initialState = {
-  openChatBox: false
+  typingMessage,
 };
 
 const reducer = createReducer(initialState, {
@@ -31,7 +39,15 @@ const reducer = createReducer(initialState, {
       ...state,
       openChatBox: !state.openChatBox
     };
-  }
+  },
+
+  [actionTypes.typingMessage]: (state, isTyping) => {
+    return {
+      ...state,
+      isTyping
+    };
+  },
+
 });
 
 export const HomeDuck = {

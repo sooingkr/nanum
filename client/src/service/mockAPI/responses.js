@@ -74,26 +74,26 @@ export const tracking = {
     },
     when: {
       breakfast: [
-        { 
-          id: '123', 
-          name: 'Banana', 
+        {
+          id: '123',
+          name: 'Banana',
           imageUrl: 'http://via.placeholder.com/20x20',
           quantity: 'A truckload (15k kcal)',
           calories: 128,
         },
-        { 
-          id: '123asd', 
-          name: 'Milk', 
+        {
+          id: '123asd',
+          name: 'Milk',
           imageUrl: 'http://via.placeholder.com/20x20',
           quantity: 'A truckload (15k kcal)',
           calories: 234,
         },
-  
+
       ],
       lunch: [
-        { 
-          id: 'qwe', 
-          name: 'Pizza', 
+        {
+          id: 'qwe',
+          name: 'Pizza',
           imageUrl: 'http://via.placeholder.com/20x20',
           quantity: 'A truckload (15k kcal)',
           calories: 325,
@@ -105,44 +105,44 @@ export const tracking = {
   foodSuggestions: {
     reason: "이들은 당신의 건강에 아주 좋습니다",
     foods: [
-      { 
-        id: '123', 
-        name: 'Banana', 
+      {
+        id: '123',
+        name: 'Banana',
         thumbUrl: 'http://via.placeholder.com/200x150',
         quantity: 'A truckload (150 gram)',
         calories: 128,
       },
-      { 
-        id: '123asd', 
-        name: 'Milk', 
+      {
+        id: '123asd',
+        name: 'Milk',
         thumbUrl: 'http://via.placeholder.com/200x150',
         quantity: 'A truckload (150 gram)',
         calories: 234,
       },
-      { 
-        id: '123alqw', 
-        name: 'Fried eggs', 
+      {
+        id: '123alqw',
+        name: 'Fried eggs',
         thumbUrl: 'http://via.placeholder.com/200x150',
         quantity: 'A truckload (150 gram)',
         calories: 128,
       },
-      { 
-        id: '123qwepo', 
-        name: 'Pasta', 
+      {
+        id: '123qwepo',
+        name: 'Pasta',
         thumbUrl: 'http://via.placeholder.com/200x150',
         quantity: 'A truckload (150 gram)',
         calories: 654,
       },
-      { 
-        id: '123masmdq', 
-        name: 'Steak', 
+      {
+        id: '123masmdq',
+        name: 'Steak',
         thumbUrl: 'http://via.placeholder.com/200x150',
         quantity: 'A truckload (150 gram)',
         calories: 345,
       },
-      { 
-        id: '123qweqweo', 
-        name: 'Beef noodles', 
+      {
+        id: '123qweqweo',
+        name: 'Beef noodles',
         thumbUrl: 'http://via.placeholder.com/200x150',
         quantity: 'A truckload (150 gram)',
         calories: 228,
