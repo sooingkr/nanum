@@ -1,0 +1,254 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FoodDetailContainer component should render <FoodDetails /> components 1`] = `
+<div
+  className="product"
+>
+  <Grid
+    bsClass="container"
+    componentClass="div"
+    fluid={true}
+  >
+    <Row
+      bsClass="row"
+      componentClass="div"
+    >
+      <Col
+        bsClass="col"
+        className="visible-xs"
+        componentClass="div"
+        md={12}
+      >
+        <div
+          className="product__foodInfo"
+        >
+          임산부인 김레클 님에게 좋지 않은 비타민 c 와 비타민 e 가 다량 함유된 제품입니다. 김레클 님에게 추천하지 않습니다.
+        </div>
+      </Col>
+      <Col
+        bsClass="col"
+        componentClass="div"
+        md={7}
+      >
+        <Image
+          alt="캔모아딸기아이스크림"
+          bsClass="img"
+          circle={false}
+          className="product__image"
+          responsive={true}
+          rounded={false}
+          src="https://i.pinimg.com/originals/46/48/25/4648254906b1203aa8775a7f02f63473.jpg"
+          thumbnail={false}
+        />
+      </Col>
+      <Col
+        bsClass="col"
+        className="product__detail"
+        componentClass="div"
+        md={5}
+      >
+        <Row
+          bsClass="row"
+          componentClass="div"
+        >
+          <Col
+            bsClass="col"
+            componentClass="div"
+            md={7}
+            xs={9}
+          >
+            <h2
+              className="product__title"
+            >
+              캔모아딸기아이스크림
+            </h2>
+          </Col>
+          <Col
+            bsClass="col"
+            className="product__kcal"
+            componentClass="div"
+            md={5}
+          >
+            <strong>
+              1200
+            </strong>
+             kcal
+          </Col>
+        </Row>
+        <Row
+          bsClass="row"
+          componentClass="div"
+        >
+          <div
+            className="product__foodInfo hidden-xs"
+          >
+            임산부인 김레클 님에게 좋지 않은 비타민 c 와 비타민 e 가 다량 함유된 제품입니다. 김레클 님에게 추천하지 않습니다.
+          </div>
+          <div
+            className="product__kcalLevel"
+          >
+            <Row
+              bsClass="row"
+              componentClass="div"
+            >
+              <Col
+                bsClass="col"
+                className="product__title--small"
+                componentClass="div"
+                sm={3}
+              >
+                탄수화물
+              </Col>
+              <Col
+                bsClass="col"
+                componentClass="div"
+                sm={9}
+              >
+                <ProgressBar
+                  active={false}
+                  bsClass="progress-bar"
+                  isChild={false}
+                  max={100}
+                  min={0}
+                  now={95}
+                  srOnly={false}
+                  striped={false}
+                />
+              </Col>
+            </Row>
+            <Row
+              bsClass="row"
+              componentClass="div"
+            >
+              <Col
+                bsClass="col"
+                className="product__title--small"
+                componentClass="div"
+                sm={3}
+              >
+                단백질
+              </Col>
+              <Col
+                bsClass="col"
+                componentClass="div"
+                sm={9}
+              >
+                <ProgressBar
+                  active={false}
+                  bsClass="progress-bar"
+                  isChild={false}
+                  max={100}
+                  min={0}
+                  now={90}
+                  srOnly={false}
+                  striped={false}
+                />
+              </Col>
+            </Row>
+            <Row
+              bsClass="row"
+              componentClass="div"
+            >
+              <Col
+                bsClass="col"
+                className="product__title--small"
+                componentClass="div"
+                sm={3}
+              >
+                지방
+              </Col>
+              <Col
+                bsClass="col"
+                componentClass="div"
+                sm={9}
+              >
+                <ProgressBar
+                  active={false}
+                  bsClass="progress-bar"
+                  isChild={false}
+                  max={100}
+                  min={0}
+                  now={5}
+                  srOnly={false}
+                  striped={false}
+                />
+              </Col>
+            </Row>
+          </div>
+        </Row>
+        <Row
+          bsClass="row"
+          componentClass="div"
+        >
+          <div
+            className="food-carousel"
+          >
+            <h4
+              className="food-carousel__title"
+            >
+              대체식품 추천 
+              <span
+                className="arrow-icon"
+              />
+            </h4>
+            <FoodDetailCarousel
+              foods={
+                Array [
+                  Object {
+                    "foodId": "1",
+                    "foodInfo": "철분과 비타민A 가 함유된
+ HACCP 인증 식품인 요거트 그릭을
+ 대체식품으로 추천합니다.",
+                    "foodName": "캔모아 딸기 아이스크림",
+                    "imgSrc": "http://data.whicdn.com/images/25342540/original.jpg",
+                  },
+                  Object {
+                    "foodId": "2",
+                    "foodInfo": "철분과 비타민A 가 함유된
+ HACCP 인증 식품인 요거트 그릭을
+ 대체식품으로 추천합니다.",
+                    "foodName": "캔모아 딸기 아이스크림",
+                    "imgSrc": "https://halachaaday.files.wordpress.com/2014/12/546566_food_dessert_yummy_sweet_cheris_chocolate_plate_2500x1923_www-gdefon-ru.jpg",
+                  },
+                  Object {
+                    "foodId": "3",
+                    "foodInfo": "철분과 비타민A 가 함유된
+ HACCP 인증 식품인 요거트 그릭을
+ 대체식품으로 추천합니다.",
+                    "foodName": "캔모아 딸기 아이스크림",
+                    "imgSrc": "https://happyspeedy.com/sites/default/files/styles/product_display_node_large/public/straw_shortcake_bar.jpg?itok=IRm7bcEb",
+                  },
+                  Object {
+                    "foodId": "4",
+                    "foodInfo": "철분과 비타민A 가 함유된
+ HACCP 인증 식품인 요거트 그릭을
+ 대체식품으로 추천합니다.",
+                    "foodName": "캔모아 딸기 아이스크림",
+                    "imgSrc": "https://happyspeedy.com/sites/default/files/styles/product_display_node_large/public/straw_shortcake_bar.jpg?itok=IRm7bcEb",
+                  },
+                  Object {
+                    "foodId": "5",
+                    "foodInfo": "철분과 비타민A 가 함유된
+ HACCP 인증 식품인 요거트 그릭을
+ 대체식품으로 추천합니다.",
+                    "foodName": "캔모아 딸기 아이스크림",
+                    "imgSrc": "https://happyspeedy.com/sites/default/files/styles/product_display_node_large/public/straw_shortcake_bar.jpg?itok=IRm7bcEb",
+                  },
+                  Object {
+                    "foodId": "6",
+                    "foodInfo": "철분과 비타민A 가 함유된
+ HACCP 인증 식품인 요거트 그릭을
+ 대체식품으로 추천합니다.",
+                    "foodName": "캔모아 딸기 아이스크림",
+                    "imgSrc": "https://happyspeedy.com/sites/default/files/styles/product_display_node_large/public/straw_shortcake_bar.jpg?itok=IRm7bcEb",
+                  },
+                ]
+              }
+            />
+          </div>
+        </Row>
+      </Col>
+    </Row>
+  </Grid>
+</div>
+`;
