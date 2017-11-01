@@ -8,7 +8,7 @@ import {
 import Navigation from "../../components/Common/Navigation";
 import Home from "../Home/Home";
 import Dashboard from "../Dashboard/Dashboard";
-import FoodDetails from "../../components/FoodInfoInquiry/FoodDetails";
+import FoodInfoInquiry from "../FoodInfoInquiry/FoodInfoInquiry";
 import PrivateRoute from '../../components/Common/PrivateRoute';
 import Login from '../Login/Login';
 import { AppDuck } from './AppDuck';
@@ -28,7 +28,7 @@ export class App extends Component {
           <main>
             <Switch>
               <Route exact path="/" component={ Home }/>
-              <Route path="/product" component={FoodDetails}/>
+              <Route path="/product" component={FoodInfoInquiry}/>
               <PrivateRoute path="/dashboard" component={ Dashboard } isAuthenticated={isAuthenticated}/>
               <Route exact path="/login" component={Login}/>
               {/* <Route path="/search" component={SearchResultList}/> */}
