@@ -7,16 +7,33 @@ const withInfiniteScroll = (conditionFn) => (Component) => {
       onPaginateLoad: PropTypes.func.isRequired,
     }
     
+    constructor(props) {
+      super(props);
+      this.state = { 
+        scrollDir: '',
+        lastScrollPos: window.pageYOffset || document.body.scrollTop,
+      };
+    }
+
     componentWillMount() {
-      window.addEventListener('scroll', this.onScroll, false);
+      window.addEventListener('scroll', this.handleScroll, false);
     }
 
     componentWillUnmount() {
-      window.removeEventListener('scroll', this.onScroll, false);
+      window.removeEventListener('scroll', this.handleScroll, false);
     }
 
-    onScroll = () => {
+    handleScroll = () => {
       conditionFn(this.props) && this.props.onPaginateLoad();
+    }
+
+    isScrollDown = () => {
+      const st = window.pageYOffset || document.body.scrollTop;
+      if (st > this.state.lastScrollPos) {
+        return true;
+      } else {
+        return false;
+      }
     }
 
     render() {

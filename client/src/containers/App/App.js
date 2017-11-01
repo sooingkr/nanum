@@ -11,6 +11,7 @@ import Dashboard from "../Dashboard/Dashboard";
 import FoodInfoInquiry from "../FoodInfoInquiry/FoodInfoInquiry";
 import PrivateRoute from '../../components/Common/PrivateRoute';
 import Login from '../Login/Login';
+import FoodSearch from '../FoodSearch/FoodSearch';
 import { AppDuck } from './AppDuck';
 import {ErrorModal} from '../../components/Common/ErrorModal';
 
@@ -31,7 +32,7 @@ export class App extends Component {
               <Route path="/product" component={FoodInfoInquiry}/>
               <PrivateRoute path="/dashboard" component={ Dashboard } isAuthenticated={isAuthenticated}/>
               <Route exact path="/login" component={Login}/>
-              {/* <Route path="/search" component={SearchResultList}/> */}
+              <Route exact path="/search" component={FoodSearch}/>
             </Switch>
           </main>
 

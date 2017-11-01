@@ -4,19 +4,11 @@ import { reduxForm, Field } from 'redux-form';
 import { Form, Button } from 'react-bootstrap';
 
 class SearchFormView extends Component {
-  handleEnter = (e) => {
-    if(e.keyCode === 13 && e.shiftKey === false) {
-      this.props.handleSubmit(this.props.values);
-    }
-  }
-  
   render() {
     const { 
       handleSubmit, 
-      reset, 
       theme="light", 
       onExpand,
-      onClose, 
       isExpanded 
     } = this.props;
 
@@ -29,21 +21,13 @@ class SearchFormView extends Component {
                 className="search-form__input"
                 component="input"
                 type="text"
-                onKeyDown={this.handleEnter}
           />
           <Button bsStyle="default" 
-                  type="button"
+                  type="submit"
                   className="search-form__submit" 
                   onClick={onExpand} >
             <i className="fa fa-search" aria-hidden="true"></i>
           </Button>
-          <Button bsStyle="default"
-                  type="button"
-                  className="search-form__close" 
-                  onClick={() => { reset(); onClose();} }>
-            <i className="fa fa-times" aria-hidden="true"></i>
-          </Button>
-          <Button type="submit" style={{visibility: "hidden", padding: 0, border:'none'}}/>
         </Form>
       </div>
     );

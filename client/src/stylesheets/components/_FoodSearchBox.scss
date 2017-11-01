@@ -1,8 +1,21 @@
 .food-search__box {
-  height: 100%;
-  display: flex;
+  padding: 45px 0 28px;
+  text-align: center;
+  color: $dark-gray;
+  @include background-opacity($lesser-gray, .1);
 }
 
-.food-search__box.is-expanded {
-  width: 100%;
-}  
+.food-search__total {
+  text-align: center;
+  text-decoration: underline;
+
+  span {
+    font-size: ms(0);
+  }
+
+  span:first-child,
+  span:last-child {
+    font-size: ms(3);
+    font-weight: 700;
+  }
+}

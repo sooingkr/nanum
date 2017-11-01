@@ -1,11 +1,30 @@
 import axios from './config';
 import { API_BASE_PATH } from '../constants';
 
-const searchFood = async (query) => {
+const searchFood = async (query, page=0, size=20, sort='createTime,asc') => {
+  let response;
+  
+  try {
+    response = await axios.get(`${API_BASE_PATH}/foods/search`, {
+      params: { 
+        query,
+        page,
+        size,
+        sort,
+      }
+    });
+  } catch(error) {
+    throw new Error(`UserService error - <searchFood()>: ${error}`);
+  }
+
+  return response.data;
+}
+
+const suggestFood = async (query) => {
   let results;
   
   try {
-    results = await axios.get(`${API_BASE_PATH}/foods/search`, {
+    results = await axios.get(`${API_BASE_PATH}/foods/suggest`, {
       params: { query }
     });
   } catch(error) {
@@ -35,5 +54,6 @@ const foodDetail = async (foodid) => {
 
 export default {
   searchFood,
+  suggestFood,
   foodDetail
 }
