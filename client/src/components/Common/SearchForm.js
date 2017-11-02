@@ -7,15 +7,11 @@ class SearchFormView extends Component {
   render() {
     const { 
       handleSubmit, 
-      theme="light", 
       onExpand,
-      isExpanded 
     } = this.props;
 
-    const expandClass = isExpanded ? 'is-expanded' : ''; 
-
     return (
-      <div className={`search-form search-form--${theme} ${expandClass}`}>
+      <div className="search-form">
         <Form horizontal onSubmit={handleSubmit}>
           <Field name="foodQuery"
                 className="search-form__input"
@@ -52,7 +48,6 @@ const SearchForm = reduxForm({
 
 SearchForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
-  theme: PropTypes.oneOf(["light", "dark"]),
 }
 
 export default SearchForm;

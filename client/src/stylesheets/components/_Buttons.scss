@@ -6,7 +6,7 @@
   &:before {
     content: '+';
     position: absolute;
-    font-size: ms(3);
+    font-size: ms(1);
     color: $green;
     line-height: 1.6;
     text-align: center;
@@ -49,4 +49,13 @@
     top: 50%;
     transform: translate(-50%, -50%);
   }
+}
+
+.button--link {
+  font-family: $base-font-family;
+  font-size: ms(-3);
+  font-weight: 400;
+  color: $black;
+  text-transform: uppercase;
+  letter-spacing: normal;
 }

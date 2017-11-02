@@ -1,7 +1,7 @@
 $alert-width: 50px;
 
 .diagnostic-message {
-  font-family: "AppleGothic", $base-font-family;
+  font-family: $base-font-family;
   border: 1px solid $red;
   padding-left: $alert-width;
   border-radius: 4px;
