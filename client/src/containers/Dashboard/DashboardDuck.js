@@ -41,6 +41,8 @@ const initialize = (queryTime) => async (dispatch, getState) => {
 const addFood = (foodData) => (dispatch, getState) => {
   // TODO: actually submit food data addition to UserService
   const state = getState()[storeName];
+
+  // Only add food if it is below maximum calories
   if(foodData.foodDetails.calories + state.calories.current > state.calories.target) {
     dispatch(createAction(actionTypes.abortAddFood));
   }
