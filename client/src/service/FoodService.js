@@ -1,6 +1,7 @@
 import axios from './config';
 import { API_BASE_PATH } from '../constants';
 
+// Get API from Mock Server
 const searchFood = async (query, page=0, size=20, sort='createTime,asc') => {
   let response;
   
@@ -18,42 +19,43 @@ const searchFood = async (query, page=0, size=20, sort='createTime,asc') => {
   }
 
   return response.data;
-}
+};
 
 const suggestFood = async (query) => {
   let results;
-  
+
   try {
     results = await axios.get(`${API_BASE_PATH}/foods/suggest`, {
       params: { query }
     });
   } catch(error) {
-    throw new Error(`FoodService error - <searchFood()>: ${error}`);
+    throw new Error(`FoodService error - <suggestFood()>: ${error}`);
   }
   return {
     options: results.data.matches 
   };
-}
+};
 
-
-const foodDetail = async (foodid) => {
-  let result;
-
+const foodDetail = async ( foodId ) => {
   try {
-    result = await axios.get(`${API_BASE_PATH}/product/`, {
-      params: { foodid }
-    });
+
+    return axios.get(`${API_BASE_PATH}/products/${foodId}`).then(res => res.data);
   } catch(error) {
     throw new Error(`FoodService error - <foodDetail()>: ${error}`);
   }
+};
 
-  return {
-    foodDetail: result.data.foodDetail
-  };
-}
+const alternativeFood = async => {
+  try {
+    return axios.get(`${API_BASE_PATH}/products/alternativeFood`).then(res => res.data);
+  } catch(error) {
+    throw new Error(`FoodService error - <foodAlternativeFood()>: ${error}`);
+  }
+};
 
-export default {
+export const foodService = {
   searchFood,
   suggestFood,
-  foodDetail
-}
+  foodDetail,
+  alternativeFood
+};
