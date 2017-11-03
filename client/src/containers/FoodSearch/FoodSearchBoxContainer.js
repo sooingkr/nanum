@@ -1,48 +1,42 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { reset } from 'redux-form';
 import { withRouter } from 'react-router-dom';
 import SearchForm from '../../components/Common/SearchForm';
 import { FoodSearchDuck } from './FoodSearchDuck';
 
 class FoodSearchBoxContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isExpanded: false,
+  componentWillMount() {
+    if (!isSearchRoute(this.props.location.pathname)) {
+      this.props.reset('SearchForm');
     }
   }
-  
+
   handleSubmit = (values) => {
     const currentLocation = this.props.location.pathname;
     this.props.searchFood(values.foodQuery);
 
-    // If already in search result page
-    if (currentLocation !== '/search') {
+    // If not in search result page
+    if (!isSearchRoute(currentLocation)) {
+      this.props.cacheQuery(values.foodQuery);
       // Navigate to search result page
       this.props.history.push('/search');
     }
   }
 
-  onExpand = () => {
-    this.setState({ isExpanded: true });
-  }
-
-  onClose = () => {
-    this.setState({ isExpanded: false });
-  }
-
   render() {
-    const { total, foodQuery } = this.props;
+    const { total, foodQuery, theme } = this.props;
+    const classes = theme 
+      ? 'food-search__box'
+      : `food-search__box food-search__box--${theme}`;
+
     return (
-      <div className="food-search__box">
-        <SearchForm 
-          onSubmit={this.handleSubmit} 
-          isExpanded={this.state.isExpanded}
-          onExpand={this.onExpand}
-          onClose={this.onClose}
-        />
+      <div className={classes}>
+        <SearchForm onSubmit={this.handleSubmit} />
         { total &&
           foodQuery !== '' &&
+          this.props.location.pathname === '/search' &&
           <p className="food-search__total">
             <span>{`"${foodQuery}"`}</span>
             &nbsp;
@@ -56,13 +50,29 @@ class FoodSearchBoxContainer extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  foodQuery: state[FoodSearchDuck.storeName].foodQuery,
-  total: state[FoodSearchDuck.storeName].list.total,
-});
+FoodSearchBoxContainer.propTypes = {
+  total: PropTypes.number,
+  foodQuery: PropTypes.string,
+  theme: PropTypes.oneOf(['dark']),
+}
+
+const mapStateToProps = (state) => {
+  const foodState = state[FoodSearchDuck.storeName];
+
+  return {
+    foodQuery: foodState.foodQuery,
+    total: foodState.list.total,
+  }
+};
 
 const mapDispatchToProps = {
+  cacheQuery: FoodSearchDuck.actions.requestSearch,
   searchFood: FoodSearchDuck.actions.searchFood,
+  reset,
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(FoodSearchBoxContainer));
+
+function isSearchRoute (route) {
+  return route === '/search'
+}

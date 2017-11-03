@@ -9,6 +9,7 @@ import UserInfoContainer from './UserInfoContainer';
 import FoodIntakeTrackingContainer from './FoodIntakeTrackingContainer';
 import FoodSuggestionContainer from './FoodSuggestionContainer';
 import DiagnosticContainer from './DiagnosticContainer';
+import FoodSearchBoxContainer from '../FoodSearch/FoodSearchBoxContainer';
 import { DashboardDuck } from './DashboardDuck';
 
 class Dashboard extends Component {
@@ -21,6 +22,11 @@ class Dashboard extends Component {
     return (
       <div className="dashboard">
         <Grid>
+          <Row className="dashboard-search">
+            <Col sm={12}>
+              <FoodSearchBoxContainer />
+            </Col>
+          </Row>
           <Row className="dashboard-diagnostic section">
             <Col sm={12}>
               <DiagnosticContainer />

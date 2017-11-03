@@ -41,10 +41,9 @@ const searchFood = (foodQuery, page) => async (dispatch, getState) => {
   // reset redux store
   if (isNewQuery) {
     dispatch(resetSearch);
+    dispatch(requestSearch(foodQuery));
   }
 
-  // Init search query
-  dispatch(requestSearch(foodQuery));
   let searchResponse;
 
   try {

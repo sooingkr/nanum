@@ -2,6 +2,10 @@
   padding: 45px 0 28px;
   text-align: center;
   color: $dark-gray;
+}
+
+// themes
+.food-search__box--dark {
   @include background-opacity($lesser-gray, .1);
 }
 
