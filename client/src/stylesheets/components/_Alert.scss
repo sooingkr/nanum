@@ -1,0 +1,25 @@
+.alert {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 16px 120px;
+  margin-bottom: 0;
+
+  p {
+    display: inline-block;
+    letter-spacing: normal;
+  }
+
+  .fa {
+    margin-right: 12px;
+  }
+}
+
+.alert--danger {
+  @include background-opacity($red, 0.05);
+
+  .fa {
+    color: $red;
+  }
+}

@@ -1,6 +1,8 @@
 $dashboard-max-width: 1040px;
 
 .dashboard {
+  position: relative;
+  
   @include media(">iphone6plus") {
     @include background-opacity($base-background-color, 0.1);
     padding: 32px 38px;
@@ -17,7 +19,7 @@ $dashboard-max-width: 1040px;
 }
 
 .dashboard-tracking,
-.dashboard-diagnostic {
+.dashboard-timeSelector {
   padding: 0 30px;
   
   @include media(">tablet") {
@@ -25,10 +27,14 @@ $dashboard-max-width: 1040px;
   }
 }
 
-.dashboard-diagnostic {
+.dashboard-timeSelector {
   @include media(">=big-phone") {
     padding: 0;
   }
+}
+
+.dashboard .food-search__box {
+  padding-bottom: 0;
 }
 
 // Override bootstrap padding

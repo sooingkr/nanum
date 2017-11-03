@@ -66,7 +66,7 @@ const actions = {
 // Initial Dashboard state tree
 export const initialState = {
   queryTime: "",
-  diagnostic: {},
+  alert: {},
   currentUser: {},
   breakfast: [],
   lunch: [],
@@ -83,7 +83,7 @@ const reducer = createReducer(initialState, {
     return {
       ...state,
       currentUser: payload.user,
-      diagnostic: payload.diagnostic,
+      alert: payload.alert,
       breakfast: payload.foodIntakeTracking.when.breakfast,
       lunch: payload.foodIntakeTracking.when.lunch,
       dinner: payload.foodIntakeTracking.when.dinner,
@@ -139,7 +139,7 @@ const getShowDialog = (state) => state[storeName].showDialog;
 const getWhichDialog = (state) => state[storeName].whichDialog;
 const getFoodsWhen = (state, when) => state[when];
 const getFoodSuggestions = (state) => state[storeName].foodSuggestions;
-const getDiagnostic = (state) => state[storeName].diagnostic;
+const getAlert = (state) => state[storeName].alert;
 const getTime = (state) => state[storeName].queryTime;
 
 export const DashboardDuck = {
@@ -154,6 +154,6 @@ export const selectors = {
   getShowDialog,
   getWhichDialog,
   getFoodSuggestions,
-  getDiagnostic,
+  getAlert,
   getTime,
 }
