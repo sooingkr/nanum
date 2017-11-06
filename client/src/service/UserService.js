@@ -36,13 +36,11 @@ const checkValidToken = async (token) => {
   return isValid.data;
 };
 
-const getTrackingData = async (token, queryTime) => {
+// DailyReport
+const getTrackingData = async (queryTime) => {
   let trackingData;
   try {
     trackingData = await axios.get(`${API_BASE_PATH}/users/daily-report`, {
-      headers: {
-        'Authorization': token,
-      },
       params: {
         queryTime,
       }

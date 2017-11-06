@@ -3,7 +3,6 @@
  */
 import { createAction, createReducer } from '../../utils/store';
 import UserService from '../../service/UserService';
-import { getAuth } from '../../utils/auth';
 import moment from 'moment';
 
 const storeName = 'Dashboard';
@@ -25,14 +24,14 @@ const pickQueryTime = (queryTime) => createAction(actionTypes.pickQueryTime, { q
 
 // Thunks
 const initialize = (queryTime) => async (dispatch, getState) => {
+  // Default to now time if not specified
   if(!queryTime) {
     queryTime = moment(new Date()).format();
   }
-  // Get auth data from localstorage
-  const auth = getAuth();
+
   dispatch(pickQueryTime(queryTime));
 
-  const tracking = await UserService.getTrackingData(auth.token, queryTime);
+  const tracking = await UserService.getTrackingData(queryTime);
   dispatch(createAction(actionTypes.initialize, { 
     ...tracking,
   }));
@@ -75,6 +74,7 @@ export const initialState = {
   showDialog: false,
   whichDialog: "",
   foodSuggestions: {},
+  isLoading: true,
 };
 
 // Dashboard reducer
@@ -89,6 +89,7 @@ const reducer = createReducer(initialState, {
       dinner: payload.foodIntakeTracking.when.dinner,
       calories: payload.foodIntakeTracking.calories,
       foodSuggestions: payload.foodSuggestions,
+      isLoading: false,
     };
   },
   [actionTypes.pickQueryTime]: (state, payload) => {
@@ -141,6 +142,7 @@ const getFoodsWhen = (state, when) => state[when];
 const getFoodSuggestions = (state) => state[storeName].foodSuggestions;
 const getAlert = (state) => state[storeName].alert;
 const getTime = (state) => state[storeName].queryTime;
+const getLoadingStatus = (state) => state[storeName].isLoading;
 
 export const DashboardDuck = {
   storeName,
@@ -156,4 +158,5 @@ export const selectors = {
   getFoodSuggestions,
   getAlert,
   getTime,
+  getLoadingStatus,
 }

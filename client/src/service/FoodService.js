@@ -35,7 +35,6 @@ const suggestFood = async (query) => {
   };
 }
 
-
 const foodDetail = async (foodid) => {
   let result;
 

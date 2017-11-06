@@ -5,7 +5,7 @@ const withLoader = (conditionFn) => (Component) => (props) => (
   <div className="with-loader">
     <Component {...props} />
     { conditionFn(props) && 
-      <Loader />
+      <Loader theme={props.theme}/>
     }
   </div>
 )

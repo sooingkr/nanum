@@ -17,10 +17,9 @@ function guid() {
 
 export const searchFood = {
   results: times(MAX_FOOD, () => ({
-    id: guid(),
-    type: '아이스크림',
-    flavor: '캔모아 딸기',
-    company: '캔모아',
+    foodId: guid(),
+    name: '아이스크림 캔모아 딸기',
+    manufacturer: '캔모아',
     imageUrl: "https://images.pexels.com/photos/46239/salmon-dish-food-meal-46239.jpeg?w=940&h=650&auto=compress&cs=tinysrgb",
   })),
   total: 300,

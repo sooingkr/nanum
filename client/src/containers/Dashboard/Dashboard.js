@@ -12,6 +12,7 @@ import FoodSuggestionContainer from './FoodSuggestionContainer';
 import TimeSelectorContainer from './TimeSelectorContainer';
 import FoodSearchBoxContainer from '../FoodSearch/FoodSearchBoxContainer';
 import Alert from '../../components/Common/Alert';
+import Loader from '../../components/Common/Loader';
 import { DashboardDuck, selectors } from './DashboardDuck';
 
 class Dashboard extends Component {
@@ -21,7 +22,9 @@ class Dashboard extends Component {
   }
   
   render() {
-    const { alert } = this.props;
+    const { alert, isLoading } = this.props;
+
+    if (isLoading) return <Loader />;
 
     return (
       <div className="dashboard">
@@ -60,10 +63,13 @@ class Dashboard extends Component {
 
 const mapStateToProps = (state) => ({
   alert: selectors.getAlert(state),
+  isLoading: selectors.getLoadingStatus(state),
 });
 
 const mapDispatchToProps = {
   init: DashboardDuck.actions.initialize,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+export default connect(mapStateToProps, mapDispatchToProps)(
+  Dashboard
+);
