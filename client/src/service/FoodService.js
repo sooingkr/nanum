@@ -51,8 +51,23 @@ const foodDetail = async (foodid) => {
   };
 }
 
+const removeFoods = async (foods) => {
+  let result;
+
+  try {
+    result = await axios.post(`${API_BASE_PATH}/foods/intake/delete`, {
+      data: { foods }
+    });
+  } catch (error) {
+    throw new Error(`FoodService error - <removeFood()>: ${error}`);
+  }
+
+  return result.data;
+}
+
 export default {
   searchFood,
   suggestFood,
-  foodDetail
+  foodDetail,
+  removeFoods,
 }

@@ -25,6 +25,16 @@
     text-transform: uppercase;
     font-size: ms(-2);
   }
+
+  &:disabled:before {
+    background-color: #f3f1f2;
+    border: 1px solid $lesser-gray;
+    color: $lesser-gray;
+  }
+
+  &:disabled span {
+    color: $lesser-gray;
+  }
 }
 
 .button--arrow {
@@ -54,7 +64,7 @@
 .button--link {
   font-family: $base-font-family;
   font-size: ms(-3);
-  font-weight: 400;
+  font-weight: 700;
   color: $black;
   text-transform: uppercase;
   letter-spacing: normal;

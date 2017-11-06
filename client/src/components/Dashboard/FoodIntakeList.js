@@ -5,7 +5,20 @@ import AddFoodButton from './AddFoodButton';
 
 class FoodIntakeList extends Component {
   render() {
-    const { mealTime, foods, openDialog } = this.props;
+    const { 
+      mealTime, 
+      foods, 
+      openDialog, 
+      markRemoveFood,
+      isEditMode,
+    } = this.props;
+
+    // if in edit mode, action is remove
+    // else do nothing
+    const foodItemAction = isEditMode 
+      ? markRemoveFood
+      : () => {};
+
     return (
       <div className="food-intake-list">
         <h3 className="food-intake-list__heading">{mapMealToLabel(mealTime)}</h3>
@@ -14,17 +27,40 @@ class FoodIntakeList extends Component {
             <FoodIntakeItem 
               key={food.id} 
               name={food.name}
+              foodId={food.id}
+              mealTime={mealTime}
               imageUrl={food.imageUrl}
               quantity={food.quantity}
+              isEditMode={isEditMode}
+              action={foodItemAction}
             />
           ))}
 
-          <AddFoodButton onAddFood={openDialog} mealTime={mealTime}/>
+          <AddFoodButton 
+            onClick={openDialog}
+            mealTime={mealTime}
+            disabled={isEditMode}
+          />
         </div>
       </div>
     )
   }
 }
+
+FoodIntakeList.propTypes = {
+  mealTime: PropTypes.string.isRequired,
+  foods: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    imageUrl: PropTypes.string.isRequired,
+    quantity: PropTypes.string.isRequired,
+  })).isRequired,
+  isEditMode: PropTypes.bool,
+  openDialog: PropTypes.func,
+  markRemoveFood: PropTypes.func,
+}
+
+export default FoodIntakeList;
 
 function mapMealToLabel(mealTime) {
   switch(mealTime) {
@@ -38,15 +74,3 @@ function mapMealToLabel(mealTime) {
       return mealTime;
   }
 }
-
-FoodIntakeList.propTypes = {
-  mealTime: PropTypes.string.isRequired,
-  foods: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    imageUrl: PropTypes.string.isRequired,
-    quantity: PropTypes.string.isRequired,
-  })).isRequired,
-}
-
-export default FoodIntakeList;

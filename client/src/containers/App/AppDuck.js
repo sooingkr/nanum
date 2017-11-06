@@ -22,39 +22,6 @@ const failTokenValid = () => createAction(actionTypes.failTokenValid);
 // define thunks
 const initialize = () => async (dispatch) => {
   dispatch(createAction(actionTypes.clearInitializeError));
-
-  dispatch(checkTokenValid());
-  // Get auth data from localstorage
-  const auth = getAuth();
-  // If auth not present, fail it
-  if( !auth ) {
-    dispatch(failTokenValid());
-    return;
-  }
-
-  // Check token validity on Server
-  try {
-    const isValid = await UserService.checkValidToken(auth.token);
-    if (isValid) {
-      dispatch(succeedAuthenticate());
-    } else {
-      dispatch(failTokenValid());
-    }
-  } catch (error) {
-    const errObj = {
-      status: null,
-      statusText: null,
-      msg: 'Token is not valid',
-    };
-
-    if (error.response) {
-      errObj.status = error.response.status;
-      errObj.statusText = error.response.statusText;
-    }
-
-    dispatch(createAction(actionTypes.failInitialize, errObj));
-    dispatch(toggleModal('modal-app-error'));
-  }
 };
 
 export const toggleModal = modalId => dispatch => {

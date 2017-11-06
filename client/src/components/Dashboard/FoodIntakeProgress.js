@@ -9,7 +9,6 @@ const FoodIntakeProgress = ({ max, current }) => (
       <span className="current"> / {current} kcal 남음</span>
     </div>
     <ProgressBar now={calculateProgress(current, max)}/>
-    <button className="button button--link">Edit</button>
   </div>
 )
 
