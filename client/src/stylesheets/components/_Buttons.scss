@@ -69,3 +69,11 @@
   text-transform: uppercase;
   letter-spacing: normal;
 }
+
+.button--outline {
+  border: 2px solid #96b647;
+  border-radius: 4px;
+  color: #313541;
+  font-size: 16px;
+  padding: 12px 28px;
+}
