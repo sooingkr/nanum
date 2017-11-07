@@ -1,16 +1,6 @@
-#nanum .food-suggestions .slick-list {
-  padding: 0 !important;
+.food-suggestions__carousel {
+  overflow-x: hidden;
 }
-
-#nanum .food-suggestions .slick-slide {
-  width: initial !important;
-}
-
-#nanum .food-suggestions .slick-track {
-  @include media(">=big-phone") {
-    transform: translate3d(0px, 0px, 0px) !important;
-  }
-}  
 
 // Slider
 .food-suggestions-slider {

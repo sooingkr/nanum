@@ -3,14 +3,12 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { isEmpty } from 'lodash';
 import FoodSuggestionCarousel from '../../components/Dashboard/FoodSuggestionCarousel';
+import NoInfo from '../../components/Dashboard/NoInfo';
 import { selectors } from './DashboardDuck';
 
 export class FoodSuggestionContainer extends Component {
   render() {
     const { foodSuggestions } = this.props;
-    if(!foodSuggestions || isEmpty(foodSuggestions)) {
-      return <div/>;
-    }
 
     return (
       <div className="food-suggestions">
@@ -24,6 +22,12 @@ export class FoodSuggestionContainer extends Component {
     );
   }
 }
+
+const noInfoCondition = (props) => {
+  return !props.foodSuggestions || isEmpty(props.foodSuggestions)
+}
+
+FoodSuggestionContainer = NoInfo(noInfoCondition)(FoodSuggestionContainer);
 
 FoodSuggestionContainer.propTypes = {
   foodSuggestions: PropTypes.shape({
