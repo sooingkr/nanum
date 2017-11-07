@@ -1,6 +1,4 @@
 import { createAction, createReducer } from '../../utils/store';
-import UserService from '../../service/UserService';
-import { getAuth } from '../../utils/auth';
 
 const storeName = 'App';
 

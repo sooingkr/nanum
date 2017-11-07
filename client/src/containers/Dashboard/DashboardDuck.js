@@ -75,11 +75,11 @@ const addFood = (foodData) => (dispatch, getState) => {
 
 const removeFoods = () => async (dispatch, getState) => {
   const state = getState()[storeName];
-  const foodsToRemove = state.toBeRemoved.values();
+  const foodsToRemove = Object.values(state.toBeRemoved);
   const isSuccessful = await FoodService.removeFoods(foodsToRemove);
   if (isSuccessful) {
-    dispatch(clearRemoveFood());
     dispatch(succeedRemoveFood(foodsToRemove));
+    dispatch(clearRemoveFood());
   } else {
     dispatch(failRemoveFood());
   }
