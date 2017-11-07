@@ -3,7 +3,6 @@
  */
 import { createAction, createReducer } from '../../utils/store';
 import axios from '../../service/config';
-import { API_BASE_PATH } from '../../constants';
 
 // import service
 
@@ -18,7 +17,7 @@ export const actionTypes = {
 // define thunks
 export const login = (formData, history) => async dispatch => {
   try {
-    const res = await axios.post(`${API_BASE_PATH}/login`, formData);
+    const res = await axios.post(`/authenticate`, formData);
     dispatch(createAction(actionTypes.login, res.data));
 
   } catch (err) {
