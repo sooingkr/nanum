@@ -11,6 +11,8 @@ import { AppDuck } from '../App/AppDuck';
 export const Login = ({ login, isAuthenticated, history }) => {
   return (
     <div className="container">
+      <div style={{height: '50px'}}>{' '}</div>
+
       <div className="row">
         <div className="col-md-4 col-sm-3"/>
   
@@ -28,12 +30,8 @@ const mapStateToProps = (state) => ({
   isAuthenticated: state[AppDuck.storeName].isAuthenticated,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  login: (formData, history) => {
-    dispatch(LoginDuck.actions.login(formData)).then(() => {
-      history.push('/dashboard');
-    });
-  }
-});
+const mapDispatchToProps = {
+  ...LoginDuck.actions
+};
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));

@@ -2,8 +2,8 @@
  * Created by manhvu on 10/6/17.
  */
 import { createAction, createReducer } from '../../utils/store';
-import UserService from '../../service/UserService';
-import { AppDuck } from '../App/AppDuck';
+import axios from '../../service/config';
+import { API_BASE_PATH } from '../../constants';
 
 // import service
 
@@ -11,77 +11,33 @@ export const storeName = 'Login';
 
 // define action type
 export const actionTypes = {
-  requestLogin: storeName + '/REQUEST_LOGIN',
-  succeedLogin: storeName + '/SUCCEED_LOGIN',
-  failLogin: storeName + '/FAIL_LOGIN',
+  login: storeName + '/login',
   logout: storeName + '/LOGOUT',
 };
 
-// define actions
-const requestLogin = () => createAction(actionTypes.requestLogin);
-const succeedLogin = (decodedToken) => createAction(actionTypes.succeedLogin, { decodedToken });
-const failLogin = (error) => createAction(actionTypes.failLogin, { error });
-
 // define thunks
-export const login = ({ email, password }) => async dispatch => {
-  dispatch(requestLogin());
-  
+export const login = (formData, history) => async dispatch => {
   try {
-    const userData = await UserService.loginUser(email, password);
-    dispatch(succeedLogin(userData));
-    dispatch(AppDuck.actions.succeedAuthenticate());
-  } catch(error) {
-    dispatch(failLogin(error));
+    const res = await axios.post(`${API_BASE_PATH}/login`, formData);
+    dispatch(createAction(actionTypes.login, res.data));
+
+  } catch (err) {
+    console.error('===== error while login:', err);
   }
 };
 
 // conveniently export actions
 export const actions = {
   login,
-  succeedLogin,
 };
 
 export const initialState = {
-  user: {},
-  isFetching: false,
-  error: {},
 };
 
 const reducer = createReducer(initialState, {
-  [actionTypes.requestLogin]: (state) => {
-    return {
-      ...state,
-      isFetching: true,
-    };
-  },
-  [actionTypes.failLogin]: (state, payload) => {
-    return {
-      ...state,
-      isFetching: false,
-      error: payload.error,
-    }
-  },
-  [actionTypes.succeedLogin]: (state, payload) => {
-    return {
-      ...state,
-      user: {
-        id: payload.decodedToken.id,
-        username: payload.decodedToken.username,
-      },
-      isFetching: false,
-      error: {},
-    };
-  }
 });
-
-const getUser = (state) => state[storeName].user;
-
 export const LoginDuck = {
   storeName,
   actions,
   reducer
-};
-
-export const selectors = {
-  getUser,
 };
