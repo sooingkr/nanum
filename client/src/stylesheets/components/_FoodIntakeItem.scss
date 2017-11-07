@@ -8,6 +8,10 @@
   }
 }
 
+.food-intake-item--removable {
+  cursor: pointer;
+}  
+
 .food-intake-item__image {
   width: 30px;
   height: 30px;

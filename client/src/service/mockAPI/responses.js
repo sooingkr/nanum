@@ -17,10 +17,9 @@ function guid() {
 
 export const searchFood = {
   results: times(MAX_FOOD, () => ({
-    id: guid(),
-    type: '아이스크림',
-    flavor: '캔모아 딸기',
-    company: '캔모아',
+    foodId: guid(),
+    name: '아이스크림 캔모아 딸기',
+    manufacturer: '캔모아',
     imageUrl: "https://images.pexels.com/photos/46239/salmon-dish-food-meal-46239.jpeg?w=940&h=650&auto=compress&cs=tinysrgb",
   })),
   total: 300,
@@ -63,9 +62,9 @@ export const suggestFood = {
 };
 
 export const tracking = {
-  diagnostic: {
+  alert: {
     type: 'danger',
-    message: '김레클 님은 아토피가 있습니다. 단백질 섭취 제한을 추천합니다. 단백질 식사를 줄여주세요.',
+    message: '김해섭 님은 아토피가 있습니다. 단백질 섭취 제한을 추천합니다. 단백질 식사를 줄여주세요.',
   },
   foodIntakeTracking: {
     calories: {
@@ -163,10 +162,6 @@ export const tracking = {
   }
 };
 
-export const login = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQwMjg4MDlhNWVlYjk1MzYwMTVlZWI5YWQzYjYwMDAxIiwidXNlcm5hbWUiOiJuZ3V5ZW5hbmh2dS5jc0BnbWFpbC5jb20iLCJlbmFibGVkIjp0cnVlLCJleHBpcmUiOm51bGwsImF1dGhvcml0aWVzIjpbeyJhdXRob3JpdHkiOiJST0xFX1VTRVIifV19.UuTiFCFlSnmBhaiKhMunufuR6vm9IO4t1ASdECXnSfg";
-
-export const checkValidToken = true;
-
 export const foodDetail = {
   foodDetail: [
     {
@@ -180,3 +175,5 @@ export const foodDetail = {
     }
   ]
 }
+
+export const removeFood = true;

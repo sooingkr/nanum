@@ -1,6 +1,7 @@
 .food-intake {
   margin: 0 auto;
   padding: 24px 0 20px;
+  position: relative;
 
   @include media(">=tablet") {
     max-width: 100%;
@@ -9,10 +10,17 @@
   }
 }
 
-.food-intake__progress {
-  margin-bottom: 16px;
+.food-intake__edit {
+  display: inline-block;
+  position: absolute;
+  right: 20px;
+  top: 10px;
+
+  button:last-child {
+    margin-left: 28px;
+  }
 }
-  
+
 .food-intake__meals {
   background-color: $white-gray;
 

@@ -26,8 +26,53 @@ export class FoodIntakeTrackingContainer extends Component {
     }
   }
 
+  renderEditButtons = () => {
+    if (this.props.isEditMode) {
+      return (
+        <div className="food-intake__edit">
+          <button
+            className="button button--link"
+            type="button"
+            onClick={() => {
+              this.props.clearRemoveFood();
+              this.props.quitEdit();
+            }}
+            >
+            Cancel
+          </button>
+          <button
+            className="button button--link"
+            type="button"
+            onClick={this.props.removeFoods}
+            >
+            Ok
+          </button>
+        </div>
+      );
+    } 
+
+    return (
+      <div className="food-intake__edit">
+        <button 
+          className="button button--link"
+          type="button"
+          onClick={this.props.enterEdit}
+          >
+          Edit
+        </button>
+      </div>
+    )
+  }
+
   render() {
-    const { foodIntakeTracking, showDialog, openDialog, closeDialog } = this.props;
+    const { 
+      foodIntakeTracking, 
+      showDialog, 
+      openDialog, 
+      closeDialog,
+      markRemoveFood,
+      isEditMode,
+    } = this.props;
 
     if(!foodIntakeTracking || isEmpty(foodIntakeTracking)) {
       return <div/>;
@@ -40,6 +85,8 @@ export class FoodIntakeTrackingContainer extends Component {
     
     return (
       <div className="food-intake" >
+        {this.renderEditButtons()}
+
         <FoodIntakeProgress 
           max={calories.target}
           current={calories.current}
@@ -48,12 +95,14 @@ export class FoodIntakeTrackingContainer extends Component {
         <div className="food-intake__meals">
           <Row>
           {
-            Object.keys(when).map((mealTime, idx) => (
+            Object.keys(when).map((mealTime) => (
               <Col xs={12} md={4} key={mealTime}>
                 <FoodIntakeList 
+                  isEditMode={isEditMode}
                   mealTime={mealTime} 
                   foods={when[mealTime]}
                   openDialog={openDialog}
+                  markRemoveFood={markRemoveFood}
                 />
               </Col>
             ))
@@ -90,12 +139,18 @@ const mapStateToProps = (state) => ({
   showDialog: selectors.getShowDialog(state),
   foodIntakeTracking: selectors.getFoodIntakeTracking(state),
   whichDialog: selectors.getWhichDialog(state),
+  isEditMode: selectors.getEditMode(state),
 });
 
 const mapDispatchToProps = {
   openDialog: DashboardDuck.actions.openDialog,
   closeDialog: DashboardDuck.actions.closeDialog,
   addFood: DashboardDuck.actions.addFood,
+  enterEdit: DashboardDuck.actions.enterEdit,
+  quitEdit: DashboardDuck.actions.quitEdit,
+  markRemoveFood: DashboardDuck.actions.markRemoveFood,
+  removeFoods: DashboardDuck.actions.removeFoods,
+  clearRemoveFood: DashboardDuck.actions.clearRemoveFood,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FoodIntakeTrackingContainer);

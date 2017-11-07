@@ -34,10 +34,10 @@ export class UserInfoContainer extends Component {
             <img src={genderIcon} alt={male ? 'male' : 'female'} />
           </div>
           
-          <div className="user-info__edit">
-            {/* Link to Edit member page will be added later */}
-            <Link to="/user/settings">Edit</Link>
-          </div>
+          {/* Link to Edit member page will be added later */}
+          <Link to="/user/settings" 
+                className="user-info__edit button button--link">Edit
+          </Link>
         </div>
         <div className="user-info__details">
           { interests.map(interest => (

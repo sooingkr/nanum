@@ -5,11 +5,15 @@ import {
   Row,
   Col,
 } from 'react-bootstrap';
+import { isEmpty } from 'lodash';
 import UserInfoContainer from './UserInfoContainer';
 import FoodIntakeTrackingContainer from './FoodIntakeTrackingContainer';
 import FoodSuggestionContainer from './FoodSuggestionContainer';
-import DiagnosticContainer from './DiagnosticContainer';
-import { DashboardDuck } from './DashboardDuck';
+import TimeSelectorContainer from './TimeSelectorContainer';
+import FoodSearchBoxContainer from '../FoodSearch/FoodSearchBoxContainer';
+import Alert from '../../components/Common/Alert';
+import Loader from '../../components/Common/Loader';
+import { DashboardDuck, selectors } from './DashboardDuck';
 
 class Dashboard extends Component {
   componentWillMount() {
@@ -18,12 +22,24 @@ class Dashboard extends Component {
   }
   
   render() {
+    const { alert, isLoading } = this.props;
+
+    if (isLoading) return <Loader />;
+
     return (
       <div className="dashboard">
+        { !isEmpty(alert) &&
+          <Alert message={alert.message} type={alert.type} />
+        }
         <Grid>
-          <Row className="dashboard-diagnostic section">
+          <Row className="dashboard-search">
             <Col sm={12}>
-              <DiagnosticContainer />
+              <FoodSearchBoxContainer />
+            </Col>
+          </Row>
+          <Row className="dashboard-timeSelector section">
+            <Col sm={12}>
+              <TimeSelectorContainer />
             </Col>
           </Row>
           <Row className="dashboard-tracking section section--sm-shadow">
@@ -45,8 +61,15 @@ class Dashboard extends Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  alert: selectors.getAlert(state),
+  isLoading: selectors.getLoadingStatus(state),
+});
+
 const mapDispatchToProps = {
   init: DashboardDuck.actions.initialize,
 };
 
-export default connect(null, mapDispatchToProps)(Dashboard);
+export default connect(mapStateToProps, mapDispatchToProps)(
+  Dashboard
+);
