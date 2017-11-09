@@ -3,15 +3,14 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Image } from 'react-bootstrap';
 
-const SearchResultItem = ({ id, flavor, type, company, imageUrl }) => (
+const SearchResultItem = ({ id, name, manufacturer, imageUrl }) => (
   <div className="search-result-item">
     <div className="search-result-item__image">
       <Image src={imageUrl} responsive />
     </div>
     <div className="search-result-item__content">
-      <h3 className="search-result-item__flavor">{flavor}</h3>
-      <h3 className="search-result-item__type">{type}</h3>
-      <h4 className="search-result-item__company">{company}</h4>
+      <h3 className="search-result-item__name">{name}</h3>
+      <h4 className="search-result-item__manufacturer">{manufacturer}</h4>
     </div>
     <div className="search-result-item__button">
       <Link to={'/products/' + id} className="button button--arrow" />
@@ -21,9 +20,8 @@ const SearchResultItem = ({ id, flavor, type, company, imageUrl }) => (
 
 SearchResultItem.propTypes = {
   id: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-  flavor: PropTypes.string,
-  company: PropTypes.string,
+  name: PropTypes.string,
+  manufacturer: PropTypes.string,
   imageUrl: PropTypes.string,
 }
 

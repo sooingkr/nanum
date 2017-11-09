@@ -14,6 +14,17 @@ export class UserInfoContainer extends Component {
     console.log(id);
   };
 
+  renderNoInfo = () => (
+    <div className="user-info__noInfo">
+      <Link 
+      to="/user/edit"
+      className="button button--outline"
+      >
+        내 정보 입력하기
+      </Link>
+    </div>
+  )
+
   render() {
     const user = this.props.user;
 
@@ -25,38 +36,45 @@ export class UserInfoContainer extends Component {
 
     // This will be replaced by icon url later
     const genderIcon = male ? MaleIcon : FemaleIcon;
-
+    const shouldShowTags = interests.length > 0 || diseases.length > 0;
     return (
-      <div className="user-info">
-        <div className="user-info__heading">
-          <div className="user-info__name">
-            <h2>{name} 님 </h2>
-            <img src={genderIcon} alt={male ? 'male' : 'female'} />
+        <div className="user-info">
+          <div className="user-info__heading">
+            <div className="user-info__name">
+              <h2>{name} 님 </h2>
+              <img src={genderIcon} alt={male ? 'male' : 'female'} />
+            </div>
+            
+            <Link to="/user/edit" 
+                  className="user-info__edit button button--link">Edit
+            </Link>
           </div>
-          
-          <div className="user-info__edit">
-            {/* Link to Edit member page will be added later */}
-            <Link to="/user/settings">Edit</Link>
-          </div>
-        </div>
-        <div className="user-info__details">
-          { interests.map(interest => (
-            <TagBox 
-              key={interest.id} 
-              id={interest.id}
-              text={interest.text} 
-              onRemove={this.onRemove}
-            />
-          ))}
-          { diseases.map(disease => (
-            <TagBox 
-              key={disease.id}
-              id={disease.id}
-              text={disease.text} 
-              onRemove={this.onRemove}
-            />
-          ))}
-        </div>
+          { !shouldShowTags &&
+            this.renderNoInfo()
+          }
+
+          { shouldShowTags &&
+            <div className="user-info__details">
+              { 
+                interests.map(interest => (
+                <TagBox 
+                  key={interest.id} 
+                  id={interest.id}
+                  text={interest.text} 
+                  onRemove={this.onRemove}
+                />
+              ))}
+              { 
+                diseases.map(disease => (
+                <TagBox 
+                  key={disease.id}
+                  id={disease.id}
+                  text={disease.text} 
+                  onRemove={this.onRemove}
+                />
+              ))}
+            </div>
+          }
       </div>
     );
   }

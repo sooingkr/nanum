@@ -18,18 +18,3 @@
     margin-right: 48px;    
   }
 }
-
-// Blur overlay
-.food-suggestions__carousel {
-  position: relative;
-
-  &:after {
-    position: absolute;
-    content: ' ';
-    height: 100%;
-    width: 30px;
-    background-image: linear-gradient(to left, rgba(183, 188, 192, 0.1), rgba(255, 255, 255, 0.2));
-    top: 0;
-    right: 0;
-  }
-}

@@ -15,8 +15,8 @@ const basicCarouselSettings = {
   dots: false,
   infinite: false,
   speed: 500,
-  centerMode: true,
-  draggable: false,
+  centerMode: false,
+  draggable: true,
   slidesToScroll: 1,
 };
 
@@ -36,7 +36,16 @@ const carouselSettings = {
       breakpoint: 924,
       settings: {
         ...basicCarouselSettings,
+        slidesToShow: 3,
+        arrows: false,
+      }
+    },
+    {
+      breakpoint: 1200,
+      settings: {
+        ...basicCarouselSettings,
         slidesToShow: 4,
+        arrows: false,
       }
     },
     {
@@ -44,6 +53,7 @@ const carouselSettings = {
       settings: {
         ...basicCarouselSettings,
         slidesToShow: 4,
+        arrows: false,
       }
     }
   ]

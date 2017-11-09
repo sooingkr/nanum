@@ -1,8 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const AddFoodButton = ({ onAddFood, mealTime }) => (
-  <button className="button button--plus" onClick={() => onAddFood(mealTime)}>
+const AddFoodButton = ({ onAddFood, mealTime, disabled }) => (
+  <button 
+    className="button button--plus" 
+    onClick={() => onAddFood(mealTime)}
+    disabled={disabled}
+  >
     <span>Add</span>
   </button>
 )

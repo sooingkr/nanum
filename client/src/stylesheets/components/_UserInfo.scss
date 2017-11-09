@@ -1,4 +1,5 @@
 .user-info {
+  position: relative;
   margin: 0 auto;
   padding: 20px;
   text-align: left;
@@ -35,14 +36,13 @@
   }
 }
 
-.user-info__edit {
-  a {
-    font-family: "Montserrat", $base-font-family;
-    font-size: ms(-3);
-    font-weight: 400;
-    color: $black;
-    text-transform: uppercase;
-  }
+.user-info__noInfo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
 }
 
 .user-info__details {

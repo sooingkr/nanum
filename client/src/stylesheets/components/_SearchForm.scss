@@ -2,6 +2,10 @@
   margin: 0 auto;
   margin-bottom: 36px;
   display: inline-block;
+
+  @include media(">=desktop") {
+    margin-bottom: 0;
+  }
 }
 
 .search-form form {
@@ -9,26 +13,26 @@
 
   .search-form__input {
     min-width: 532px;
-    padding: 24px 32px;
-    border: 1px solid $light-gray;
+    padding: 24px 20px;
+    border: 1px solid $green;
     border-radius: 3px;
-    color: $dark-gray;
-    font-size: ms(2);
+    color: $lesser-gray;
+    font-size: ms(4);
   }
 
   .search-form__submit {
     position: absolute;
-    right: 34px;
+    right: 20px;
     top: 50%;
+    width: 30px;
+    height: 30px;
     transform: translateY(-50%);
-    background: transparent;
     border: none;
     box-shadow: none;
     padding: 0;
-
-    .fa:before {
-      color: $lesser-gray;
-      font-size: 34px;
-    }
+    background-image: url("./assets/images/icons/search.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
   }
 }

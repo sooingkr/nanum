@@ -48,10 +48,11 @@ p {
   letter-spacing: $base-letter-spacing;
 }
 
+.button,
 a {
   color: $gray;
   font-family: $base-font-family;
-  text-decoration: none;
+  text-decoration: none !important;
   
   &:active,
   &:focus,

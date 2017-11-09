@@ -3,7 +3,7 @@
  */
 import { createAction, createReducer } from '../../utils/store';
 import UserService from '../../service/UserService';
-import { getAuth } from '../../utils/auth';
+import FoodService from '../../service/FoodService';
 import moment from 'moment';
 
 const storeName = 'Dashboard';
@@ -14,25 +14,43 @@ export const actionTypes = {
   openDialog: storeName + '/OPEN_DIALOG',
   closeDialog: storeName + '/CLOSE_DIALOG',
   addFood: storeName + '/ADD_FOOD',
+  removeFoods: storeName + '/REMOVE_FOODS',
   abortAddFood: storeName + '/ABORT_ADD_FOOD',
   pickQueryTime: storeName + '/PICK_QUERY_TIME',
+  enterEdit: storeName + '/ENTER_EDIT',
+  quitEdit: storeName + '/QUIT_EDIT',
+  markRemoveFood: storeName + '/MARK_REMOVE_FOOD',
+  clearRemoveFood: storeName + '/CLEAR_REMOVE_FOOD',
+  succeedRemoveFood: storeName + '/SUCCEED_REMOVE_FOOD',
+  failRemoveFood: storeName + '/FAIL_REMOVE_FOOD',
 };
 
 // Actions creators 
 const openDialog = (mealTime) => createAction(actionTypes.openDialog, { mealTime });
 const closeDialog = () => createAction(actionTypes.closeDialog);
 const pickQueryTime = (queryTime) => createAction(actionTypes.pickQueryTime, { queryTime });  
+const enterEdit = () => createAction(actionTypes.enterEdit);
+const quitEdit = () => createAction(actionTypes.quitEdit);
+const clearRemoveFood = () => createAction(actionTypes.clearRemoveFood);
+const failRemoveFood = () => createAction(actionTypes.failRemoveFood);
+const succeedRemoveFood = (foodsToRemove) => createAction(actionTypes.succeedRemoveFood, { foods: foodsToRemove });
+const markRemoveFood = (foodId, mealTime) => createAction(actionTypes.markRemoveFood, { 
+  [foodId + ':' + mealTime]: {
+    foodId,
+    mealTime,
+  },
+});
 
 // Thunks
 const initialize = (queryTime) => async (dispatch, getState) => {
+  // Default to now time if not specified
   if(!queryTime) {
     queryTime = moment(new Date()).format();
   }
-  // Get auth data from localstorage
-  const auth = getAuth();
+
   dispatch(pickQueryTime(queryTime));
 
-  const tracking = await UserService.getTrackingData(auth.token, queryTime);
+  const tracking = await UserService.getTrackingData(queryTime);
   dispatch(createAction(actionTypes.initialize, { 
     ...tracking,
   }));
@@ -41,6 +59,8 @@ const initialize = (queryTime) => async (dispatch, getState) => {
 const addFood = (foodData) => (dispatch, getState) => {
   // TODO: actually submit food data addition to UserService
   const state = getState()[storeName];
+
+  // Only add food if it is below maximum calories
   if(foodData.foodDetails.calories + state.calories.current > state.calories.target) {
     dispatch(createAction(actionTypes.abortAddFood));
   }
@@ -53,18 +73,36 @@ const addFood = (foodData) => (dispatch, getState) => {
   dispatch(initialize(state.queryTime));
 }
 
+const removeFoods = () => async (dispatch, getState) => {
+  const state = getState()[storeName];
+  const foodsToRemove = Object.values(state.toBeRemoved);
+  const isSuccessful = await FoodService.removeFoods(foodsToRemove);
+  if (isSuccessful) {
+    dispatch(succeedRemoveFood(foodsToRemove));
+    dispatch(clearRemoveFood());
+  } else {
+    dispatch(failRemoveFood());
+  }
+}
+
 // conveniently export actions
 const actions = {
   initialize,
   openDialog,
   closeDialog,
   addFood,
+  enterEdit,
+  quitEdit,
+  removeFoods,
+  markRemoveFood,
+  clearRemoveFood,
+  failRemoveFood,
 };
 
 // Initial Dashboard state tree
 export const initialState = {
   queryTime: "",
-  diagnostic: {},
+  alert: {},
   currentUser: {},
   breakfast: [],
   lunch: [],
@@ -73,20 +111,25 @@ export const initialState = {
   showDialog: false,
   whichDialog: "",
   foodSuggestions: {},
+  isLoading: true,
+  isEditMode: false,
+  toBeRemoved: {},
 };
 
 // Dashboard reducer
 const reducer = createReducer(initialState, {
   [actionTypes.initialize]: (state, payload) => {
+    // TODO: normalize data
     return {
       ...state,
       currentUser: payload.user,
-      diagnostic: payload.diagnostic,
+      alert: payload.alert,
       breakfast: payload.foodIntakeTracking.when.breakfast,
       lunch: payload.foodIntakeTracking.when.lunch,
       dinner: payload.foodIntakeTracking.when.dinner,
       calories: payload.foodIntakeTracking.calories,
       foodSuggestions: payload.foodSuggestions,
+      isLoading: false,
     };
   },
   [actionTypes.pickQueryTime]: (state, payload) => {
@@ -120,6 +163,39 @@ const reducer = createReducer(initialState, {
         { ...payload.foodData.foodDetails },
       ]
     }
+  },
+  [actionTypes.enterEdit]: (state) => {
+    return {
+      ...state,
+      isEditMode: true
+    }
+  },
+  [actionTypes.quitEdit]: (state) => {
+    return {
+      ...state,
+      isEditMode: false,
+    }
+  },
+  [actionTypes.markRemoveFood]: (state, payload) => {
+    return {
+      ...state,
+      toBeRemoved: {
+        ...state.toBeRemoved,
+        ...payload,
+      }
+    }
+  },
+  [actionTypes.clearRemoveFood]: (state) => {
+    return {
+      ...state,
+      toBeRemoved: {},
+    }
+  },
+  [actionTypes.succeedRemoveFood]: (state, payload) => {
+    // TODO
+    return {
+      ...state
+    }
   }
 });
 
@@ -137,8 +213,10 @@ const getShowDialog = (state) => state[storeName].showDialog;
 const getWhichDialog = (state) => state[storeName].whichDialog;
 const getFoodsWhen = (state, when) => state[when];
 const getFoodSuggestions = (state) => state[storeName].foodSuggestions;
-const getDiagnostic = (state) => state[storeName].diagnostic;
+const getAlert = (state) => state[storeName].alert;
 const getTime = (state) => state[storeName].queryTime;
+const getLoadingStatus = (state) => state[storeName].isLoading;
+const getEditMode = (state) => state[storeName].isEditMode;
 
 export const DashboardDuck = {
   storeName,
@@ -152,6 +230,8 @@ export const selectors = {
   getShowDialog,
   getWhichDialog,
   getFoodSuggestions,
-  getDiagnostic,
+  getAlert,
   getTime,
+  getLoadingStatus,
+  getEditMode,
 }
