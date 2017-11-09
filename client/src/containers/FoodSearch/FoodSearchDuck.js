@@ -1,5 +1,5 @@
 import { createAction, createReducer } from '../../utils/store';
-import { foodService } from '../../service/FoodService';
+import FoodService from '../../service/FoodService';
 
 const storeName = 'FoodSearch';
 
@@ -47,7 +47,7 @@ const searchFood = (foodQuery, page) => async (dispatch, getState) => {
   let searchResponse;
 
   try {
-    searchResponse = shouldFetch ? await foodService.searchFood(foodQuery, page) : { results: [] };
+    searchResponse = shouldFetch ? await FoodService.searchFood(foodQuery, page) : { results: [] };
   } catch (error) {
     dispatch(failSearch(error));
   }

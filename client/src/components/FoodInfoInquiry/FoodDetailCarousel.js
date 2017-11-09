@@ -4,7 +4,6 @@ import { PropTypes } from 'prop-types';
 import AlternativeFoodCarousel from "../../components/FoodInfoInquiry/AlternativeFoodCarousel";
 
 const FoodDetailCarousel = ({foods}) => {
-
   return (
     <div className='alternative-food'>
       <AlternativeFoodCarousel foods={foods}/>
@@ -13,7 +12,7 @@ const FoodDetailCarousel = ({foods}) => {
 }
 
 FoodDetailCarousel.propTypes = {
-  foods: PropTypes.array.isRequired
+  foods: PropTypes.array
 }
 
 export default FoodDetailCarousel;

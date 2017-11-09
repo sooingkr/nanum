@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { isEmpty } from 'lodash';
-import { Row, Col, ProgressBar } from 'react-bootstrap';
+import { Row, Col, Button } from 'react-bootstrap';
 
 class FoodDetails extends Component {
 
@@ -15,28 +15,33 @@ class FoodDetails extends Component {
       );
     }
 
-    const { foodName, foodKcal, foodInfo, carbonKcal, proteinKcal, lipidKcal } = foodDetail;
+    const { name, diagnosticMessage, calories, carbohydrates, proteins, fat } = foodDetail;
 
     return (
       <div className="product__detail">
         <Row>
-          <Col xs={9} md={7}><h2 className="product__title">{foodName}</h2></Col>
-          <Col md={5} className="product__kcal"><strong>{foodKcal}</strong> kcal</Col>
+          <Col xs={9} md={7}><h2 className="product__title">{name}</h2></Col>
+          <Col md={5} className="product__kcal"><strong>{calories}</strong> kcal</Col>
         </Row>
         <Row>
-          <div className="product__foodInfo hidden-xs">{foodInfo}</div>
+          <div className="product__foodInfo hidden-xs">{diagnosticMessage}</div>
           <div className="product__kcalLevel">
             <Row>
-              <Col sm={3} className="product__title--small">탄수화물</Col>
-              <Col sm={9}><ProgressBar now={carbonKcal}></ProgressBar></Col>
-            </Row>
-            <Row>
-              <Col sm={3} className="product__title--small">단백질</Col>
-              <Col sm={9}><ProgressBar now={proteinKcal}></ProgressBar></Col>
-            </Row>
-            <Row>
-              <Col sm={3} className="product__title--small">지방</Col>
-              <Col sm={9}><ProgressBar now={lipidKcal}></ProgressBar></Col>
+              <Col xs={4} lg={3}>
+                <div className="kcalLevel__number">{carbohydrates}</div>
+                <div className="kcalLevel__title">탄수화물(g)</div>
+              </Col>
+              <Col xs={4} lg={3}>
+                <div className="kcalLevel__number">{proteins}</div>
+                <div className="kcalLevel__title">단백질(g)</div>
+              </Col>
+              <Col xs={4} lg={3}>
+                <div className="kcalLevel__number">{fat}</div>
+                <div className="kcalLevel__title">지방(g)</div>
+              </Col>
+              <Col xs={12} lg={3}>
+                <Button className="btn-view-haccp" href="http://fresh.ihaccp.or.kr/safety/productDetail.do?productNo=2013021004600255&masterId=24360" title="안전먹거리에서 보기">안전먹거리에서 보기</Button>
+              </Col>
             </Row>
           </div>
         </Row>
@@ -46,19 +51,13 @@ class FoodDetails extends Component {
 }
 
 FoodDetails.propsType = {
-  foodId: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string
-  ]).isRequired,
-
   foodDetail: PropTypes.shape({
-    imgSrc: PropTypes.string.isRequired,
-    foodName: PropTypes.string.isRequired,
-    foodKcal: PropTypes.number.isRequired,
-    foodInfo: PropTypes.string.isRequired,
-    carbonKcal: PropTypes.number.isRequired,
-    proteinKcal: PropTypes.number.isRequired,
-    lipidKcal: PropTypes.number.isRequired
+    name: PropTypes.string.isRequired,
+    nutrientInfo: PropTypes.string.isRequired,
+    calories: PropTypes.number.isRequired,
+    carbohydrates: PropTypes.number.isRequired,
+    proteins: PropTypes.number.isRequired,
+    fat: PropTypes.number.isRequired
   }).isRequired
 };
 

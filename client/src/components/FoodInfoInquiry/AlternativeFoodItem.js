@@ -5,27 +5,26 @@ import { Link } from 'react-router-dom';
 import { Image } from 'react-bootstrap';
 
 
-const AlternativeFoodItem = ({ food: { imgSrc, foodName, foodInfo, foodId } }) => {
+const AlternativeFoodItem = ({ food: { id, imageUrl, alternativeReason } }) => {
 
   return (
     <div className='food-slider__food'>
-      <Link to={{ pathname: "/product/id/" + foodId }}>
-        <Image responsive src={imgSrc} alt={foodName}></Image>
+      <Link to={{ pathname: "/product/id/" + id }}>
+        <Image responsive src={imageUrl} alt={id}></Image>
       </Link>
-      <div className="food-slider__info">{foodInfo}</div>
+      <div className="food-slider__info">{alternativeReason}</div>
     </div>
   )
 }
 
 AlternativeFoodItem.propTypes = {
   food: PropTypes.shape({
-    foodId: PropTypes.oneOfType([
+    id: PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.string
     ]).isRequired,
-    imgSrc: PropTypes.string.isRequired,
-    foodName: PropTypes.string.isRequired,
-    foodInfo: PropTypes.string.isRequired
+    imageUrl: PropTypes.string.isRequired,
+    alternativeReason: PropTypes.string.isRequired
   })
 }
 
