@@ -63,11 +63,24 @@ const removeFoods = async (foods) => {
   }
 
   return result.data;
-}
+};
+
+const getFoodDetail = async (id) => {
+  let result;
+
+  try {
+    result = await axios.get(`${API_BASE_PATH}/foods/details/${id}`);
+  } catch (error) {
+    throw new Error(`FoodService error - <getFoodDetail()>: ${error}`);
+  }
+
+  return result.data;
+};
 
 export default {
   searchFood,
   suggestFood,
   foodDetail,
   removeFoods,
+  getFoodDetail
 }
