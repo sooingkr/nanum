@@ -31,7 +31,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  ...LoginDuck.actions
+  login: LoginDuck.actions.login,
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));
