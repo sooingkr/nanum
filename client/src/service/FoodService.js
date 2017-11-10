@@ -43,7 +43,6 @@ const foodDetail = async (foodId) => {
 
   try {
     const result =  await axios.get(`${API_BASE_PATH}/foods/details/${foodId}`).then(res => res.data);
-
     return result;
 
   } catch(error) {

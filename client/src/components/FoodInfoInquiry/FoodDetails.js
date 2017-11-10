@@ -21,7 +21,10 @@ class FoodDetails extends Component {
       <div className="product__detail">
         <Row>
           <Col xs={9} md={7}><h2 className="product__title">{name}</h2></Col>
-          <Col md={5} className="product__kcal"><strong>{calories}</strong> kcal</Col>
+          <Col md={5} className="product__kcal">
+            <strong>{calories}</strong> kcal
+            <div className="small__title">캔모아</div>
+          </Col>
         </Row>
         <Row>
           <div className="product__foodInfo hidden-xs">{diagnosticMessage}</div>

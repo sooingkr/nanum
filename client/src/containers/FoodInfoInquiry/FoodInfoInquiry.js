@@ -18,12 +18,14 @@ class FoodInfoInquiry extends Component {
 
   render() {
     const { foodDetail } = this.props;
-    const { alternativeFoods }  = foodDetail;
+    const { diagnosticMessage, alternativeFoods }  = foodDetail;
 
     return (
       <div className="product">
         <Grid fluid>
           <Row>
+            <Col md={12}><div className="product__foodInfo visible-xs">{diagnosticMessage}</div>
+            </Col>
             <Col md={7}>
               <Image className="product__image" src={foodDetail.imageUrl} alt={foodDetail.name} responsive></Image>
             </Col>

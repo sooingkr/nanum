@@ -3,15 +3,18 @@
   .col-md-7, .col-md-5 {
       padding: 0;
   }
+
   .product__detail {
     .row {
       margin: 0;
     }
   }
+
   .visible-xs {
     margin-left: 15px;
     margin-right: 15px;
   }
+
   .product-detail__wrapper {
     @include padding(15px 45px 20px);
 
@@ -48,6 +51,14 @@
     strong {
       font-family: $base-font-family;
     }
+
+    .small__title {
+      margin-top: 5px;
+    }
+  }
+
+  .kcalLevel__title, .btn-view-haccp, .small__title {
+    font-size: rem(12);
   }
 
   .product__foodInfo {
@@ -81,24 +92,23 @@
       font-size: rem(34);
     }
 
-    .kcalLevel__title, .btn-view-haccp {
-      font-size: rem(12);
-    }
-
     .kcalLevel__title {
       color: $gray;
       font-weight: bold;
     }
 
     .btn-view-haccp {
-      margin-top: 10px;
-      margin-left: -21px;
+      margin-top: 20px;
       height: 34px;
       border: 2px solid $chat-box-input-border;
       border-radius: 5px;
       background-image: none;
       background-color: $white;
-
+      font-weight: bold;
+      @include media(">da") {
+        margin-top: 10px;
+        margin-left: -21px;
+      }
     }
   }
   .food-carousel {
