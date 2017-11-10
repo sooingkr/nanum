@@ -44,7 +44,7 @@ const carouselSettings = {
       breakpoint: 1200,
       settings: {
         ...basicCarouselSettings,
-        slidesToShow: 4,
+        slidesToShow: 3,
         arrows: false,
       }
     },

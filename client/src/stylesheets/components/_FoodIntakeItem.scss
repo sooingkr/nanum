@@ -3,6 +3,7 @@
 
   &:last-of-type {
     @include media(">=tablet") {
+      padding-bottom: 10px;
       border-bottom: 1px solid #d0d2d3;
     }
   }
