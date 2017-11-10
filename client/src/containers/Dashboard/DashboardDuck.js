@@ -52,8 +52,17 @@ const initialize = (queryTime) => async (dispatch, getState) => {
   dispatch(pickQueryTime(queryTime));
 
   const tracking = await UserService.getDailyReport(queryTime);
+  const userInfo = await UserService.getUserInfo();
+  const userDiseases = await UserService.getUserDiseases();
+
   dispatch(createAction(actionTypes.initialize, { 
     ...tracking,
+    currentUser: { 
+      ...userInfo,
+      diseases: [
+        ...userDiseases
+      ]
+    },
   }));
 };
 
@@ -130,6 +139,7 @@ const reducer = createReducer(initialState, {
     return {
       ...state,
       alert: payload.alert,
+      currentUser: payload.currentUser,
       breakfast,
       lunch,
       dinner,

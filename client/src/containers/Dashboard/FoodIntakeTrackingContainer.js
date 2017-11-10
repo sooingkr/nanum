@@ -13,10 +13,6 @@ import FoodIntakeList from '../../components/Dashboard/FoodIntakeList';
 import { DashboardDuck, selectors } from './DashboardDuck';
 
 export class FoodIntakeTrackingContainer extends Component {
-  componentWillMount() {
-    console.log(this.props.foodIntakeTracking);
-  }
-
   handleAddFood = (formData) => {
     const payload = this.constructAddFoodPayload(formData);
     this.props.addFood(payload);

@@ -5,7 +5,7 @@ import { get, filter } from 'lodash';
 const getDailyReport = async (queryTime) => {
   let trackingData;
   try {
-    trackingData = await axios.get(`/users/daily-report`, {
+    trackingData = await axios.get('/users/daily-report', {
       params: {
         queryTime,
       }
@@ -14,7 +14,6 @@ const getDailyReport = async (queryTime) => {
     throw new Error(`UserService error - <getDailyReport()>: ${error}`);
   }
   
-  console.log(trackingData);
   return { 
     alert: {
       type: get(trackingData, 'data.diseaseType'),
@@ -29,8 +28,39 @@ const getDailyReport = async (queryTime) => {
   };
 }
 
+const getUserInfo = async () => {
+  let userInfo;
+  try {
+    userInfo = await axios.get('/users');
+  } catch (error) {
+    throw new Error(`UserService error - <getDailyReport()>: ${error}`);
+  }
+
+  return {
+    id: get(userInfo, 'data.id'),
+    name: get(userInfo, 'data.memberName'),
+    gender: get(userInfo, 'data.memberGender'),
+    dupinfo: get(userInfo, 'data.dupinfo'),
+  }
+}
+
+const getUserDiseases = async () => {
+  let userDiseases;
+  try {
+    userDiseases = await axios.get('/users/diseases');
+  } catch (error) {
+    throw new Error(`UserService error - <getUserDiseases()>: ${error}`);
+  }
+
+  return [
+    ...userDiseases.data
+  ]
+}
+
 export default {
   getDailyReport,
+  getUserInfo,
+  getUserDiseases,
 }
 
 function mealFilter(mealTime) {
