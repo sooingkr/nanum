@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const AddFoodButton = ({ onAddFood, mealTime, disabled }) => (
+const AddFoodButton = ({ onClick, mealTime, disabled }) => (
   <button 
     className="button button--plus" 
-    onClick={() => onAddFood(mealTime)}
+    onClick={() => onClick(mealTime)}
     disabled={disabled}
   >
     <span>Add</span>
@@ -12,7 +12,7 @@ const AddFoodButton = ({ onAddFood, mealTime, disabled }) => (
 )
 
 AddFoodButton.propTypes = {
-  onAddFood: PropTypes.func,
+  onClick: PropTypes.func,
 }
 
 export default AddFoodButton;

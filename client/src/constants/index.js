@@ -1,7 +1,6 @@
 // api
 const isProd = (process.env.NODE_ENV === 'production');
 
-console.log("---- is prod:", isProd);
 export const API_BASE_PATH = isProd ? '/nanum-api' : 'http://test.baikal.io:8080';
 
 // auth
