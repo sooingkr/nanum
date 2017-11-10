@@ -1,5 +1,7 @@
 import { random, times } from 'lodash';
 
+//Create API json
+
 const MAX_FOOD = 20;
 
 function guid() {
@@ -162,18 +164,77 @@ export const tracking = {
   }
 };
 
-export const foodDetail = {
-  foodDetail: [
-    {
-      imgSrc: 'https://i.pinimg.com/originals/46/48/25/4648254906b1203aa8775a7f02f63473.jpg',
-      foodName: '캔모아딸기아이스크림',
-      foodKcal: '1200',
-      foodInfo: '임산부인 김레클 님에게 좋지 않은 비타민 c 와 비타민 e 가 다량 함유된 제품입니다. 김레클 님에게 추천하지 않습니다.',
-      carbonKcal: 95,
-      proteinKcal: 90,
-      lipidKcal: 5
-    }
-  ]
-}
+export const foodDetail =
+  {
+    name: "캔모아딸기 \r\n 아이스크림",
+    imageUrl: 'https://i.pinimg.com/originals/46/48/25/4648254906b1203aa8775a7f02f63473.jpg',
+    diagnosticMessage: '임산부인 김레클 님에게 좋지 않은 비타민 c 와 비타민 e 가 다량 함유된 제품입니다. 김레클 님에게 추천하지 않습니다.',
+    calories: 1200,
+    carbohydrates: 340,
+    proteins: 102,
+    fat: 201,
+    alternativeFoods: [
+      {
+        id: 1,
+        name: 'food',
+        imageUrl: 'http://data.whicdn.com/images/25342540/original.jpg',
+        alternativeReason: '철분과 비타민A 가 함유된\n HACCP 인증 식품인 요거트 그릭을\n 대체식품으로 추천합니다.'
+      },
+      {
+        id: 2,
+        name: 'food',
+        imageUrl: 'https://halachaaday.files.wordpress.com/2014/12/546566_food_dessert_yummy_sweet_cheris_chocolate_plate_2500x1923_www-gdefon-ru.jpg',
+        alternativeReason: '철분과 비타민A 가 함유된\n HACCP 인증 식품인 요거트 그릭을\n 대체식품으로 추천합니다.'
+      },
+      {
+        id: 3,
+        name: 'food',
+        imageUrl: 'https://happyspeedy.com/sites/default/files/styles/product_display_node_large/public/straw_shortcake_bar.jpg?itok=IRm7bcEb',
+        alternativeReason: '철분과 비타민A 가 함유된\n HACCP 인증 식품인 요거트 그릭을\n 대체식품으로 추천합니다.'
+      },
+      {
+        id: 4,
+        name: 'food',
+        imageUrl: 'https://happyspeedy.com/sites/default/files/styles/product_display_node_large/public/straw_shortcake_bar.jpg?itok=IRm7bcEb',
+        alternativeReason: '철분과 비타민A 가 함유된\n HACCP 인증 식품인 요거트 그릭을\n 대체식품으로 추천합니다.'
+      },
+      {
+        id: 5,
+        name: 'food',
+        imageUrl: 'https://happyspeedy.com/sites/default/files/styles/product_display_node_large/public/straw_shortcake_bar.jpg?itok=IRm7bcEb',
+        alternativeReason: '철분과 비타민A 가 함유된\n HACCP 인증 식품인 요거트 그릭을\n 대체식품으로 추천합니다.'
+      },
+      {
+        id: 6,
+        name: 'food',
+        imageUrl: 'https://happyspeedy.com/sites/default/files/styles/product_display_node_large/public/straw_shortcake_bar.jpg?itok=IRm7bcEb',
+        alternativeReason: '철분과 비타민A 가 함유된\n HACCP 인증 식품인 요거트 그릭을\n 대체식품으로 추천합니다.'
+      },
+      {
+        id: 7,
+        name: 'food',
+        imageUrl: 'https://halachaaday.files.wordpress.com/2014/12/546566_food_dessert_yummy_sweet_cheris_chocolate_plate_2500x1923_www-gdefon-ru.jpg',
+        alternativeReason: '철분과 비타민A 가 함유된\n HACCP 인증 식품인 요거트 그릭을\n 대체식품으로 추천합니다.'
+      },
+      {
+        id: 8,
+        name: 'food',
+        imageUrl: 'https://happyspeedy.com/sites/default/files/styles/product_display_node_large/public/straw_shortcake_bar.jpg?itok=IRm7bcEb',
+        alternativeReason: '철분과 비타민A 가 함유된\n HACCP 인증 식품인 요거트 그릭을\n 대체식품으로 추천합니다.'
+      },
+      {
+        id: 9,
+        name: 'food',
+        imageUrl: 'https://halachaaday.files.wordpress.com/2014/12/546566_food_dessert_yummy_sweet_cheris_chocolate_plate_2500x1923_www-gdefon-ru.jpg',
+        alternativeReason: '철분과 비타민A 가 함유된\n HACCP 인증 식품인 요거트 그릭을\n 대체식품으로 추천합니다.'
+      },
+      {
+        id: 10,
+        name: 'food',
+        imageUrl: 'http://data.whicdn.com/images/25342540/original.jpg',
+        alternativeReason: '철분과 비타민A 가 함유된\n HACCP 인증 식품인 요거트 그릭을\n 대체식품으로 추천합니다.'
+      }
+    ]
+  };
 
 export const removeFood = true;

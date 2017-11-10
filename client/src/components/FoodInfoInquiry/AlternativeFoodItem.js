@@ -1,34 +1,30 @@
-import React, {Component} from 'react';
+import React from 'react';
 import { PropTypes } from 'prop-types';
 
 import { Link } from 'react-router-dom';
 import { Image } from 'react-bootstrap';
 
 
-class AlternativeFoodItem extends Component {
-  render () {
-    const {food: { imgSrc, foodName, foodInfo, foodId }} = this.props;
+const AlternativeFoodItem = ({ food: { id, imageUrl, alternativeReason } }) => {
 
-    return(
-      <div className='food-slider__food'>
-        <Link to={{pathname: "/product/id/" + foodId}} >
-          <Image responsive src={imgSrc} alt={foodName}></Image>
-        </Link>
-        <div className="food-slider__info">{foodInfo}</div>
-      </div>
-    )
-  }
+  return (
+    <div className='food-slider__food'>
+      <Link to={{ pathname: "/product/id/" + id }}>
+        <Image responsive src={imageUrl} alt={id}></Image>
+      </Link>
+      <div className="food-slider__info">{alternativeReason}</div>
+    </div>
+  )
 }
 
 AlternativeFoodItem.propTypes = {
   food: PropTypes.shape({
-    foodId: PropTypes.oneOfType([
+    id: PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.string
     ]).isRequired,
-    imgSrc: PropTypes.string.isRequired,
-    foodName: PropTypes.string.isRequired,
-    foodInfo: PropTypes.string.isRequired
+    imageUrl: PropTypes.string.isRequired,
+    alternativeReason: PropTypes.string.isRequired
   })
 }
 

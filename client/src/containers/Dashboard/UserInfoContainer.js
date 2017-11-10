@@ -11,7 +11,6 @@ import FemaleIcon from '../../assets/images/icons/female.svg';
 export class UserInfoContainer extends Component {
   onRemove = (id) => {
     // TODO
-    console.log(id);
   };
 
   renderNoInfo = () => (

@@ -1,6 +1,10 @@
 .chat-box {
   background-color: $chatbox-background;
 
+  @include media(">tablet") {
+    z-index: 9999;
+  }
+
   .fa {
     color: $green;
   }
@@ -95,8 +99,10 @@
   }
 
   .chat-messages__form {
-    position: relative;
-    min-width: 280px;
+    position: fixed;
+    bottom: 10px;
+    max-width: 280px;
+    width: 100%;
     height: 42px;
     @include margin(0 5px);
     overflow: hidden;
@@ -104,6 +110,19 @@
     border: 1px solid $chat-box-input-border;
     box-shadow: inset 0 0 0 3px $chat-box-input-shadow;
     background-color: $white;
+
+    @include media("<=screen-xs") {
+      max-width: 375px;
+    }
+
+    @include media("<=iphone6") {
+      max-width: 335px;
+      left: 15px;
+    }
+
+    @include media("<=phone") {
+      max-width: 270px;
+    }
 
     .form-control {
       @include size(89% 30px);
@@ -143,13 +162,24 @@
       @include position(relative, null null null -15px);
       width: 290px;
     }
+
     .block__chat-messages {
       overflow-y: scroll;
       max-height: 315px;
-      @include media("<=screen-xs") {
-        max-height: 335px !important;
+      @include media("<=iphone6plus") {
+        max-height: 520px;
       }
+
+      @include media("<=iphone6") {
+        max-height: 465px;
+      }
+
+      @include media("<=phone") {
+        max-height: 370px;
+      }
+
     }
+
     .chat-messages__text{
       overflow: hidden;
       @include margin(15px 5px 15px 0);

@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FoodDetailCarousel component should render <FoodDetailCarousel /> components 1`] = `
+<div
+  className="alternative-food"
+>
+  <AlternativeFoodCarousel />
+</div>
+`;
