@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChatBoxContainer component should render <ChatBoxContainer /> components 1`] = `
+<div
+  className="chat-box"
+>
+  <div
+    className="block__chat-box"
+  >
+    <Button
+      active={false}
+      block={false}
+      bsClass="btn"
+      bsStyle="default"
+      className="btn-open"
+      disabled={false}
+      title="무엇을 도와드릴까요?"
+    >
+      무엇을 도와드릴까요? 
+      <i
+        aria-hidden="true"
+        className="fa fa-arrow-circle-right"
+      />
+    </Button>
+  </div>
+  <div
+    className="image-block user-icon"
+  >
+    <Image
+      alt="user-image"
+      bsClass="img"
+      circle={true}
+      responsive={false}
+      rounded={false}
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/220px-User_icon_2.svg.png"
+      thumbnail={false}
+    />
+  </div>
+</div>
+`;

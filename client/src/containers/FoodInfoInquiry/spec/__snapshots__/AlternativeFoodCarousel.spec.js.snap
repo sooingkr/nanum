@@ -1,0 +1,136 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AlternativeFoodCarousel component should render <AlternativeFoodCarousel /> components 1`] = `
+<Carousel
+  className="food-carousel__sliders"
+  settings={
+    Object {
+      "arrows": true,
+      "dots": false,
+      "infinite": true,
+      "responsive": Array [
+        Object {
+          "breakpoint": 1024,
+          "settings": Object {
+            "slidesToScroll": 1,
+            "slidesToShow": 1,
+          },
+        },
+        Object {
+          "breakpoint": 480,
+          "settings": Object {
+            "slidesToScroll": 1,
+            "slidesToShow": 1,
+          },
+        },
+      ],
+      "slidesToScroll": 2,
+      "slidesToShow": 2,
+      "speed": 500,
+    }
+  }
+>
+  <div
+    className="food-carousel__item"
+    key="0"
+  >
+    <AlternativeFoodItem
+      food={
+        Object {
+          "foodId": "1",
+          "foodInfo": "철분과 비타민A 가 함유된
+ HACCP 인증 식품인 요거트 그릭을
+ 대체식품으로 추천합니다.",
+          "foodName": "캔모아 딸기 아이스크림",
+          "imgSrc": "http://data.whicdn.com/images/25342540/original.jpg",
+        }
+      }
+    />
+  </div>
+  <div
+    className="food-carousel__item"
+    key="1"
+  >
+    <AlternativeFoodItem
+      food={
+        Object {
+          "foodId": "2",
+          "foodInfo": "철분과 비타민A 가 함유된
+ HACCP 인증 식품인 요거트 그릭을
+ 대체식품으로 추천합니다.",
+          "foodName": "캔모아 딸기 아이스크림",
+          "imgSrc": "https://halachaaday.files.wordpress.com/2014/12/546566_food_dessert_yummy_sweet_cheris_chocolate_plate_2500x1923_www-gdefon-ru.jpg",
+        }
+      }
+    />
+  </div>
+  <div
+    className="food-carousel__item"
+    key="2"
+  >
+    <AlternativeFoodItem
+      food={
+        Object {
+          "foodId": "3",
+          "foodInfo": "철분과 비타민A 가 함유된
+ HACCP 인증 식품인 요거트 그릭을
+ 대체식품으로 추천합니다.",
+          "foodName": "캔모아 딸기 아이스크림",
+          "imgSrc": "https://happyspeedy.com/sites/default/files/styles/product_display_node_large/public/straw_shortcake_bar.jpg?itok=IRm7bcEb",
+        }
+      }
+    />
+  </div>
+  <div
+    className="food-carousel__item"
+    key="3"
+  >
+    <AlternativeFoodItem
+      food={
+        Object {
+          "foodId": "4",
+          "foodInfo": "철분과 비타민A 가 함유된
+ HACCP 인증 식품인 요거트 그릭을
+ 대체식품으로 추천합니다.",
+          "foodName": "캔모아 딸기 아이스크림",
+          "imgSrc": "https://happyspeedy.com/sites/default/files/styles/product_display_node_large/public/straw_shortcake_bar.jpg?itok=IRm7bcEb",
+        }
+      }
+    />
+  </div>
+  <div
+    className="food-carousel__item"
+    key="4"
+  >
+    <AlternativeFoodItem
+      food={
+        Object {
+          "foodId": "5",
+          "foodInfo": "철분과 비타민A 가 함유된
+ HACCP 인증 식품인 요거트 그릭을
+ 대체식품으로 추천합니다.",
+          "foodName": "캔모아 딸기 아이스크림",
+          "imgSrc": "https://happyspeedy.com/sites/default/files/styles/product_display_node_large/public/straw_shortcake_bar.jpg?itok=IRm7bcEb",
+        }
+      }
+    />
+  </div>
+  <div
+    className="food-carousel__item"
+    key="5"
+  >
+    <AlternativeFoodItem
+      food={
+        Object {
+          "foodId": "6",
+          "foodInfo": "철분과 비타민A 가 함유된
+ HACCP 인증 식품인 요거트 그릭을
+ 대체식품으로 추천합니다.",
+          "foodName": "캔모아 딸기 아이스크림",
+          "imgSrc": "https://happyspeedy.com/sites/default/files/styles/product_display_node_large/public/straw_shortcake_bar.jpg?itok=IRm7bcEb",
+        }
+      }
+    />
+  </div>
+</Carousel>
+`;

@@ -5,7 +5,10 @@ import ChatBoxContainer from "./ChatBoxContainer";
 
 class Home extends Component {
   render() {
+    // const { userId, isAuthenticated  } = this.props;
+
     const userId = '1';
+
     const messages = [
       {
         id: '1',
@@ -38,6 +41,7 @@ class Home extends Component {
         admes: ''
       }
     ];
+
     return (
       <div className="home">
         <Grid>

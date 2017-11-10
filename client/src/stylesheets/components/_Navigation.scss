@@ -3,13 +3,28 @@ $nav-side-padding: 24px;
 
 .navigation__logo {
   height: 42px;
-  max-width: 130px;
+  max-width: 280px;
   display: inline-flex;
   justify-content: center;
   align-items: center;
 
+  @include media("<=desktop") {
+    max-width: 240px;
+  }
+
   .logo {
     margin-right: 10px;
+    .img-responsive {
+      display: inline-block;
+    }
+  }
+  .logo-circle {
+    width: 15%;
+    max-width: 40px;
+  }
+  .logo-fresh {
+    width: 85%;
+    max-width: 270px;
   }
 }
 
@@ -30,8 +45,13 @@ $nav-side-padding: 24px;
   width: 100%;
   left: 50%;
   transform: translate(-50%, $nav-top-padding);
+  .navbar-nav > li > a {
+    @include media("<=desktop") {
+      padding: 15px 8px;
+    }
+  }
 
-  // Always show nav for bigger screens
+    // Always show nav for bigger screens
   @include media(">=netbook") {
     width: auto;
     position: relative;

@@ -1,12 +1,16 @@
+/**
+ * Created by yenhua on 11/2/17.
+ */
 import axios from './config';
 import { API_BASE_PATH } from '../constants';
 
+// Get API from Mock Server
 const searchFood = async (query, page=0, size=20, sort='createTime,asc') => {
   let response;
-  
+
   try {
     response = await axios.get(`${API_BASE_PATH}/foods/search`, {
-      params: { 
+      params: {
         query,
         page,
         size,
@@ -22,7 +26,7 @@ const searchFood = async (query, page=0, size=20, sort='createTime,asc') => {
 
 const suggestFood = async (query) => {
   let results;
-  
+
   try {
     results = await axios.get(`${API_BASE_PATH}/foods/suggest`, {
       params: { query }
@@ -31,24 +35,19 @@ const suggestFood = async (query) => {
     throw new Error(`FoodService error - <searchFood()>: ${error}`);
   }
   return {
-    options: results.data.matches 
+    options: results.data.matches
   };
 }
 
-const foodDetail = async (foodid) => {
-  let result;
+const foodDetail = async (foodId) => {
 
   try {
-    result = await axios.get(`${API_BASE_PATH}/product/`, {
-      params: { foodid }
-    });
+    const result =  await axios.get(`${API_BASE_PATH}/foods/details/${foodId}`).then(res => res.data);
+    return result;
+
   } catch(error) {
     throw new Error(`FoodService error - <foodDetail()>: ${error}`);
   }
-
-  return {
-    foodDetail: result.data.foodDetail
-  };
 }
 
 const removeFoods = async (foods) => {
@@ -65,22 +64,9 @@ const removeFoods = async (foods) => {
   return result.data;
 };
 
-const getFoodDetail = async (id) => {
-  let result;
-
-  try {
-    result = await axios.get(`${API_BASE_PATH}/foods/details/${id}`);
-  } catch (error) {
-    throw new Error(`FoodService error - <getFoodDetail()>: ${error}`);
-  }
-
-  return result.data;
-};
-
 export default {
   searchFood,
   suggestFood,
   foodDetail,
   removeFoods,
-  getFoodDetail
 }
