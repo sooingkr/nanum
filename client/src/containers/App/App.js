@@ -29,7 +29,7 @@ export class App extends Component {
             <Switch>
               <Route exact path="/" component={ Home }/>
               <Route path="/foods/:id" component={FoodInfoInquiry}/>
-              <PrivateRoute isAuthenticated={isAuthenticated} path="/dashboard" component={ Dashboard }/>
+              <Route path="/dashboard" component={ Dashboard }/>
               <Route exact path="/login" component={Login}/>
               <Route exact path="/search" component={FoodSearch}/>
             </Switch>
