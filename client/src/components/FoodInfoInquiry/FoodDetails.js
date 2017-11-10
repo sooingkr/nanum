@@ -20,10 +20,15 @@ class FoodDetails extends Component {
     return (
       <div className="product__detail">
         <Row>
-          <Col xs={9} md={7}><h2 className="product__title">{name}</h2></Col>
-          <Col md={5} className="product__kcal">
+          <Col lg={7}>
+            <h2 className="product__title">
+              {name}
+              <div className="small__title visible-xs">캔모아</div>
+            </h2>
+          </Col>
+          <Col lg={5} className="product__kcal">
             <strong>{calories}</strong> kcal
-            <div className="small__title">캔모아</div>
+            <div className="small__title hidden-xs">캔모아</div>
           </Col>
         </Row>
         <Row>

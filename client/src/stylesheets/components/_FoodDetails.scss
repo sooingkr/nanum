@@ -51,10 +51,10 @@
     strong {
       font-family: $base-font-family;
     }
+  }
 
-    .small__title {
-      margin-top: 5px;
-    }
+  .small__title {
+    font-weight: bold;
   }
 
   .kcalLevel__title, .btn-view-haccp, .small__title {
@@ -106,7 +106,7 @@
       background-color: $white;
       font-weight: bold;
       @include media(">da") {
-        margin-top: 10px;
+        margin-top: 15px;
         margin-left: -21px;
       }
     }
@@ -116,6 +116,7 @@
       font-size: rem(16);
       color: $gray;
       margin-top: 20px;
+      margin-bottom: 20px;
 
       .arrow-icon {
         display: inline-block;
