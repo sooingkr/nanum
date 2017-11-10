@@ -8,14 +8,14 @@ import { LoginForm } from '../../components/Login/LoginForm';
 import { LoginDuck } from './LoginDuck';
 import { AppDuck } from '../App/AppDuck';
 
-export const Login = ({ login, isAuthenticated, history }) => {
+export const Login = ({login, history}) => {
   return (
     <div className="container">
       <div style={{height: '50px'}}>{' '}</div>
 
       <div className="row">
         <div className="col-md-4 col-sm-3"/>
-  
+
         <div className="col-md-4 col-sm-6 text-center">
           <h3>Welcome</h3>
           <hr/>

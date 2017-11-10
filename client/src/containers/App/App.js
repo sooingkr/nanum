@@ -12,6 +12,7 @@ import Login from '../Login/Login.js';
 import FoodSearch from '../FoodSearch/FoodSearch';
 import { AppDuck } from './AppDuck';
 import {ErrorModal} from '../../components/Common/ErrorModal';
+import PrivateRoute from '../../components/Common/PrivateRoute';
 
 export class App extends Component {
   componentWillMount() {
@@ -28,7 +29,7 @@ export class App extends Component {
               <Route exact path="/" component={ Home }/>
               <Route path="/product/:id" component={FoodDetailsContainer}/>
               <Route path="/dashboard" component={ Dashboard }/>
-              <Route exact path="/login" component={Login}/>
+              <Route path="/login" component={ Login }/>
               <Route exact path="/search" component={FoodSearch}/>
             </Switch>
           </main>

@@ -17,6 +17,6 @@ export default function initializeMockAPI(client, delay=500) {
   mock.onGet(`${API_BASE_PATH}/foods/search`).reply(200, searchFood);
   mock.onGet(`${API_BASE_PATH}/foods/suggest`).reply(200, suggestFood);
   mock.onGet(`${API_BASE_PATH}/product`).reply(200, foodDetail);
-  mock.onPost(`${API_BASE_PATH}/foods/intake/delete`).reply(200, removeFood);
+  mock.onPost(`${API_BASE_PATH}/foods/intake/delete`).reply(200, removeFood)
   return mock;
 }
