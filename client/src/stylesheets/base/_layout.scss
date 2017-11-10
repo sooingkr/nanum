@@ -13,3 +13,8 @@ body {
 *::after {
   box-sizing: inherit;
 }
+
+// delete contents min-height
+#root.contents {
+  min-height: initial;
+}
