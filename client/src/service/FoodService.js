@@ -2,7 +2,6 @@
  * Created by yenhua on 11/2/17.
  */
 import axios from './config';
-import { API_BASE_PATH } from '../constants';
 
 // Get API from Mock Server
 const searchFood = async (query, page=0, size=20, sort='createTime,asc') => {
