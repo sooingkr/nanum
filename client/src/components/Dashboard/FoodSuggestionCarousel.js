@@ -55,6 +55,14 @@ const carouselSettings = {
         slidesToShow: 4,
         arrows: false,
       }
+    },
+    {
+      breakpoint: 2400,
+      settings: {
+        ...basicCarouselSettings,
+        slidesToShow: 6,
+        arrows: false,
+      }
     }
   ]
 };
