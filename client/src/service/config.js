@@ -9,7 +9,7 @@ const _baseUrl = API_BASE_PATH;
 const client = axios.create({
   baseURL: _baseUrl,
   timeout: 10 * 60 * 60,
-  withCredentials: true
+  withCredentials: true,
 });
 
 const handleError = error => {
