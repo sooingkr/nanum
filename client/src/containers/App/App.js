@@ -20,7 +20,7 @@ export class App extends Component {
   }
 
   render() {
-    const { isAuthenticated, initializeError } = this.props;
+    const { initializeError } = this.props;
     return (
       <Router>
         <div className="App" id="nanum">
@@ -52,7 +52,6 @@ const mapStateToProps = (state) => {
   const appState = state[AppDuck.storeName];
 
   return {
-    isAuthenticated: appState.isAuthenticated,
     initializeError: appState.initializeError,
   }
 };

@@ -4,22 +4,26 @@
 import { createAction, createReducer } from '../../utils/store';
 import axios from '../../service/config';
 
-// import service
-
 export const storeName = 'Login';
 
-// define action type
 export const actionTypes = {
-  login: storeName + '/login',
+  login: storeName + '/LOGIN',
   logout: storeName + '/LOGOUT',
+  loginSuccess: storeName + '/LOGIN_SUCCESS',
+  loginFail: storeName + '/LOGIN_FAIL',
 };
+
 
 // define thunks
 export const login = (formData, history) => async dispatch => {
   try {
     const res = await axios.post(`/authenticate`, formData);
-    dispatch(createAction(actionTypes.login, res.data));
 
+    if (res.data) {
+      const loginInfo = {isAuthenticated: res.data, userInfo: formData};
+      dispatch(createAction(actionTypes.login, loginInfo));
+      history.push('/dashboard');
+    }
   } catch (err) {
     console.error('===== error while login:', err);
   }
@@ -31,9 +35,14 @@ export const actions = {
 };
 
 export const initialState = {
+  isAuthenticated: false,
+  userInfo: {}
 };
 
 const reducer = createReducer(initialState, {
+  [actionTypes.login]: (state, payload) => {
+    return {...state, ...payload};
+  }
 });
 export const LoginDuck = {
   storeName,
