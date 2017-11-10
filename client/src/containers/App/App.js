@@ -27,7 +27,7 @@ export class App extends Component {
           <main>
             <Switch>
               <Route exact path="/" component={ Home }/>
-              <Route path="/products/:id" component={FoodInfoInquiry}/>
+              <Route path="/foods/:id" component={FoodInfoInquiry}/>
               <PrivateRoute path="/dashboard" component={ Dashboard }/>
               <Route exact path="/login" component={Login}/>
               <Route exact path="/search" component={FoodSearch}/>
