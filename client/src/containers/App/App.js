@@ -9,10 +9,11 @@ import Home from "../Home/Home";
 import Dashboard from "../Dashboard/Dashboard";
 import FoodInfoInquiry from "../FoodInfoInquiry/FoodInfoInquiry";
 import PrivateRoute from '../../components/Common/PrivateRoute';
+import { ErrorModal } from '../../components/Common/ErrorModal';
 import Login from '../Login/Login';
 import FoodSearch from '../FoodSearch/FoodSearch';
 import { AppDuck } from './AppDuck';
-import {ErrorModal} from '../../components/Common/ErrorModal';
+import { LoginDuck } from '../Login/LoginDuck';
 
 export class App extends Component {
   componentWillMount() {
@@ -20,7 +21,7 @@ export class App extends Component {
   }
 
   render() {
-    const { initializeError } = this.props;
+    const { isAuthenticated, initializeError } = this.props;
     return (
       <Router>
         <div className="App" id="nanum">
@@ -28,7 +29,7 @@ export class App extends Component {
             <Switch>
               <Route exact path="/" component={ Home }/>
               <Route path="/foods/:id" component={FoodInfoInquiry}/>
-              <PrivateRoute path="/dashboard" component={ Dashboard }/>
+              <PrivateRoute isAuthenticated={isAuthenticated} path="/dashboard" component={ Dashboard }/>
               <Route exact path="/login" component={Login}/>
               <Route exact path="/search" component={FoodSearch}/>
             </Switch>

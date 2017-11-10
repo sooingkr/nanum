@@ -7,41 +7,76 @@ import axios from '../../service/config';
 export const storeName = 'Login';
 
 export const actionTypes = {
-  login: storeName + '/LOGIN',
+  loginRequest: storeName + '/LOGIN_REQUEST',
   logout: storeName + '/LOGOUT',
   loginSuccess: storeName + '/LOGIN_SUCCESS',
   loginFail: storeName + '/LOGIN_FAIL',
 };
 
+// Define actions
+const loginRequest = () => createAction(actionTypes.loginRequest);
+const logout = () => createAction(actionTypes.logout);
+const loginSuccess = (loginInfo) => createAction(actionTypes.loginSuccess, loginInfo);
+const loginFail = (error) => createAction(actionTypes.loginFail, {error});
 
-// define thunks
-export const login = (formData, history) => async dispatch => {
+// Define thunks
+const login = (formData, history) => async dispatch => {
+  dispatch(loginRequest());
   try {
     const res = await axios.post(`/authenticate`, formData);
-
-    if (res.data) {
-      const loginInfo = {isAuthenticated: res.data, userInfo: formData};
-      dispatch(createAction(actionTypes.login, loginInfo));
+    console.log(res);
+    const isAuthenticated = res.data;
+    if (isAuthenticated) {
+      dispatch(loginSuccess({
+        isAuthenticated, 
+        userInfo: formData
+      }));
       history.push('/dashboard');
     }
   } catch (err) {
-    console.error('===== error while login:', err);
+    dispatch(loginFail(err));
   }
 };
 
 // conveniently export actions
 export const actions = {
   login,
+  logout,
+  loginRequest,
+  loginSuccess,
+  loginFail
 };
 
 export const initialState = {
   isAuthenticated: false,
-  userInfo: {}
+  userInfo: {},
+  error: null,
+  isFetching: false,
 };
 
 const reducer = createReducer(initialState, {
-  [actionTypes.login]: (state, payload) => {
-    return {...state, ...payload};
+  [actionTypes.loginRequest]: (state) => {
+    return {
+      ...state, 
+      isFetching: true,
+    };
+  },
+  [actionTypes.loginFail]: (state, payload) => {
+    return {
+      ...state,
+      isAuthenticated: false,
+      error: payload.error,
+      isFetching: false,
+    }
+  },
+  [actionTypes.loginSuccess]: (state, payload) => {
+    return {
+      ...state,
+      error: null,
+      isFetching: false,
+      isAuthenticated: payload.isAuthenticated,
+      userInfo: payload.userInfo,
+    }
   }
 });
 export const LoginDuck = {

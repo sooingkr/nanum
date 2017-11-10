@@ -1,10 +1,11 @@
 /**
  * Created by manhvu on 9/28/17.
  */
+import moment from 'moment';
+import { union, reduce } from 'lodash';
 import { createAction, createReducer } from '../../utils/store';
 import UserService from '../../service/UserService';
 import FoodService from '../../service/FoodService';
-import moment from 'moment';
 
 const storeName = 'Dashboard';
 
@@ -50,9 +51,18 @@ const initialize = (queryTime) => async (dispatch, getState) => {
 
   dispatch(pickQueryTime(queryTime));
 
-  const tracking = await UserService.getTrackingData(queryTime);
+  const tracking = await UserService.getDailyReport(queryTime);
+  const userInfo = await UserService.getUserInfo();
+  const userDiseases = await UserService.getUserDiseases();
+
   dispatch(createAction(actionTypes.initialize, { 
     ...tracking,
+    currentUser: { 
+      ...userInfo,
+      diseases: [
+        ...userDiseases
+      ]
+    },
   }));
 };
 
@@ -107,10 +117,12 @@ export const initialState = {
   breakfast: [],
   lunch: [],
   dinner: [],
-  calories: {},
+  caloriesTarget: null,
+  caloriesCurrent: null,
   showDialog: false,
   whichDialog: "",
-  foodSuggestions: {},
+  foodSuggestions: [],
+  reason: "",
   isLoading: true,
   isEditMode: false,
   toBeRemoved: {},
@@ -119,16 +131,22 @@ export const initialState = {
 // Dashboard reducer
 const reducer = createReducer(initialState, {
   [actionTypes.initialize]: (state, payload) => {
-    // TODO: normalize data
+    const { breakfast, lunch, dinner } = payload;
+    const caloriesCurrent = reduce(union(breakfast, lunch, dinner), (sum, intake) => {
+      return sum + intake.foodInfo.calories;
+    }, 0);
+
     return {
       ...state,
-      currentUser: payload.user,
       alert: payload.alert,
-      breakfast: payload.foodIntakeTracking.when.breakfast,
-      lunch: payload.foodIntakeTracking.when.lunch,
-      dinner: payload.foodIntakeTracking.when.dinner,
-      calories: payload.foodIntakeTracking.calories,
+      currentUser: payload.currentUser,
+      breakfast,
+      lunch,
+      dinner,
+      caloriesTarget: payload.caloriesTarget,
+      caloriesCurrent,
       foodSuggestions: payload.foodSuggestions,
+      reason: payload.reason,
       isLoading: false,
     };
   },
@@ -202,7 +220,8 @@ const reducer = createReducer(initialState, {
 // Selectors
 const getCurrentUser = (state) => state[storeName].currentUser;
 const getFoodIntakeTracking = (state) => ({
-  calories: state[storeName].calories,
+  caloriesTarget: state[storeName].caloriesTarget,
+  caloriesCurrent: state[storeName].caloriesCurrent,
   when: {
     breakfast: state[storeName].breakfast,
     lunch: state[storeName].lunch,
@@ -213,6 +232,7 @@ const getShowDialog = (state) => state[storeName].showDialog;
 const getWhichDialog = (state) => state[storeName].whichDialog;
 const getFoodsWhen = (state, when) => state[when];
 const getFoodSuggestions = (state) => state[storeName].foodSuggestions;
+const getReason = (state) => state[storeName].reason;
 const getAlert = (state) => state[storeName].alert;
 const getTime = (state) => state[storeName].queryTime;
 const getLoadingStatus = (state) => state[storeName].isLoading;
@@ -234,4 +254,5 @@ export const selectors = {
   getTime,
   getLoadingStatus,
   getEditMode,
+  getReason,
 }

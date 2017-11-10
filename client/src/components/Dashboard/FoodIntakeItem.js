@@ -4,10 +4,10 @@ import { Media } from 'react-bootstrap';
 
 const FoodIntakeItem = ({ 
   name, 
-  foodId, 
+  intakeId, 
   mealTime, 
   imageUrl, 
-  quantity, 
+  servingSize, 
   isEditMode, 
   action 
 }) => {
@@ -16,7 +16,7 @@ const FoodIntakeItem = ({
     : 'food-intake-item';
 
   return (
-    <div className={classes} onClick={() => action(foodId, mealTime)}>
+    <div className={classes} onClick={() => action(intakeId, mealTime)}>
       <Media>
         <Media.Left>
           <figure className="food-intake-item__image">
@@ -25,7 +25,7 @@ const FoodIntakeItem = ({
         </Media.Left>
         <Media.Body>
           <Media.Heading className="food-intake-item__name">{name}</Media.Heading>
-          <p className="food-intake-item__quantity">{quantity}</p>
+          <p className="food-intake-item__quantity">{servingSize}</p>
         </Media.Body>
       </Media>
     </div>
@@ -33,9 +33,11 @@ const FoodIntakeItem = ({
 }
 
 FoodIntakeItem.propTypes = {
-  name: PropTypes.string.isRequired,
-  imageUrl: PropTypes.string.isRequired,
-  quantity: PropTypes.string.isRequired,
+  intakeId: PropTypes.string,
+  name: PropTypes.string,
+  imageUrl: PropTypes.string,
+  quantity: PropTypes.number,
+  servingSize: PropTypes.string,
   isEditMode: PropTypes.bool,
 }
 

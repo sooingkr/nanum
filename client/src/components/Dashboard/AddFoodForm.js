@@ -6,6 +6,7 @@ import FoodSelectField from './FoodSelectField';
 
 const AddFoodFormView = ({ handleSubmit, pristine, reset, submitting }) => (
   <Form horizontal onSubmit={handleSubmit}>
+    <legend>무엇을 드셨나요?</legend>
     <FoodSelectField />
     <Button bsStyle="default" 
             type="submit" 

@@ -27,10 +27,11 @@ class FoodIntakeList extends Component {
             <FoodIntakeItem 
               key={food.id} 
               name={food.name}
-              foodId={food.id}
+              intakeId={food.id}
               mealTime={mealTime}
-              imageUrl={food.imageUrl}
+              imageUrl={food.foodInfo.imageUrl}
               quantity={food.quantity}
+              servingSize={food.servingSize}
               isEditMode={isEditMode}
               action={foodItemAction}
             />
@@ -49,12 +50,7 @@ class FoodIntakeList extends Component {
 
 FoodIntakeList.propTypes = {
   mealTime: PropTypes.string.isRequired,
-  foods: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    imageUrl: PropTypes.string.isRequired,
-    quantity: PropTypes.string.isRequired,
-  })).isRequired,
+  foods: PropTypes.arrayOf(PropTypes.object),
   isEditMode: PropTypes.bool,
   openDialog: PropTypes.func,
   markRemoveFood: PropTypes.func,

@@ -78,18 +78,15 @@ export class FoodIntakeTrackingContainer extends Component {
       return <div/>;
     }
 
-    const { calories, when } = foodIntakeTracking;
-    if(isEmpty(calories) || isEmpty(when)) {
-      return <div/>;
-    }
-    
+    const { caloriesTarget, caloriesCurrent, when } = foodIntakeTracking;
+
     return (
       <div className="food-intake" >
         {this.renderEditButtons()}
 
         <FoodIntakeProgress 
-          max={calories.target}
-          current={calories.current}
+          max={caloriesTarget}
+          current={caloriesCurrent}
         />
 
         <div className="food-intake__meals">
@@ -123,10 +120,8 @@ export class FoodIntakeTrackingContainer extends Component {
 
 FoodIntakeTrackingContainer.propTypes = {
   foodIntakeTracking: PropTypes.shape({
-    calories: PropTypes.shape({
-      target: PropTypes.number,
-      current: PropTypes.number,
-    }),
+    caloriesTarget: PropTypes.number,
+    caloriesCurrent: PropTypes.number,
     when: PropTypes.shape({
       breakfast: PropTypes.array,
       lunch: PropTypes.array,

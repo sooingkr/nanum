@@ -8,15 +8,15 @@ import { selectors } from './DashboardDuck';
 
 export class FoodSuggestionContainer extends Component {
   render() {
-    const { foodSuggestions } = this.props;
+    const { reason, foodSuggestions } = this.props;
 
     return (
       <div className="food-suggestions">
         <div className="food-suggestions__reason">
-          <p>{foodSuggestions.reason}</p>
+          <p>{reason}</p>
         </div>
         <div className="food-suggestions__carousel">
-          <FoodSuggestionCarousel data={foodSuggestions.foods}/>
+          <FoodSuggestionCarousel data={foodSuggestions}/>
         </div>
       </div>
     );
@@ -30,14 +30,13 @@ const noInfoCondition = (props) => {
 FoodSuggestionContainer = NoInfo(noInfoCondition)(FoodSuggestionContainer);
 
 FoodSuggestionContainer.propTypes = {
-  foodSuggestions: PropTypes.shape({
-    foods: PropTypes.array,
-    reason: PropTypes.string,
-  }).isRequired,
+  foodSuggestions: PropTypes.arrayOf(PropTypes.object),
+  reason: PropTypes.string
 }
 
 const mapStateToProps = (state) => ({
   foodSuggestions: selectors.getFoodSuggestions(state),
+  reason: selectors.getReason(state),
 });
 
 export default connect(mapStateToProps)(FoodSuggestionContainer);
