@@ -56,14 +56,8 @@ $hover-height: 400px;
     transition: background-color .3s ease;
   }
 
-  &:hover { 
-    .search-result-item__image img {
-      max-height: $hover-height;
-    }
-    
-    .search-result-item__button {
-      display: inline-block;
-    }
+  &:hover .search-result-item__button {
+    display: inline-block;
   }
 
   &:hover:after {
