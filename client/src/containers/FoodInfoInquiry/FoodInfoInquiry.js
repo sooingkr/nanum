@@ -13,7 +13,7 @@ class FoodInfoInquiry extends Component {
 
   componentWillMount() {
     const { getFoodDetailData, match } = this.props;
-    const foodDetail = getFoodDetailData(match.params.id);
+    getFoodDetailData(match.params.id);
   }
 
   render() {

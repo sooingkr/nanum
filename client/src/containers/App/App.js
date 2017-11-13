@@ -28,8 +28,8 @@ export class App extends Component {
           <main>
             <Switch>
               <Route exact path="/" component={ Home }/>
-              <Route path="/products/:id" component={FoodInfoInquiry}/>
-              <PrivateRoute isAuthenticated={isAuthenticated} path="/dashboard" component={ Dashboard }/>
+              <Route path="/foods/:id" component={FoodInfoInquiry}/>
+              <Route path="/dashboard" component={ Dashboard }/>
               <Route exact path="/login" component={Login}/>
               <Route exact path="/search" component={FoodSearch}/>
             </Switch>
@@ -51,11 +51,9 @@ export class App extends Component {
 
 const mapStateToProps = (state) => {
   const appState = state[AppDuck.storeName];
-  const loginState = state[LoginDuck.storeName];
 
   return {
     initializeError: appState.initializeError,
-    isAuthenticated: loginState.isAuthenticated,
   }
 };
 
