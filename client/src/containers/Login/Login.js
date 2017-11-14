@@ -27,7 +27,7 @@ export const Login = ({login, history}) => {
 };
 
 const mapStateToProps = (state) => ({
-  isAuthenticated: state[AppDuck.storeName].isAuthenticated,
+  isAuthenticated: state[AppDuck.storeName].isAuthenticated
 });
 
 const mapDispatchToProps = {

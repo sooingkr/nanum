@@ -38,7 +38,10 @@ const validate = values => {
 
 export const LoginForm = reduxForm({
   form: 'LoginForm',
-  validate
+  validate,
+  initialValues: {
+    memberGender: 'MALE'
+  }
 })(LoginFormView);
 
 LoginForm.propTypes = {
