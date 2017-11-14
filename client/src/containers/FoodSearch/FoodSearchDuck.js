@@ -52,7 +52,7 @@ const searchFood = (foodQuery, page) => async (dispatch, getState) => {
     dispatch(failSearch(error));
   }
 
-  if (searchResponse.results.length === 0) {
+  if (searchResponse.content.length === 0) {
     // No results, reject
     dispatch(rejectSearch);
   } else {
@@ -131,11 +131,11 @@ const reducer = createReducer(initialState, {
       list: {
         hits: [ 
           ...state.list.hits, 
-          ...payload.results 
+          ...payload.content 
         ],
         page: state.list.page + 1,
-        hasNextPage: payload.hasNextPage,
-        total: payload.total,
+        hasNextPage: !payload.last,
+        total: payload.totalElements,
       },
     }
   }
