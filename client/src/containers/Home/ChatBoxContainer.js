@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { PropTypes } from "prop-types";
 import { isEmpty } from "lodash";
 
-import {Collapse, Well } from "react-bootstrap";
+import { Collapse, Well } from "react-bootstrap";
 
 import TabComponent from "../../components/Common/ChatBox/ChatTabs";
 
@@ -27,16 +27,12 @@ export class ChatBoxContainer extends Component {
       openChatBox: openChatBox,
       typingMessage: typingMessage,
       isTyping: this.props.isTyping
-
     }
 
     return (
       <div className="chat-box">
 
         <div className="block__chat-box">
-          {/*<Button className="btn-open" title="무엇을 도와드릴까요?" onClick={toggleChatBox}>*/}
-            {/*무엇을 도와드릴까요? <i className="fa fa-arrow-circle-right" aria-hidden="true"></i>*/}
-          {/*</Button>*/}
 
           {!isEmpty(userId) &&
             <Collapse in={openChatBox}>
@@ -45,15 +41,9 @@ export class ChatBoxContainer extends Component {
                   <TabComponent tabData={tabData}></TabComponent>
                 </Well>
               </div>
-
             </Collapse>
           }
         </div>
-        {/*<div className="image-block user-icon">*/}
-          {/*<Image*/}
-            {/*src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/220px-User_icon_2.svg.png" alt="user-image"*/}
-            {/*circle/>*/}
-        {/*</div>*/}
       </div>
     );
   }
