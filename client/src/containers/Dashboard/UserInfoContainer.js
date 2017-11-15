@@ -31,17 +31,16 @@ export class UserInfoContainer extends Component {
       return (<div/>);
     }
 
-    const { male, name, interests, diseases } = user;
+    const { gender, name, diseases } = user;
 
-    // This will be replaced by icon url later
-    const genderIcon = male ? MaleIcon : FemaleIcon;
-    const shouldShowTags = interests.length > 0 || diseases.length > 0;
+    const genderIcon = isMale(gender) ? MaleIcon : FemaleIcon;
+    const shouldShowTags = diseases.length > 0;
     return (
         <div className="user-info">
           <div className="user-info__heading">
             <div className="user-info__name">
               <h2>{name} 님 </h2>
-              <img src={genderIcon} alt={male ? 'male' : 'female'} />
+              <img src={genderIcon} alt={gender} />
             </div>
             
             <Link to="/user/edit" 
@@ -55,20 +54,11 @@ export class UserInfoContainer extends Component {
           { shouldShowTags &&
             <div className="user-info__details">
               { 
-                interests.map(interest => (
-                <TagBox 
-                  key={interest.id} 
-                  id={interest.id}
-                  text={interest.text} 
-                  onRemove={this.onRemove}
-                />
-              ))}
-              { 
                 diseases.map(disease => (
                 <TagBox 
                   key={disease.id}
                   id={disease.id}
-                  text={disease.text} 
+                  text={disease.name} 
                   onRemove={this.onRemove}
                 />
               ))}
@@ -83,13 +73,9 @@ UserInfoContainer.propTypes = {
   user: PropTypes.shape({
     male: PropTypes.bool,
     name: PropTypes.string,
-    interests: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.string,
-      text: PropTypes.string,
-    })),
     diseases: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.string,
-      text: PropTypes.string,
+      name: PropTypes.string,
     })),
   }).isRequired,
 };
@@ -99,3 +85,7 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(UserInfoContainer);
+
+function isMale(gender) {
+  return gender === 'MALE';
+}

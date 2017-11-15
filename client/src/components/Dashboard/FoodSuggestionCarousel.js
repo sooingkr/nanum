@@ -44,7 +44,7 @@ const carouselSettings = {
       breakpoint: 1200,
       settings: {
         ...basicCarouselSettings,
-        slidesToShow: 4,
+        slidesToShow: 3,
         arrows: false,
       }
     },
@@ -55,6 +55,14 @@ const carouselSettings = {
         slidesToShow: 4,
         arrows: false,
       }
+    },
+    {
+      breakpoint: 2400,
+      settings: {
+        ...basicCarouselSettings,
+        slidesToShow: 6,
+        arrows: false,
+      }
     }
   ]
 };
@@ -62,7 +70,7 @@ const carouselSettings = {
 const FoodSuggestionCarousel = (props) => (
   <Carousel settings={carouselSettings}  className="food-suggestion-slider">
     { props.data.map(foodItem => (
-      <div key={foodItem.id} className="food-suggestion">
+      <div key={foodItem.globalId} className="food-suggestion">
         <FoodSuggestionItem data={foodItem}/>
       </div>
     ))}
@@ -71,8 +79,8 @@ const FoodSuggestionCarousel = (props) => (
 
 FoodSuggestionCarousel.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    thumbUrl: PropTypes.string.isRequired,
+    globalId: PropTypes.string.isRequired,
+    imageUrl: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
   }))
 }

@@ -1,10 +1,11 @@
 /**
  * Created by manhvu on 9/28/17.
  */
+import moment from 'moment';
+import { union, reduce } from 'lodash';
 import { createAction, createReducer } from '../../utils/store';
 import UserService from '../../service/UserService';
 import FoodService from '../../service/FoodService';
-import moment from 'moment';
 
 const storeName = 'Dashboard';
 
@@ -14,8 +15,8 @@ export const actionTypes = {
   openDialog: storeName + '/OPEN_DIALOG',
   closeDialog: storeName + '/CLOSE_DIALOG',
   addFood: storeName + '/ADD_FOOD',
+  clearAddFood: storeName + '/CLEAR_ADD_FOOD',
   removeFoods: storeName + '/REMOVE_FOODS',
-  abortAddFood: storeName + '/ABORT_ADD_FOOD',
   pickQueryTime: storeName + '/PICK_QUERY_TIME',
   enterEdit: storeName + '/ENTER_EDIT',
   quitEdit: storeName + '/QUIT_EDIT',
@@ -23,6 +24,7 @@ export const actionTypes = {
   clearRemoveFood: storeName + '/CLEAR_REMOVE_FOOD',
   succeedRemoveFood: storeName + '/SUCCEED_REMOVE_FOOD',
   failRemoveFood: storeName + '/FAIL_REMOVE_FOOD',
+  submitFoods: storeName + '/SUBMIT_FOODS',
 };
 
 // Actions creators 
@@ -40,6 +42,10 @@ const markRemoveFood = (foodId, mealTime) => createAction(actionTypes.markRemove
     mealTime,
   },
 });
+const addFood = (food, mealTime) => dispatch => {
+  dispatch(createAction(actionTypes.addFood, {food, mealTime}))
+};
+const clearAddFood = () => createAction(actionTypes.clearAddFood);
 
 // Thunks
 const initialize = (queryTime) => async (dispatch, getState) => {
@@ -50,28 +56,20 @@ const initialize = (queryTime) => async (dispatch, getState) => {
 
   dispatch(pickQueryTime(queryTime));
 
-  const tracking = await UserService.getTrackingData(queryTime);
+  const tracking = await UserService.getDailyReport(queryTime);
+  const userInfo = await UserService.getUserInfo();
+  const userDiseases = await UserService.getUserDiseases();
+
   dispatch(createAction(actionTypes.initialize, { 
     ...tracking,
+    currentUser: { 
+      ...userInfo,
+      diseases: [
+        ...userDiseases
+      ]
+    },
   }));
 };
-
-const addFood = (foodData) => (dispatch, getState) => {
-  // TODO: actually submit food data addition to UserService
-  const state = getState()[storeName];
-
-  // Only add food if it is below maximum calories
-  if(foodData.foodDetails.calories + state.calories.current > state.calories.target) {
-    dispatch(createAction(actionTypes.abortAddFood));
-  }
-
-  dispatch(createAction(actionTypes.addFood, {
-    foodData
-  }));
-
-  // Refetch the diagnostic
-  dispatch(initialize(state.queryTime));
-}
 
 const removeFoods = () => async (dispatch, getState) => {
   const state = getState()[storeName];
@@ -85,18 +83,24 @@ const removeFoods = () => async (dispatch, getState) => {
   }
 }
 
+const submitFoods = () => async (dispatch) => {
+  dispatch(createAction(actionTypes.submitFoods));
+}
+
 // conveniently export actions
 const actions = {
   initialize,
   openDialog,
   closeDialog,
   addFood,
+  clearAddFood,
   enterEdit,
   quitEdit,
   removeFoods,
   markRemoveFood,
   clearRemoveFood,
   failRemoveFood,
+  submitFoods,
 };
 
 // Initial Dashboard state tree
@@ -107,28 +111,40 @@ export const initialState = {
   breakfast: [],
   lunch: [],
   dinner: [],
-  calories: {},
+  caloriesTarget: null,
+  caloriesCurrent: null,
   showDialog: false,
   whichDialog: "",
-  foodSuggestions: {},
+  foodSuggestions: [],
+  reason: "",
   isLoading: true,
   isEditMode: false,
   toBeRemoved: {},
+  toBeAdded: {
+    mealTime: '',
+    foods: [],
+  },
 };
 
 // Dashboard reducer
 const reducer = createReducer(initialState, {
   [actionTypes.initialize]: (state, payload) => {
-    // TODO: normalize data
+    const { breakfast, lunch, dinner } = payload;
+    const caloriesCurrent = reduce(union(breakfast, lunch, dinner), (sum, intake) => {
+      return sum + intake.foodInfo.calories;
+    }, 0);
+
     return {
       ...state,
-      currentUser: payload.user,
       alert: payload.alert,
-      breakfast: payload.foodIntakeTracking.when.breakfast,
-      lunch: payload.foodIntakeTracking.when.lunch,
-      dinner: payload.foodIntakeTracking.when.dinner,
-      calories: payload.foodIntakeTracking.calories,
+      currentUser: payload.currentUser,
+      breakfast,
+      lunch,
+      dinner,
+      caloriesTarget: payload.caloriesTarget,
+      caloriesCurrent,
       foodSuggestions: payload.foodSuggestions,
+      reason: payload.reason,
       isLoading: false,
     };
   },
@@ -149,19 +165,28 @@ const reducer = createReducer(initialState, {
     return {
       ...state,
       showDialog: false,
+      whichDialog: "",
     }
   },
   [actionTypes.addFood]: (state, payload) => {
     return {
       ...state,
-      calories: {
-        ...state.calories,
-        current: state.calories.current + payload.foodData.foodDetails.calories,
+      toBeAdded: {
+        mealTime: payload.mealTime,
+        foods: [
+          ...state.toBeAdded.foods,
+          payload.food,
+        ]        
+      }
+    }
+  },
+  [actionTypes.clearAddFood]: (state) => {
+    return {
+      ...state,
+      toBeAdded: {
+        mealTime: "",
+        foods: [],
       },
-      [payload.foodData.mealTime]: [
-        ...getFoodsWhen(state, payload.foodData.mealTime),
-        { ...payload.foodData.foodDetails },
-      ]
     }
   },
   [actionTypes.enterEdit]: (state) => {
@@ -202,7 +227,8 @@ const reducer = createReducer(initialState, {
 // Selectors
 const getCurrentUser = (state) => state[storeName].currentUser;
 const getFoodIntakeTracking = (state) => ({
-  calories: state[storeName].calories,
+  caloriesTarget: state[storeName].caloriesTarget,
+  caloriesCurrent: state[storeName].caloriesCurrent,
   when: {
     breakfast: state[storeName].breakfast,
     lunch: state[storeName].lunch,
@@ -211,8 +237,8 @@ const getFoodIntakeTracking = (state) => ({
 });
 const getShowDialog = (state) => state[storeName].showDialog;
 const getWhichDialog = (state) => state[storeName].whichDialog;
-const getFoodsWhen = (state, when) => state[when];
 const getFoodSuggestions = (state) => state[storeName].foodSuggestions;
+const getReason = (state) => state[storeName].reason;
 const getAlert = (state) => state[storeName].alert;
 const getTime = (state) => state[storeName].queryTime;
 const getLoadingStatus = (state) => state[storeName].isLoading;
@@ -234,4 +260,5 @@ export const selectors = {
   getTime,
   getLoadingStatus,
   getEditMode,
+  getReason,
 }

@@ -6,7 +6,6 @@ const storeName = 'App';
 export const actionTypes = {
   checkTokenValid: storeName + '/CHECK_TOKEN_VALID',
   failTokenValid: storeName + '/FAIL_TOKEN_VALID',
-  succeedAuthenticate: storeName + '/SUCCEED_AUTHENTICATE',
   toggleModal: storeName + '/TOGGLE_MODAL',
   failInitialize: storeName + '/FAIL_INITIALIZE',
   clearInitializeError: storeName + '/CLEAR_INITIALIZE_ERROR',
@@ -14,7 +13,6 @@ export const actionTypes = {
 
 // define actions
 const checkTokenValid = () => createAction(actionTypes.checkTokenValid);
-const succeedAuthenticate = () => createAction(actionTypes.succeedAuthenticate);
 const failTokenValid = () => createAction(actionTypes.failTokenValid);
 
 // define thunks
@@ -29,14 +27,12 @@ export const toggleModal = modalId => dispatch => {
 // conveniently export actions
 export const actions = {
   checkTokenValid,
-  succeedAuthenticate,
   failTokenValid,
   initialize,
   toggleModal,
 };
 
 export const initialState = {
-  isAuthenticated: false,
   openModalId: '',
   initializeError: null,
 };
@@ -49,12 +45,6 @@ const reducer = createReducer(initialState, {
     return {
       ...state,
       isAuthenticated: false,
-    }
-  },
-  [actionTypes.succeedAuthenticate]: (state) => {
-    return {
-      ...state,
-      isAuthenticated: true,
     }
   },
   [actionTypes.toggleModal]: (state, openModalId) => {
