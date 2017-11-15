@@ -11,3 +11,10 @@
   cursor: pointer;
   font-size: ms(0);
 }
+
+.button-green {
+  border: 2px solid $chat-box-input-border;
+  border-radius: 88px;
+  width: 230px;
+  height: 60px;
+}

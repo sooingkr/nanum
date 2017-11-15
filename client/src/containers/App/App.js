@@ -7,8 +7,11 @@ import {
 } from 'react-router-dom';
 import Home from "../Home/Home";
 import Dashboard from "../Dashboard/Dashboard";
-import FoodInfoInquiry from "../FoodInfoInquiry/FoodInfoInquiry";
+import Navigation from "../../components/Common/Navigation";
 import PrivateRoute from '../../components/Common/PrivateRoute';
+
+import FoodInfoInquiry from "../FoodInfoInquiry/FoodInfoInquiry";
+import ServiceIntro from "../../components/ServiceIntroduction/ServiceIntro";
 import Login from '../Login/Login';
 import FoodSearch from '../FoodSearch/FoodSearch';
 import { AppDuck } from './AppDuck';
@@ -24,6 +27,7 @@ export class App extends Component {
     return (
       <Router>
         <div className="App" id="nanum">
+          <Navigation/>
           <main>
             <Switch>
               <Route exact path="/" component={ Home }/>
@@ -31,6 +35,7 @@ export class App extends Component {
               <PrivateRoute path="/dashboard" component={ Dashboard } isAuthenticated={isAuthenticated}/>
               <Route exact path="/login" component={Login}/>
               <Route exact path="/search" component={FoodSearch}/>
+              <Route path="/service" component={ ServiceIntro }/>
             </Switch>
           </main>
 

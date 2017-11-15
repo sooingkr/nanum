@@ -4,7 +4,7 @@ import sinon from 'sinon';
 import toJson from 'enzyme-to-json';
 
 import { ChatBoxContainer, SendMessageFormView } from '../ChatBoxContainer';
-import ChatBox from "../../../components/Home/ChatBox";
+import ChatBox from "../../../components/Common/ChatBox/ChatBox";
 
 describe('ChatBoxContainer component', () => {
   const wrapper = shallow(<ChatBoxContainer/>);
