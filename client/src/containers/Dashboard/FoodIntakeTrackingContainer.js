@@ -13,17 +13,9 @@ import FoodIntakeList from '../../components/Dashboard/FoodIntakeList';
 import { DashboardDuck, selectors } from './DashboardDuck';
 
 export class FoodIntakeTrackingContainer extends Component {
-  handleAddFood = (formData) => {
-    const payload = this.constructAddFoodPayload(formData);
-    this.props.addFood(payload);
-  }
-
-  constructAddFoodPayload = (formData) => {
-    const { whichDialog } = this.props;
-    return {
-      mealTime: whichDialog,
-      foodDetails: formData.food.value,
-    }
+  handleCloseDialog = () => {
+    this.props.closeDialog();
+    this.props.clearAddFood();
   }
 
   renderEditButtons = () => {
@@ -37,7 +29,7 @@ export class FoodIntakeTrackingContainer extends Component {
               this.props.clearRemoveFood();
               this.props.quitEdit();
             }}
-            >
+          >
             Cancel
           </button>
           <button
@@ -64,33 +56,44 @@ export class FoodIntakeTrackingContainer extends Component {
     )
   }
 
+  renderProgressBar = ({ foodIntakeTracking: { caloriesTarget, caloriesCurrent }}) => {
+    return (
+      <FoodIntakeProgress 
+        max={caloriesTarget}
+        current={caloriesCurrent}
+      />
+    )
+  }
+  
+  renderAddFoodModal = ({ showDialog, whichDialog, addFood, clearAddFood, submitFoods }) => {
+    return (
+      <Dialog 
+      show={showDialog} 
+      onClose={this.handleCloseDialog} 
+      >
+        <AddFoodForm 
+          onSubmit={submitFoods} 
+          onAddFood={addFood}
+          mealTime={whichDialog}
+        />
+      </Dialog>
+    )
+  }
+
   render() {
     const { 
       foodIntakeTracking, 
-      showDialog, 
       openDialog, 
-      closeDialog,
       markRemoveFood,
       isEditMode,
     } = this.props;
 
-    if(!foodIntakeTracking || isEmpty(foodIntakeTracking)) {
-      return <div/>;
-    }
-
-    const { calories, when } = foodIntakeTracking;
-    if(isEmpty(calories) || isEmpty(when)) {
-      return <div/>;
-    }
-    
+    if(!foodIntakeTracking || isEmpty(foodIntakeTracking)) return <div/>;
+    const { when } = foodIntakeTracking;
     return (
       <div className="food-intake" >
         {this.renderEditButtons()}
-
-        <FoodIntakeProgress 
-          max={calories.target}
-          current={calories.current}
-        />
+        {this.renderProgressBar(this.props)}
 
         <div className="food-intake__meals">
           <Row>
@@ -107,13 +110,7 @@ export class FoodIntakeTrackingContainer extends Component {
               </Col>
             ))
           }
-
-            <Dialog 
-              show={showDialog} 
-              onClose={closeDialog} 
-            >
-              <AddFoodForm onSubmit={this.handleAddFood} />
-            </Dialog>
+            {this.renderAddFoodModal(this.props)}
           </Row>
         </div>
       </div>
@@ -123,10 +120,8 @@ export class FoodIntakeTrackingContainer extends Component {
 
 FoodIntakeTrackingContainer.propTypes = {
   foodIntakeTracking: PropTypes.shape({
-    calories: PropTypes.shape({
-      target: PropTypes.number,
-      current: PropTypes.number,
-    }),
+    caloriesTarget: PropTypes.number,
+    caloriesCurrent: PropTypes.number,
     when: PropTypes.shape({
       breakfast: PropTypes.array,
       lunch: PropTypes.array,
@@ -145,12 +140,14 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   openDialog: DashboardDuck.actions.openDialog,
   closeDialog: DashboardDuck.actions.closeDialog,
-  addFood: DashboardDuck.actions.addFood,
   enterEdit: DashboardDuck.actions.enterEdit,
   quitEdit: DashboardDuck.actions.quitEdit,
   markRemoveFood: DashboardDuck.actions.markRemoveFood,
   removeFoods: DashboardDuck.actions.removeFoods,
   clearRemoveFood: DashboardDuck.actions.clearRemoveFood,
+  addFood: DashboardDuck.actions.addFood,
+  clearAddFood: DashboardDuck.actions.clearAddFood,  
+  submitFoods: DashboardDuck.actions.submitFoods,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FoodIntakeTrackingContainer);

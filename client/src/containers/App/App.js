@@ -7,11 +7,9 @@ import {
 } from 'react-router-dom';
 import Home from "../Home/Home";
 import Dashboard from "../Dashboard/Dashboard";
-import Navigation from "../../components/Common/Navigation";
-import PrivateRoute from '../../components/Common/PrivateRoute';
 
-import FoodInfoInquiry from "../FoodInfoInquiry/FoodInfoInquiry";
 import ServiceIntro from "../../components/ServiceIntroduction/ServiceIntro";
+import FoodInfoInquiry from "../FoodInfoInquiry/FoodInfoInquiry";
 import Login from '../Login/Login';
 import FoodSearch from '../FoodSearch/FoodSearch';
 import { AppDuck } from './AppDuck';
@@ -23,16 +21,15 @@ export class App extends Component {
   }
 
   render() {
-    const { isAuthenticated, initializeError } = this.props;
+    const { initializeError } = this.props;
     return (
       <Router>
         <div className="App" id="nanum">
-          <Navigation/>
           <main>
             <Switch>
               <Route exact path="/" component={ Home }/>
-              <Route path="/products/:id" component={FoodInfoInquiry}/>
-              <PrivateRoute path="/dashboard" component={ Dashboard } isAuthenticated={isAuthenticated}/>
+              <Route path="/foods/:id" component={FoodInfoInquiry}/>
+              <Route path="/dashboard" component={ Dashboard }/>
               <Route exact path="/login" component={Login}/>
               <Route exact path="/search" component={FoodSearch}/>
               <Route path="/service" component={ ServiceIntro }/>
@@ -57,7 +54,6 @@ const mapStateToProps = (state) => {
   const appState = state[AppDuck.storeName];
 
   return {
-    isAuthenticated: appState.isAuthenticated,
     initializeError: appState.initializeError,
   }
 };
