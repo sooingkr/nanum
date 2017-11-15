@@ -24,7 +24,6 @@ class FoodSelectField extends Component {
             {...props.input}
             type="text"
             onChange={(selectedOption) => {
-              console.log('ONCHANGE', selectedOption);
               onAddFood(selectedOption, mealTime);
             }}
             onBlur={() => props.input.onBlur(props.input.value)}

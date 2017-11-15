@@ -39,7 +39,6 @@ const suggestFood = async (name) => {
       }
     });
   }
-  console.log(result);
   return { options: result };
 }
 
