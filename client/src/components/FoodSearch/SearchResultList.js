@@ -19,7 +19,7 @@ const SearchResultList = ({ list }) => {
           { list.map( (item, idx) => (
               <Col key={item.id + '-' + idx} xs={12} sm={4} md={3}>
                 <SearchResultItem 
-                  foodId={item.foodId}
+                  id={item.id}
                   name={item.name}
                   manufacturer={item.manufacturer}
                   imageUrl={item.imageUrl}

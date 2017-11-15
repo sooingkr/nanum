@@ -16,11 +16,11 @@ class FoodSearchBoxContainer extends Component {
   handleSubmit = (values) => {
     const currentLocation = this.props.location.pathname;
     this.props.searchFood(values.foodQuery);
-
+    
     // If not in search result page
     if (!isSearchRoute(currentLocation)) {
-      this.props.cacheQuery(values.foodQuery);
       // Navigate to search result page
+      this.props.cacheQuery(values.foodQuery);
       this.props.history.push('/search');
     }
   }
@@ -36,7 +36,7 @@ class FoodSearchBoxContainer extends Component {
         <SearchForm onSubmit={this.handleSubmit} />
         { total &&
           foodQuery !== '' &&
-          this.props.location.pathname === '/search' &&
+          isSearchRoute(this.props.location.pathname) &&
           <p className="food-search__total">
             <span>{`"${foodQuery}"`}</span>
             &nbsp;
