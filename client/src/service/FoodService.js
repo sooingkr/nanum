@@ -2,15 +2,16 @@
  * Created by yenhua on 11/2/17.
  */
 import axios from './config';
+import { DEFAULT_PAGE_SIZE } from '../constants';
 
 // Get API from Mock Server
-const searchFood = async (query, page=0, size=20, sort='createTime,asc') => {
+const searchFood = async (name, page=0, size=DEFAULT_PAGE_SIZE, sort='createTime,asc') => {
   let response;
 
   try {
     response = await axios.get(`/foods/search`, {
       params: {
-        query,
+        name,
         page,
         size,
         sort,
@@ -19,27 +20,29 @@ const searchFood = async (query, page=0, size=20, sort='createTime,asc') => {
   } catch(error) {
     throw new Error(`UserService error - <searchFood()>: ${error}`);
   }
-
   return response.data;
 }
 
-const suggestFood = async (query) => {
-  let results;
-
-  try {
-    results = await axios.get(`/foods/suggest`, {
-      params: { query }
+const suggestFood = async (name) => {
+  let result = await searchFood(name);
+  if (result.content.length > 0) {
+    result = result.content.map((suggestion) => {
+      return { 
+        label: suggestion.name,
+        value: { 
+          id: suggestion.id,
+          name: suggestion.name,
+          manufacturer: suggestion.manufacturer,
+          imageUrl: suggestion.imageUrl,
+          calories: suggestion.calories,
+        }
+      }
     });
-  } catch(error) {
-    throw new Error(`FoodService error - <searchFood()>: ${error}`);
   }
-  return {
-    options: results.data.matches
-  };
+  return { options: result };
 }
 
 const foodDetail = async (foodId) => {
-
   try {
     const result = await axios.get(`/foods/details/${foodId}`).then(res => res.data);
     return result;

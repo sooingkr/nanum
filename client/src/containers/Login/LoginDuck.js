@@ -24,7 +24,6 @@ const login = (formData, history) => async dispatch => {
   dispatch(loginRequest());
   try {
     const res = await axios.post(`/authenticate`, formData);
-    console.log(res);
     const isAuthenticated = res.data;
     if (isAuthenticated) {
       dispatch(loginSuccess({

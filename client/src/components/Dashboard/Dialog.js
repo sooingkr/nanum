@@ -1,23 +1,13 @@
 import React from 'react';
-import { 
-  Modal,
-  Button,
-} from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 
 const Dialog = ({ show, onClose, children }) => (
-  <div className="dialog">
-    <Modal show={show} onHide={onClose} >
-      <Modal.Header closeButton>
-        <Modal.Title>Add new food</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        {children}
-      </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={onClose}>Close</Button>
-      </Modal.Footer>
-    </Modal>
-  </div>
+  <Modal show={show} onHide={onClose} dialogClassName="add-food-dialog">
+    <Modal.Header closeButton/>
+    <Modal.Body>
+      {children}
+    </Modal.Body>
+  </Modal>
 )
 
 export default Dialog;
