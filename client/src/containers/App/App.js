@@ -8,12 +8,10 @@ import {
 import Home from "../Home/Home";
 import Dashboard from "../Dashboard/Dashboard";
 import FoodInfoInquiry from "../FoodInfoInquiry/FoodInfoInquiry";
-import PrivateRoute from '../../components/Common/PrivateRoute';
 import { ErrorModal } from '../../components/Common/ErrorModal';
 import Login from '../Login/Login';
 import FoodSearch from '../FoodSearch/FoodSearch';
 import { AppDuck } from './AppDuck';
-import { LoginDuck } from '../Login/LoginDuck';
 
 export class App extends Component {
   componentWillMount() {
@@ -21,7 +19,7 @@ export class App extends Component {
   }
 
   render() {
-    const { isAuthenticated, initializeError } = this.props;
+    const { initializeError } = this.props;
     return (
       <Router>
         <div className="App" id="nanum">

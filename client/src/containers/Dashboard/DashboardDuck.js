@@ -15,8 +15,8 @@ export const actionTypes = {
   openDialog: storeName + '/OPEN_DIALOG',
   closeDialog: storeName + '/CLOSE_DIALOG',
   addFood: storeName + '/ADD_FOOD',
+  clearAddFood: storeName + '/CLEAR_ADD_FOOD',
   removeFoods: storeName + '/REMOVE_FOODS',
-  abortAddFood: storeName + '/ABORT_ADD_FOOD',
   pickQueryTime: storeName + '/PICK_QUERY_TIME',
   enterEdit: storeName + '/ENTER_EDIT',
   quitEdit: storeName + '/QUIT_EDIT',
@@ -24,6 +24,7 @@ export const actionTypes = {
   clearRemoveFood: storeName + '/CLEAR_REMOVE_FOOD',
   succeedRemoveFood: storeName + '/SUCCEED_REMOVE_FOOD',
   failRemoveFood: storeName + '/FAIL_REMOVE_FOOD',
+  submitFoods: storeName + '/SUBMIT_FOODS',
 };
 
 // Actions creators 
@@ -41,6 +42,10 @@ const markRemoveFood = (foodId, mealTime) => createAction(actionTypes.markRemove
     mealTime,
   },
 });
+const addFood = (food, mealTime) => dispatch => {
+  dispatch(createAction(actionTypes.addFood, {food, mealTime}))
+};
+const clearAddFood = () => createAction(actionTypes.clearAddFood);
 
 // Thunks
 const initialize = (queryTime) => async (dispatch, getState) => {
@@ -66,23 +71,6 @@ const initialize = (queryTime) => async (dispatch, getState) => {
   }));
 };
 
-const addFood = (foodData) => (dispatch, getState) => {
-  // TODO: actually submit food data addition to UserService
-  const state = getState()[storeName];
-
-  // Only add food if it is below maximum calories
-  if(foodData.foodDetails.calories + state.calories.current > state.calories.target) {
-    dispatch(createAction(actionTypes.abortAddFood));
-  }
-
-  dispatch(createAction(actionTypes.addFood, {
-    foodData
-  }));
-
-  // Refetch the diagnostic
-  dispatch(initialize(state.queryTime));
-}
-
 const removeFoods = () => async (dispatch, getState) => {
   const state = getState()[storeName];
   const foodsToRemove = Object.values(state.toBeRemoved);
@@ -95,18 +83,24 @@ const removeFoods = () => async (dispatch, getState) => {
   }
 }
 
+const submitFoods = () => async (dispatch) => {
+  dispatch(createAction(actionTypes.submitFoods));
+}
+
 // conveniently export actions
 const actions = {
   initialize,
   openDialog,
   closeDialog,
   addFood,
+  clearAddFood,
   enterEdit,
   quitEdit,
   removeFoods,
   markRemoveFood,
   clearRemoveFood,
   failRemoveFood,
+  submitFoods,
 };
 
 // Initial Dashboard state tree
@@ -126,6 +120,10 @@ export const initialState = {
   isLoading: true,
   isEditMode: false,
   toBeRemoved: {},
+  toBeAdded: {
+    mealTime: '',
+    foods: [],
+  },
 };
 
 // Dashboard reducer
@@ -167,19 +165,28 @@ const reducer = createReducer(initialState, {
     return {
       ...state,
       showDialog: false,
+      whichDialog: "",
     }
   },
   [actionTypes.addFood]: (state, payload) => {
     return {
       ...state,
-      calories: {
-        ...state.calories,
-        current: state.calories.current + payload.foodData.foodDetails.calories,
+      toBeAdded: {
+        mealTime: payload.mealTime,
+        foods: [
+          ...state.toBeAdded.foods,
+          payload.food,
+        ]        
+      }
+    }
+  },
+  [actionTypes.clearAddFood]: (state) => {
+    return {
+      ...state,
+      toBeAdded: {
+        mealTime: "",
+        foods: [],
       },
-      [payload.foodData.mealTime]: [
-        ...getFoodsWhen(state, payload.foodData.mealTime),
-        { ...payload.foodData.foodDetails },
-      ]
     }
   },
   [actionTypes.enterEdit]: (state) => {
@@ -230,7 +237,6 @@ const getFoodIntakeTracking = (state) => ({
 });
 const getShowDialog = (state) => state[storeName].showDialog;
 const getWhichDialog = (state) => state[storeName].whichDialog;
-const getFoodsWhen = (state, when) => state[when];
 const getFoodSuggestions = (state) => state[storeName].foodSuggestions;
 const getReason = (state) => state[storeName].reason;
 const getAlert = (state) => state[storeName].alert;
