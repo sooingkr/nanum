@@ -29,7 +29,7 @@ export class FoodIntakeTrackingContainer extends Component {
               this.props.clearRemoveFood();
               this.props.quitEdit();
             }}
-            >
+          >
             Cancel
           </button>
           <button

@@ -12,12 +12,7 @@ $dialog-height: 412px;
     max-width: $dialog-width;
     min-height: $dialog-height;
     margin: 0 auto;
-
-    // position mid screen
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(0, 50%);
   }
 
   .modal-header {
@@ -36,5 +31,11 @@ $dialog-height: 412px;
       height: 100%;
       position: relative;
     }
+  }
+
+  button.close {
+    vertical-align: text-top;
+    color: $mid-gray;
+    opacity: 1;
   }
 }

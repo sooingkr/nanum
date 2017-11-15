@@ -27,7 +27,7 @@ const FoodOptionItem = ({ imageUrl, name, manufacturer, calories }) => (
 )
 
 let FoodOptionList = ({ foods }) => {
-  if (!foods) return null;
+  if (!foods || foods.length === 0) return null;
   return (
     <div className="food-option-list">
       { foods.map((food) => {
@@ -45,7 +45,7 @@ let FoodOptionList = ({ foods }) => {
 const mapStateToProps = (state) => ({
   foods: state[DashboardDuck.storeName].toBeAdded.foods,
 });
-// Connect FoodOptionList to store
+
 FoodOptionList = connect(mapStateToProps)(FoodOptionList);
 
 const AddFoodFormView = ({ handleSubmit, onAddFood, mealTime, pristine, reset, submitting }) => (
