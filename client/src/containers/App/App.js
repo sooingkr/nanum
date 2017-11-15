@@ -7,13 +7,15 @@ import {
 } from 'react-router-dom';
 import Home from "../Home/Home";
 import Dashboard from "../Dashboard/Dashboard";
+import Navigation from "../../components/Common/Navigation";
 
-import ServiceIntro from "../../components/ServiceIntroduction/ServiceIntro";
 import FoodInfoInquiry from "../FoodInfoInquiry/FoodInfoInquiry";
+import ServiceIntro from "../../components/ServiceIntroduction/ServiceIntro";
 import Login from '../Login/Login';
+import { ErrorModal } from '../../components/Common/ErrorModal';
 import FoodSearch from '../FoodSearch/FoodSearch';
 import { AppDuck } from './AppDuck';
-import {ErrorModal} from '../../components/Common/ErrorModal';
+import ChatBoxContainer from "../Home/ChatBoxContainer";
 
 export class App extends Component {
   componentWillMount() {
@@ -22,6 +24,42 @@ export class App extends Component {
 
   render() {
     const { initializeError } = this.props;
+
+    const userId = '1';
+
+    const messages = [
+      {
+        id: '1',
+        content: '.......',
+        admes: 'HACCP 교육 일정을 알려주세요.'
+      },
+      {
+        id: '2',
+        content: '무엇을 도와드릴까요?\n 무엇을 도와드릴까요?\n무엇을 도와드릴까요?',
+        admes: 'HACCP 교육 일정을 알려주세요.'
+      },
+      {
+        id: '3',
+        content: '와드릴까요?',
+        admes: ''
+      },
+      {
+        id: '1',
+        content: '무엇을 도와드릴까요?',
+        admes: '알려주세요.'
+      },
+      {
+        id: '1',
+        content: '무엇을 도와드릴까요?',
+        admes: 'ad message 2 ad message 2 ad message 2 ad message 2 ad message 2 ad message 2 ad message 2'
+      },
+      {
+        id: '1',
+        content: '무엇을 도와드릴까요?',
+        admes: ''
+      }
+    ];
+
     return (
       <Router>
         <div className="App" id="nanum">
@@ -34,15 +72,18 @@ export class App extends Component {
               <Route exact path="/search" component={FoodSearch}/>
               <Route path="/service" component={ ServiceIntro }/>
             </Switch>
+
+            <ChatBoxContainer userId={userId} messages={messages}/>
+
           </main>
 
           {!!initializeError &&
-            <ErrorModal modalId={'modal-app-error'}>
-              <h4 className="text-danger">{initializeError.msg}</h4>
-              <p>
-                {`${initializeError.status} - ${initializeError.statusText}`}
-              </p>
-            </ErrorModal>
+          <ErrorModal modalId={'modal-app-error'}>
+            <h4 className="text-danger">{initializeError.msg}</h4>
+            <p>
+              {`${initializeError.status} - ${initializeError.statusText}`}
+            </p>
+          </ErrorModal>
           }
         </div>
       </Router>

@@ -5,8 +5,11 @@
 
 import React from "react";
 import { Image } from "react-bootstrap";
-
 import { Link } from "react-router-dom";
+
+import dashboardImg from '../../assets/images/photo-dashboard.png';
+import chatboxImg from '../../assets/images/photo-chatbox.png';
+import chatboxImgHACCP from '../../assets/images/photo-chatbox-haccp.png';
 
 const ServiceIntro = () => {
   return (
@@ -26,11 +29,11 @@ const ServiceIntro = () => {
       <div className="service-intro__image">
         <div className="service-green__bg"></div>
         <div className="service-image__intro">
-          <Image responsive src="https://image.freepik.com/free-photo/table-with-ingredients-to-prepare-italian-pasta_23-2147606548.jpg" alt="Dashboard"></Image>
+          <Image responsive src={dashboardImg} alt="Dashboard"></Image>
           <h2 className="service-intro__title">로그인을 하시면 실시간 채팅으로 여러분들의 궁금한 점을
             빠르게 해결해 드립니다.</h2>
-          <div className="service-image__block"><Image responsive src="https://image.freepik.com/free-photo/table-with-ingredients-to-prepare-italian-pasta_23-2147606548.jpg" alt="Chatbox"></Image></div>
-          <div className="service-image__block"><Image responsive src="https://image.freepik.com/free-photo/table-with-ingredients-to-prepare-italian-pasta_23-2147606548.jpg" alt="Chatbox-HACCP"></Image></div>
+          <div className="service-image__block"><Image responsive src={ chatboxImg } alt="Chatbox"></Image></div>
+          <div className="service-image__block"><Image responsive src={ chatboxImgHACCP } alt="Chatbox-HACCP"></Image></div>
           <p>로그인을 하시면  개인 상담이 실시간으로 가능하며 고객의 질문을 정확히 파악해 명확한 답변이 가능합니다.</p>
           <Link className="btn btn-default button-green" to="/login" target="_blank" title="로그인하기">로그인하기</Link>
         </div>
