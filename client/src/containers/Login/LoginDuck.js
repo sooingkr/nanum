@@ -31,6 +31,7 @@ const login = (formData, history) => async dispatch => {
         userInfo: formData
       }));
       history.push('/dashboard');
+      window.location.reload();
     }
   } catch (err) {
     dispatch(loginFail(err));
