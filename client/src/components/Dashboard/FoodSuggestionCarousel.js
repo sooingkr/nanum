@@ -3,16 +3,9 @@ import PropTypes from 'prop-types';
 import Carousel from '../Common/Carousel';
 import FoodSuggestionItem from './FoodSuggestionItem';
 
-const FoodSuggestionCarouselArrow = ({ direction, onClick }) => (
-  <div className="carousel-arrow-wrapper">
-    <button className={"carousel-arrow carousel-arrow--" + direction} onClick={onClick}>
-    </button>
-  </div>
-);
-
 const basicCarouselSettings = {
-  arrows: true,
-  dots: false,
+  arrows: false,
+  dots: true,
   infinite: false,
   speed: 500,
   centerMode: false,
@@ -20,22 +13,27 @@ const basicCarouselSettings = {
   slidesToScroll: 1,
 };
 
+const desktopCarouselSettings = {
+  centerMode: false,
+  dots: false,
+}
+
 const carouselSettings = {
   ...basicCarouselSettings,  
-  nextArrow: <FoodSuggestionCarouselArrow direction="next"/>,
-  prevArrow: null,
   responsive: [
     {
       breakpoint: 700,
       settings: {
         ...basicCarouselSettings,
         slidesToShow: 1,
+        centerMode: true,
       }
     },
     {
       breakpoint: 924,
       settings: {
         ...basicCarouselSettings,
+        ...desktopCarouselSettings,
         slidesToShow: 3,
         arrows: false,
       }
@@ -46,20 +44,23 @@ const carouselSettings = {
         ...basicCarouselSettings,
         slidesToShow: 3,
         arrows: false,
+        dots: false,
       }
     },
     {
       breakpoint: 1800,
       settings: {
         ...basicCarouselSettings,
+        ...desktopCarouselSettings,
         slidesToShow: 4,
         arrows: false,
       }
     },
     {
-      breakpoint: 2400,
+      breakpoint: 3000,
       settings: {
         ...basicCarouselSettings,
+        ...desktopCarouselSettings,
         slidesToShow: 6,
         arrows: false,
       }
@@ -70,7 +71,7 @@ const carouselSettings = {
 const FoodSuggestionCarousel = (props) => (
   <Carousel settings={carouselSettings}  className="food-suggestion-slider">
     { props.data.map(foodItem => (
-      <div key={foodItem.globalId} className="food-suggestion">
+      <div key={foodItem.globalId}>
         <FoodSuggestionItem data={foodItem}/>
       </div>
     ))}

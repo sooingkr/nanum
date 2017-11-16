@@ -27,6 +27,14 @@ $dashboard-max-width: 1040px;
   }
 }
 
+.dashboard-search {
+  margin-bottom: 100px;
+
+  @include media(">=desktop") {
+    margin-bottom: 0;
+  }
+}
+
 .dashboard-timeSelector {
   @include media(">=big-phone") {
     padding: 0;
@@ -34,7 +42,9 @@ $dashboard-max-width: 1040px;
 }
 
 .dashboard .food-search__box {
-  padding-bottom: 0;
+  @include media(">=desktop") {
+    padding-bottom: 0;
+  }
 }
 
 // Override bootstrap padding

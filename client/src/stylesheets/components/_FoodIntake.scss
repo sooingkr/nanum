@@ -11,18 +11,27 @@
 }
 
 .food-intake__edit {
-  display: inline-block;
-  position: absolute;
-  right: 20px;
-  top: 10px;
+  display: block;
+  text-align: right;
+  margin-bottom: 8px;
 
   button:last-child {
     margin-left: 28px;
+  }
+
+  @include media(">=desktop") {
+    display: inline-block;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    margin-bottom: 0;
   }
 }
 
 .food-intake__meals {
   background-color: $white-gray;
+  margin: 0 20px;
+  border-radius: 10px;
 
   .row {
     margin-right: 0;
@@ -31,5 +40,9 @@
 
   @include media(">=netbook") {
     padding: 0 32px;
+  }
+
+  @include media(">=desktop") {
+    margin: 0;
   }
 }

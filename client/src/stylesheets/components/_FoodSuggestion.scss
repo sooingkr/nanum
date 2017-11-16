@@ -1,5 +1,5 @@
-.food-suggestions {
-  padding: 24px 20px 30px;
+.food-suggestion {
+  padding: 24px 28px 30px;
   overflow-x: hidden;
   
   @include media(">=desktop") {
@@ -7,14 +7,30 @@
   }
 }
 
-.food-suggestions__reason {
+.food-suggestion__reason {
   color: $black;
-  font-size: ms(0);
-  font-weight: 400;
+  letter-spacing: normal;
+  margin-bottom: 14px;
+
+  h3 {
+    font-size: ms(1);
+    font-weight: 700;
+  }
+
+  p {
+    font-size: ms(0);
+    font-weight: 400;
+  }
 
   @include media(">=desktop") {
     flex-shrink: 0;
-    max-width: 74px;
+    max-width: 116px;
     margin-right: 48px;    
+    margin-bottom: 0;
+
+    h3, p {
+      font-size: ms(-1);
+      font-weight: 700;
+    }
   }
 }

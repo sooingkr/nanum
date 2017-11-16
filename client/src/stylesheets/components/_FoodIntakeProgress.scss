@@ -1,20 +1,27 @@
 .food-intake__progress {
   position: relative;
-  display: flex;
-  align-items: center;
-  padding-left: 32px;
-  margin-bottom: 10px;
+  margin: 0 20px 14px;
 
   .progress {
     flex: 1;
     max-height: 8px;
   }
+
+  @include media(">=desktop") {
+    display: flex;
+    align-items: center;
+    padding-left: 32px;
+    margin: 0 0 10px 0;
+  }
 }
 
 .food-intake__progress-heading {
   display: inline-block;
-  margin-right: 18px;
   margin-bottom: 6px;
+
+  @include media(">=desktop") {
+    margin-right: 18px;
+  }
 }
   
 .food-intake__progress-heading > .target,

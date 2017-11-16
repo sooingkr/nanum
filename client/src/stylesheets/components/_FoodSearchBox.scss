@@ -1,7 +1,11 @@
 .food-search__box {
-  padding: 45px 0 28px;
+  padding: 16px 28px;
   text-align: center;
   color: $dark-gray;
+
+  @include media(">=desktop") {
+    padding: 45px 0 28px;
+  }
 }
 
 // themes
