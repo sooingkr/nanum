@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { throttle } from 'lodash';
 
 const withInfiniteScroll = (conditionFn) => (Component) => {
   return class WithInfiniteScroll extends React.Component {
@@ -24,7 +25,7 @@ const withInfiniteScroll = (conditionFn) => (Component) => {
     }
 
     handleScroll = () => {
-      conditionFn(this.props) && this.props.onPaginateLoad();
+      conditionFn(this.props) && throttle(this.props.onPaginateLoad, 16)();
     }
 
     isScrollDown = () => {
