@@ -1,5 +1,6 @@
 import { createAction, createReducer } from '../../utils/store';
 import FoodService from '../../service/FoodService';
+import { DEFAULT_PAGINATE_SIZE } from '../../constants';
 
 const storeName = 'FoodSearch';
 
@@ -22,32 +23,30 @@ const resetSearch = createAction(actionTypes.resetSearch);
 // define thunks
 const searchFood = (foodQuery, page) => async (dispatch, getState) => {
   const currentState = getState()[storeName];
-  const currentQuery = currentState.foodQuery;
-  const currentPage = currentState.page;
-  const hasNextPage = currentState.list.hasNextPage;
+  const cachedQuery = currentState.foodQuery;
+  const currentPage = currentState.list.page;
+  const hasNextPage = currentState.list.hasNextPage;  
+  page = parseInt(page, 10);
+  // if page not provided, default to current page + 1
+  if (!page) page = currentPage + 1;
 
-  // if page not provided, default to current page
-  if (!page) page = currentPage;
-
-  // If the query if different, clear cache
-  const isNewQuery = currentQuery !== foodQuery;
-    
-  const shouldFetch = hasNextPage && 
-    (isNewQuery 
-    || currentQuery === '' // Initial fetch
-    || (!isNewQuery && page !== currentPage && currentQuery !== ''));
+  const isNewQuery = cachedQuery !== foodQuery;
+  const shouldFetch = hasNextPage && (
+    (isNewQuery && foodQuery !== '') // new, non-blank query
+    || (!isNewQuery && page !== currentPage && foodQuery !== '')); // same query, new page
   
   // If query is different from previous query, 
   // reset redux store
   if (isNewQuery) {
     dispatch(resetSearch);
-    dispatch(requestSearch(foodQuery));
   }
 
   let searchResponse;
-
   try {
-    searchResponse = shouldFetch ? await FoodService.searchFood(foodQuery, page) : { results: [] };
+    dispatch(requestSearch(foodQuery));
+    searchResponse = shouldFetch 
+      ? await FoodService.searchFood(foodQuery, page, DEFAULT_PAGINATE_SIZE) 
+      : { content: [] };
   } catch (error) {
     dispatch(failSearch(error));
   }

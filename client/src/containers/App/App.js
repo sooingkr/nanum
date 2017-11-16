@@ -25,9 +25,9 @@ export class App extends Component {
         <div className="App" id="nanum">
           <main>
             <Switch>
-              <Route exact path="/" component={ Home }/>
+              <Route exact path="/" component={Home}/>
               <Route path="/foods/:id" component={FoodInfoInquiry}/>
-              <Route path="/dashboard" component={ Dashboard }/>
+              <Route exact path="/dashboard" component={Dashboard}/>
               <Route exact path="/login" component={Login}/>
               <Route exact path="/search" component={FoodSearch}/>
             </Switch>
