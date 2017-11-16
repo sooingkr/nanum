@@ -1,5 +1,4 @@
 $normal-height: 320px;
-$hover-height: 400px;
 
 .search-result-item {
   position: relative;
@@ -34,6 +33,10 @@ $hover-height: 400px;
   
 .search-result-item__name {
   margin-bottom: 24px;
+
+  a {
+    color: $white;
+  }
 }
 
 .search-result-item__manufacturer {
@@ -54,6 +57,11 @@ $hover-height: 400px;
     top: 0;
     left: 0;
     transition: background-color .3s ease;
+    display: none;
+
+    @include media(">=desktop") {
+      display: block;
+    }
   }
 
   &:hover .search-result-item__button {

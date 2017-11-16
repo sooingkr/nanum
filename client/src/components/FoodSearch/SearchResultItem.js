@@ -9,7 +9,11 @@ const SearchResultItem = ({ id, name, manufacturer, imageUrl }) => (
       <Image src={imageUrl} responsive />
     </div>
     <div className="search-result-item__content">
-      <h3 className="search-result-item__name">{name}</h3>
+      <h3 className="search-result-item__name">
+        <Link to={'/products/' + id} >
+          {name}
+        </Link>
+      </h3>
       <h4 className="search-result-item__manufacturer">{manufacturer}</h4>
     </div>
     <div className="search-result-item__button">
