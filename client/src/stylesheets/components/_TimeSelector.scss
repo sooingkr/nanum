@@ -1,6 +1,9 @@
 .time-selector {
-  margin-bottom: 20px;
   width: 100%;
+
+  @include media(">=desktop") {
+    margin-bottom: 20px;
+  }
 }
 
 .time-selector__trigger {
@@ -55,6 +58,12 @@
       border-radius: 10px;
     }
   }
+}
+
+// disable click 
+.DayPicker-Day.DayPicker-Day--disabled {
+  pointer-events: none;
+  cursor: default;
 }
 
 @keyframes isShown {

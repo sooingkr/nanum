@@ -1,15 +1,12 @@
-.slick-slide.food-suggestion {
-  min-width: 186px;
-}
-
 .food-suggestion-item {
   position: relative;
-  width: 186px;
+  max-width: 186px;
   height: 126px;
+  margin-right: 20px;
 }
 
 .food-suggestion-item__thumbnail {
-  width: 100%;
+  width: 186px;
   height: 100%;
   margin-right: 0;
 

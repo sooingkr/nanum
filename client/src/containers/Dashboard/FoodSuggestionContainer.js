@@ -11,11 +11,12 @@ export class FoodSuggestionContainer extends Component {
     const { reason, foodSuggestions } = this.props;
 
     return (
-      <div className="food-suggestions">
-        <div className="food-suggestions__reason">
+      <div className="food-suggestion">
+        <div className="food-suggestion__reason">
+          <h3>오늘의 식품</h3>
           <p>{reason}</p>
         </div>
-        <div className="food-suggestions__carousel">
+        <div className="food-suggestion__carousel">
           <FoodSuggestionCarousel data={foodSuggestions}/>
         </div>
       </div>
