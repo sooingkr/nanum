@@ -1,0 +1,132 @@
+.service-intro {
+  font-size: rem(16);
+  font-weight: bold;
+  color: $gray-1;
+  line-height: 30px;
+  word-spacing: -10px;
+  text-align: center;
+  padding-top: 60px;
+
+  .service-intro__info, .service-image__intro {
+    max-width: 992px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .service-intro__info {
+    @include media("<=tablet") {
+      padding: 0 40px;
+    }
+  }
+
+  .service-intro__image {
+    padding: 0 15px;
+
+    .service-intro__title, p {
+      @include media("<=tablet") {
+        padding: 0 25px;
+      }
+    }
+  }
+
+  p {
+    max-width: 868px;
+    margin: 10px auto 20px;
+    @include media("<=tablet") {
+      text-align: left;
+    }
+
+    &.pagraph {
+      @include media(">=screen-md") {
+        margin: 0 auto;
+      }
+    }
+  }
+
+  .middle-pagrah {
+    margin: 10px auto 20px;
+    @include media(">=screen-md") {
+      margin: 10px 92px 20px;
+    }
+  }
+
+  .button-green {
+    font-size: rem(18);
+    font-weight: bold;
+    color: $black-1;
+    margin-top: 10px;
+    margin-bottom: 40px;
+    width: 234px;
+    line-height: 40px;
+    background-image: none;
+  }
+
+  .service-intro__title {
+    font-size: rem(22);
+    font-weight: bold;
+    color: $chat-box-input-border;
+    line-height: 40px;
+    word-spacing: -14px;
+    margin-top: 30px;
+    margin-bottom: 40px;
+
+    @include media(">=screen-md") {
+      font-size: rem(26);
+      width: 690px;
+      margin: 70px auto 40px;
+    }
+    @include media("<=tablet") {
+      text-align: left;
+    }
+  }
+
+  .service-info__box {
+    max-width: 810px;
+    max-height: 110px;
+    background-color: $service-box-bg;
+    border: 1px solid $chat-box-input-border;
+    border-radius: 15px;
+    padding: 5px;
+    font-size: rem(15);
+    color: $green-1;
+    @include media(">=screen-md") {
+      max-height: 60px;
+      line-height: 50px;
+    }
+    @include media("<=tablet") {
+      margin: 0 -20px;
+    }
+  }
+
+  .service-intro__image {
+    position: relative;
+
+    .service-green__bg {
+      @include position(absolute, 0 0 0 0);
+      background-color: $service-green-bg;
+      max-height: 140px;
+      z-index: -1;
+
+      @include media(">=tablet") {
+        max-height: 404px;
+      }
+    }
+  }
+
+  .service-image__intro {
+    padding: 30px 0;
+
+    @include media(">=screen-md") {
+      padding: 40px 0;
+    }
+
+    .service-image__block {
+      float: left;
+      width: 44%;
+      margin: 0 3% 4%;
+    }
+    .img-responsive {
+      width: 100%;
+    }
+  }
+}

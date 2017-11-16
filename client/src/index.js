@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Provider} from 'react-redux';
+import { Provider } from 'react-redux';
 import registerServiceWorker from './registerServiceWorker';
-import {store} from './utils/AppUtils';
+import { store } from './utils/AppUtils';
 import App from "./containers/App/App";
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
@@ -13,9 +13,9 @@ import './index.scss';
 
 const AppView = () => (
   <Provider store={store}>
-    <App/>
+      <App/>
   </Provider>
 );
 
-ReactDOM.render(<AppView />, document.getElementById('root'));
+ReactDOM.render(<AppView/>, document.getElementById('root'));
 registerServiceWorker();

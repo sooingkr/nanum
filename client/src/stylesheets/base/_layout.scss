@@ -18,3 +18,7 @@ body {
 #root.contents {
   min-height: initial;
 }
+
+main {
+  background-color: rgba($base-background-color, .1);
+}

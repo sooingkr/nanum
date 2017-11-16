@@ -6,58 +6,69 @@
   }
 
   .fa {
-    color: $green;
+    color: $chat-box-input-border;
   }
 
-  .btn-open {
-    @include position(fixed, null 78px 40px null);
-    @include size(221px 55px);
-    background-image: none;
-    background-color: $white;
-    border-radius: 25px;
+  .nav-tabs {
+    margin-top: -1px;
 
-    &:after {
-      content: " ";
-      @include position(absolute, 21px -5px null null);
-      @include size(10px);
-      background-color: $white;
-      border-right: 1px solid $chatbox-border;
-      border-bottom: 1px solid $chatbox-border;
-      @include transform(rotate(-45deg));
+    li {
+      border: none;
 
-      &:hover, &:focus {
-        background-color: $white;
+      &:first-child {
+        width: 45%;
+      }
+      &:last-child {
+        width: 55%;
+      }
+
+      a {
+        text-align: center;
+        font-size: 10px;
+        font-weight: bold;
+        color: $dark-gray;
+        margin-right: 0;
+        border: none;
+        border-radius: 0;
+        border-top: 5px solid $placeholder-color;
+        background-color: $chatbox-background-1;
+
+        &:hover {
+          border: none;
+          border-top: 5px solid $placeholder-color;
+        }
+        &:before {
+          content: "";
+          display: inline-block;
+          background-image: url("./assets/images/icons/icon-grey-chatbox.png");
+          @include size(30px 24px);
+          vertical-align: middle;
+        }
+      }
+
+      &.active {
+        border: none;
+
+        a {
+          margin-right: 0;
+          border-top: 5px solid $chat-box-input-border;
+          background-color: $chatbox-background;
+
+          &:hover {
+            border: none;
+            border-top: 5px solid $chat-box-input-border;
+          }
+          &:before {
+            background-image: url("./assets/images/icons/icon-green-chatbox.png");
+          }
+        }
+
       }
     }
-
-    .fa-arrow-circle-right {
-      float: right;
-      font-size: rem(23);
-    }
-
-    &:hover, &:focus {
-      background-color: $white;
-    }
   }
 
-  .btn-close {
-    @include position(relative, null 10px null null);
-    border: none;
-    background-image: none;
-    background-color: transparent;
-    box-shadow: none;
-
-    &:hover {
-      border: none;
-      outline: none;
-      background-color: transparent;
-
-    }
-    .line {
-      display: inline-block;
-      border-bottom: 3px solid $green;
-      @include size(20px);
-    }
+  .tab-content{
+    background-color: $chatbox-background;
   }
 
   .btn-send {
@@ -65,11 +76,14 @@
     @include size(28px);
     border-radius: 25px;
     padding: 0;
-    background-color: $green;
+    background-color: $chat-box-input-border;
     background-image: none;
 
     .fa {
       color: $white;
+      &:before {
+        margin-left: -2px;
+      }
     }
   }
 
@@ -77,7 +91,10 @@
     @include position(fixed, null 26px -21px null);
     @include size(300px 435px);
     z-index: 1;
-    box-shadow: 0 2px 10px 0 rgba(76, 76, 76, 0.45);
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    box-shadow: 0 -2px 20px 0 rgba(76, 76, 76, 0.45);
 
     @include media("<=screen-xs") {
       @include position(fixed, 76px 0 -21px 0);
@@ -147,11 +164,6 @@
     border: 3px solid $chatbox-border;
     border-radius: 25px;
 
-    &.user-icon {
-      @include position(fixed, null 16px 46px null);
-      @include size(44px);
-    }
-
     .img-circle {
       @include size(40px);
     }
@@ -159,7 +171,7 @@
 
   .chat-messages {
     @include media(">=tablet") {
-      @include position(relative, null null null -15px);
+      @include position(relative, null null null 5px);
       width: 290px;
     }
 
@@ -177,7 +189,6 @@
       @include media("<=phone") {
         max-height: 370px;
       }
-
     }
 
     .chat-messages__text{
