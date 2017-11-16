@@ -69,7 +69,7 @@ export class App extends Component {
               <Route path="/dashboard" component={ Dashboard }/>
               <Route exact path="/login" component={Login}/>
               <Route exact path="/search" component={FoodSearch}/>
-              <Route path="/service" component={ ServiceIntro }/>
+              <Route path="/introduce" component={ ServiceIntro }/>
             </Switch>
 
             <ChatBoxContainer userId={userId} messages={messages}/>
