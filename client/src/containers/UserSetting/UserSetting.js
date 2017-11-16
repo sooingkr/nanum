@@ -4,16 +4,18 @@
 import React, {Component} from "react";
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
+import ApiKeyContainer from './ApiKeyContainer';
 
 class UserSetting extends Component {
 
   render() {
     return (
-      <div>
-        <h3>Open API key 관리 </h3>
-        <h4>Key 발급</h4>
+      <div className="user-setting">
+        <ApiKeyContainer/>
       </div>
     )
   }
 
 }
+
+export default connect()(UserSetting);

@@ -11,6 +11,7 @@ import FoodInfoInquiry from "../FoodInfoInquiry/FoodInfoInquiry";
 import { ErrorModal } from '../../components/Common/ErrorModal';
 import Login from '../Login/Login';
 import FoodSearch from '../FoodSearch/FoodSearch';
+import UserSetting from '../UserSetting/UserSetting';
 import { AppDuck } from './AppDuck';
 
 export class App extends Component {
@@ -30,6 +31,7 @@ export class App extends Component {
               <Route exact path="/dashboard" component={Dashboard}/>
               <Route exact path="/login" component={Login}/>
               <Route exact path="/search" component={FoodSearch}/>
+              <Route exact path="/user-setting" component={FoodSearch}/>
             </Switch>
           </main>
 
