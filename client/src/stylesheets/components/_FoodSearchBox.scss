@@ -28,3 +28,11 @@
     font-weight: 700;
   }
 }
+
+.add-food-form .Select-menu-outer {
+  width: calc(100% - 52px);
+
+  @include media(">=desktop") {
+    width: 100%;
+  }
+}

@@ -83,4 +83,13 @@
   .media-left, .media-body, .media-right {
     vertical-align: middle;
   }
+
+  .media-right {
+    display: block;
+    padding-left: 70px;
+
+    @include media(">=desktop") {
+      display: table-cell;
+    }
+  }
 }
