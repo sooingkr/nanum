@@ -1,10 +1,10 @@
 $normal-height: 320px;
 
-.search-result-item {
+#nanum .search-result-item {
   position: relative;
 }
 
-.search-result-item__image {
+#nanum .search-result-item__image {
   position: relative;
   transition: min-height .3s ease;
 
@@ -15,7 +15,7 @@ $normal-height: 320px;
   }
 }
 
-.search-result-item__content {
+#nanum .search-result-item__content {
   position: absolute;
   bottom: 18px;
   left: 28px;
@@ -25,13 +25,13 @@ $normal-height: 320px;
   }
 }
 
-.search-result-item__flavor,
-.search-result-item__name {
+#nanum .search-result-item__flavor,
+#nanum .search-result-item__name {
   font-size: ms(8);
   font-weight: 700;
 }  
   
-.search-result-item__name {
+#nanum .search-result-item__name {
   margin-bottom: 24px;
 
   a {
@@ -39,12 +39,12 @@ $normal-height: 320px;
   }
 }
 
-.search-result-item__manufacturer {
+#nanum .search-result-item__manufacturer {
   font-size: ms(-3)
 }
 
 // Blurry Overlay
-.search-result-item {
+#nanum .search-result-item {
   position: relative; 
   z-index: 1;
 
@@ -76,7 +76,7 @@ $normal-height: 320px;
 }
 
 // Positioning button
-.search-result-item__button {
+#nanum .search-result-item__button {
   display: none;
   position: absolute;
   bottom: 18px;

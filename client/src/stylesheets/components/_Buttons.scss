@@ -1,4 +1,4 @@
-.button--plus {
+#nanum .button--plus {
   $button-addfood-size: 30px;
   position: relative;
   padding-left: $button-addfood-size;
@@ -37,7 +37,7 @@
   }
 }
 
-.button--arrow {
+#nanum .button--arrow {
   $button-arrow-size: 40px;
   position: relative;
   display: inline-block;
@@ -61,7 +61,7 @@
   }
 }
 
-.button--link {
+#nanum .button--link {
   font-family: $base-font-family;
   font-size: ms(-3);
   font-weight: 700;
@@ -70,7 +70,7 @@
   letter-spacing: normal;
 }
 
-.button--outline {
+#nanum .button--outline {
   border: 2px solid #96b647;
   border-radius: 4px;
   color: #313541;

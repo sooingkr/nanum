@@ -1,4 +1,4 @@
-.time-selector {
+#nanum .time-selector {
   width: 100%;
 
   @include media(">=desktop") {
@@ -6,7 +6,7 @@
   }
 }
 
-.time-selector__trigger {
+#nanum .time-selector__trigger {
   position: relative;
   font-family: $base-font-family;
   font-size: ms(-1);
@@ -36,7 +36,7 @@
   }
 }
 
-.time-selector__picker {
+#nanum .time-selector__picker {
   position: relative;
   height: 0;
   opacity: 0;
@@ -61,7 +61,7 @@
 }
 
 // disable click 
-.DayPicker-Day.DayPicker-Day--disabled {
+#nanum .DayPicker-Day.DayPicker-Day--disabled {
   pointer-events: none;
   cursor: default;
 }

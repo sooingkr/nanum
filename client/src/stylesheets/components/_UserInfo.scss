@@ -1,4 +1,4 @@
-.user-info {
+#nanum .user-info {
   position: relative;
   margin: 0 auto;
   padding: 20px 0;
@@ -18,7 +18,7 @@
   }
 }
 
-.user-info__heading {
+#nanum .user-info__heading {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
@@ -28,7 +28,7 @@
   }
 }
 
-.user-info__name {
+#nanum .user-info__name {
   display: flex;
   align-items: center;
   margin-right: 16px;
@@ -45,7 +45,7 @@
   }
 }
 
-.user-info__noInfo {
+#nanum .user-info__noInfo {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -59,13 +59,15 @@
 }
 
 @include media(">=netbook") {
-  .user-info__heading {
-    position: relative;
-  }  
-
-  .user-info__edit {
-    position: absolute;
-    right: 0;
-    top: -4px;
+  #nanum {
+    .user-info__heading {
+      position: relative;
+    }  
+  
+    .user-info__edit {
+      position: absolute;
+      right: 0;
+      top: -4px;
+    }
   }
 }

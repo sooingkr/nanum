@@ -1,10 +1,10 @@
 // Slider
-.food-suggestion-slider {
+#nanum .food-suggestion-slider {
   position: relative;
 }
 
 // override 
-.food-suggestion__carousel  {
+#nanum .food-suggestion__carousel  {
   .slick-list {
     padding: 0 !important;
   }
@@ -15,7 +15,7 @@
 }
 
 // Carousel dots
-.food-suggestion__carousel .slick-dots {
+#nanum .food-suggestion__carousel .slick-dots {
   text-align: left;
   display: flex;
   bottom: -14px;
@@ -45,7 +45,7 @@
 }
 
 // Blurred overlay
-.food-suggestion__carousel {
+#nanum .food-suggestion__carousel {
   position: relative;
 
   &:after {

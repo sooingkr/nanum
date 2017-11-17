@@ -1,4 +1,4 @@
-.food-search__box {
+#nanum .food-search__box {
   padding: 16px 28px;
   text-align: center;
   color: $dark-gray;
@@ -9,11 +9,11 @@
 }
 
 // themes
-.food-search__box--dark {
+#nanum .food-search__box--dark {
   @include background-opacity($lesser-gray, .1);
 }
 
-.food-search__total {
+#nanum .food-search__total {
   text-align: center;
   text-decoration: underline;
   margin: 38px 0 0;
@@ -29,7 +29,7 @@
   }
 }
 
-.add-food-form .Select-menu-outer {
+#nanum .add-food-form .Select-menu-outer {
   width: calc(100% - 52px);
 
   @include media(">=desktop") {

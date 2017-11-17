@@ -1,9 +1,9 @@
-.food-intake-list {
+#nanum .food-intake-list {
   display: flex;  
   padding: 20px 0;
 }
 
-.food-intake-list__heading {
+#nanum .food-intake-list__heading {
   flex-shrink: 0;
   font-size: ms(0);
   color: #313541;
@@ -12,7 +12,7 @@
   margin-right: 16px;
 }
 
-.food-intake-list__content {
+#nanum .food-intake-list__content {
   padding-bottom: 12px;
   border-bottom: 1px solid #d0d2d3;
   width: 100%;

@@ -1,4 +1,4 @@
-.button {
+#nanum .button {
   // Reset style
   border: none;
   background-color: transparent;
@@ -12,7 +12,7 @@
   font-size: ms(0);
 }
 
-.button-green {
+#nanum .button-green {
   border: 2px solid $chat-box-input-border;
   border-radius: 88px;
   width: 230px;

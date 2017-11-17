@@ -1,22 +1,24 @@
-table {
-  border-collapse: collapse;
-  margin: $small-spacing 0;
-  table-layout: fixed;
-  width: 100%;
-}
-
-th {
-  font-weight: 600;
-  padding: $small-spacing 0;
-  text-align: left;
-}
-
-td {
-  padding: $small-spacing 0;
-}
-
-tr,
-td,
-th {
-  vertical-align: middle;
+#nanum {
+  table {
+    border-collapse: collapse;
+    margin: $small-spacing 0;
+    table-layout: fixed;
+    width: 100%;
+  }
+  
+  th {
+    font-weight: 600;
+    padding: $small-spacing 0;
+    text-align: left;
+  }
+  
+  td {
+    padding: $small-spacing 0;
+  }
+  
+  tr,
+  td,
+  th {
+    vertical-align: middle;
+  }
 }

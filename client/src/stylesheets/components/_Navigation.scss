@@ -1,7 +1,7 @@
 $nav-top-padding: 16px;
 $nav-side-padding: 24px;
 
-.navigation__logo {
+#nanum .navigation__logo {
   height: 42px;
   max-width: 280px;
   display: inline-flex;
@@ -28,7 +28,7 @@ $nav-side-padding: 24px;
   }
 }
 
-.navigation__toggle {
+#nanum .navigation__toggle {
   font-size: 20px;
   background: $white;
   border: none;
@@ -38,7 +38,7 @@ $nav-side-padding: 24px;
   }
 }
 
-.navigation__main {
+#nanum .navigation__main {
   position: absolute;
   z-index: 3;
   background-color: $white;
@@ -66,7 +66,7 @@ $nav-side-padding: 24px;
   }
 }
 
-.navigation__secondary {
+#nanum .navigation__secondary {
   display: block;
   position: absolute;
   right: $nav-side-padding;
