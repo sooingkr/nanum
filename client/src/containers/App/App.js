@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
-  HashRouter as Router,
   Route,
   Switch,
+  withRouter,
 } from 'react-router-dom';
 import Home from "../Home/Home";
 import Dashboard from "../Dashboard/Dashboard";
@@ -60,32 +60,30 @@ export class App extends Component {
     ];
 
     return (
-      <Router>
-        <div className="App" id="nanum">
-          <main>
-            <Switch>
-              <Route exact path="/" component={Home}/>
-              <Route path="/foods/:id" component={FoodInfoInquiry}/>
-              <Route exact path="/dashboard" component={Dashboard}/>
-              <Route exact path="/login" component={Login}/>
-              <Route exact path="/search" component={FoodSearch}/>
-              <Route path="/introduce" component={ ServiceIntro }/>
-            </Switch>
+      <div className="App" id="nanum">
+        <main>
+          <Switch>
+            <Route exact path="/" component={Home}/>
+            <Route path="/foods/:id" component={FoodInfoInquiry}/>
+            <Route exact path="/dashboard" component={Dashboard}/>
+            <Route exact path="/login" component={Login}/>
+            <Route exact path="/search" component={FoodSearch}/>
+            <Route path="/introduce" component={ ServiceIntro }/>
+          </Switch>
 
-            <ChatBoxContainer userId={userId} messages={messages}/>
+          <ChatBoxContainer userId={userId} messages={messages}/>
 
-          </main>
+        </main>
 
-          {!!initializeError &&
-          <ErrorModal modalId={'modal-app-error'}>
-            <h4 className="text-danger">{initializeError.msg}</h4>
-            <p>
-              {`${initializeError.status} - ${initializeError.statusText}`}
-            </p>
-          </ErrorModal>
-          }
-        </div>
-      </Router>
+        {!!initializeError &&
+        <ErrorModal modalId={'modal-app-error'}>
+          <h4 className="text-danger">{initializeError.msg}</h4>
+          <p>
+            {`${initializeError.status} - ${initializeError.statusText}`}
+          </p>
+        </ErrorModal>
+        }
+      </div>
     );
   }
 }
@@ -102,4 +100,4 @@ const mapDispatchToProps = {
   initialize: AppDuck.actions.initialize,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
