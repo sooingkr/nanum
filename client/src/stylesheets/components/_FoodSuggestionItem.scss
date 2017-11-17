@@ -1,11 +1,11 @@
-.food-suggestion-item {
+#nanum .food-suggestion-item {
   position: relative;
   max-width: 186px;
   height: 126px;
   margin-right: 20px;
 }
 
-.food-suggestion-item__thumbnail {
+#nanum .food-suggestion-item__thumbnail {
   width: 186px;
   height: 100%;
   margin-right: 0;
@@ -17,7 +17,7 @@
   }
 }
 
-.food-suggestion-item__name {
+#nanum .food-suggestion-item__name {
   @include background-opacity($white, .7);
   position: absolute;
   width: 100%;

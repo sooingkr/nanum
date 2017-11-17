@@ -1,6 +1,6 @@
 $dashboard-max-width: 1040px;
 
-.dashboard {
+#nanum .dashboard {
   position: relative;
   
   @include media(">iphone6plus") {
@@ -14,12 +14,12 @@ $dashboard-max-width: 1040px;
   }
 }
 
-.dashboard .container {
+#nanum .dashboard .container {
   width: 100%;
 }
 
-.dashboard-tracking,
-.dashboard-timeSelector {
+#nanum .dashboard-tracking,
+#nanum .dashboard-timeSelector {
   padding: 0 30px;
   
   @include media(">tablet") {
@@ -27,7 +27,7 @@ $dashboard-max-width: 1040px;
   }
 }
 
-.dashboard-search {
+#nanum .dashboard-search {
   margin-bottom: 100px;
 
   @include media(">=desktop") {
@@ -35,13 +35,13 @@ $dashboard-max-width: 1040px;
   }
 }
 
-.dashboard-timeSelector {
+#nanum .dashboard-timeSelector {
   @include media(">=big-phone") {
     padding: 0;
   }
 }
 
-.dashboard .food-search__box {
+#nanum .dashboard .food-search__box {
   @include media(">=desktop") {
     padding-bottom: 0;
   }

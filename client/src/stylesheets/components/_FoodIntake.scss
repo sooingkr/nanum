@@ -1,4 +1,4 @@
-.food-intake {
+#nanum .food-intake {
   margin: 0 auto;
   padding: 24px 0 20px;
   position: relative;
@@ -10,7 +10,7 @@
   }
 }
 
-.food-intake__edit {
+#nanum .food-intake__edit {
   display: block;
   text-align: right;
   margin-bottom: 8px;
@@ -28,7 +28,7 @@
   }
 }
 
-.food-intake__meals {
+#nanum .food-intake__meals {
   background-color: $white-gray;
   margin: 0 20px;
   border-radius: 10px;

@@ -1,4 +1,4 @@
-.tagbox {
+#nanum .tagbox {
   background-color: $white;
   border: 1px solid $light-gray;
   border-radius: 4px;
@@ -12,10 +12,10 @@
   }
 }
 
-.tagbox__text {
+#nanum .tagbox__text {
   padding-right: 20px;
 }
 
-.tagbox__close {
+#nanum .tagbox__close {
   color: $lesser-gray;
 }

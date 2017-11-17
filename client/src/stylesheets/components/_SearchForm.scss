@@ -1,4 +1,4 @@
-.search-form {
+#nanum .search-form {
   margin: 0 auto;
 
   @include media(">=desktop") {
@@ -7,7 +7,7 @@
   }
 }
 
-.search-form form {
+#nanum .search-form form {
   position: relative;
 
   .search-form__input {

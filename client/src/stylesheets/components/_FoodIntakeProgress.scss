@@ -1,4 +1,4 @@
-.food-intake__progress {
+#nanum .food-intake__progress {
   position: relative;
   margin: 0 20px 14px;
 
@@ -15,7 +15,7 @@
   }
 }
 
-.food-intake__progress-heading {
+#nanum .food-intake__progress-heading {
   display: inline-block;
   margin-bottom: 6px;
 
@@ -24,19 +24,19 @@
   }
 }
   
-.food-intake__progress-heading > .target,
-.food-intake__progress-heading > .current {
+#nanum .food-intake__progress-heading > .target,
+#nanum .food-intake__progress-heading > .current {
   text-align: center;
   font-size: ms(-1);
   line-height: 1.33;
   font-weight: 400;
 }  
 
-.food-intake__progress-heading > .target {
+#nanum .food-intake__progress-heading > .target {
   color: $black;
 }
 
-.food-intake__progress-heading > .current {
+#nanum .food-intake__progress-heading > .current {
   color: $gray;
 }  
 

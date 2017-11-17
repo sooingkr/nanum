@@ -1,4 +1,4 @@
-.food-intake-item {
+#nanum .food-intake-item {
   margin-bottom: 14px;
 
   &:last-of-type {
@@ -9,11 +9,11 @@
   }
 }
 
-.food-intake-item--removable {
+#nanum .food-intake-item--removable {
   cursor: pointer;
 }  
 
-.food-intake-item__image {
+#nanum .food-intake-item__image {
   width: 30px;
   height: 30px;
 
@@ -24,12 +24,12 @@
   }
 }
 
-.food-intake-item__name {
+#nanum .food-intake-item__name {
   font-size: ms(-1);
   color: $black;
 }
 
-.food-intake-item__quantity {
+#nanum .food-intake-item__quantity {
   font-size: ms(-3);
   color: $gray;
 }

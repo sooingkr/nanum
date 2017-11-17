@@ -1,4 +1,4 @@
-.alert {
+#nanum .alert {
   position: absolute;
   display: flex;
   top: 64px;
@@ -22,7 +22,7 @@
   }
 }
 
-.alert--danger {
+#nanum .alert--danger {
   @include background-opacity($red, 0.05);
 
   .fa {
