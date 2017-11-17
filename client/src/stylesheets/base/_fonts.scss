@@ -1,47 +1,35 @@
 /* Fonts */
 
-// Malgun Gothic font face
+// Nanum Gothic font face
 // Normal 
 @font-face {
-  font-family: "Malgun Gothic";
+  font-family: "Nanum Gothic";
   font-style: normal;
   font-weight: 400;
-  src:  url(./assets/fonts/MalgunGothicRegular.eot) format("embedded-opentype"),
-        url(./assets/fonts/MalgunGothicRegular.woff) format("woff"),
-        url(./assets/fonts/MalgunGothicRegular.svg) format("svg"),
-        url(./assets/fonts/MalgunGothicRegular.ttf) format("truetype");
+  src:  url(./assets/fonts/NanumGothic.eot) format("embedded-opentype"),
+        url(./assets/fonts/NanumGothic.woff) format("woff"),
+        url(./assets/fonts/NanumGothic.svg) format("svg"),
+        url(./assets/fonts/NanumGothic.ttf) format("truetype");
 }
 
-// Bold
+// Bold 
 @font-face {
-  font-family: "Malgun Gothic";
+  font-family: "Nanum Gothic";
   font-style: normal;
   font-weight: 700;
-  src:  url(./assets/fonts/MalgunGothicBold.eot) format("embedded-opentype"),
-        url(./assets/fonts/MalgunGothicBold.woff) format("woff"),
-        url(./assets/fonts/MalgunGothicBold.svg) format("svg"),
-        url(./assets/fonts/MalgunGothicBold.ttf) format("truetype");
+  src:  url(./assets/fonts/NanumGothic-Bold.eot) format("embedded-opentype"),
+        url(./assets/fonts/NanumGothic-Bold.woff) format("woff"),
+        url(./assets/fonts/NanumGothic-Bold.svg) format("svg"),
+        url(./assets/fonts/NanumGothic-Bold.ttf) format("truetype");
 }
 
-// Dotum font face
-// Normal 
+// Extra bold 
 @font-face {
-  font-family: "Dotum";
+  font-family: "Nanum Gothic";
   font-style: normal;
-  font-weight: 400;
-  src:  url(./assets/fonts/Baekmuk-Dotum.eot) format("embedded-opentype"),
-        url(./assets/fonts/Baekmuk-Dotum.woff) format("woff"),
-        url(./assets/fonts/Baekmuk-Dotum.svg) format("svg"),
-        url(./assets/fonts/Baekmuk-Dotum.ttf) format("truetype");
-}
-
-// Bold
-@font-face {
-  font-family: "Dotum";
-  font-style: normal;
-  font-weight: 700;
-  src:  url(./assets/fonts/Baekmuk-Dotum.eot) format("embedded-opentype"),
-        url(./assets/fonts/Baekmuk-Dotum.woff) format("woff"),
-        url(./assets/fonts/Baekmuk-Dotum.svg) format("svg"),
-        url(./assets/fonts/Baekmuk-Dotum.ttf) format("truetype");
+  font-weight: 900;
+  src:  url(./assets/fonts/NanumGothic-ExtraBold.eot) format("embedded-opentype"),
+        url(./assets/fonts/NanumGothic-ExtraBold.woff) format("woff"),
+        url(./assets/fonts/NanumGothic-ExtraBold.svg) format("svg"),
+        url(./assets/fonts/NanumGothic-ExtraBold.ttf) format("truetype");
 }
