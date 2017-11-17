@@ -10,53 +10,53 @@ $modularscale: (
   ratio: 1.126
 );
 
-body#nanum {
+#nanum {
   color: $black;
   font-family: $base-font-family;
   font-size: $base-font-size;
   letter-spacing: $base-letter-spacing;
   line-height: $base-line-height;
   -webkit-font-smoothing: antialiased;
-}
 
-input {
-  color: $black;
-  font-family: $base-font-family;
-  font-size: $base-font-size;
-  letter-spacing: 0.2px;
-  line-height: $base-line-height;
-  font-weight: 400;
-  padding: 8px;
-}
+  input {
+    color: $black;
+    font-family: $base-font-family;
+    font-size: $base-font-size;
+    letter-spacing: 0.2px;
+    line-height: $base-line-height;
+    font-weight: 400;
+    padding: 8px;
+  }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  color: $black;
-  font-family: $heading-font-family;
-  line-height: $heading-line-height;
-  margin: 0 0 $small-spacing;
-  letter-spacing: $base-letter-spacing;
-}
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: $black;
+    font-family: $heading-font-family;
+    line-height: $heading-line-height;
+    margin: 0 0 $small-spacing;
+    letter-spacing: $base-letter-spacing;
+  }
 
-p {
-  font-family: $base-font-family;
-  margin: 0 0 $small-spacing;
-  letter-spacing: $base-letter-spacing;
-}
-
-.button,
-a {
-  color: $gray;
-  font-family: $base-font-family;
-  text-decoration: none !important;
-  
-  &:active,
-  &:focus,
-  &:hover {
-    color: $green;
+  p {
+    font-family: $base-font-family;
+    margin: 0 0 $small-spacing;
+    letter-spacing: $base-letter-spacing;
+  }
+    
+  .button,
+  a {
+    color: $black;
+    font-family: $base-font-family;
+    text-decoration: none !important;
+    
+    &:active,
+    &:focus,
+    &:hover {
+      color: $green;
+    }
   }
 }
