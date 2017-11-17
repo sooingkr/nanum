@@ -14,27 +14,46 @@ import Login from '../Login/Login';
 import { ErrorModal } from '../../components/Common/ErrorModal';
 import FoodSearch from '../FoodSearch/FoodSearch';
 import { AppDuck } from './AppDuck';
+import { isMobileVersion } from '../../utils/AppUtils';
 
 export class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isMobile: false
+    };
+  }
+
   componentWillMount() {
     this.props.initialize();
   }
 
+  componentDidMount() {
+    this.setState({isMobile: isMobileVersion()});
+  }
+
   render() {
     const { initializeError } = this.props;
+    const { isMobile } = this.state;
+    const appClasses = isMobile ? 'App App--mobile' : 'App';
 
     return (
-      <div className="App" id="nanum">
+      <div className={appClasses} id="nanum">
         <main>
           <Switch>
             <Route exact path="/" component={Home}/>
-            <Route path="/foods/:id" component={FoodInfoInquiry}/>
+            <Route exact path="/foods/:id" component={FoodInfoInquiry}/>
             <Route exact path="/dashboard" component={Dashboard}/>
             <Route exact path="/login" component={Login}/>
             <Route exact path="/search" component={FoodSearch}/>
-            <Route path="/introduce" component={ ServiceIntro }/>
+            <Route exact path="/introduce" component={ ServiceIntro }/>
+            <Route exact path="/mobile" component={Home}/>
+            <Route exact path="/mobile/foods/:id" component={FoodInfoInquiry}/>
+            <Route exact path="/mobile/dashboard" component={Dashboard}/>
+            <Route exact path="/mobile/login" component={Login}/>
+            <Route exact path="/mobile/search" component={FoodSearch}/>
+            <Route exact path="/mobile/introduce" component={ ServiceIntro }/>
           </Switch>
-
         </main>
 
         {!!initializeError &&

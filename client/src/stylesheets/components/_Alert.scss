@@ -1,9 +1,9 @@
 #nanum .alert {
   position: absolute;
   display: flex;
-  top: 64px;
   left: 0;
-  padding: 18px 24px;
+  top: 0;
+  padding: 16px 120px;
   width: 100%;
   margin-bottom: 0;
 
@@ -15,11 +15,6 @@
   .fa {
     margin-right: 12px;
   }
-
-  @include media(">=desktop") {
-    top: 0;
-    padding: 16px 120px;
-  }
 }
 
 #nanum .alert--danger {
@@ -27,5 +22,12 @@
 
   .fa {
     color: $red;
+  }
+}
+
+#nanum.App--mobile {
+  .alert {
+    top: 64px;
+    padding: 18px 24px;
   }
 }

@@ -1,48 +1,54 @@
-#nanum .food-intake {
-  margin: 0 auto;
-  padding: 24px 0 20px;
-  position: relative;
-
-  @include media(">=tablet") {
+#nanum {
+  .food-intake {
+    margin: 0 auto;
+    padding: 24px 20px 20px;
+    position: relative;
     max-width: 100%;
-    padding-right: 20px;
-    padding-left: 20px;
   }
-}
-
-#nanum .food-intake__edit {
-  display: block;
-  text-align: right;
-  margin-bottom: 8px;
-
-  button:last-child {
-    margin-left: 28px;
-  }
-
-  @include media(">=desktop") {
-    display: inline-block;
+  
+  .food-intake__edit {
     position: absolute;
     right: 20px;
     top: 10px;
+    display: inline-block;
+    text-align: right;
     margin-bottom: 0;
+    
+    button:last-child {
+      margin-left: 28px;
+    }
   }
-}
-
-#nanum .food-intake__meals {
-  background-color: $white-gray;
-  margin: 0 20px;
-  border-radius: 10px;
-
-  .row {
-    margin-right: 0;
-    margin-left: 0;
-  }
-
-  @include media(">=netbook") {
+  
+  .food-intake__meals {
+    background-color: $white-gray;
+    border-radius: 10px;
     padding: 0 32px;
-  }
-
-  @include media(">=desktop") {
     margin: 0;
+    
+    .row {
+      margin-right: 0;
+      margin-left: 0;
+    }
   }
 }
+
+#nanum.App--mobile {
+  .food-intake {
+    padding-right: 0;
+    padding-left: 0;
+    max-width: none;
+  }
+
+  .food-intake__edit {
+    display: block;
+    position: relative;
+    margin-bottom: 8px;
+    right: auto;
+    top: auto;
+  }
+
+  .food-intake__meals {
+    margin: 0 20px;
+    padding: 0;
+  }    
+}  

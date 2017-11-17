@@ -1,9 +1,6 @@
 #nanum .chat-box {
   background-color: $chatbox-background;
-
-  @include media(">tablet") {
-    z-index: 9999;
-  }
+  z-index: 9999;
 
   .fa {
     color: $chat-box-input-border;
@@ -128,19 +125,6 @@
     box-shadow: inset 0 0 0 3px $chat-box-input-shadow;
     background-color: $white;
 
-    @include media("<=screen-xs") {
-      max-width: 375px;
-    }
-
-    @include media("<=iphone6") {
-      max-width: 335px;
-      left: 15px;
-    }
-
-    @include media("<=phone") {
-      max-width: 270px;
-    }
-
     .form-control {
       @include size(89% 30px);
       @include margin(6px 0 0 3px);
@@ -178,17 +162,6 @@
     .block__chat-messages {
       overflow-y: scroll;
       max-height: 315px;
-      @include media("<=iphone6plus") {
-        max-height: 520px;
-      }
-
-      @include media("<=iphone6") {
-        max-height: 465px;
-      }
-
-      @include media("<=phone") {
-        max-height: 370px;
-      }
     }
 
     .chat-messages__text{
@@ -267,3 +240,17 @@
   }
 }
 
+#nanum.App--mobile {
+  .chat-box {
+    z-index: auto;
+  }
+
+  .chat-messages__form {
+    max-width: 335px;
+    left: 15px;
+  }
+
+  .block__chat-messages {
+    max-height: 520px;
+  }
+}

@@ -1,64 +1,70 @@
-// Slider
-#nanum .food-suggestion-slider {
-  position: relative;
-}
-
-// override 
-#nanum .food-suggestion__carousel  {
-  .slick-list {
-    padding: 0 !important;
+#nanum {
+  // Slider
+  .food-suggestion-slider {
+    position: relative;
   }
 
-  .slick-slide {
-    width: auto !important;
-  }
-}
-
-// Carousel dots
-#nanum .food-suggestion__carousel .slick-dots {
-  text-align: left;
-  display: flex;
-  bottom: -14px;
-
-  li {
-    background-color: #96b647;
-    opacity: 0;
-    height: 3px;
-    margin: 0;
-    border-radius: 5px;
-    transition: opacity .3s ease;
-
-    button {
-      width: auto;
-      height: auto;
-      padding: 0;
+  // override 
+  .food-suggestion__carousel  {
+    .slick-list {
+      padding: 0 !important;
     }
 
-    button:before {
+    .slick-slide {
+      width: auto !important;
+    }
+  }
+
+  // Carousel dots
+  .food-suggestion__carousel .slick-dots {
+    text-align: left;
+    display: flex;
+    bottom: -14px;
+
+    li {
+      background-color: #96b647;
+      opacity: 0;
+      height: 3px;
+      margin: 0;
+      border-radius: 5px;
+      transition: opacity .3s ease;
+
+      button {
+        width: auto;
+        height: auto;
+        padding: 0;
+      }
+
+      button:before {
+        display: none;
+      }
+    }
+
+    li.slick-active {
+      opacity: 1;
+    }
+  }
+
+  // Blurred overlay
+  .food-suggestion__carousel {
+    position: relative;
+
+    &:after {
+      position: absolute;
       display: none;
+      top: 0;
+      right: 0;
+      content: ' ';
+      display: block;
+      width: 60px;
+      height: 100%;
+      background-image: linear-gradient(to left, #ffffff, rgba(255, 255, 255, 0.1));
     }
-  }
-
-  li.slick-active {
-    opacity: 1;
   }
 }
 
-// Blurred overlay
-#nanum .food-suggestion__carousel {
-  position: relative;
-
-  &:after {
-    position: absolute;
-    top: 0;
-    right: 0;
-    content: ' ';
+#nanum.App--mobile {
+  .food-suggestion__carousel:after {
     display: block;
-    width: 60px;
-    height: 100%;
-    background-image: linear-gradient(to left, #ffffff, rgba(255, 255, 255, 0.1));
-    @include media(">=desktop") {
-      display: none;
-    }
-  }
+  }      
 }
