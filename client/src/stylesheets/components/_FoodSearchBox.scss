@@ -1,38 +1,48 @@
-#nanum .food-search__box {
-  padding: 16px 28px;
-  text-align: center;
-  color: $dark-gray;
+#nanum {
+  .dashboard .food-search__box {
+    padding-bottom: 0;
+  }
 
-  @include media(">=desktop") {
+  .food-search__box {
     padding: 45px 0 28px;
+    text-align: center;
+    color: $dark-gray;
   }
-}
-
-// themes
-#nanum .food-search__box--dark {
-  @include background-opacity($lesser-gray, .1);
-}
-
-#nanum .food-search__total {
-  text-align: center;
-  text-decoration: underline;
-  margin: 38px 0 0;
-
-  span {
-    font-size: ms(0);
+  
+  // themes
+  .food-search__box--dark {
+    @include background-opacity($lesser-gray, .1);
   }
-
-  span:first-child,
-  span:last-child {
-    font-size: ms(3);
-    font-weight: 700;
+  
+  .food-search__total {
+    text-align: center;
+    text-decoration: underline;
+    margin: 38px 0 0;
+  
+    span {
+      font-size: ms(0);
+    }
+  
+    span:first-child,
+    span:last-child {
+      font-size: ms(3);
+      font-weight: 700;
+    }
   }
-}
-
-#nanum .add-food-form .Select-menu-outer {
-  width: calc(100% - 52px);
-
-  @include media(">=desktop") {
+  
+  .add-food-form .Select-menu-outer {
+    width: calc(100% - 52px);
     width: 100%;
+  }
+}
+
+
+#nanum.App--mobile {
+  .food-search__box {
+    padding: 16px 28px;
+  }
+
+  .add-food-form .Select-menu-outer {
+    width: calc(100% - 52px);
   }
 }

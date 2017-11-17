@@ -1,50 +1,55 @@
-#nanum .search-form {
-  margin: 0 auto;
-
-  @include media(">=desktop") {
+#nanum {
+  .search-form {
     margin-bottom: 0;
     display: inline-block;
   }
+  
+  .search-form form {
+    position: relative;
+  
+    .search-form__input {
+      width: 500px;
+      max-width: initial;
+      padding: 24px 20px;
+      border: 1px solid $green;
+      border-radius: 3px;
+      color: $lesser-gray;
+      font-size: ms(4);
+    }
+  
+    .search-form__submit {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      width: 30px;
+      height: 30px;
+      transform: translateY(-50%);
+      border: none;
+      box-shadow: none;
+      padding: 0;
+      background-image: url("./assets/images/icons/search.svg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  }
 }
 
-#nanum .search-form form {
-  position: relative;
+#nanum.App--mobile {
+  .search-form {
+    margin: 0 auto;
+    display: block;    
+  }    
 
   .search-form__input {
     width: 100%;
     max-width: 268px;
-    border: 1px solid $green;
-    border-radius: 3px;
     padding: 6px 14px;
-    color: $lesser-gray;
     font-size: ms(1);
-
-    @include media(">=desktop") {
-      width: 500px;
-      max-width: initial;
-      padding: 24px 20px;
-      font-size: ms(4);
-    }
-  }
+  }    
 
   .search-form__submit {
-    position: absolute;
-    right: 20px;
-    top: 50%;
     width: 20px;
     height: 20px;
-    transform: translateY(-50%);
-    border: none;
-    box-shadow: none;
-    padding: 0;
-    background-image: url("./assets/images/icons/search.svg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-
-    @include media(">=desktop") {
-      width: 30px;
-      height: 30px;
-    }
-  }
+  }    
 }

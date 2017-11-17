@@ -1,34 +1,36 @@
-#nanum .food-suggestion-item {
-  position: relative;
-  max-width: 186px;
-  height: 126px;
-  margin-right: 20px;
-}
-
-#nanum .food-suggestion-item__thumbnail {
-  width: 186px;
-  height: 100%;
-  margin-right: 0;
-
-  img {
-    width: 100%;
-    height: 100%;
-    border-radius: 5px;
+#nanum {
+  .food-suggestion-item {
+    position: relative;
+    max-width: 186px;
+    height: 126px;
+    margin-right: 20px;
   }
-}
-
-#nanum .food-suggestion-item__name {
-  @include background-opacity($white, .7);
-  position: absolute;
-  width: 100%;
-  height: 36px;
-  bottom: 0;
-  margin-bottom: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  color: $black;
-  font-weight: bold;
-  font-size: ms(-1);
+  
+  .food-suggestion-item__thumbnail {
+    width: 186px;
+    height: 100%;
+    margin-right: 0;
+  
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 5px;
+    }
+  }
+  
+  .food-suggestion-item__name {
+    @include background-opacity($white, .7);
+    position: absolute;
+    width: 100%;
+    height: 36px;
+    bottom: 0;
+    margin-bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    color: $black;
+    font-weight: bold;
+    font-size: ms(-1);
+  }
 }

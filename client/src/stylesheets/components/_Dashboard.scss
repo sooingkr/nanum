@@ -1,64 +1,59 @@
 $dashboard-max-width: 1040px;
 
-#nanum .dashboard {
-  position: relative;
-  
-  @include media(">iphone6plus") {
-    @include background-opacity($base-background-color, 0.1);
-    padding: 32px 38px;
-    min-height: 100vh;
-  }
-
-  @include media(">=desktop") {
+#nanum {
+  .dashboard {
+    position: relative;
     padding: 32px 120px;
-  }
-}
-
-#nanum .dashboard .container {
-  width: 100%;
-}
-
-#nanum .dashboard-tracking,
-#nanum .dashboard-timeSelector {
-  padding: 0 30px;
   
-  @include media(">tablet") {
+    .container {
+      width: 100%;
+    }
+  }
+  
+  .dashboard-tracking,
+  .dashboard-timeSelector {
+    padding: 0;
     display: flex;
   }
-}
-
-#nanum .dashboard-search {
-  margin-bottom: 100px;
-
-  @include media(">=desktop") {
+  
+  .dashboard-search {
     margin-bottom: 0;
   }
-}
-
-#nanum .dashboard-timeSelector {
-  @include media(">=big-phone") {
-    padding: 0;
+  
+  // Override bootstrap padding
+  .dashboard div[class^="col"] {
+    padding-left: 0;
+    padding-right: 0;
   }
-}
-
-#nanum .dashboard .food-search__box {
-  @include media(">=desktop") {
-    padding-bottom: 0;
-  }
-}
-
-// Override bootstrap padding
-#nanum .dashboard div[class^="col"] {
-  padding-left: 8px;
-  padding-right: 8px;
-
-  @include media(">=netbook") {
+  
+  .section > div[class^="col"] {
     padding-left: 0;
     padding-right: 0;
   }
 }
 
-#nanum .section > div[class^="col"] {
-  padding-left: 0;
-  padding-right: 0;
+#nanum.App--mobile {
+  .dashboard {
+    @include background-opacity($base-background-color, 0.1);
+    padding: 32px 38px;
+    min-height: 100vh;
+  }
+
+  .dashboard-tracking,
+  .dashboard-timeSelector {
+    display: block;
+  }
+
+  .dashboard-timeSelector {
+    padding: 0 30px;
+  }
+  
+  .dashboard-search {
+    margin-bottom: 100px;
+  }
+
+  .dashboard div[class^="col"] {
+    padding-left: 8px;
+    padding-right: 8px;
+  } 
 }

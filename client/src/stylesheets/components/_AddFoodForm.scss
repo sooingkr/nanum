@@ -85,11 +85,11 @@
   }
 
   .media-right {
-    display: block;
+    display: table-cell;
     padding-left: 70px;
-
-    @include media(">=desktop") {
-      display: table-cell;
-    }
   }
+}
+
+#nanum.App--mobile .food-option-item .media-right {
+  display: block;
 }

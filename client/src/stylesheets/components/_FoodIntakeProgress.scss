@@ -1,43 +1,48 @@
-#nanum .food-intake__progress {
-  position: relative;
-  margin: 0 20px 14px;
-
-  .progress {
-    flex: 1;
-    max-height: 8px;
-  }
-
-  @include media(">=desktop") {
+#nanum {
+  .food-intake__progress {
     display: flex;
     align-items: center;
     padding-left: 32px;
     margin: 0 0 10px 0;
+
+    .progress {
+      flex: 1;
+      max-height: 8px;
+    }
   }
-}
-
-#nanum .food-intake__progress-heading {
-  display: inline-block;
-  margin-bottom: 6px;
-
-  @include media(">=desktop") {
+  
+  .food-intake__progress-heading {
+    display: inline-block;
+    margin-bottom: 6px;
     margin-right: 18px;
   }
-}
+    
+  .food-intake__progress-heading > .target,
+  .food-intake__progress-heading > .current {
+    text-align: center;
+    font-size: ms(-1);
+    line-height: 1.33;
+    font-weight: 400;
+  }  
   
-#nanum .food-intake__progress-heading > .target,
-#nanum .food-intake__progress-heading > .current {
-  text-align: center;
-  font-size: ms(-1);
-  line-height: 1.33;
-  font-weight: 400;
-}  
-
-#nanum .food-intake__progress-heading > .target {
-  color: $black;
+  .food-intake__progress-heading > .target {
+    color: $black;
+  }
+  
+  .food-intake__progress-heading > .current {
+    color: $gray;
+  }
 }
 
-#nanum .food-intake__progress-heading > .current {
-  color: $gray;
-}  
+#nanum.App--mobile {
+  .food-intake__progress {
+    position: relative;
+    display: block;
+    margin: 0 20px 14px;
+    padding: 0;
+  }
 
-
+  .food-intake__progress-heading {
+    margin-right: 0;
+  }    
+}
