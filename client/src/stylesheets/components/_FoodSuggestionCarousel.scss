@@ -4,17 +4,6 @@
     position: relative;
   }
 
-  // override 
-  .food-suggestion__carousel  {
-    .slick-list {
-      padding: 0 !important;
-    }
-
-    .slick-slide {
-      width: auto !important;
-    }
-  }
-
   // Carousel dots
   .food-suggestion__carousel .slick-dots {
     text-align: left;
@@ -45,6 +34,36 @@
     }
   }
 
+  // limit the width
+  .food-suggestion__carousel {
+    max-width: 820px;
+  }
+
+  // arrows 
+  .food-suggestion__carousel .carousel-arrow {
+    width: 66px;
+    height: 66px;
+    z-index: 3;
+
+    &:before {
+      display: none;
+    }
+
+    &.carousel-arrow--prev {
+      left: -45px;
+    }
+
+    &.carousel-arrow--next {
+      right: -45px;
+    }
+  }
+}
+
+#nanum.App--mobile {
+  .food-suggestion__carousel:after {
+    display: block;
+  }      
+
   // Blurred overlay
   .food-suggestion__carousel {
     position: relative;
@@ -61,10 +80,4 @@
       background-image: linear-gradient(to left, #ffffff, rgba(255, 255, 255, 0.1));
     }
   }
-}
-
-#nanum.App--mobile {
-  .food-suggestion__carousel:after {
-    display: block;
-  }      
 }
