@@ -26,13 +26,10 @@ class FoodSearchBoxContainer extends Component {
   }
 
   render() {
-    const { total, foodQuery, theme } = this.props;
-    const classes = theme 
-      ? 'food-search__box'
-      : `food-search__box food-search__box--${theme}`;
+    const { total, foodQuery } = this.props;
 
     return (
-      <div className={classes}>
+      <div className="food-search__box">
         <SearchForm onSubmit={this.handleSubmit} />
         { total &&
           foodQuery !== '' &&

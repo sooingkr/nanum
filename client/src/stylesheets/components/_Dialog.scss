@@ -41,8 +41,6 @@ $dialog-height: 412px;
   }
 }
 
-#nanum.App--mobile {
-  .modal.in .modal-dialog.add-food-dialog .modal-content {
-    transform: translate(0, 20%);
-  } 
+#nanum.App--mobile .modal.in .modal-dialog.add-food-dialog .modal-content {
+  transform: translate(0, 20%);
 }

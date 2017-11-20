@@ -4,7 +4,7 @@
     display: inline-block;
   }
   
-  .search-form form {
+  .search-form {
     position: relative;
   
     .search-form__input {
@@ -19,7 +19,7 @@
   
     .search-form__submit {
       position: absolute;
-      right: 20px;
+      right: 30px;
       top: 50%;
       width: 30px;
       height: 30px;
