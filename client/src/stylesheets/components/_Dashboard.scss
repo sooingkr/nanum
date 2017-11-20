@@ -8,6 +8,7 @@ $dashboard-max-width: 1040px;
     .container {
       width: 1060px;
       margin: 0 auto;
+      padding: 0;
     }
   }
   
@@ -35,9 +36,13 @@ $dashboard-max-width: 1040px;
 
 #nanum.App--mobile {
   .dashboard {
-    @include background-opacity($base-background-color, 0.1);
-    padding: 32px 38px;
+    background-color: $white;
+    padding: 32px 28px;
     min-height: 100vh;
+
+    .container {
+      width: 100%;
+    }      
   }
 
   .dashboard-tracking,
@@ -45,12 +50,8 @@ $dashboard-max-width: 1040px;
     display: block;
   }
 
-  .dashboard-timeSelector {
-    padding: 0 30px;
-  }
-  
   .dashboard-search {
-    margin-bottom: 100px;
+    margin-bottom: 150px;
   }
 
   .dashboard div[class^="col"] {

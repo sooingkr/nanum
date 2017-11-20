@@ -57,12 +57,25 @@
       right: -45px;
     }
   }
+
+  .food-suggestion__carousel:after {
+    display: none;
+  }    
 }
 
 #nanum.App--mobile {
-  .food-suggestion__carousel:after {
-    display: block;
-  }      
+  // override slick
+  .food-suggestion__carousel {
+    max-width: none;
+
+    .slick-list {
+      padding: 0 !important;
+    }
+
+    .slick-slide {
+      width: 206px !important;
+    }
+  }
 
   // Blurred overlay
   .food-suggestion__carousel {
@@ -70,7 +83,6 @@
 
     &:after {
       position: absolute;
-      display: none;
       top: 0;
       right: 0;
       content: ' ';

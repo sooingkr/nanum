@@ -85,7 +85,7 @@ const carouselSettings = {
 };
 
 const FoodSuggestionCarousel = (props) => (
-  <Carousel settings={carouselSettings}  className="food-suggestion-slider">
+  <Carousel settings={carouselSettings} className="food-suggestion-slider">
     { props.data.map(foodItem => (
       <div key={foodItem.globalId} style={{width: 214}}>
         <FoodSuggestionItem data={foodItem}/>
