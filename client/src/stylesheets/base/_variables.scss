@@ -1,24 +1,24 @@
 $breakpoints: (
-    phone: 320px,
-    screen-xs: 480px,
-    iphone5-landscape: 568px,
-    iphone6: 375px,
-    iphone6-landscape: 667px,
-    iphone6plus: 414px,
-    big-phone: 700px,
-    tablet: 768px,
-    netbook: 924px,
-    screen-md: 992px,
-    desktop: 1024px,
-    da: 1224px,
-    screen-lg: 2560px,
+  phone: 320px,
+  screen-xs: 480px,
+  iphone5-landscape: 568px,
+  iphone6: 375px,
+  iphone6-landscape: 667px,
+  iphone6plus: 414px,
+  big-phone: 700px,
+  tablet: 768px,
+  netbook: 924px,
+  screen-md: 992px,
+  desktop: 1024px,
+  da: 1224px,
+  screen-lg: 2560px,
 );
 
 //Rhythm unit
 $rhythm-unit: 2px;
 
 // Typography
-$base-font-family: "Malgun Gothic", 'Dotum', serif, sans-serif;
+$base-font-family: "Nanum Gothic", serif, sans-serif;
 $heading-font-family: $base-font-family;
 
 // Font Sizes
@@ -41,12 +41,15 @@ $white-gray: #f7f8f9;
 $lesser-gray: #d0d2d3;
 $light-gray: #b7bcc0;
 $gray: #9fa3a7;
+$gray-1: #878787;
 $mid-gray: #878787;
 $dark-gray: #4c4c4c;
 $black: #242424;
+$black-1: #5a5a5a;
 $black-2: #313541;
 $lesser-black: #4e5665;
 $green: #a7d041;
+$green-1: #40975b;
 $red: #e34c4c;
 $yellow: #ffc80a;
 
@@ -63,6 +66,7 @@ $message-border: rgba(76, 76, 76, 0.15);
 $message-border-user: rgba(127, 213, 149, 1);
 $chat-box-input-border: #00c03c;
 $chat-box-input-shadow: rgba(0, 192, 60, 0.15);
+$service-box-bg: rgba(133, 207, 156, 0.24);
 $carousel-box-shadow: rgba(0, 0, 0, 0.15);
 
 // Background Colors
@@ -71,5 +75,7 @@ $secondary-background-color: #f1f1f1;
 $profile-edit-background: #e4f6f6;
 $progress-bar-background: #e9eaec;
 $chatbox-background: #f6f6f6;
+$chatbox-background-1: #e6e6e6;
 $green-light-bg:rgba(0, 192, 60, 0.2);
+$service-green-bg: #85d09c;
 

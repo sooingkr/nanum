@@ -1,71 +1,76 @@
-.user-info {
-  position: relative;
-  margin: 0 auto;
-  padding: 20px 0;
-  text-align: left;
-  border-bottom: 1px solid rgba(159, 163, 167, .2);
-
-  @include media(">tablet") {
+#nanum {
+  .user-info {
+    position: relative;
+    margin: 0;
+    padding: 20px;
+    text-align: left;
     border-bottom: none;
     border-right: 1px solid rgba(159, 163, 167, .2);
     height: 100%;
     max-width: 100%;
-    margin: 0;
   }
-
-  @include media(">=desktop") {
-    padding: 20px;
-  }
-}
-
-.user-info__heading {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-
-  @include media(">=desktop") {
-    justify-content: flex-start;
-  }
-}
-
-.user-info__name {
-  display: flex;
-  align-items: center;
-  margin-right: 16px;
   
-  h2 {
-    margin: 0;
-    margin-right: 6px;
-    font-size: ms(5);
-  }
-
-  img {
-    width: 12px;
-    height: 12px;    
-  }
-}
-
-.user-info__noInfo {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  text-align: center;
-}
-
-.user-info__details {
-  padding: 28px 0 20px;
-}
-
-@include media(">=netbook") {
   .user-info__heading {
     position: relative;
-  }  
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-start;
+  }
 
   .user-info__edit {
     position: absolute;
     right: 0;
     top: -4px;
   }
+  
+  .user-info__name {
+    display: flex;
+    align-items: center;
+    margin-right: 16px;
+    
+    h2 {
+      margin: 0;
+      margin-right: 6px;
+      font-size: ms(5);
+    }
+  
+    img {
+      width: 12px;
+      height: 12px;    
+    }
+  }
+  
+  .user-info__noInfo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center;
+  }
+  
+  .user-info__details {
+    padding: 28px 0 20px;
+  }
+}
+
+#nanum.App--mobile {
+  .user-info {
+    margin: 0 auto;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(159, 163, 167, .2);
+    border-right: none;
+    height: auto;
+    max-width: none;
+  } 
+
+  .user-info__heading {
+    justify-content: space-between;
+  }    
+
+  .user-info__edit {
+    position: relative;
+    right: auto;
+    top: auto;
+  }    
 }

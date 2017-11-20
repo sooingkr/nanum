@@ -1,69 +1,68 @@
-.time-selector {
-  width: 100%;
-
-  @include media(">=desktop") {
+#nanum {
+  .time-selector {
+    width: 100%;
     margin-bottom: 20px;
   }
-}
-
-.time-selector__trigger {
-  position: relative;
-  font-family: $base-font-family;
-  font-size: ms(-1);
-  text-transform: uppercase;
-  letter-spacing: 2.4px;
-  font-weight: bold;
-  padding-left: 30px;
-  padding-right: 0;
-  margin: 0;
-  border: none;
-  background-color: transparent;
-  text-align: left;
-
-  // Icon
-  &:before {
-    position: absolute;
-    content: ' ';
-    top: 50%;
-    transform: translateY(-50%);
-    left: 0;
-    width: 18px;
-    height: 18px;
-    background-image: url("./assets/images/icons/calendar.svg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-  }
-}
-
-.time-selector__picker {
-  position: relative;
-  height: 0;
-  opacity: 0;
-  z-index: -1;
-  animation: isHidden 0.3s 1;
-
-  &.is-active {
-    position: absolute;
-    bottom: -40px;
-    right: 0;
-    height: 100%;
-    opacity: 1;
-    animation: isShown 0.3s 1;
-    z-index: 2;
-
-    .DayPicker {
-      background-color: $white;
-      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .15);
-      border-radius: 10px;
+  
+  .time-selector__trigger {
+    position: relative;
+    font-family: $base-font-family;
+    font-size: ms(-1);
+    text-transform: uppercase;
+    letter-spacing: 2.4px;
+    font-weight: bold;
+    padding-left: 30px;
+    padding-right: 0;
+    margin: 0;
+    border: none;
+    background-color: transparent;
+    text-align: left;
+  
+    // Icon
+    &:before {
+      position: absolute;
+      content: ' ';
+      top: 50%;
+      transform: translateY(-50%);
+      left: 0;
+      width: 18px;
+      height: 18px;
+      background-image: url("./assets/images/icons/calendar.svg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
     }
   }
-}
-
-// disable click 
-.DayPicker-Day.DayPicker-Day--disabled {
-  pointer-events: none;
-  cursor: default;
+  
+  .time-selector__picker {
+    position: relative;
+    height: 0;
+    opacity: 0;
+    z-index: -1;
+    animation: isHidden 0.3s 1;
+  
+    &.is-active {
+      position: absolute;
+      bottom: -40px;
+      right: 0;
+      height: 100%;
+      opacity: 1;
+      animation: isShown 0.3s 1;
+      z-index: 2;
+  
+      .DayPicker {
+        background-color: $white;
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .15);
+        border-radius: 10px;
+      }
+    }
+  }
+  
+  // disable click 
+  .DayPicker-Day.DayPicker-Day--disabled {
+    pointer-events: none;
+    cursor: default;
+  }
 }
 
 @keyframes isShown {
@@ -86,3 +85,8 @@
   }
 }
   
+#nanum.App--mobile {
+  .time-selector {
+    margin-bottom: 0;
+  }    
+}

@@ -1,64 +1,95 @@
-// Slider
-.food-suggestion-slider {
-  position: relative;
-}
-
-// override 
-.food-suggestion__carousel  {
-  .slick-list {
-    padding: 0 !important;
+#nanum {
+  // Slider
+  .food-suggestion-slider {
+    position: relative;
   }
 
-  .slick-slide {
-    width: auto !important;
-  }
-}
+  // Carousel dots
+  .food-suggestion__carousel .slick-dots {
+    text-align: left;
+    display: flex;
+    bottom: -14px;
 
-// Carousel dots
-.food-suggestion__carousel .slick-dots {
-  text-align: left;
-  display: flex;
-  bottom: -14px;
+    li {
+      background-color: #96b647;
+      opacity: 0;
+      height: 3px;
+      margin: 0;
+      border-radius: 5px;
+      transition: opacity .3s ease;
 
-  li {
-    background-color: #96b647;
-    opacity: 0;
-    height: 3px;
-    margin: 0;
-    border-radius: 5px;
-    transition: opacity .3s ease;
+      button {
+        width: auto;
+        height: auto;
+        padding: 0;
+      }
 
-    button {
-      width: auto;
-      height: auto;
-      padding: 0;
+      button:before {
+        display: none;
+      }
     }
 
-    button:before {
-      display: none;
+    li.slick-active {
+      opacity: 1;
     }
   }
 
-  li.slick-active {
-    opacity: 1;
+  // limit the width
+  .food-suggestion__carousel {
+    max-width: 820px;
   }
+
+  // arrows 
+  .food-suggestion__carousel .carousel-arrow {
+    width: 66px;
+    height: 66px;
+    z-index: 3;
+
+    &:before {
+      display: none;
+    }
+
+    &.carousel-arrow--prev {
+      left: -45px;
+    }
+
+    &.carousel-arrow--next {
+      right: -45px;
+    }
+  }
+
+  .food-suggestion__carousel:after {
+    display: none;
+  }    
 }
 
-// Blurred overlay
-.food-suggestion__carousel {
-  position: relative;
+#nanum.App--mobile {
+  // override slick
+  .food-suggestion__carousel {
+    max-width: none;
 
-  &:after {
-    position: absolute;
-    top: 0;
-    right: 0;
-    content: ' ';
-    display: block;
-    width: 60px;
-    height: 100%;
-    background-image: linear-gradient(to left, #ffffff, rgba(255, 255, 255, 0.1));
-    @include media(">=desktop") {
-      display: none;
+    .slick-list {
+      padding: 0 !important;
+    }
+
+    .slick-slide {
+      width: 206px !important;
+    }
+  }
+
+  // Blurred overlay
+  .food-suggestion__carousel {
+    position: relative;
+
+    &:after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      content: ' ';
+      display: block;
+      width: 60px;
+      height: 100%;
+      background-image: linear-gradient(to left, #ffffff, rgba(255, 255, 255, 0.1));
     }
   }
 }

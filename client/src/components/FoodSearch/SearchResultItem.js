@@ -5,16 +5,16 @@ import { Image } from 'react-bootstrap';
 
 const SearchResultItem = ({ id, name, manufacturer, imageUrl }) => (
   <div className="search-result-item">
-    <div className="search-result-item__image">
-      <Image src={imageUrl} responsive />
-    </div>
-    <div className="search-result-item__content">
-      <h3 className="search-result-item__name">{name}</h3>
-      <h4 className="search-result-item__manufacturer">{manufacturer}</h4>
-    </div>
-    <div className="search-result-item__button">
-      <Link to={'/products/' + id} className="button button--arrow" />
-    </div>
+    <Link to={'/foods/' + id}>
+      <div className="search-result-item__image">
+        <Image src={imageUrl} />
+      </div>
+      <div className="search-result-item__content">
+        <h3 className="search-result-item__name">{name}</h3>
+        <h4 className="search-result-item__manufacturer">{manufacturer}</h4>
+      </div>
+      <div className="search-result-item__button button button--arrow"></div>
+    </Link>
   </div>
 )
 

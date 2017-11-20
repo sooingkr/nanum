@@ -31,13 +31,13 @@ class Navigation extends Component {
 
   handleHaccpButton = () => {
     const { toggleChatBox, history } = this.props;
-    const userId = '1';
+    const userId = '';
 
     if (userId) { /* user logged in */
       toggleChatBox();
 
     } else { /* not logged in */
-      history.push('/staticpage');
+      history.push('/service');
 
     }
   };

@@ -2,7 +2,7 @@
   padding: 0 26px;
 }
 
-.add-food-form {
+#nanum .add-food-form {
   legend {
     color: $green;
     font-size: 24px;
@@ -39,7 +39,7 @@
 }
 
 // Select field
-.Select-control {
+#nanum .Select-control {
   border-radius: 4px;
   background-color: $white;
   box-shadow: inset 0 0 3px 0 rgba(0, 0, 0, 0.5);
@@ -47,13 +47,13 @@
 }
 
 // selected food list
-.food-option-list {
+#nanum .food-option-list {
   max-height: 212px;
   overflow-y: scroll;
 }
 
 // selected food item
-.food-option-item {
+#nanum .food-option-item {
   background-color: $white;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
   margin-bottom: 4px;
@@ -79,17 +79,17 @@
 }
 
 // media object override 
-.food-option-item {
+#nanum .food-option-item {
   .media-left, .media-body, .media-right {
     vertical-align: middle;
   }
 
   .media-right {
-    display: block;
+    display: table-cell;
     padding-left: 70px;
-
-    @include media(">=desktop") {
-      display: table-cell;
-    }
   }
+}
+
+#nanum.App--mobile .food-option-item .media-right {
+  display: block;
 }

@@ -1,28 +1,13 @@
-.food-suggestion {
-  padding: 24px 28px 30px;
-  overflow-x: hidden;
-  
-  @include media(">=desktop") {
+#nanum {
+  .food-suggestion {
     display: flex;
+    padding: 24px 28px 30px;
+    overflow-x: hidden;
   }
-}
-
-.food-suggestion__reason {
-  color: $black;
-  letter-spacing: normal;
-  margin-bottom: 14px;
-
-  h3 {
-    font-size: ms(1);
-    font-weight: 700;
-  }
-
-  p {
-    font-size: ms(0);
-    font-weight: 400;
-  }
-
-  @include media(">=desktop") {
+  
+  .food-suggestion__reason {
+    color: $black;
+    letter-spacing: normal;
     flex-shrink: 0;
     max-width: 116px;
     margin-right: 48px;    
@@ -33,4 +18,29 @@
       font-weight: 700;
     }
   }
+}
+
+#nanum.App--mobile {
+  .food-suggestion {
+    padding-left: 0;
+    padding-right: 0;
+    display: block;
+  }    
+
+  .food-suggestion__reason {
+    flex-shrink: 1;
+    max-width: none;
+    margin-right: 0;
+    margin-bottom: 14px;
+
+    h3 {
+      font-size: ms(1);
+      font-weight: 700;
+    }
+  
+    p {
+      font-size: ms(0);
+      font-weight: 400;
+    }
+  }    
 }

@@ -1,14 +1,22 @@
-.section:not(.section-sm-shadow) {
-  @include section-spacing;
-}
-
-.section--shadow {
-  @include with-shadow;
-}
-
-.section--sm-shadow {
-  @include media(">=tablet") {
-    @include with-shadow;
+#nanum {
+  .section:not(.section-sm-shadow) {
     @include section-spacing;
+  }
+  
+  .section--shadow {
+    @include with-shadow;
+  }
+  
+  .section--sm-shadow {
+    @include media(">=tablet") {
+      @include with-shadow;
+      @include section-spacing;
+    }
+  }
+}
+
+#nanum.App--mobile {
+  .section--shadow {
+    box-shadow: none;
   }
 }

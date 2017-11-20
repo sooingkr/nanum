@@ -68,8 +68,9 @@ export class FoodIntakeTrackingContainer extends Component {
   renderAddFoodModal = ({ showDialog, whichDialog, addFood, clearAddFood, submitFoods }) => {
     return (
       <Dialog 
-      show={showDialog} 
-      onClose={this.handleCloseDialog} 
+        show={showDialog} 
+        onClose={this.handleCloseDialog} 
+        container={this}
       >
         <AddFoodForm 
           onSubmit={submitFoods} 
@@ -91,7 +92,7 @@ export class FoodIntakeTrackingContainer extends Component {
     if(!foodIntakeTracking || isEmpty(foodIntakeTracking)) return <div/>;
     const { when } = foodIntakeTracking;
     return (
-      <div className="food-intake" >
+      <div className="food-intake modal-container" >
         {this.renderEditButtons()}
         {this.renderProgressBar(this.props)}
 

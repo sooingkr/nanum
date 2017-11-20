@@ -1,25 +1,27 @@
-.home {
-  background: url("./assets/images/food-bg.jpg") center no-repeat;
-  background-size: cover;
-  height: calc(100vh - 76px); //minus navbar height
-  overflow-y: hidden;
+#nanum {
+  .home {
+    background: url("./assets/images/food-bg.jpg") center no-repeat;
+    background-size: cover;
+    height: calc(100vh - 76px); //minus navbar height
+    overflow-y: hidden;
+    
+    .home-search {
+      @include margin(167px null 330px 0);
+    }
   
-  .home-search {
-    @include margin(167px null 330px 0);
+    .home-search__text {
+      color: $white;
+      font-size: rem(36);
+    }
   }
-
-  .home-search__text {
-    color: $white;
-    font-size: rem(36);
+  
+  .home .container {
+    position: relative;
   }
-}
-
-.home .container {
-  position: relative;
-}
-
-.home .chat-box {
-  position: absolute;
-  right: 0;
-  bottom: 0;
+  
+  .home .chat-box {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
 }
