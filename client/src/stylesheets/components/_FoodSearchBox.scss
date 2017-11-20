@@ -38,6 +38,14 @@
 
 
 #nanum.App--mobile {
+  .food-search .food-search__box {
+    padding-top: 18px;
+  }
+
+  .food-search__total {
+    margin-bottom: 12px;
+  }    
+
   .food-search__box {
     padding: 0;
   }
