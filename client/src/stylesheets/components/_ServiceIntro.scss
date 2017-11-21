@@ -6,7 +6,11 @@
     line-height: 30px;
     text-align: center;
     padding-top: 60px;
-  
+
+    .service-intro__info {
+      margin-bottom: 36px;
+    }
+
     p {
       max-width: 868px;
       margin-right: auto;
@@ -21,7 +25,6 @@
       font-size: 18px;
       font-weight: bold;
       color: $black-1;
-      margin-bottom: 36px;
       padding: 16px 36px;
       min-width: 234px;
       background-image: none;
@@ -37,22 +40,6 @@
     margin: 0 auto;
   }
 
-  .service-intro__info {
-    @include media("<=tablet") {
-      padding: 0 40px;
-    }
-  }
-
-  .service-intro__image {
-    padding: 0 15px;
-
-    .service-intro__title, p {
-      @include media("<=tablet") {
-        padding: 0 25px;
-      }
-    }
-  }
-
   .middle-paragraph {
     margin: 0 auto 20px;
   }
@@ -62,7 +49,7 @@
     font-weight: bold;
     max-width: 692px;
     color: $chat-box-input-border;
-    line-height: 40px;
+    line-height: 30px;
     margin: 30px auto 40px;
   }
 
@@ -75,33 +62,22 @@
     background-color: $service-box-bg;
     margin-bottom: 24px;
     padding: 16px;
-    
-    @include media("<=tablet") {
-      margin: 0 -20px;
-    }
   }
 
   .service-intro__image {
     position: relative;
+    padding: 0 15px;
 
     .service-green__bg {
       @include position(absolute, 0 0 0 0);
       background-color: $service-green-bg;
-      max-height: 140px;
+      max-height: 300px;
       z-index: -1;
-
-      @include media(">=tablet") {
-        max-height: 404px;
-      }
     }
   }
 
   .service-image__intro {
-    padding: 30px 0;
-
-    @include media(">=screen-md") {
-      padding: 40px 0;
-    }
+    padding: 40px 0;
 
     .service-image__block {
       float: left;
@@ -111,5 +87,55 @@
     .img-responsive {
       width: 100%;
     }
+  }
+}
+
+#nanum.App--mobile {
+  .service-intro {
+    font-size: 15px;
+    text-align: left;
+    
+    p {
+      line-height: 24px;
+    }      
+  }    
+
+  .service-intro__title, p:not(.service-info__box) {
+    padding: 0 28px;
+  }
+
+  .service-info__box {
+    margin: 0 14px 40px;
+  }
+
+  .service-green__bg {
+    max-height: 404px;
+  }
+
+  .service-image__intro {
+    padding: 30px 0;
+  }
+
+  .service-intro__title {
+    font-size: 22px;
+    margin-bottom: 28px;
+  }   
+  
+  .service-intro__btn {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .service-green__bg {
+    max-height: 140px;
+  }
+
+  .service-image__intro .service-intro__title {
+    padding: 0 15px;
+    margin-bottom: 24px;
+  }    
+
+  .service-intro__info {
+    margin-bottom: 0;
   }
 }

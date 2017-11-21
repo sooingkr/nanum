@@ -28,7 +28,9 @@ const ServiceIntro = () => {
           만약 유저의 몸에 악영향을 끼치는 제품이라면 위의 예시와같이 제품을 추천하지 않는다는<br></br>
           문구를 출력하여 다른 대체식품을 추천해줍니다.
         </p>
-        <Link className="btn btn-default button-green" to="/login" target="_blank" title="로그인하기">로그인하기</Link>
+        <div className="service-intro__btn">
+          <Link className="btn btn-default button-green" to="/login" target="_blank" title="로그인하기">로그인하기</Link>
+        </div>        
       </div>
       <div className="service-intro__image">
         <div className="service-green__bg"></div>
@@ -45,14 +47,16 @@ const ServiceIntro = () => {
             <Image responsive src={chatboxImgHACCP} alt="Chatbox-HACCP"/>
           </div>
           <p>로그인을 하시면  개인 상담이 실시간으로 가능하며 고객의 질문을 정확히 파악해 명확한 답변이 가능합니다.</p>
-          <Link 
-            className="btn btn-default button-green" 
-            to="/login" 
-            target="_blank" 
-            title="로그인하기"
-          >
-            로그인하기
-          </Link>
+          <div className="service-intro__btn">
+            <Link 
+              className="btn btn-default button-green" 
+              to="/login" 
+              target="_blank" 
+              title="로그인하기"
+            >
+              로그인하기
+            </Link>
+          </div>          
         </div>
       </div>
     </div>
