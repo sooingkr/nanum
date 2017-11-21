@@ -1,21 +1,20 @@
-/**
- * Created by navcs on 11/16/17.
- */
-import React, {Component} from "react";
-import {connect} from 'react-redux';
-import {withRouter} from 'react-router-dom';
-import ApiKeyContainer from './ApiKeyContainer';
+import React from 'react';
+import UserSettingForm from './UserSettingForm';
 
-class UserSetting extends Component {
+class UserSetting extends React.Component {
+  handleSubmit = () => {
+
+  }
 
   render() {
     return (
-      <div className="user-setting">
-        <ApiKeyContainer/>
+      <div className="user-setting">  
+        <div className="user-setting-content">
+          <UserSettingForm onSubmit={this.handleSubmit}/>
+        </div>
       </div>
     )
   }
-
 }
 
-export default connect()(UserSetting);
+export default UserSetting;
