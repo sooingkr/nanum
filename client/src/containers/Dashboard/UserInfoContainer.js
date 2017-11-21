@@ -9,10 +9,6 @@ import MaleIcon from '../../assets/images/icons/male.svg';
 import FemaleIcon from '../../assets/images/icons/female.svg';
 
 export class UserInfoContainer extends Component {
-  onRemove = (id) => {
-    // TODO
-  };
-
   renderNoInfo = () => (
     <div className="user-info__noInfo">
       <Link 
@@ -59,7 +55,6 @@ export class UserInfoContainer extends Component {
                   key={disease.id}
                   id={disease.id}
                   text={disease.name} 
-                  onRemove={this.onRemove}
                 />
               ))}
             </div>
