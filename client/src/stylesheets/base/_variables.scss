@@ -23,7 +23,7 @@ $heading-font-family: $base-font-family;
 
 // Font Sizes
 $base-font-size: 14px;
-$base-letter-spacing: 0.1em;
+$base-letter-spacing: normal;
 
 // Line height
 $base-line-height: 1.143;
@@ -36,7 +36,7 @@ $small-spacing: $base-spacing / 2;
 $base-z-index: 0;
 
 // Colors
-$white: white;
+$white: #ffffff;
 $white-gray: #f7f8f9;
 $lesser-gray: #d0d2d3;
 $light-gray: #b7bcc0;

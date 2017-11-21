@@ -20,7 +20,7 @@ class Dashboard extends Component {
     const { init } = this.props;
     init();
   }
-  
+
   render() {
     const { alert, isLoading } = this.props;
 
@@ -42,7 +42,7 @@ class Dashboard extends Component {
               <TimeSelectorContainer />
             </Col>
           </Row>
-          <Row className="dashboard-tracking section section--sm-shadow">
+          <Row className="dashboard-tracking section section--sm-shadow with-spacer">
             <Col sm={6} md={4}>
               <UserInfoContainer />
             </Col>

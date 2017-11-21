@@ -1,124 +1,83 @@
-#nanum .service-intro {
-  font-size: rem(16);
-  font-weight: bold;
-  color: $gray-1;
-  line-height: 30px;
-  word-spacing: -10px;
-  text-align: center;
-  padding-top: 60px;
+#nanum {
+  .service-intro {
+    font-size: 16px;
+    font-weight: bold;
+    color: $gray-1;
+    line-height: 30px;
+    text-align: center;
+    padding-top: 60px;
 
-  .service-intro__info, .service-image__intro {
+    .service-intro__info {
+      margin-bottom: 36px;
+    }
+
+    p {
+      max-width: 868px;
+      margin-right: auto;
+      margin-left: auto;
+
+      &.paragraph {
+        margin-bottom: 24px;
+      }
+    }
+  
+    .button-green {
+      font-size: 18px;
+      font-weight: bold;
+      color: $black-1;
+      padding: 16px 36px;
+      min-width: 234px;
+      background-image: none;
+      border: 2px solid $chat-box-input-border;
+      border-radius: 88px;
+    }
+  }
+
+  .service-intro__info, 
+  .service-image__intro {
     max-width: 992px;
     width: 100%;
     margin: 0 auto;
   }
 
-  .service-intro__info {
-    @include media("<=tablet") {
-      padding: 0 40px;
-    }
-  }
-
-  .service-intro__image {
-    padding: 0 15px;
-
-    .service-intro__title, p {
-      @include media("<=tablet") {
-        padding: 0 25px;
-      }
-    }
-  }
-
-  p {
-    max-width: 868px;
-    margin: 10px auto 20px;
-    @include media("<=tablet") {
-      text-align: left;
-    }
-
-    &.pagraph {
-      @include media(">=screen-md") {
-        margin: 0 auto;
-      }
-    }
-  }
-
-  .middle-pagrah {
-    margin: 10px auto 20px;
-    @include media(">=screen-md") {
-      margin: 10px 92px 20px;
-    }
-  }
-
-  .button-green {
-    font-size: rem(18);
-    font-weight: bold;
-    color: $black-1;
-    margin-top: 10px;
-    margin-bottom: 40px;
-    width: 234px;
-    line-height: 40px;
-    background-image: none;
+  .middle-paragraph {
+    margin: 0 auto 20px;
   }
 
   .service-intro__title {
-    font-size: rem(22);
+    font-size: 26px;
     font-weight: bold;
+    max-width: 692px;
     color: $chat-box-input-border;
-    line-height: 40px;
-    word-spacing: -14px;
-    margin-top: 30px;
-    margin-bottom: 40px;
-
-    @include media(">=screen-md") {
-      font-size: rem(26);
-      width: 690px;
-      margin: 70px auto 40px;
-    }
-    @include media("<=tablet") {
-      text-align: left;
-    }
+    line-height: 30px;
+    margin: 30px auto 40px;
   }
 
   .service-info__box {
+    font-size: 16px;
     max-width: 810px;
-    max-height: 110px;
-    background-color: $service-box-bg;
     border: 1px solid $chat-box-input-border;
     border-radius: 15px;
-    padding: 5px;
-    font-size: rem(15);
     color: $green-1;
-    @include media(">=screen-md") {
-      max-height: 60px;
-      line-height: 50px;
-    }
-    @include media("<=tablet") {
-      margin: 0 -20px;
-    }
+    background-color: $service-box-bg;
+    margin-bottom: 24px;
+    padding: 16px;
   }
 
   .service-intro__image {
     position: relative;
+    padding: 0 15px;
 
     .service-green__bg {
       @include position(absolute, 0 0 0 0);
       background-color: $service-green-bg;
-      max-height: 140px;
+      max-height: 300px;
       z-index: -1;
-
-      @include media(">=tablet") {
-        max-height: 404px;
-      }
     }
   }
 
   .service-image__intro {
-    padding: 30px 0;
-
-    @include media(">=screen-md") {
-      padding: 40px 0;
-    }
+    padding: 40px 0;
 
     .service-image__block {
       float: left;
@@ -128,5 +87,55 @@
     .img-responsive {
       width: 100%;
     }
+  }
+}
+
+#nanum.App--mobile {
+  .service-intro {
+    font-size: 15px;
+    text-align: left;
+    
+    p {
+      line-height: 24px;
+    }
+
+    .service-intro__title, p:not(.service-info__box) {
+      padding: 0 28px;
+    }
+  }    
+
+  .service-info__box {
+    margin: 0 14px 40px;
+  }
+
+  .service-green__bg {
+    max-height: 404px;
+  }
+
+  .service-image__intro {
+    padding: 30px 0;
+  }
+
+  .service-intro__title {
+    font-size: 22px;
+    margin-bottom: 28px;
+  }   
+  
+  .service-intro__btn {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .service-green__bg {
+    max-height: 140px;
+  }
+
+  .service-image__intro .service-intro__title {
+    padding: 0 15px;
+    margin-bottom: 24px;
+  }    
+
+  .service-intro__info {
+    margin-bottom: 0;
   }
 }
