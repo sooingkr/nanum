@@ -34,13 +34,15 @@ class FoodSearchBoxContainer extends Component {
         { total &&
           foodQuery !== '' &&
           isSearchRoute(this.props.location.pathname) &&
-          <p className="food-search__total">
-            <span>{`"${foodQuery}"`}</span>
-            &nbsp;
-            <span>에 대한 검색결과 총</span>
-            &nbsp;
-            <span>{`"${total}"건`}</span>
-          </p>
+          <div className="food-search__total">
+            <div className="content">
+              <span>{`"${foodQuery}"`}</span>
+              &nbsp;
+              <span>에 대한 검색결과 총</span>
+              &nbsp;
+              <span>{`"${total}"건`}</span>
+            </div>
+          </div>
         }
       </div>
     );

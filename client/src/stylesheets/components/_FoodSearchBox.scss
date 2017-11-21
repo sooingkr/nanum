@@ -16,9 +16,15 @@
   
   .food-search__total {
     text-align: center;
-    text-decoration: underline;
     margin: 38px 0 0;
-  
+    
+    .content {
+      display: inline-block;
+      margin: 0 auto;
+      text-decoration: none;
+      box-shadow: inset 0 0px 0 white, inset 0 -1px 0 $dark-gray;
+    }
+
     span {
       font-size: ms(0);
     }
