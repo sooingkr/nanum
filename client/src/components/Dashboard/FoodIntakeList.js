@@ -26,7 +26,7 @@ class FoodIntakeList extends Component {
           { foods.map(food => (
             <FoodIntakeItem 
               key={food.id} 
-              name={food.name}
+              name={food.foodInfo.name}
               intakeId={food.id}
               mealTime={mealTime}
               imageUrl={food.foodInfo.imageUrl}
