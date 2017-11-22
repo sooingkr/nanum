@@ -5,6 +5,7 @@ import {
   Form, FormGroup, 
 } from 'react-bootstrap';
 import MultiCheckboxField from '../../components/UserSetting/MultiCheckboxField';
+import RadioField from '../../components/UserSetting/RadioField';
 
 const mockOptions = [
   {
@@ -26,57 +27,68 @@ const mockOptions = [
   },
 ]
 
-const UserSettingFormView = ({ handleSubmit, pristine, reset, submitting, fields: {diseases} }) => (
+const UserSettingFormView = ({ handleSubmit, pristine, reset, submitting, fieldList: {diseases} }) => (
   <Form horizontal onSubmit={handleSubmit} className="user-setting__form">
-    <fieldset>
+    <fieldset className="profile-fields">
       <legend>회원 정보</legend>
       <FormGroup>
         <Field 
           name="firstName" 
+          className="text-input"
           component="input"
           type="text"
           placeholder="이름"
         />
         <Field 
           name="lastName" 
+          className="text-input"
           component="input"
           type="text"
           placeholder="성"
         />
       </FormGroup>
-      <FormGroup>
-        <Field 
-          name="sex" 
-          component="input"
-          type="radio"
-          value="MALE"
-          placeholder="여성"
-        />
-        <Field 
-          name="sex" 
-          component="input"
-          type="radio"
-          value="FEMALE"
-          placeholder="남성"
-        />
+      <FormGroup className="align-left">
+        <label>
+          <Field 
+            name="sex" 
+            className="radio-input"
+            component={RadioField}
+            value="MALE"
+            type="radio"
+          />
+          <span>여성</span>
+        </label>
+        <label>
+          <Field 
+            name="sex" 
+            className="radio-input"
+            component={RadioField}
+            value="FEMALE"
+            type="radio"
+          />
+          <span>남성</span>
+        </label>
       </FormGroup>
     </fieldset>
-    <fieldset>
+    <fieldset className="diseases-fields">
       <legend>질병 유무 확인란</legend>
       <FormGroup>
         <Field 
           name="height" 
+          className="text-input"
           component="input"
           type="text"
           placeholder="키"
         />
         <Field 
           name="weight" 
+          className="text-input"
           component="input"
           type="text"
           placeholder="몸무게"
         />
       </FormGroup>
+      <p>해당하는 질병을 선택해 주세요. (한개 이상 선택 가능)</p>
       <Field name="diseases" component={props => 
         <MultiCheckboxField 
           label="Diseases"
@@ -86,11 +98,12 @@ const UserSettingFormView = ({ handleSubmit, pristine, reset, submitting, fields
       }
       />
     </fieldset>
-    <fieldset>
+    <fieldset className="interests-fields">
       <legend>관심 분야</legend>
-      <Field name="diseases" component={props => 
+      <p>해당하는 관심사를 선택해 주세요. (한개 이상 선택 가능)</p>
+      <Field name="interests" component={props => 
         <MultiCheckboxField 
-          label="Diseases"
+          label="Interests"
           options={mockOptions}
           field={props.input}
         />
@@ -114,7 +127,7 @@ const validate = values => {
 
 const UserSettingForm = reduxForm({
   form: 'UserSettingForm',
-  fields: ['diseases']
+  fieldList: ['diseases']
 })(UserSettingFormView);
 
 UserSettingForm.propTypes = {
