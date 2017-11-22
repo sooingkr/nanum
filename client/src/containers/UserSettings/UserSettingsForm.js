@@ -1,34 +1,28 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { reduxForm, Field } from 'redux-form';
 import { 
   Form, FormGroup, 
 } from 'react-bootstrap';
-import MultiCheckboxField from '../../components/UserSetting/MultiCheckboxField';
-import RadioField from '../../components/UserSetting/RadioField';
+import MultiCheckboxField from '../../components/UserSettings/MultiCheckboxField';
+import RadioField from '../../components/UserSettings/RadioField';
+import { UserSettingsDuck } from './UserSettingsDuck';
 
-const mockOptions = [
-  {
-    id: '123',
-    label: '당뇨'
-  },
-  {
-    id: '1234',
-    label: '아토피'
-  },{
-    id: '12345',
-    label: '골다공증'
-  },{
-    id: '123456',
-    label: '빈혈'
-  },{
-    id: '12367',
-    label: '여드름'
-  },
-]
-
-const UserSettingFormView = ({ handleSubmit, pristine, reset, submitting, fieldList: {diseases} }) => (
-  <Form horizontal onSubmit={handleSubmit} className="user-setting__form">
+let UserSettingsForm = ({ 
+  handleSubmit, 
+  pristine, 
+  reset, 
+  submitting, 
+  fieldList: { diseases, interests },
+  selectedDiseases,
+  selectedInterests,
+  allDiseases,
+  allInterests,
+  isInitial,
+}) => {
+  const initClass = isInitial ? 'initial' : '';
+  return (<Form horizontal onSubmit={handleSubmit} className="user-setting__form">
     <fieldset className="profile-fields">
       <legend>회원 정보</legend>
       <FormGroup>
@@ -50,7 +44,7 @@ const UserSettingFormView = ({ handleSubmit, pristine, reset, submitting, fieldL
       <FormGroup className="align-left">
         <label>
           <Field 
-            name="sex" 
+            name="gender" 
             className="radio-input"
             component={RadioField}
             value="MALE"
@@ -60,7 +54,7 @@ const UserSettingFormView = ({ handleSubmit, pristine, reset, submitting, fieldL
         </label>
         <label>
           <Field 
-            name="sex" 
+            name="gender" 
             className="radio-input"
             component={RadioField}
             value="FEMALE"
@@ -91,8 +85,11 @@ const UserSettingFormView = ({ handleSubmit, pristine, reset, submitting, fieldL
       <p>해당하는 질병을 선택해 주세요. (한개 이상 선택 가능)</p>
       <Field name="diseases" component={props => 
         <MultiCheckboxField 
+          {...props.input}
           label="Diseases"
-          options={mockOptions}
+          className={initClass}
+          options={allDiseases}
+          selectedOptions={selectedDiseases}
           field={props.input}
         />
       }
@@ -103,8 +100,11 @@ const UserSettingFormView = ({ handleSubmit, pristine, reset, submitting, fieldL
       <p>해당하는 관심사를 선택해 주세요. (한개 이상 선택 가능)</p>
       <Field name="interests" component={props => 
         <MultiCheckboxField 
+          {...props.input}
           label="Interests"
-          options={mockOptions}
+          className={initClass}
+          options={allInterests}
+          selectedOptions={selectedInterests}
           field={props.input}
         />
       }
@@ -112,26 +112,34 @@ const UserSettingFormView = ({ handleSubmit, pristine, reset, submitting, fieldL
     </fieldset>
     <button type="submit">완료</button>
   </Form>
-);
-
-const validate = values => {
-  const errors = {};
-  const { food } = values;
-
-  if (!food) {
-    errors.food = 'Please type a food name';
-  }
-
-  return errors;
+  )
 };
 
-const UserSettingForm = reduxForm({
-  form: 'UserSettingForm',
+UserSettingsForm = reduxForm({
+  form: 'UserSettingsForm',
   fieldList: ['diseases']
-})(UserSettingFormView);
+})(UserSettingsForm);
 
-UserSettingForm.propTypes = {
+// Get initial values from store
+const mapStateToProps = (state) => ({
+  initialValues: {
+    firstName: state[UserSettingsDuck.storeName].firstName,
+    lastName: state[UserSettingsDuck.storeName].lastName,
+    gender: state[UserSettingsDuck.storeName].gender,
+    height: state[UserSettingsDuck.storeName].height,
+    weight: state[UserSettingsDuck.storeName].weight,
+  },
+  selectedDiseases: UserSettingsDuck.selectors.getSelectedDiseases(state),
+  selectedInterests: UserSettingsDuck.selectors.getSelectedInterests(state),
+  allDiseases: UserSettingsDuck.selectors.getAllDiseases(state),
+  allInterests: UserSettingsDuck.selectors.getAllInterests(state),
+  isInitial: UserSettingsDuck.selectors.getIsInitial(state),
+})
+
+UserSettingsForm = connect(mapStateToProps)(UserSettingsForm);
+
+UserSettingsForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 };
 
-export default UserSettingForm;
+export default UserSettingsForm;

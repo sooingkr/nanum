@@ -13,7 +13,6 @@ class MultiCheckboxField extends React.Component {
   getCurrentValues() {
     const {field} = this.props;
     const {value, initialValue} = field;
-
     let previousValues = [];
 
     if (!isUndefined(value) && value !== '') {
@@ -23,8 +22,7 @@ class MultiCheckboxField extends React.Component {
       previousValues = initialValue;
     }
 
-    const currentValues = isArray(previousValues) ? [...previousValues] : [previousValues];
-
+    let currentValues = isArray(previousValues) ? [...previousValues] : [previousValues];
     return currentValues;
   }
 
@@ -44,15 +42,15 @@ class MultiCheckboxField extends React.Component {
   }
 
   render() {
-    const {label, options, field} = this.props;
+    const {label, options, selectedOptions, field} = this.props;
     const {onBlur} = field;
     const values = this.getCurrentValues();
-
+    const selectedIds = selectedOptions.map(option => option.id);
     return (
       <div className="multi-checkbox form-group">
         {options.map(option => {
-          const isChecked = values.indexOf(option.id) > -1;
-
+          const isChecked = values.indexOf(option.id) > -1 || selectedIds.indexOf(option.id) > -1;
+          console.log(option.id, isChecked);
           return (
             <div
               key={option.id}
@@ -92,7 +90,8 @@ MultiCheckboxField.propTypes = {
       ]).isRequired
     })
   ).isRequired,
-  field: PropTypes.object.isRequired
+  field: PropTypes.object.isRequired,
+  isInitial: PropTypes.bool,
 };
 
 export default MultiCheckboxField;

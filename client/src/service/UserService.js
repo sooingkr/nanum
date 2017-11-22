@@ -45,22 +45,44 @@ const getUserInfo = async () => {
 }
 
 const getUserDiseases = async () => {
-  let userDiseases;
+  let response;
   try {
-    userDiseases = await axios.get('/users/diseases');
+    response = await axios.get('/diseases');
   } catch (error) {
     throw new Error(`UserService error - <getUserDiseases()>: ${error}`);
   }
 
-  return [
-    ...userDiseases.data
-  ]
+  return response.data;
+}
+
+const getUserInterests = async () => {
+  let response;
+  try {
+    response = await axios.get('/interests');
+  } catch (error) {
+    throw new Error(`UserService error - <getUserInterests()>: ${error}`);
+  }
+
+  return response.data;
+}
+
+const getUserSettings = async () => {
+  let response;
+  try {
+    response = await axios.get('/users/info');
+  } catch (error) {
+    throw new Error(`UserService error - <getUserSettings()>: ${error}`);
+  }
+
+  return response.data;
 }
 
 export default {
   getDailyReport,
   getUserInfo,
   getUserDiseases,
+  getUserInterests,
+  getUserSettings,
 }
 
 function mealFilter(mealTime) {

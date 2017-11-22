@@ -12,7 +12,7 @@ export class UserInfoContainer extends Component {
   renderNoInfo = () => (
     <div className="user-info__noInfo">
       <Link 
-      to="/user/edit"
+      to="/user/setting"
       className="button button--outline"
       >
         내 정보 입력하기
@@ -39,7 +39,7 @@ export class UserInfoContainer extends Component {
               <img src={genderIcon} alt={gender} />
             </div>
             
-            <Link to="/user/edit" 
+            <Link to="/user/setting" 
                   className="user-info__edit button button--link">Edit
             </Link>
           </div>

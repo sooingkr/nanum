@@ -13,7 +13,7 @@ import ServiceIntro from "../../components/ServiceIntroduction/ServiceIntro";
 import Login from '../Login/Login';
 import { ErrorModal } from '../../components/Common/ErrorModal';
 import FoodSearch from '../FoodSearch/FoodSearch';
-import UserSetting from '../UserSetting/UserSetting';
+import UserSettings from '../UserSettings/UserSettings';
 import { AppDuck } from './AppDuck';
 import { isMobileVersion } from '../../utils/AppUtils';
 
@@ -48,7 +48,7 @@ export class App extends Component {
             <Route exact path="/login" component={Login}/>
             <Route exact path="/search" component={FoodSearch}/>
             <Route exact path="/introduce" component={ServiceIntro}/>
-            <Route exact path="/user/setting" component={UserSetting} />
+            <Route exact path="/user/setting" component={UserSettings} />
           </Switch>
         </main>
 
