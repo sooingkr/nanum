@@ -117,7 +117,8 @@ let UserSettingsForm = ({
 
 UserSettingsForm = reduxForm({
   form: 'UserSettingsForm',
-  fieldList: ['diseases']
+  fieldList: ['diseases', 'interests'],
+  enableReinitialize: true,
 })(UserSettingsForm);
 
 // Get initial values from store
