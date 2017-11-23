@@ -40,29 +40,11 @@ const carouselSettings = {
   ...basicCarouselSettings,  
   responsive: [
     {
-      breakpoint: 700,
+      breakpoint: 500,
       settings: {
         ...basicCarouselSettings,
         slidesToShow: 1,
         centerMode: true,
-      }
-    },
-    {
-      breakpoint: 924,
-      settings: {
-        ...basicCarouselSettings,
-        ...desktopCarouselSettings,
-        slidesToShow: 3,
-        arrows: false,
-      }
-    },
-    {
-      breakpoint: 1200,
-      settings: {
-        ...basicCarouselSettings,
-        slidesToShow: 3,
-        arrows: false,
-        dots: false,
       }
     },
     {

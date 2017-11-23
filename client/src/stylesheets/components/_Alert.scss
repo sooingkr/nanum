@@ -1,15 +1,19 @@
 #nanum .alert {
   position: absolute;
   display: flex;
+  font-size: 15px;
   left: 0;
   top: 0;
   padding: 16px 120px;
-  width: 100%;
+  height: 50px;
   margin-bottom: 0;
+  width: 100%;
 
   p {
     display: inline-block;
     letter-spacing: normal;
+    margin-bottom: 0;
+    width: 1300px;
   }
 
   .fa {
@@ -22,11 +26,14 @@
 
   .fa {
     color: $red;
+    margin-top: 2px;
   }
 }
 
 #nanum.App--mobile {
   .alert {
+    min-width: initial;
+    height: initial;
     top: 90px;
     padding: 18px 24px;
   }

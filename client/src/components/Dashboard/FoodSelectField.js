@@ -30,6 +30,7 @@ class FoodSelectField extends Component {
             onBlurResetsInput={false}
             loadOptions={this.fetchFoodOptions}
             placeholder="Search for your food"
+            clearable={false}
             filterOption={() => true}
           />
         }

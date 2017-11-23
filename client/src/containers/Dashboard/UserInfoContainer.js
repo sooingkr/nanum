@@ -11,7 +11,7 @@ import FemaleIcon from '../../assets/images/icons/female.svg';
 export class UserInfoContainer extends Component {
   renderNoInfo = () => (
     <div className="user-info__noInfo">
-      <Link 
+    <Link
       to="/user/setting"
       className="button button--outline"
       >
@@ -22,50 +22,45 @@ export class UserInfoContainer extends Component {
 
   render() {
     const user = this.props.user;
-
-    if (_.isEmpty(user)) {
-      return (<div/>);
-    }
-
     const { gender, name, diseases, interests } = user;
     const genderIcon = isMale(gender) ? MaleIcon : FemaleIcon;
-    const hasNoInfo = diseases.length === 0 && interests.length === 0;
+    const hasNoInfo = !diseases || !interests;
     return (
-        <div className="user-info">
-          <div className="user-info__heading">
-            <div className="user-info__name">
-              <h2>{name} 님 </h2>
-              <img src={genderIcon} alt={gender} />
-            </div>
-            
-            <Link to="/user/setting" 
-                  className="user-info__edit button button--link">Edit
-            </Link>
+      <div className="user-info">
+        <div className="user-info__heading">
+          <div className="user-info__name">
+            <h2>{name} 님 </h2>
+            <img src={genderIcon} alt={gender} />
           </div>
-          { hasNoInfo &&
-            this.renderNoInfo()
-          }
+          
+          <Link to="/user/setting" 
+                className="user-info__edit button button--link">Edit
+          </Link>
+        </div>
+        { hasNoInfo &&
+          this.renderNoInfo()
+        }
 
-          { !hasNoInfo &&
-            <div className="user-info__details">
-              { 
-                diseases.map(disease => (
-                <TagBox 
-                  key={disease.id}
-                  id={disease.id}
-                  text={disease.name} 
-                />
-              ))}
-              { 
-                interests.map(interest => (
-                <TagBox 
-                  key={interest.id}
-                  id={interest.id}
-                  text={interest.name} 
-                />
-              ))}
-            </div>
-          }
+        { !hasNoInfo &&
+          <div className="user-info__details">
+            { 
+              diseases.map(disease => (
+              <TagBox 
+                key={disease.id}
+                id={disease.id}
+                text={disease.name} 
+              />
+            ))}
+            { 
+              interests.map(interest => (
+              <TagBox 
+                key={interest.id}
+                id={interest.id}
+                text={interest.name} 
+              />
+            ))}
+          </div>
+        }
       </div>
     );
   }

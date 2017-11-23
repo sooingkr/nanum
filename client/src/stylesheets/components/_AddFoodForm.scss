@@ -29,11 +29,14 @@
   }
 
   .Select {
-    max-width: 280px;
-    margin-bottom: 14px;
+    margin: 0 12px 14px;
   }
 
-  legend, .Select {
+  .Select-arrow-zone {
+    display: none;
+  }
+
+  legend {
     @include side-padding;
   }
 }

@@ -7,17 +7,17 @@
     content: '+';
     position: absolute;
     font-size: ms(1);
-    color: $green;
-    line-height: 1.6;
+    color: #96b647;
+    line-height: 30px;
     text-align: center;
     width: $button-addfood-size;
     height: $button-addfood-size;
     border-radius: 50%;
-    border: 1px solid $green;
+    border: 1px solid #96b647;
     left: 0;
     top: 50%;
     transform: translateY(-50%);
-    @include background-opacity($green, .4);
+    @include background-opacity(#a6cf40, .5);
   }
 
   span {

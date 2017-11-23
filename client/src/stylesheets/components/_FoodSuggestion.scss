@@ -17,6 +17,10 @@
       font-size: ms(-1);
       font-weight: 700;
     }
+
+    h3 {
+      margin-bottom: 30px;
+    }
   }
 }
 
@@ -30,12 +34,14 @@
   .food-suggestion__reason {
     flex-shrink: 1;
     max-width: none;
+    padding-top: 20px;
     margin-right: 0;
     margin-bottom: 14px;
 
     h3 {
       font-size: ms(1);
       font-weight: 700;
+      margin-bottom: 10px;
     }
   
     p {

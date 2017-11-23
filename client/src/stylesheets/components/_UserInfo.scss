@@ -73,4 +73,16 @@
     right: auto;
     top: auto;
   }    
+
+  .user-info__noInfo {
+    position: relative;
+    transform: translate(0);
+    top: 0;
+    left: 0;
+
+    .button {
+      display: inline-block;
+      margin: 24px 0 44px;
+    }
+  }
 }
