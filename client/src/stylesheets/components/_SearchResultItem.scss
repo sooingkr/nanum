@@ -12,7 +12,6 @@
   
     img {
       width: 100%;
-      max-height: $normal-height;
       transition: max-height .3s ease;
     }
   }
@@ -86,9 +85,5 @@
 #nanum.App--mobile {
   .search-result-item:after {
     display: none;
-  }    
-
-  .search-result-item__image img {
-    max-width: 320px;
   }    
 }

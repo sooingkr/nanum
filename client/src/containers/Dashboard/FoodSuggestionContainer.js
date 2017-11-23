@@ -13,8 +13,10 @@ export class FoodSuggestionContainer extends Component {
     return (
       <div className="food-suggestion">
         <div className="food-suggestion__reason">
-          <h3>오늘의 식품</h3>
-          <p>{reason}</p>
+          <div>
+            <h3>오늘의 식품</h3>
+            <p>{reason}</p>
+          </div>
         </div>
         <div className="food-suggestion__carousel">
           <FoodSuggestionCarousel data={foodSuggestions}/>

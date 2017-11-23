@@ -222,11 +222,12 @@
       margin-right: 6px;
     }
   }
-
-  button[type="submit"] {
-    min-width: 172px;
-    font-size: 16px;
-    display: block;
-    margin: 0 auto;
+  .user-setting {
+    button[type="submit"] {
+      min-width: 172px;
+      font-size: 16px;
+      display: block;
+      margin: 0 auto;
+    }
   }    
 }

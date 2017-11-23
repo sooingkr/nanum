@@ -4,7 +4,7 @@
   }
 
   .food-search__box {
-    padding: 45px 0 28px;
+    padding: 50px 0 28px;
     text-align: center;
     color: $dark-gray;
   }
@@ -45,7 +45,9 @@
 
 #nanum.App--mobile {
   .food-search .food-search__box {
+    width: 268px;
     padding-top: 18px;
+    margin: 0 auto;
   }
 
   .food-search__total {

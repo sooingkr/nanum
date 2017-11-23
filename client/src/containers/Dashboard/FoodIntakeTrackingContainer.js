@@ -100,7 +100,7 @@ export class FoodIntakeTrackingContainer extends Component {
           <Row>
           {
             Object.keys(when).map((mealTime) => (
-              <Col xs={12} md={4} key={mealTime}>
+              <Col sm={4} key={mealTime}>
                 <FoodIntakeList 
                   isEditMode={isEditMode}
                   mealTime={mealTime} 

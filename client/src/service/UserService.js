@@ -51,13 +51,13 @@ const getAvailableInterests = async () => {
 }
 
 const getUserSettings = async () => {
-  let response;
+  let response = {};
   try {
     response = await axios.get('/users/info');
   } catch (error) {
-    throw new Error(`UserService error - <getUserSettings()>: ${error}`);
+    response.data = {};
   }
-
+  
   return response.data;
 }
 

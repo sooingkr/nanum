@@ -43,15 +43,15 @@ class Dashboard extends Component {
             </Col>
           </Row>
           <Row className="dashboard-tracking section section--sm-shadow with-spacer">
-            <Col sm={6} md={4}>
+            <Col md={4}>
               <UserInfoContainer />
             </Col>
-            <Col sm={6} md={8}>
+            <Col md={8}>
               <FoodIntakeTrackingContainer />
             </Col>
           </Row>
           <Row className="dashboard-suggestion section section--shadow">
-            <Col sm={12} md={12}>
+            <Col sm={12}>
               <FoodSuggestionContainer />
             </Col>
           </Row>
