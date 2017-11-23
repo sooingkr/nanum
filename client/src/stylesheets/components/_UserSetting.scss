@@ -1,0 +1,232 @@
+#nanum {
+  .user-setting {
+    @include background-opacity($base-background-color, 0.1);
+  }
+  
+  .user-setting-content {
+    width: 640px;
+    padding: 28px 0 36px;
+    margin: 0 auto;
+  }
+  
+  // user setting form
+  .user-setting__form {
+    .form-group {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin: 0 0 36px;
+  
+      input {
+        flex: 1;
+      }
+    }
+  
+    .form-group.align-left {
+      justify-content: flex-start;
+    }
+  
+    .text-input {
+      border: 1px solid #e6e6e6;
+      border-radius: 4px;
+      background-color: #fafafa;
+      color: #292929;
+      min-height: 45px;
+      padding: 12px 18px;
+      font-size: 14px;
+    }
+  
+    .text-input:nth-child(odd) {
+      margin-right: 18px;
+    }    
+  
+    .radio-input {
+      position: relative;
+      margin: 0;
+      cursor: pointer;
+  
+      &:after {
+        position: absolute;
+        top: -12px;
+        left: 25%;
+        width: 34px;
+        height: 34px;
+        line-height: 34px;
+        text-align: center;
+        content: '\f00c';
+        font-family: 'FontAwesome';
+        color: $white;
+        background-color: #e5e6e9;
+        border-radius: 50%;
+        transform: translateX(-50%);
+        transition: all .1s ease;
+      }
+  
+      &.checked:after {
+        background-color: #00c03c;
+      }
+  
+      & + span {
+        padding-left: 20px;
+        color: #9fa3a7;
+      }
+  
+      &.checked + span {
+        color: #212121;
+      }      
+    }
+  
+    legend {
+      border-bottom: none;
+      color: #00c03c;
+      font-weight: 700;
+      font-size: 22px;
+    }
+
+    button[type="submit"] {
+      border: 3px solid #00c03c;
+      border-radius: 33px;
+      min-width: 227px;
+      padding: 16px 75px;
+      color: #00c03c;
+      font-size: 28px;
+      font-weight: 700;
+      background-color: $white;
+    }  
+  }
+  
+  // fieldsets
+  fieldset > p {
+    font-size: 10px;
+    color: #9fa3a7;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 24px;
+  }
+
+  .profile-fields {
+    label {
+      margin-left: 12px;
+      margin-right: 45px;
+    }
+
+    .form-group {
+      flex-wrap: nowrap;
+
+      .text-input {
+        flex: 1 1 33.3333%;
+        margin: 0;
+        &:nth-child(2) {
+          margin: 0 10px 0;
+        }
+      }
+    }
+  }
+  
+  .multi-checkbox.form-group {
+    justify-content: flex-start;
+  }
+  
+  .multi-checkbox__box {
+    position: relative;
+    display: inline-block;
+    border: 1px solid #e6e6e6;
+    border-radius: 4px;
+    background-color: #fafafa;
+    min-width: 200px;
+    min-height: 45px;
+    text-align: center;
+    color: #9fa3a7;
+    padding: 12px 0;
+    margin-bottom: 12px;
+    transition: all .1s ease;
+  
+    &:nth-child(3n+2),
+    &:nth-child(3n+1) {
+      margin-right: 20px;
+    }
+  
+    label {
+      margin: 0;
+    }
+  
+    input[type="checkbox"] {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      margin: 0;
+      cursor: pointer;
+    }
+  }
+  
+  .multi-checkbox__box.checked {
+    border-color: #00c03c;
+    background-color: rgba(0, 192, 60, 0.4);
+    color: #4c4c4c;
+  }
+}
+
+#nanum.App--mobile {
+  .user-setting-content {
+    width: 100%;
+    padding-left: 28px;
+    padding-right: 28px;
+  }    
+
+  .user-setting__form {
+    legend {
+      font-size: 14px;
+    }
+
+    .text-input {
+      max-width: 100%;
+      min-width: initial;
+      margin: 0 0 16px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }      
+  }
+
+  .profile-fields {
+    .form-group {
+      flex-wrap: wrap;
+      .text-input:nth-child(2) {
+        margin: 0 0 16px;
+      }
+    }
+  }
+
+  .diseases-fields {
+    .form-group:nth-of-type(1) {
+      .text-input {
+        width: 50%;
+        margin-bottom: 0;
+      }
+
+      .text-input:first-child {
+        margin-right: 8px;
+      }
+    }
+  }
+
+  .multi-checkbox__box {
+    min-width: 84px;
+
+    &:nth-child(3n+2),
+    &:nth-child(3n+1) {
+      margin-right: 6px;
+    }
+  }
+
+  button[type="submit"] {
+    min-width: 172px;
+    font-size: 16px;
+    display: block;
+    margin: 0 auto;
+  }    
+}

@@ -28,39 +28,75 @@ const getDailyReport = async (queryTime) => {
   };
 }
 
-const getUserInfo = async () => {
-  let userInfo;
+const getAvailableDiseases = async () => {
+  let response;
   try {
-    userInfo = await axios.get('/users');
+    response = await axios.get('/diseases');
   } catch (error) {
-    throw new Error(`UserService error - <getDailyReport()>: ${error}`);
+    throw new Error(`UserService error - <getAvailableDiseases()>: ${error}`);
   }
 
-  return {
-    id: get(userInfo, 'data.id'),
-    name: get(userInfo, 'data.memberName'),
-    gender: get(userInfo, 'data.memberGender'),
-    dupinfo: get(userInfo, 'data.dupinfo'),
-  }
+  return response.data;
 }
 
-const getUserDiseases = async () => {
-  let userDiseases;
+const getAvailableInterests = async () => {
+  let response;
   try {
-    userDiseases = await axios.get('/users/diseases');
+    response = await axios.get('/interests');
   } catch (error) {
-    throw new Error(`UserService error - <getUserDiseases()>: ${error}`);
+    throw new Error(`UserService error - <getAvailableInterests()>: ${error}`);
   }
 
-  return [
-    ...userDiseases.data
-  ]
+  return response.data;
+}
+
+const getUserSettings = async () => {
+  let response;
+  try {
+    response = await axios.get('/users/info');
+  } catch (error) {
+    throw new Error(`UserService error - <getUserSettings()>: ${error}`);
+  }
+
+  return response.data;
+}
+
+const createUserSettings = async (userSettings) => {
+  let response;
+  try {
+    response = await axios.post('/users/info', userSettings);
+  } catch (error) {
+    throw new Error(`UserService error - <createUserSettings()>: ${error}`);
+  }
+
+  if (response.status !== 200) {
+    response.data = {};
+  }
+  return response.data;
+}
+
+const updateUserSettings = async (userSettings) => {
+  let response;
+  try {
+    response = await axios.put('/users/info', userSettings);
+  } catch (error) {
+    throw new Error(`UserService error - <createUserSettings()>: ${error}`);
+  }
+
+  if (response.status !== 200) {
+    response.data = {};
+  }
+
+  return response.data;
 }
 
 export default {
   getDailyReport,
-  getUserInfo,
-  getUserDiseases,
+  getAvailableDiseases,
+  getAvailableInterests,
+  getUserSettings,
+  createUserSettings,
+  updateUserSettings,
 }
 
 function mealFilter(mealTime) {
