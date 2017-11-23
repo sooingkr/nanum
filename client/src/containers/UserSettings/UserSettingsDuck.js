@@ -29,8 +29,8 @@ const initialize = () => async (dispatch) => {
   let selectedDiseases, selectedInterests;
 
   try {
-    diseases = await UserService.getUserDiseases();
-    interests = await UserService.getUserInterests();
+    diseases = await UserService.getAvailableDiseases();
+    interests = await UserService.getAvailableInterests();
     userSettings = await UserService.getUserSettings();
   } catch(err) {
     dispatch(failRequest(err));
@@ -149,26 +149,31 @@ const reducer = createReducer(initialState, {
 
 // selectors
 const getSelectedDiseases = (state) => state[storeName].selectedDiseases;
-
 const getSelectedInterests = (state) => state[storeName].selectedInterests;
-
 const getAllDiseases = (state) => state[storeName].diseases;
-
 const getAllInterests = (state) => state[storeName].interests;
-
 const getIsInitial = (state) => state[storeName].isInitial;
+const getFirstName = (state) => state[storeName].firstName;
+const getLastName = (state) => state[storeName].lastName;
+const getGender = (state) => state[storeName].gender;
+const getWeight = (state) => state[storeName].weight;
+const getHeight = (state) => state[storeName].height;
 
-const selectors = {
+export const selectors = {
   getSelectedDiseases,
   getSelectedInterests,
   getAllDiseases,
   getAllInterests,
   getIsInitial,
+  getFirstName,
+  getLastName,
+  getGender,
+  getWeight,
+  getHeight,
 }
 
 export const UserSettingsDuck = {
   storeName,
   actions,
   reducer,
-  selectors,
 };

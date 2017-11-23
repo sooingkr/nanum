@@ -27,10 +27,9 @@ export class UserInfoContainer extends Component {
       return (<div/>);
     }
 
-    const { gender, name, diseases } = user;
-
+    const { gender, name, diseases, interests } = user;
     const genderIcon = isMale(gender) ? MaleIcon : FemaleIcon;
-    const shouldShowTags = diseases.length > 0;
+    const hasNoInfo = diseases.length === 0 && interests.length === 0;
     return (
         <div className="user-info">
           <div className="user-info__heading">
@@ -43,11 +42,11 @@ export class UserInfoContainer extends Component {
                   className="user-info__edit button button--link">Edit
             </Link>
           </div>
-          { !shouldShowTags &&
+          { hasNoInfo &&
             this.renderNoInfo()
           }
 
-          { shouldShowTags &&
+          { !hasNoInfo &&
             <div className="user-info__details">
               { 
                 diseases.map(disease => (
@@ -55,6 +54,14 @@ export class UserInfoContainer extends Component {
                   key={disease.id}
                   id={disease.id}
                   text={disease.name} 
+                />
+              ))}
+              { 
+                interests.map(interest => (
+                <TagBox 
+                  key={interest.id}
+                  id={interest.id}
+                  text={interest.name} 
                 />
               ))}
             </div>
@@ -69,6 +76,10 @@ UserInfoContainer.propTypes = {
     male: PropTypes.bool,
     name: PropTypes.string,
     diseases: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string,
+      name: PropTypes.string,
+    })),
+    interests: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.string,
       name: PropTypes.string,
     })),

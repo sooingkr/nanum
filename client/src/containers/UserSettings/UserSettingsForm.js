@@ -7,7 +7,7 @@ import {
 } from 'react-bootstrap';
 import MultiCheckboxField from '../../components/UserSettings/MultiCheckboxField';
 import RadioField from '../../components/UserSettings/RadioField';
-import { UserSettingsDuck } from './UserSettingsDuck';
+import { selectors } from './UserSettingsDuck';
 
 let UserSettingsForm = ({ 
   handleSubmit, 
@@ -118,16 +118,16 @@ UserSettingsForm = reduxForm({
 // Get initial values from store
 const mapStateToProps = (state) => ({
   initialValues: {
-    firstName: state[UserSettingsDuck.storeName].firstName,
-    lastName: state[UserSettingsDuck.storeName].lastName,
-    gender: state[UserSettingsDuck.storeName].gender,
-    height: state[UserSettingsDuck.storeName].height,
-    weight: state[UserSettingsDuck.storeName].weight,
-    diseases: state[UserSettingsDuck.storeName].selectedDiseases,
-    interests: state[UserSettingsDuck.storeName].selectedInterests,
+    firstName: selectors.getFirstName(state),
+    lastName: selectors.getLastName(state),
+    gender: selectors.getGender(state),
+    height: selectors.getHeight(state),
+    weight: selectors.getWeight(state),
+    diseases: selectors.getSelectedDiseases(state),
+    interests: selectors.getSelectedInterests(state),
   },
-  allDiseases: UserSettingsDuck.selectors.getAllDiseases(state),
-  allInterests: UserSettingsDuck.selectors.getAllInterests(state),
+  allDiseases: selectors.getAllDiseases(state),
+  allInterests: selectors.getAllInterests(state),
 })
 
 UserSettingsForm = connect(mapStateToProps)(UserSettingsForm);

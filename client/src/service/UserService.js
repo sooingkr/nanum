@@ -28,39 +28,23 @@ const getDailyReport = async (queryTime) => {
   };
 }
 
-const getUserInfo = async () => {
-  let userInfo;
-  try {
-    userInfo = await axios.get('/users');
-  } catch (error) {
-    throw new Error(`UserService error - <getDailyReport()>: ${error}`);
-  }
-
-  return {
-    id: get(userInfo, 'data.id'),
-    name: get(userInfo, 'data.memberName'),
-    gender: get(userInfo, 'data.memberGender'),
-    dupinfo: get(userInfo, 'data.dupinfo'),
-  }
-}
-
-const getUserDiseases = async () => {
+const getAvailableDiseases = async () => {
   let response;
   try {
     response = await axios.get('/diseases');
   } catch (error) {
-    throw new Error(`UserService error - <getUserDiseases()>: ${error}`);
+    throw new Error(`UserService error - <getAvailableDiseases()>: ${error}`);
   }
 
   return response.data;
 }
 
-const getUserInterests = async () => {
+const getAvailableInterests = async () => {
   let response;
   try {
     response = await axios.get('/interests');
   } catch (error) {
-    throw new Error(`UserService error - <getUserInterests()>: ${error}`);
+    throw new Error(`UserService error - <getAvailableInterests()>: ${error}`);
   }
 
   return response.data;
@@ -108,9 +92,8 @@ const updateUserSettings = async (userSettings) => {
 
 export default {
   getDailyReport,
-  getUserInfo,
-  getUserDiseases,
-  getUserInterests,
+  getAvailableDiseases,
+  getAvailableInterests,
   getUserSettings,
   createUserSettings,
   updateUserSettings,
