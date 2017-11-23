@@ -77,12 +77,43 @@ const getUserSettings = async () => {
   return response.data;
 }
 
+const createUserSettings = async (userSettings) => {
+  let response;
+  try {
+    response = await axios.post('/users/info', userSettings);
+  } catch (error) {
+    throw new Error(`UserService error - <createUserSettings()>: ${error}`);
+  }
+
+  if (response.status !== 200) {
+    response.data = {};
+  }
+  return response.data;
+}
+
+const updateUserSettings = async (userSettings) => {
+  let response;
+  try {
+    response = await axios.put('/users/info', userSettings);
+  } catch (error) {
+    throw new Error(`UserService error - <createUserSettings()>: ${error}`);
+  }
+
+  if (response.status !== 200) {
+    response.data = {};
+  }
+
+  return response.data;
+}
+
 export default {
   getDailyReport,
   getUserInfo,
   getUserDiseases,
   getUserInterests,
   getUserSettings,
+  createUserSettings,
+  updateUserSettings,
 }
 
 function mealFilter(mealTime) {

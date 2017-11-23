@@ -8,19 +8,19 @@ const storeName = 'UserSettings';
 export const actionTypes = {
   requestGet: storeName + '/REQUEST_GET',
   succeedGet: storeName + '/SUCCEED_GET',
-  requestSave: storeName + '/REQUEST_SAVE',
-  succeedSave: storeName + '/SUCCEED_SAVE',
+  requestUpdate: storeName + '/REQUEST_UPDATE',
+  succeedUpdate: storeName + '/SUCCEED_UPDATE',
   failRequest: storeName + '/FAIL_REQUEST',
   toggleInitialFlag: storeName + '/TOGGLE_INITIAL_FLAG',
 };
 
 // define actions
 const requestGet = createAction(actionTypes.requestGet);
-const requestSave = createAction(actionTypes.requestSave);
+const requestUpdate = createAction(actionTypes.requestUpdate);
 const toggleInitialFlag = (value) => createAction(actionTypes.toggleInitialFlag, value);
 const failRequest = (error) => createAction(actionTypes.failRequest, { error });
 const succeedGet = (userSettings) => createAction(actionTypes.succeedGet, { userSettings });
-const succeedSave = (userSettings) => createAction(actionTypes.succeedSave, { userSettings });
+const succeedUpdate = (userSettings) => createAction(actionTypes.succeedUpdate, { userSettings });
 
 // define thunks
 const initialize = () => async (dispatch) => {
@@ -37,13 +37,13 @@ const initialize = () => async (dispatch) => {
   }
 
   if (isEmpty(userSettings)) {
-    selectedDiseases = diseases;
-    selectedInterests = interests;
-    dispatch(toggleInitialFlag(true));
+    selectedDiseases = [];
+    selectedInterests = [];
+    dispatch(toggleInitialFlag(true))
   } else {
     selectedDiseases = userSettings.diseases;
     selectedInterests = userSettings.interests;
-    dispatch(toggleInitialFlag(false));
+    dispatch(toggleInitialFlag(false))
   }
 
   const settings = {
@@ -61,9 +61,37 @@ const initialize = () => async (dispatch) => {
   dispatch(succeedGet(settings))
 };
 
+const updateUserSettings = (userSettings) => async (dispatch, getState) => {
+  dispatch(requestUpdate);
+  let response;
+  const state = getState()[storeName];
+  const updateMethod = state.isInitial 
+    ? UserService.createUserSettings 
+    : UserService.updateUserSettings;
+  
+  try {
+    response = await updateMethod(userSettings);
+  } catch (err) {
+    dispatch(failRequest(err));
+  }
+
+  const settings = {
+    selectedDiseases: response.diseases,
+    selectedInterests: response.interests,
+    firstName: response.firstName,
+    lastName: response.lastName,
+    gender: response.gender,
+    height: response.height,
+    weight: response.weight,
+  };
+
+  dispatch(succeedUpdate(settings))
+}
+
 // conveniently export actions
 export const actions = {
   initialize,
+  updateUserSettings,
 };
 
 export const initialState = {
@@ -102,6 +130,14 @@ const reducer = createReducer(initialState, {
       isLoading: false,
     }
   },
+  [actionTypes.succeedUpdate]: (state, payload) => {
+    return {
+      ...state,
+      ...payload.userSettings,
+      error: null,
+      isLoading: false,
+    }
+  },
   [actionTypes.failRequest]: (state, payload) => {
     return {
       ...state,
@@ -112,25 +148,13 @@ const reducer = createReducer(initialState, {
 });
 
 // selectors
-const getSelectedDiseases = (state) => 
-  state[storeName].selectedDiseases.map(disease => {
-    return { id: disease.id, label: disease.name };
-  });
+const getSelectedDiseases = (state) => state[storeName].selectedDiseases;
 
-const getSelectedInterests = (state) => 
-  state[storeName].selectedInterests.map(interest => {
-    return { id: interest.id, label: interest.name };
-  });
+const getSelectedInterests = (state) => state[storeName].selectedInterests;
 
-const getAllDiseases = (state) => 
-  state[storeName].diseases.map(disease => {
-    return { id: disease.id, label: disease.name };
-  });
+const getAllDiseases = (state) => state[storeName].diseases;
 
-const getAllInterests = (state) => 
-  state[storeName].interests.map(interest => {
-    return { id: interest.id, label: interest.name };
-  });
+const getAllInterests = (state) => state[storeName].interests;
 
 const getIsInitial = (state) => state[storeName].isInitial;
 

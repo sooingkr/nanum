@@ -9,11 +9,12 @@ class UserSettings extends React.Component {
   }
 
   handleSubmit = (values) => {
-
+    console.log(values);
+    this.props.updateUserSettings(values);
   }
 
   render() {
-    const { selectedDiseases, selectedInterests, isInitial } = this.props;
+    const { selectedDiseases, selectedInterests } = this.props;
     return (
       <div className="user-setting">  
         <div className="user-setting-content">
@@ -21,7 +22,6 @@ class UserSettings extends React.Component {
             onSubmit={this.handleSubmit}
             selectedDiseases={selectedDiseases}
             selectedInterests={selectedInterests}
-            isInitial={isInitial}
           />
         </div>
       </div>
@@ -31,6 +31,7 @@ class UserSettings extends React.Component {
 
 const mapDispatchToProps = {
   initialize: UserSettingsDuck.actions.initialize,
+  updateUserSettings: UserSettingsDuck.actions.updateUserSettings,
 }
 
 export default connect(null, mapDispatchToProps)(UserSettings);

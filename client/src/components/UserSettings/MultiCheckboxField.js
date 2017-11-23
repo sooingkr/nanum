@@ -42,25 +42,25 @@ class MultiCheckboxField extends React.Component {
   }
 
   render() {
-    const {label, options, selectedOptions, field} = this.props;
+    const {label, options, field} = this.props;
     const {onBlur} = field;
     const values = this.getCurrentValues();
-    const selectedIds = selectedOptions.map(option => option.id);
+    const ids = values.map(value => value.id);
+
     return (
       <div className="multi-checkbox form-group">
         {options.map(option => {
-          const isChecked = values.indexOf(option.id) > -1 || selectedIds.indexOf(option.id) > -1;
-          console.log(option.id, isChecked);
+          const isChecked = ids.indexOf(option.id) > -1;
           return (
             <div
               key={option.id}
               className={isChecked ? "multi-checkbox__box checked" : "multi-checkbox__box"}
             >
-              <label>{option.label}</label>
+              <label>{option.name}</label>
               <input
                 {...field}
                 type="checkbox"
-                onChange={event => this.handleChange(event, option.id)}
+                onChange={event => this.handleChange(event, option)}
                 onBlur={() => onBlur(values)}
                 checked={isChecked}
                 value={option.id}
@@ -84,14 +84,13 @@ MultiCheckboxField.propTypes = {
         PropTypes.string,
         PropTypes.number
       ]).isRequired,
-      label: PropTypes.oneOfType([
+      name: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.node
       ]).isRequired
     })
   ).isRequired,
   field: PropTypes.object.isRequired,
-  isInitial: PropTypes.bool,
 };
 
 export default MultiCheckboxField;

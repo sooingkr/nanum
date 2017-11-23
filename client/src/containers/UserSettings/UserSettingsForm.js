@@ -19,9 +19,7 @@ let UserSettingsForm = ({
   selectedInterests,
   allDiseases,
   allInterests,
-  isInitial,
 }) => {
-  const initClass = isInitial ? 'initial' : '';
   return (<Form horizontal onSubmit={handleSubmit} className="user-setting__form">
     <fieldset className="profile-fields">
       <legend>회원 정보</legend>
@@ -87,9 +85,7 @@ let UserSettingsForm = ({
         <MultiCheckboxField 
           {...props.input}
           label="Diseases"
-          className={initClass}
           options={allDiseases}
-          selectedOptions={selectedDiseases}
           field={props.input}
         />
       }
@@ -102,9 +98,7 @@ let UserSettingsForm = ({
         <MultiCheckboxField 
           {...props.input}
           label="Interests"
-          className={initClass}
           options={allInterests}
-          selectedOptions={selectedInterests}
           field={props.input}
         />
       }
@@ -129,12 +123,11 @@ const mapStateToProps = (state) => ({
     gender: state[UserSettingsDuck.storeName].gender,
     height: state[UserSettingsDuck.storeName].height,
     weight: state[UserSettingsDuck.storeName].weight,
+    diseases: state[UserSettingsDuck.storeName].selectedDiseases,
+    interests: state[UserSettingsDuck.storeName].selectedInterests,
   },
-  selectedDiseases: UserSettingsDuck.selectors.getSelectedDiseases(state),
-  selectedInterests: UserSettingsDuck.selectors.getSelectedInterests(state),
   allDiseases: UserSettingsDuck.selectors.getAllDiseases(state),
   allInterests: UserSettingsDuck.selectors.getAllInterests(state),
-  isInitial: UserSettingsDuck.selectors.getIsInitial(state),
 })
 
 UserSettingsForm = connect(mapStateToProps)(UserSettingsForm);
