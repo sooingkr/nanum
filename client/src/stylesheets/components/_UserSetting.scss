@@ -4,7 +4,7 @@
   }
   
   .user-setting-content {
-    max-width: 658px;
+    width: 640px;
     padding: 28px 0 36px;
     margin: 0 auto;
   }
@@ -31,7 +31,6 @@
       border-radius: 4px;
       background-color: #fafafa;
       color: #292929;
-      min-width: 320px;
       min-height: 45px;
       padding: 12px 18px;
       font-size: 14px;
@@ -110,6 +109,18 @@
       margin-left: 12px;
       margin-right: 45px;
     }
+
+    .form-group {
+      flex-wrap: nowrap;
+
+      .text-input {
+        flex: 1 1 33.3333%;
+        margin: 0;
+        &:nth-child(2) {
+          margin: 0 10px 0;
+        }
+      }
+    }
   }
   
   .multi-checkbox.form-group {
@@ -160,6 +171,7 @@
 
 #nanum.App--mobile {
   .user-setting-content {
+    width: 100%;
     padding-left: 28px;
     padding-right: 28px;
   }    
@@ -178,6 +190,15 @@
         margin-bottom: 0;
       }
     }      
+  }
+
+  .profile-fields {
+    .form-group {
+      flex-wrap: wrap;
+      .text-input:nth-child(2) {
+        margin: 0 0 16px;
+      }
+    }
   }
 
   .diseases-fields {

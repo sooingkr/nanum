@@ -104,6 +104,7 @@ export const initialState = {
   selectedInterests: [],
   firstName: '',
   lastName: '',
+  birthYear: null,
   gender: '',
   weight: null,
   height: null,
@@ -155,6 +156,7 @@ const getAllInterests = (state) => state[storeName].interests;
 const getIsInitial = (state) => state[storeName].isInitial;
 const getFirstName = (state) => state[storeName].firstName;
 const getLastName = (state) => state[storeName].lastName;
+const getBirthYear = (state) => state[storeName].birthYear;
 const getGender = (state) => state[storeName].gender;
 const getWeight = (state) => state[storeName].weight;
 const getHeight = (state) => state[storeName].height;
@@ -167,6 +169,7 @@ export const selectors = {
   getIsInitial,
   getFirstName,
   getLastName,
+  getBirthYear,
   getGender,
   getWeight,
   getHeight,

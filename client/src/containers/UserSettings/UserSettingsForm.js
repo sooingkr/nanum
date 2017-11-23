@@ -9,6 +9,15 @@ import MultiCheckboxField from '../../components/UserSettings/MultiCheckboxField
 import RadioField from '../../components/UserSettings/RadioField';
 import { selectors } from './UserSettingsDuck';
 
+// Form validators
+const validateNumber = value => 
+  value && isNaN(Number(value)) ? 'Must be a number' : undefined;
+
+const validateInteger = value => 
+  !(!isNaN(value) && 
+  parseInt(Number(value), 10) == value && 
+  !isNaN(parseInt(value, 10))) ? 'Must be an integer' : undefined;
+
 let UserSettingsForm = ({ 
   handleSubmit, 
   pristine, 
@@ -37,6 +46,14 @@ let UserSettingsForm = ({
           component="input"
           type="text"
           placeholder="성"
+        />
+        <Field 
+          name="birthYear" 
+          className="text-input"
+          component="input"
+          type="number"
+          validate={validateInteger}
+          placeholder="생년 (예: 1988)"
         />
       </FormGroup>
       <FormGroup className="align-left">
@@ -70,6 +87,7 @@ let UserSettingsForm = ({
           className="text-input"
           component="input"
           type="text"
+          validate={validateNumber}
           placeholder="키"
         />
         <Field 
@@ -77,6 +95,7 @@ let UserSettingsForm = ({
           className="text-input"
           component="input"
           type="text"
+          validate={validateNumber}
           placeholder="몸무게"
         />
       </FormGroup>
@@ -104,7 +123,7 @@ let UserSettingsForm = ({
       }
       />
     </fieldset>
-    <button type="submit">완료</button>
+    <button type="submit" disabled={submitting}>완료</button>
   </Form>
   )
 };
@@ -120,6 +139,7 @@ const mapStateToProps = (state) => ({
   initialValues: {
     firstName: selectors.getFirstName(state),
     lastName: selectors.getLastName(state),
+    birthYear: selectors.getBirthYear(state),
     gender: selectors.getGender(state),
     height: selectors.getHeight(state),
     weight: selectors.getWeight(state),
