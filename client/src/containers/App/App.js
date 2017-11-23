@@ -48,6 +48,7 @@ export class App extends Component {
             <Route exact path="/login" component={Login}/>
             <Route exact path="/search" component={FoodSearch}/>
             <Route exact path="/introduce" component={ServiceIntro}/>
+            <Route exact path="/mobile/introduce" component={ServiceIntro}/>
             <Route exact path="/user/setting" component={UserSettings} />
           </Switch>
         </main>

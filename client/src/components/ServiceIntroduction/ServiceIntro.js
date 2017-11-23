@@ -7,9 +7,8 @@ import React from "react";
 import { Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-import dashboardImg from '../../assets/images/photo-dashboard.png';
-import chatboxImg from '../../assets/images/photo-chatbox.png';
-import chatboxImgHACCP from '../../assets/images/photo-chatbox-haccp.png';
+import DashboardImg from '../../assets/images/promotion_image1.png';
+import ChatboxImg from '../../assets/images/promotion_image2.png';
 
 const ServiceIntro = () => {
   return (
@@ -35,16 +34,13 @@ const ServiceIntro = () => {
       <div className="service-intro__image">
         <div className="service-green__bg"></div>
         <div className="service-image__intro">
-          <Image responsive src={dashboardImg} alt="Dashboard"/>
+          <Image responsive src={DashboardImg} alt="Dashboard" className="img-dashboard"/>
           <h2 className="service-intro__title">
             로그인을 하시면 실시간 채팅으로 여러분들의 궁금한 점을
             빠르게 해결해 드립니다.
           </h2>
           <div className="service-image__block">
-            <Image responsive src={chatboxImg} alt="Chatbox"/>
-          </div>
-          <div className="service-image__block">
-            <Image responsive src={chatboxImgHACCP} alt="Chatbox-HACCP"/>
+            <Image responsive src={ChatboxImg} alt="Chatbox"/>
           </div>
           <p>로그인을 하시면  개인 상담이 실시간으로 가능하며 고객의 질문을 정확히 파악해 명확한 답변이 가능합니다.</p>
           <div className="service-intro__btn">
