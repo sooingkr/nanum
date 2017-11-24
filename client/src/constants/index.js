@@ -11,4 +11,4 @@ export const STORAGE_TOKEN = 'Authorization';
 export const DEFAULT_PAGE_SIZE = 20;
 
 // UI
-export const DEFAULT_PAGINATE_SIZE = 10;
+export const DEFAULT_PAGINATE_SIZE = 20;
