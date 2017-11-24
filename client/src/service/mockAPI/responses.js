@@ -1,4 +1,9 @@
 import { random, times } from 'lodash';
+import Food1 from '../../assets/images/mock/food1.jpg';
+import Food2 from '../../assets/images/mock/food2.jpg';
+import Food3 from '../../assets/images/mock/food3.jpg';
+import Food4 from '../../assets/images/mock/food4.jpg';
+import Food5 from '../../assets/images/mock/food5.jpg';
 
 //Create API json
 
@@ -28,40 +33,61 @@ export const searchFood = {
   hasNextPage: true,
 };
 
-export const suggestFood = {
-  matches: [
-    { 
-      label: 'Pizza',
-      value: {
-        id: 'qwea',
-        imageUrl: 'http://via.placeholder.com/20x20',
-        name: 'pizza',
-        quantity: 'one slice',
-        calories: 325,
-      }
+export const mockFoodSuggestions = {
+  reason: "다이어트에 도움이 되는 무기질이 풍부한 식품을 추천해드립니다.",
+  foodSuggestions: [
+    {
+      globalId: "1",
+      name: "다논 그릭요거트",
+      calories: 150,
+      type: null,
+      nutrient: null,
+      expiryDate: null,
+      barcode: null,
+      imageUrl: Food1
     },
     {
-      label: 'Pineapple',
-      value: {
-        id: 'qwea1',
-        imageUrl: 'http://via.placeholder.com/20x20',
-        name: 'pineapple',
-        quantity: 'one slice',
-        calories: 112,
-      }
+      globalId: "2",
+      name: "두툼한 등심 돈까스",
+      calories: 130,
+      type: null,
+      nutrient: null,
+      expiryDate: null,
+      barcode: null,
+      imageUrl: Food2
     },
     {
-      label: 'Chocolate',
-      value: {
-        id: 'qwe12a',
-        imageUrl: 'http://via.placeholder.com/20x20',
-        name: 'chocolate',
-        quantity: 'one bag',
-        calories: 554,
-      }
+      globalId: "3",
+      name: "빅스모크햄",
+      calories: 204,
+      type: null,
+      nutrient: null,
+      expiryDate: null,
+      barcode: null,
+      imageUrl: Food3
     },
+    {
+      globalId: "4",
+      name: "시금치 &당근 주키니 스파게티",
+      calories: 400,
+      type: null,
+      nutrient: null,
+      expiryDate: null,
+      barcode: null,
+      imageUrl: Food4
+    },
+    {
+      globalId: "5",
+      name: "시금치 베이컨 볶음",
+      calories: 500,
+      type: null,
+      nutrient: null,
+      expiryDate: null,
+      barcode: null,
+      imageUrl: Food5
+    }
   ]
-};
+}
 
 export const tracking = {
   alert: {

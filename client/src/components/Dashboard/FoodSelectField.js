@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
-import { Field } from 'redux-form';
 import FoodService from '../../service/FoodService';
 import 'react-select/dist/react-select.css';
 
@@ -17,23 +16,16 @@ class FoodSelectField extends Component {
   render() {
     const { onAddFood, mealTime } = this.props;
     return (
-      <Field 
-        name="food"
-        component={props => 
-          <Select.Async
-            {...props.input}
-            type="text"
-            onChange={(selectedOption) => {
-              onAddFood(selectedOption, mealTime);
-            }}
-            onBlur={() => props.input.onBlur(props.input.value)}
-            onBlurResetsInput={false}
-            loadOptions={this.fetchFoodOptions}
-            placeholder="Search for your food"
-            clearable={false}
-            filterOption={() => true}
-          />
-        }
+      <Select.Async
+        type="text"
+        onChange={(selectedOption) => {
+          onAddFood(selectedOption, mealTime);
+        }}
+        onBlurResetsInput={false}
+        loadOptions={this.fetchFoodOptions}
+        placeholder="Search for your food"
+        clearable={false}
+        filterOption={() => true}
       />
     );
   }

@@ -2,7 +2,12 @@
  * Created by manhvu on 9/28/17.
  */
 import moment from 'moment';
-import { union, reduce } from 'lodash';
+import { 
+  union, 
+  reduce, 
+  isEmpty, 
+  isObject, 
+} from 'lodash';
 import { createAction, createReducer } from '../../utils/store';
 import UserService from '../../service/UserService';
 import FoodService from '../../service/FoodService';
@@ -24,7 +29,8 @@ export const actionTypes = {
   clearRemoveFood: storeName + '/CLEAR_REMOVE_FOOD',
   succeedRemoveFood: storeName + '/SUCCEED_REMOVE_FOOD',
   failRemoveFood: storeName + '/FAIL_REMOVE_FOOD',
-  submitFoods: storeName + '/SUBMIT_FOODS',
+  succeedSubmitFoods: storeName + '/SUCCEED_SUBMIT_FOODS',
+  failSubmitFoods: storeName + '/FAIL_SUBMIT_FOODS',
 };
 
 // Actions creators 
@@ -35,7 +41,9 @@ const enterEdit = () => createAction(actionTypes.enterEdit);
 const quitEdit = () => createAction(actionTypes.quitEdit);
 const clearRemoveFood = () => createAction(actionTypes.clearRemoveFood);
 const failRemoveFood = () => createAction(actionTypes.failRemoveFood);
+const failSubmitFoods = (error) => createAction(actionTypes.failSubmitFoods, { error });
 const succeedRemoveFood = (foodsToRemove) => createAction(actionTypes.succeedRemoveFood, { foods: foodsToRemove });
+const succeedSubmitFoods = () => createAction(actionTypes.succeedSubmitFoods);
 const markRemoveFood = (foodId, mealTime) => createAction(actionTypes.markRemoveFood, { 
   [foodId + ':' + mealTime]: {
     foodId,
@@ -56,8 +64,14 @@ const initialize = (queryTime) => async (dispatch, getState) => {
 
   dispatch(pickQueryTime(queryTime));
 
-  const tracking = await UserService.getDailyReport(queryTime);
-  const userInfo = await UserService.getUserSettings();
+  let tracking = {};
+  let userInfo = await UserService.getUserSettings();
+  if(!isObject(userInfo)) { 
+    userInfo = {};
+  }
+  if (!isEmpty(userInfo)) {
+    tracking = await UserService.getDailyReport(queryTime);
+  }
 
   dispatch(createAction(actionTypes.initialize, { 
     ...tracking,
@@ -77,8 +91,17 @@ const removeFoods = () => async (dispatch, getState) => {
   }
 }
 
-const submitFoods = () => async (dispatch) => {
-  dispatch(createAction(actionTypes.submitFoods));
+const submitFoods = (foodsToAdd) => async (dispatch) => {
+  const foodIntakePayload = constructIntakePayload(foodsToAdd);
+  let response;
+  try {
+    response = await FoodService.addFoodIntake(foodIntakePayload);
+  } catch (err) {
+    dispatch(failSubmitFoods(err));
+  }
+  dispatch(succeedSubmitFoods());
+  dispatch(closeDialog());
+  dispatch(initialize());
 }
 
 // conveniently export actions
@@ -237,6 +260,7 @@ const getAlert = (state) => state[storeName].alert;
 const getTime = (state) => state[storeName].queryTime;
 const getLoadingStatus = (state) => state[storeName].isLoading;
 const getEditMode = (state) => state[storeName].isEditMode;
+const getToBeAdded = (state) => state[storeName].toBeAdded;
 
 export const DashboardDuck = {
   storeName,
@@ -255,4 +279,15 @@ export const selectors = {
   getLoadingStatus,
   getEditMode,
   getReason,
+  getToBeAdded,
+}
+
+function constructIntakePayload (foodsToAdd) {
+  const meal = foodsToAdd.mealTime.toUpperCase();
+  return foodsToAdd.foods.map(food => ({
+      meal,
+      foodId: food.value.id,
+      quantity: 1,
+    }
+  ))
 }

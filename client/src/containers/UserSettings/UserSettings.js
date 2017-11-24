@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import UserSettingsForm from './UserSettingsForm';
 import { UserSettingsDuck } from './UserSettingsDuck';
 
@@ -9,8 +10,7 @@ class UserSettings extends React.Component {
   }
 
   handleSubmit = (values) => {
-    console.log(values);
-    this.props.updateUserSettings(values);
+    this.props.updateUserSettings(values, this.props.history);
   }
 
   render() {
@@ -34,4 +34,4 @@ const mapDispatchToProps = {
   updateUserSettings: UserSettingsDuck.actions.updateUserSettings,
 }
 
-export default connect(null, mapDispatchToProps)(UserSettings);
+export default withRouter(connect(null, mapDispatchToProps)(UserSettings));

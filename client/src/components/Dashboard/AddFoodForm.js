@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { reduxForm } from 'redux-form';
 import { 
   Form, 
   Button,
@@ -48,36 +47,26 @@ const mapStateToProps = (state) => ({
 
 FoodOptionList = connect(mapStateToProps)(FoodOptionList);
 
-const AddFoodFormView = ({ handleSubmit, onAddFood, mealTime, pristine, reset, submitting }) => (
-  <Form horizontal onSubmit={handleSubmit} className="add-food-form">
+export const AddFoodForm = ({ 
+  onSubmit, 
+  onAddFood, 
+  mealTime, 
+}) => (
+  <Form horizontal onSubmit={onSubmit} className="add-food-form">
     <legend>무엇을 드셨나요?</legend>
     <FoodSelectField onAddFood={onAddFood} mealTime={mealTime} />
     <FoodOptionList />
     <Button bsStyle="default" 
-            type="submit" 
-            className="pull-right" 
-            disabled={submitting} >
+      type="submit" 
+      className="pull-right" 
+    >
       확인
     </Button>
   </Form>
 );
 
-const validate = values => {
-  const errors = {};
-  const { food } = values;
-
-  if (!food) {
-    errors.food = 'Please type a food name';
-  }
-
-  return errors;
-};
-
-export const AddFoodForm = reduxForm({
-  form: 'AddFoodForm',
-  validate
-})(AddFoodFormView);
-
 AddFoodForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
-};
+  onAddFood: PropTypes.func.isRequired,
+  mealTime: PropTypes.string.isRequired,
+}

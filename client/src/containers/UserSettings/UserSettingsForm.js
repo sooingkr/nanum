@@ -65,7 +65,7 @@ let UserSettingsForm = ({
             value="MALE"
             type="radio"
           />
-          <span>여성</span>
+          <span>남성</span>
         </label>
         <label>
           <Field 
@@ -75,7 +75,7 @@ let UserSettingsForm = ({
             value="FEMALE"
             type="radio"
           />
-          <span>남성</span>
+          <span>여성</span>
         </label>
       </FormGroup>
     </fieldset>

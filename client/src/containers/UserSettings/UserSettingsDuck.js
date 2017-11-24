@@ -61,7 +61,7 @@ const initialize = () => async (dispatch) => {
   dispatch(succeedGet(settings))
 };
 
-const updateUserSettings = (userSettings) => async (dispatch, getState) => {
+const updateUserSettings = (userSettings, history) => async (dispatch, getState) => {
   dispatch(requestUpdate);
   let response;
   const state = getState()[storeName];
@@ -85,7 +85,10 @@ const updateUserSettings = (userSettings) => async (dispatch, getState) => {
     weight: response.weight,
   };
 
-  dispatch(succeedUpdate(settings))
+  dispatch(succeedUpdate(settings));
+  // Redirect back to dashboard
+  history.push('/dashboard');
+  window.location.reload();
 }
 
 // conveniently export actions

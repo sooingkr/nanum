@@ -23,12 +23,12 @@ class Dashboard extends Component {
 
   render() {
     const { alert, isLoading } = this.props;
-
     if (isLoading) return <Loader />;
 
     return (
       <div className="dashboard">
-        { !isEmpty(alert) &&
+        { alert &&
+          !isEmpty(alert) &&
           <Alert message={alert.message} type={alert.type} />
         }
         <Grid>
@@ -42,7 +42,7 @@ class Dashboard extends Component {
               <TimeSelectorContainer />
             </Col>
           </Row>
-          <Row className="dashboard-tracking section section--sm-shadow with-spacer">
+          <Row className="dashboard-tracking section section--shadow with-spacer">
             <Col md={4}>
               <UserInfoContainer />
             </Col>

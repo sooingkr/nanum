@@ -12,8 +12,7 @@ $dashboard-max-width: 1040px;
     }
   }
   
-  .dashboard-tracking,
-  .dashboard-timeSelector {
+  .dashboard-tracking {
     padding: 0;
     display: flex;
   }
@@ -38,6 +37,8 @@ $dashboard-max-width: 1040px;
   }
 
   .dashboard-tracking {
+    min-height: 200px;
+    
     & > div:first-child {
       width: 25%;
     }
@@ -45,6 +46,10 @@ $dashboard-max-width: 1040px;
     & > div:last-child {
       width: 75%;
     }
+  }
+
+  .dashboard-timeSelector.section {
+    margin-bottom: 10px;
   }
 }
 
@@ -91,7 +96,7 @@ $dashboard-max-width: 1040px;
       width: calc(100% + 30px);
       height: 14px;
       background-color: #e6e6e6;
-      border: 1px solod #e6e6e6;
+      z-index: 4;
     }
   }
 }

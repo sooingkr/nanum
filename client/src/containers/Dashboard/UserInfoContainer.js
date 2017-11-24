@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
 import { Link } from 'react-router-dom';
 import TagBox from '../../components/Dashboard/TagBox';
 import { selectors } from './DashboardDuck';
@@ -33,8 +32,9 @@ export class UserInfoContainer extends Component {
             <img src={genderIcon} alt={gender} />
           </div>
           
-          <Link to="/user/setting" 
-                className="user-info__edit button button--link">Edit
+          <Link 
+            to="/user/setting" 
+            className="user-info__edit button button--link">Edit
           </Link>
         </div>
         { hasNoInfo &&
