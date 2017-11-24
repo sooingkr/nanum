@@ -29,7 +29,8 @@ const ServiceIntro = () => {
           문구를 출력하여 다른 대체식품을 추천해줍니다.
         </p>
         <div className="service-intro__btn">
-          <Link className="btn btn-default button-green" to="/login" target="_blank" title="로그인하기">로그인하기</Link>
+          <a className="btn btn-default button-green" href="/realAuthentication.do" target="_blank"
+             title="로그인하기">로그인하기</a>
         </div>        
       </div>
       <div className="service-intro__image">
@@ -48,14 +49,7 @@ const ServiceIntro = () => {
           </div>
           <p>로그인을 하시면  개인 상담이 실시간으로 가능하며 고객의 질문을 정확히 파악해 명확한 답변이 가능합니다.</p>
           <div className="service-intro__btn">
-            <Link 
-              className="btn btn-default button-green" 
-              to="/login" 
-              target="_blank" 
-              title="로그인하기"
-            >
-              로그인하기
-            </Link>
+            <a className="btn btn-default button-green" href="/realAuthentication.do" target="_blank" title="로그인하기">로그인하기</a>
           </div>          
         </div>
       </div>
