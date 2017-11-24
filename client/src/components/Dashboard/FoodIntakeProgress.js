@@ -17,8 +17,8 @@ function calculateProgress(current, max) {
 }
 
 FoodIntakeProgress.propTypes = {
-  max: PropTypes.number.isRequired,
-  current: PropTypes.number.isRequired,
+  max: PropTypes.number,
+  current: PropTypes.number,
 }
 
 export default FoodIntakeProgress;

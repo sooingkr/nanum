@@ -66,9 +66,21 @@ const removeFoods = async (foods) => {
   return result.data;
 };
 
+const addFoodIntake = async (foodsToAdd) => {
+  let response;
+  try {
+    response = await axios.post('/foods/intakes', foodsToAdd);
+  } catch (error) {
+    throw new Error(`UserService error - <addFoodIntake()>: ${error}`);
+  }
+
+  return response.data;
+}
+
 export default {
   searchFood,
   suggestFood,
   foodDetail,
   removeFoods,
+  addFoodIntake,
 }

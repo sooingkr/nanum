@@ -23,7 +23,8 @@ class FoodIntakeList extends Component {
       <div className="food-intake-list">
         <h3 className="food-intake-list__heading">{mapMealToLabel(mealTime)}</h3>
         <div className="food-intake-list__content">
-          { foods.map(food => (
+          { foods &&
+            foods.map(food => (
             <FoodIntakeItem 
               key={food.id} 
               name={food.foodInfo.name}

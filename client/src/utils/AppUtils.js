@@ -14,3 +14,7 @@ export function isMobileVersion() {
   const found = url.match(re);
   return !!found;
 }
+
+export function hasAuthRedirectUrl(response) {
+  return /realAuthentication.do/.test(response);
+}

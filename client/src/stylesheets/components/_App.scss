@@ -8,10 +8,8 @@
   }
   
   .section--sm-shadow {
-    @include media(">=tablet") {
-      @include with-shadow;
-      @include section-spacing;
-    }
+    @include with-shadow;
+    @include section-spacing;
   }
 }
 

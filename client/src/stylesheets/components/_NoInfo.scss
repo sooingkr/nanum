@@ -1,6 +1,7 @@
 #nanum {
   .no-info {
     position: relative;
+    z-index: 3;
   }
 
   .no-info__message,
@@ -17,8 +18,13 @@
     color: #40975b;
     font-size: 20px;
     text-align: center;
-    text-decoration: underline !important;
     z-index: 3;
+
+    p {
+      display: inline-block;
+      text-decoration: underline;
+      font-weight: 700;
+    }
   }
 
   .no-info__overlay {
@@ -29,3 +35,9 @@
     @include background-opacity($white, .9);
   }
 }
+
+#nanum.App--mobile {
+  .no-info p {
+    max-width: 220px;
+  }
+}  
