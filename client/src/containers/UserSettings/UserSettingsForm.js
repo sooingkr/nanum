@@ -13,12 +13,7 @@ import { selectors } from './UserSettingsDuck';
 const validateNumber = value => 
   value && isNaN(Number(value)) ? 'Must be a number' : undefined;
 
-const validateInteger = value => 
-  !(!isNaN(value) && 
-  parseInt(Number(value), 10) == value && 
-  !isNaN(parseInt(value, 10))) ? 'Must be an integer' : undefined;
-
-let UserSettingsForm = ({ 
+let UserSettingsForm = ({
   handleSubmit, 
   pristine, 
   reset, 
@@ -29,37 +24,39 @@ let UserSettingsForm = ({
   allDiseases,
   allInterests,
 }) => {
-  return (<Form horizontal onSubmit={handleSubmit} className="user-setting__form">
+  return (
+    <Form horizontal onSubmit={handleSubmit} className="user-setting__form">
     <fieldset className="profile-fields">
       <legend>회원 정보</legend>
       <FormGroup>
-        <Field 
-          name="firstName" 
+        <Field
+          name="firstName"
           className="text-input"
           component="input"
           type="text"
           placeholder="이름"
         />
-        <Field 
-          name="lastName" 
+        <Field
+          name="lastName"
           className="text-input"
           component="input"
           type="text"
           placeholder="성"
         />
-        <Field 
-          name="birthYear" 
+        <Field
+          name="birthYear"
           className="text-input"
           component="input"
           type="number"
-          validate={validateInteger}
           placeholder="생년 (예: 1988)"
+          min="1"
+          step="1"
         />
       </FormGroup>
       <FormGroup className="align-left">
         <label>
-          <Field 
-            name="gender" 
+          <Field
+            name="gender"
             className="radio-input"
             component={RadioField}
             value="MALE"
@@ -68,8 +65,8 @@ let UserSettingsForm = ({
           <span>남성</span>
         </label>
         <label>
-          <Field 
-            name="gender" 
+          <Field
+            name="gender"
             className="radio-input"
             component={RadioField}
             value="FEMALE"
@@ -82,16 +79,16 @@ let UserSettingsForm = ({
     <fieldset className="diseases-fields">
       <legend>질병 유무 확인란</legend>
       <FormGroup>
-        <Field 
-          name="height" 
+        <Field
+          name="height"
           className="text-input"
           component="input"
           type="text"
           validate={validateNumber}
           placeholder="키"
         />
-        <Field 
-          name="weight" 
+        <Field
+          name="weight"
           className="text-input"
           component="input"
           type="text"
@@ -100,8 +97,8 @@ let UserSettingsForm = ({
         />
       </FormGroup>
       <p>해당하는 질병을 선택해 주세요. (한개 이상 선택 가능)</p>
-      <Field name="diseases" component={props => 
-        <MultiCheckboxField 
+      <Field name="diseases" component={props =>
+        <MultiCheckboxField
           {...props.input}
           label="Diseases"
           options={allDiseases}
@@ -113,8 +110,8 @@ let UserSettingsForm = ({
     <fieldset className="interests-fields">
       <legend>관심 분야</legend>
       <p>해당하는 관심사를 선택해 주세요. (한개 이상 선택 가능)</p>
-      <Field name="interests" component={props => 
-        <MultiCheckboxField 
+      <Field name="interests" component={props =>
+        <MultiCheckboxField
           {...props.input}
           label="Interests"
           options={allInterests}

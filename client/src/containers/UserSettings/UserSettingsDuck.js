@@ -46,6 +46,8 @@ const initialize = () => async (dispatch) => {
     dispatch(toggleInitialFlag(false))
   }
 
+  console.log(userSettings);
+
   const settings = {
     diseases,
     interests,
@@ -56,6 +58,7 @@ const initialize = () => async (dispatch) => {
     gender: userSettings.gender,
     height: userSettings.height,
     weight: userSettings.weight,
+    birthYear: userSettings.birthYear,
   }
 
   dispatch(succeedGet(settings))
