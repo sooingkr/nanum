@@ -325,7 +325,7 @@ function constructIntakeRemovePayload (foodsToRemove) {
   return foodsToRemove.map(food => {
     return {
       ...food,
-      meal: food.mealTime.toUppercase()
+      meal: food.mealTime.toUpperCase()
     }
   })
 }
