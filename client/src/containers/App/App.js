@@ -45,10 +45,8 @@ export class App extends Component {
             <Route exact path="/" component={Home}/>
             <Route exact path="/foods/:id" component={FoodInfoInquiry}/>
             <Route exact path="/dashboard" component={Dashboard}/>
-            <Route exact path="/mobile/dashboard" component={Dashboard}/>
             <Route exact path="/login" component={Login}/>
             <Route exact path="/search" component={FoodSearch}/>
-            <Route exact path="/mobile/search" component={FoodSearch}/>
             <Route exact path="/introduce" component={ServiceIntro}/>
             <Route exact path="/user/setting" component={UserSettings} />
           </Switch>

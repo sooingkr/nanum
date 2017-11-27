@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const NoInfo = (conditionFn, defaultProps={}) => (Component) => (props) => {
+const NoInfo = (conditionFn, defaultProps={}, label, link) => (Component) => (props) => {
   return conditionFn(props) 
   ? (
     <div className="no-info">
       <Component {...props} {...defaultProps} />
-      <Link to="/user/setting" className="no-info__message">
-        <p>정보를 입력하시면 오늘의 식품을 추천받으실 수 있습니다</p>
+      <Link to={link} className="no-info__message">
+        <p>{label}</p>
       </Link>
       <div className="no-info__overlay"></div>
     </div>

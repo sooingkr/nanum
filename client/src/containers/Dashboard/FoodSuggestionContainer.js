@@ -31,7 +31,12 @@ const noInfoCondition = (props) => {
   return !props.foodSuggestions || isEmpty(props.foodSuggestions)
 }
 
-FoodSuggestionContainer = NoInfo(noInfoCondition, mockFoodSuggestions)(FoodSuggestionContainer);
+FoodSuggestionContainer = NoInfo(
+  noInfoCondition, 
+  mockFoodSuggestions,
+  '정보를 입력하시면 오늘의 식품을 추천받으실 수 있습니다',
+  '/user/setting',
+)(FoodSuggestionContainer);
 
 FoodSuggestionContainer.propTypes = {
   foodSuggestions: PropTypes.arrayOf(PropTypes.object),

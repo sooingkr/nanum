@@ -44,7 +44,7 @@ const failRemoveFoods = (error) => createAction(actionTypes.failRemoveFoods, { e
 const failSubmitFoods = (error) => createAction(actionTypes.failSubmitFoods, { error });
 const succeedRemoveFoods = (foodsToRemove) => createAction(actionTypes.succeedRemoveFoods, { foodsToRemove });
 const succeedSubmitFoods = () => createAction(actionTypes.succeedSubmitFoods);
-const markRemoveFood = (foodId, mealTime) => createAction(actionTypes.markRemoveFood, { id: foodId });
+const markRemoveFood = (foodId, mealTime) => createAction(actionTypes.markRemoveFood, { id: foodId, mealTime });
 const addFood = (food, mealTime) => dispatch => {
   dispatch(createAction(actionTypes.addFood, {food, mealTime}))
 };
@@ -143,10 +143,13 @@ export const initialState = {
 // Dashboard reducer
 const reducer = createReducer(initialState, {
   [actionTypes.initialize]: (state, payload) => {
-    const { breakfast, lunch, dinner } = payload;
+    let { breakfast, lunch, dinner } = payload;
     const caloriesCurrent = reduce(union(breakfast, lunch, dinner), (sum, intake) => {
       return sum + intake.foodInfo.calories;
     }, 0);
+    breakfast = addSelectedState(breakfast);
+    lunch = addSelectedState(lunch);
+    dinner = addSelectedState(dinner);
 
     return {
       ...state,
@@ -216,8 +219,16 @@ const reducer = createReducer(initialState, {
     }
   },
   [actionTypes.markRemoveFood]: (state, payload) => {
+    const newIntakes = state[payload.mealTime].map(intake => {
+      if (intake.id === payload.id) {
+        return { ...intake, selected: true };
+      } else {
+        return intake;
+      }
+    });
     return {
       ...state,
+      [payload.mealTime]: newIntakes,
       toBeRemoved: [
         ...state.toBeRemoved,
         payload,
@@ -225,8 +236,12 @@ const reducer = createReducer(initialState, {
     }
   },
   [actionTypes.clearRemoveFood]: (state) => {
+    const clearRemoveFilter = intake => ({ ...intake, selected: false });
     return {
       ...state,
+      breakfast: state.breakfast.map(clearRemoveFilter),
+      lunch: state.lunch.map(clearRemoveFilter),
+      dinner: state.dinner.map(clearRemoveFilter),
       toBeRemoved: [],
     }
   },
@@ -304,4 +319,9 @@ function constructIntakePayload (foodsToAdd) {
       quantity: 1,
     }
   ))
+}
+
+function addSelectedState (intakes) {
+  if (!intakes) return null;
+  return intakes.map(intake => ({ ...intake, selected: false }) );
 }

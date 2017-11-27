@@ -8,6 +8,10 @@
     .row {
       margin: 0;
     }
+
+    div[class*="col"] {
+      padding: 0;
+    }
   }
 
   .visible-xs {
@@ -16,30 +20,17 @@
   }
 
   .product-detail__wrapper {
-    @include padding(15px 45px 20px);
-
-    @include media(">=screen-md") {
-      @include padding(15px 75px 38px);
-    }
+    @include padding(15px 75px 38px);
   }
 
   .product__image {
     width: 100%;
-    @include media("<=screen-xs") {
-      margin-top: -10px;
-    }
   }
 
   .product__title {
     font-size: 36px;
     line-height: 48px;
     word-spacing: 4px;
-
-    @include media("<=tablet") {
-      @include position(absolute, -160px null null null);
-      color: $white;
-      font-weight: bold;
-    }
   }
 
   .product__kcal {
@@ -57,7 +48,9 @@
     font-weight: bold;
   }
 
-  .kcalLevel__title, .btn-view-haccp, .small__title {
+  .kcalLevel__title, 
+  .btn-view-haccp, 
+  .small__title {
     font-size: 12px;
   }
 
@@ -70,7 +63,7 @@
     font-size: 12px;
     font-weight: bold;
     line-height: 18px;
-    word-spacing: -4px;
+    color: #4e5665;
   }
 
   .product__kcalLevel {
@@ -78,16 +71,7 @@
     padding-top: 15px;
     padding-bottom: 15px;
     text-align: center;
-    .row {
-      @include margin(10px -15px);
-    }
-    .col-lg-3 {
-      &:not(:last-child) {
-        @include media(">=da") {
-          width: 22%;
-        }
-      }
-    }
+    
     .kcalLevel__number {
       font-size: 34px;
     }
@@ -99,18 +83,21 @@
 
     .btn-view-haccp {
       margin-top: 20px;
-      height: 34px;
+      min-height: 34px;
       border: 2px solid $chat-box-input-border;
       border-radius: 5px;
       background-image: none;
       background-color: $white;
       font-weight: bold;
-      @include media(">da") {
-        margin-top: 15px;
-        margin-left: -21px;
-      }
     }
   }
+
+  .product__kcalLevel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }    
+
   .food-carousel {
     .food-carousel__title {
       font-size: 16px;
@@ -130,4 +117,32 @@
       margin-bottom: 15px;
     }
   }
+}
+
+#nanum.App--mobile {
+  .product-detail__wrapper {
+    @include padding(15px 45px 20px);
+  } 
+
+  .product__image {
+    margin-top: -10px;
+  }    
+
+  .product__title {
+    @include position(absolute, -160px null null null);
+    color: $white;
+    font-weight: bold;
+  }    
+
+  .product__kcalLevel {
+    flex-wrap: wrap;
+  }    
+
+  .product__kcalLevel-item {
+    flex: 1;
+
+    &:last-child {
+      flex: 3;
+    }
+  }    
 }
