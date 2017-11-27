@@ -9,14 +9,16 @@ const FoodIntakeItem = ({
   imageUrl, 
   servingSize, 
   isEditMode, 
-  action 
+  action,
+  selected,
 }) => {
   const classes = isEditMode 
     ? 'food-intake-item food-intake-item--removable'
     : 'food-intake-item';
-
+  const selectedClass = selected ? ' is-selected' : '';
+  
   return (
-    <div className={classes} onClick={() => action(intakeId, mealTime)}>
+    <div className={classes + selectedClass} onClick={() => action(intakeId, mealTime)}>
       <Media>
         <Media.Left>
           <figure className="food-intake-item__image">

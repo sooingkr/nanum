@@ -4,18 +4,18 @@ import { isEmpty } from 'lodash';
 import { Row, Col, Button } from 'react-bootstrap';
 
 class FoodDetails extends Component {
-
   render () {
-
     const { foodDetail } = this.props;
+    if (isEmpty(foodDetail)) return null;
 
-    if (isEmpty(foodDetail)) {
-      return (
-        null
-      );
-    }
-
-    const { name, diagnosticMessage, calories, carbohydrates, proteins, fat } = foodDetail;
+    const {
+      name, 
+      diagnosticMessage, 
+      calories, 
+      carbohydrates, 
+      proteins, 
+      fat 
+    } = foodDetail;
 
     return (
       <div className="product__detail">
@@ -32,25 +32,25 @@ class FoodDetails extends Component {
           </Col>
         </Row>
         <Row>
-          <div className="product__foodInfo hidden-xs">{diagnosticMessage}</div>
+          { diagnosticMessage &&
+            <div className="product__foodInfo hidden-xs">{diagnosticMessage}</div>
+          }
           <div className="product__kcalLevel">
-            <Row>
-              <Col xs={4} lg={3}>
-                <div className="kcalLevel__number">{carbohydrates}</div>
-                <div className="kcalLevel__title">탄수화물(g)</div>
-              </Col>
-              <Col xs={4} lg={3}>
-                <div className="kcalLevel__number">{proteins}</div>
-                <div className="kcalLevel__title">단백질(g)</div>
-              </Col>
-              <Col xs={4} lg={3}>
-                <div className="kcalLevel__number">{fat}</div>
-                <div className="kcalLevel__title">지방(g)</div>
-              </Col>
-              <Col xs={12} lg={3}>
-                <Button className="btn-view-haccp" href="http://fresh.ihaccp.or.kr/safety/productDetail.do?productNo=2013021004600255&masterId=24360" title="안전먹거리에서 보기">안전먹거리에서 보기</Button>
-              </Col>
-            </Row>
+            <div className="product__kcalLevel-item">
+              <div className="kcalLevel__number">{carbohydrates}</div>
+              <div className="kcalLevel__title">탄수화물(g)</div>
+            </div>
+            <div className="product__kcalLevel-item">
+              <div className="kcalLevel__number">{proteins}</div>
+              <div className="kcalLevel__title">단백질(g)</div>
+            </div>            
+            <div className="product__kcalLevel-item">
+              <div className="kcalLevel__number">{fat}</div>
+              <div className="kcalLevel__title">지방(g)</div>
+            </div>            
+            <div className="product__kcalLevel-item">
+              <Button className="btn-view-haccp" href="http://fresh.ihaccp.or.kr/safety/productDetail.do?productNo=2013021004600255&masterId=24360" title="안전먹거리에서 보기">안전먹거리에서 보기</Button>
+            </div>            
           </div>
         </Row>
       </div>

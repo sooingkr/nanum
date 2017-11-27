@@ -6,6 +6,10 @@
       padding-bottom: 10px;
       border-bottom: 1px solid #d0d2d3;
     }
+
+    &.is-selected .food-intake-item__name {
+      color: $green;
+    }
   }
   
   .food-intake-item--removable {

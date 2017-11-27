@@ -10,7 +10,6 @@ import FoodDetailCarousel from '../../components/FoodInfoInquiry/FoodDetailCarou
 import { getFoodDetailData, FoodInquiryDuck } from "./FoodDuck";
 
 class FoodInfoInquiry extends Component {
-
   componentWillMount() {
     const { getFoodDetailData, match } = this.props;
     getFoodDetailData(match.params.id);
@@ -18,14 +17,17 @@ class FoodInfoInquiry extends Component {
 
   render() {
     const { foodDetail } = this.props;
-
     const { diagnosticMessage, alternativeFoods }  = foodDetail;
 
     return (
       <div className="product">
         <Grid fluid>
           <Row>
-            <Col md={12}><div className="product__foodInfo visible-xs">{diagnosticMessage}</div></Col>
+            { diagnosticMessage &&
+              <Col md={12}>
+                <div className="product__foodInfo visible-xs">{diagnosticMessage}</div>
+              </Col>
+            }
             <Col md={7}>
               <Image className="product__image" src={foodDetail.imageUrl} alt={foodDetail.name} responsive></Image>
             </Col>
@@ -45,9 +47,7 @@ class FoodInfoInquiry extends Component {
 }
 
 const mapStateToProps = (state) => {
-
   const foodInquiryState = state[FoodInquiryDuck.storeName];
-
   return {
     foodDetail: foodInquiryState.foodDetail,
   }

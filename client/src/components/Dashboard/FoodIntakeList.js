@@ -33,6 +33,7 @@ class FoodIntakeList extends Component {
               imageUrl={food.foodInfo.imageUrl}
               quantity={food.quantity}
               servingSize={food.servingSize}
+              selected={food.selected}
               isEditMode={isEditMode}
               action={foodItemAction}
             />

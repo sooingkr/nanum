@@ -17,8 +17,7 @@ import { DashboardDuck, selectors } from './DashboardDuck';
 
 class Dashboard extends Component {
   componentWillMount() {
-    const { init } = this.props;
-    init();
+    this.props.init();
   }
 
   render() {

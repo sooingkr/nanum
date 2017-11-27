@@ -27,8 +27,8 @@ export const actionTypes = {
   quitEdit: storeName + '/QUIT_EDIT',
   markRemoveFood: storeName + '/MARK_REMOVE_FOOD',
   clearRemoveFood: storeName + '/CLEAR_REMOVE_FOOD',
-  succeedRemoveFood: storeName + '/SUCCEED_REMOVE_FOOD',
-  failRemoveFood: storeName + '/FAIL_REMOVE_FOOD',
+  succeedRemoveFoods: storeName + '/SUCCEED_REMOVE_FOODS',
+  failRemoveFoods: storeName + '/FAIL_REMOVE_FOODS',
   succeedSubmitFoods: storeName + '/SUCCEED_SUBMIT_FOODS',
   failSubmitFoods: storeName + '/FAIL_SUBMIT_FOODS',
 };
@@ -40,16 +40,11 @@ const pickQueryTime = (queryTime) => createAction(actionTypes.pickQueryTime, { q
 const enterEdit = () => createAction(actionTypes.enterEdit);
 const quitEdit = () => createAction(actionTypes.quitEdit);
 const clearRemoveFood = () => createAction(actionTypes.clearRemoveFood);
-const failRemoveFood = () => createAction(actionTypes.failRemoveFood);
+const failRemoveFoods = (error) => createAction(actionTypes.failRemoveFoods, { error });
 const failSubmitFoods = (error) => createAction(actionTypes.failSubmitFoods, { error });
-const succeedRemoveFood = (foodsToRemove) => createAction(actionTypes.succeedRemoveFood, { foods: foodsToRemove });
+const succeedRemoveFoods = (foodsToRemove) => createAction(actionTypes.succeedRemoveFoods, { foodsToRemove });
 const succeedSubmitFoods = () => createAction(actionTypes.succeedSubmitFoods);
-const markRemoveFood = (foodId, mealTime) => createAction(actionTypes.markRemoveFood, { 
-  [foodId + ':' + mealTime]: {
-    foodId,
-    mealTime,
-  },
-});
+const markRemoveFood = (foodId, mealTime) => createAction(actionTypes.markRemoveFood, { id: foodId, mealTime });
 const addFood = (food, mealTime) => dispatch => {
   dispatch(createAction(actionTypes.addFood, {food, mealTime}))
 };
@@ -80,25 +75,26 @@ const initialize = (queryTime) => async (dispatch, getState) => {
 };
 
 const removeFoods = () => async (dispatch, getState) => {
-  const state = getState()[storeName];
-  const foodsToRemove = Object.values(state.toBeRemoved);
-  const isSuccessful = await FoodService.removeFoods(foodsToRemove);
-  if (isSuccessful) {
-    dispatch(succeedRemoveFood(foodsToRemove));
-    dispatch(clearRemoveFood());
-  } else {
-    dispatch(failRemoveFood());
+  const foodsToRemove = getState()[storeName].toBeRemoved;
+
+  try {
+    await FoodService.removeFoods(foodsToRemove);
+  } catch (err) {
+    dispatch(failRemoveFoods(err));
   }
+
+  dispatch(succeedRemoveFoods(foodsToRemove));
+  dispatch(clearRemoveFood());
 }
 
 const submitFoods = (foodsToAdd) => async (dispatch) => {
   const foodIntakePayload = constructIntakePayload(foodsToAdd);
-  let response;
   try {
-    response = await FoodService.addFoodIntake(foodIntakePayload);
+    await FoodService.addFoodIntake(foodIntakePayload);
   } catch (err) {
     dispatch(failSubmitFoods(err));
   }
+
   dispatch(succeedSubmitFoods());
   dispatch(closeDialog());
   dispatch(initialize());
@@ -113,16 +109,17 @@ const actions = {
   clearAddFood,
   enterEdit,
   quitEdit,
-  removeFoods,
   markRemoveFood,
   clearRemoveFood,
-  failRemoveFood,
+  failRemoveFoods,
   submitFoods,
+  removeFoods,
 };
 
 // Initial Dashboard state tree
 export const initialState = {
   queryTime: "",
+  error: null,
   alert: {},
   currentUser: {},
   breakfast: [],
@@ -136,7 +133,7 @@ export const initialState = {
   reason: "",
   isLoading: true,
   isEditMode: false,
-  toBeRemoved: {},
+  toBeRemoved: [],
   toBeAdded: {
     mealTime: '',
     foods: [],
@@ -146,10 +143,13 @@ export const initialState = {
 // Dashboard reducer
 const reducer = createReducer(initialState, {
   [actionTypes.initialize]: (state, payload) => {
-    const { breakfast, lunch, dinner } = payload;
+    let { breakfast, lunch, dinner } = payload;
     const caloriesCurrent = reduce(union(breakfast, lunch, dinner), (sum, intake) => {
       return sum + intake.foodInfo.calories;
     }, 0);
+    breakfast = addSelectedState(breakfast);
+    lunch = addSelectedState(lunch);
+    dinner = addSelectedState(dinner);
 
     return {
       ...state,
@@ -219,26 +219,55 @@ const reducer = createReducer(initialState, {
     }
   },
   [actionTypes.markRemoveFood]: (state, payload) => {
+    const newIntakes = state[payload.mealTime].map(intake => {
+      if (intake.id === payload.id) {
+        return { ...intake, selected: true };
+      } else {
+        return intake;
+      }
+    });
     return {
       ...state,
-      toBeRemoved: {
+      [payload.mealTime]: newIntakes,
+      toBeRemoved: [
         ...state.toBeRemoved,
-        ...payload,
-      }
+        payload,
+      ]
     }
   },
   [actionTypes.clearRemoveFood]: (state) => {
+    const clearRemoveFilter = intake => ({ ...intake, selected: false });
     return {
       ...state,
-      toBeRemoved: {},
+      breakfast: state.breakfast.map(clearRemoveFilter),
+      lunch: state.lunch.map(clearRemoveFilter),
+      dinner: state.dinner.map(clearRemoveFilter),
+      toBeRemoved: [],
     }
   },
-  [actionTypes.succeedRemoveFood]: (state, payload) => {
-    // TODO
+  [actionTypes.succeedRemoveFoods]: (state, payload) => {
+    const ids = payload.foodsToRemove.map(food => food.id);
+    const filterFunc = food => ids.indexOf(food.id) !== -1;
     return {
-      ...state
+      ...state,
+      error: null,
+      breakfast: state.breakfast.filter(filterFunc),
+      lunch: state.lunch.filter(filterFunc),
+      dinner: state.dinner.filter(filterFunc),
     }
-  }
+  },
+  [actionTypes.failRemoveFoods]: (state, payload) => {
+    return {
+      ...state,
+      error: payload.error
+    }
+  },
+  [actionTypes.failSubmitFoods]: (state, payload) => {
+    return {
+      ...state,
+      error: payload.error
+    }
+  },
 });
 
 // Selectors
@@ -290,4 +319,9 @@ function constructIntakePayload (foodsToAdd) {
       quantity: 1,
     }
   ))
+}
+
+function addSelectedState (intakes) {
+  if (!intakes) return null;
+  return intakes.map(intake => ({ ...intake, selected: false }) );
 }
