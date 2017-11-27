@@ -36,6 +36,23 @@
     display: none;
   }
 
+  .Select-option {
+    .food-select-option__name {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .food-select-option__manu {
+      font-size: 12px;
+      color: $mid-gray;
+      margin-bottom: 0;
+    }
+
+    &.is-focused {
+      background-color: #d2e79f;
+    }
+  }
+
   legend {
     @include side-padding;
   }

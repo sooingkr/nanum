@@ -4,18 +4,18 @@ import { isEmpty } from 'lodash';
 import { Row, Col, Button } from 'react-bootstrap';
 
 class FoodDetails extends Component {
-
   render () {
-
     const { foodDetail } = this.props;
+    if (isEmpty(foodDetail)) return null;
 
-    if (isEmpty(foodDetail)) {
-      return (
-        null
-      );
-    }
-
-    const { name, diagnosticMessage, calories, carbohydrates, proteins, fat } = foodDetail;
+    const {
+      name, 
+      diagnosticMessage, 
+      calories, 
+      carbohydrates, 
+      proteins, 
+      fat 
+    } = foodDetail;
 
     return (
       <div className="product__detail">

@@ -52,18 +52,19 @@ const foodDetail = async (foodId) => {
   }
 }
 
-const removeFoods = async (foods) => {
-  let result;
-
+const removeFoods = async (foodsToRemove) => {
+  let response;
   try {
-    result = await axios.post(`/foods/intake/delete`, {
-      data: { foods }
+    response = await axios.request({
+      url: `/foods/intakes`, 
+      method: 'delete',
+      data: foodsToRemove,
     });
   } catch (error) {
     throw new Error(`FoodService error - <removeFood()>: ${error}`);
   }
 
-  return result.data;
+  return response.data;
 };
 
 const addFoodIntake = async (foodsToAdd) => {

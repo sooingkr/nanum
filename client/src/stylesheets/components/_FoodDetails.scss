@@ -31,7 +31,7 @@
   }
 
   .product__title {
-    font-size: rem(36);
+    font-size: 36px;
     line-height: 48px;
     word-spacing: 4px;
 
@@ -43,7 +43,7 @@
   }
 
   .product__kcal {
-    font-size: rem(16);
+    font-size: 16px;
     font-weight: bold;
     text-align: right;
     margin-top: 5px;
@@ -58,7 +58,7 @@
   }
 
   .kcalLevel__title, .btn-view-haccp, .small__title {
-    font-size: rem(12);
+    font-size: 12px;
   }
 
   .product__foodInfo {
@@ -67,7 +67,7 @@
     border-radius: 15px;
     @include margin(15px 0 25px);
     @include padding(15px 20px);
-    font-size: rem(12);
+    font-size: 12px;
     font-weight: bold;
     line-height: 18px;
     word-spacing: -4px;
@@ -89,7 +89,7 @@
       }
     }
     .kcalLevel__number {
-      font-size: rem(34);
+      font-size: 34px;
     }
 
     .kcalLevel__title {
@@ -113,7 +113,7 @@
   }
   .food-carousel {
     .food-carousel__title {
-      font-size: rem(16);
+      font-size: 16px;
       color: $gray;
       margin-top: 20px;
       margin-bottom: 20px;

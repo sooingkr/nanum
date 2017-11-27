@@ -95,7 +95,8 @@ $dashboard-max-width: 1040px;
       display: block;
       width: calc(100% + 30px);
       height: 14px;
-      background-color: #e6e6e6;
+      background-color: #f1f1f1;
+      border: 1px solid #e6e6e6;
       z-index: 4;
     }
   }

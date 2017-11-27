@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
+import FoodSelectOption from './FoodSelectOption';
 import FoodService from '../../service/FoodService';
 import 'react-select/dist/react-select.css';
 
@@ -22,6 +23,7 @@ class FoodSelectField extends Component {
           onAddFood(selectedOption, mealTime);
         }}
         onBlurResetsInput={false}
+        optionComponent={FoodSelectOption}
         loadOptions={this.fetchFoodOptions}
         placeholder="Search for your food"
         clearable={false}
