@@ -76,9 +76,9 @@ const initialize = (queryTime) => async (dispatch, getState) => {
 
 const removeFoods = () => async (dispatch, getState) => {
   const foodsToRemove = getState()[storeName].toBeRemoved;
-
+  const foodIntakePayload = constructIntakeRemovePayload(foodsToRemove);
   try {
-    await FoodService.removeFoods(foodsToRemove);
+    await FoodService.removeFoods(foodIntakePayload);
   } catch (err) {
     dispatch(failRemoveFoods(err));
   }
@@ -319,6 +319,15 @@ function constructIntakePayload (foodsToAdd) {
       quantity: 1,
     }
   ))
+}
+
+function constructIntakeRemovePayload (foodsToRemove) {
+  return foodsToRemove.map(food => {
+    return {
+      ...food,
+      meal: food.mealTime.toUppercase()
+    }
+  })
 }
 
 function addSelectedState (intakes) {
