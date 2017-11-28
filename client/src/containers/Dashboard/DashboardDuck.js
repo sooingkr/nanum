@@ -97,6 +97,7 @@ const submitFoods = (foodsToAdd) => async (dispatch) => {
 
   dispatch(succeedSubmitFoods());
   dispatch(closeDialog());
+  dispatch(clearAddFood());
   dispatch(initialize());
 }
 
