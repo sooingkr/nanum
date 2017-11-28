@@ -46,8 +46,6 @@ const initialize = () => async (dispatch) => {
     dispatch(toggleInitialFlag(false))
   }
 
-  console.log(userSettings);
-
   const settings = {
     diseases,
     interests,
