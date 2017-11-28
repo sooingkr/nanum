@@ -17,33 +17,31 @@ class MultiCheckboxField extends React.Component {
 
     if (!isUndefined(value) && value !== '') {
       previousValues = value;
-    }
-    else if (!isUndefined(initialValue) && initialValue !== '') {
+    } else if (!isUndefined(initialValue) && initialValue !== '') {
       previousValues = initialValue;
     }
 
-    let currentValues = isArray(previousValues) ? [...previousValues] : [previousValues];
+    let currentValues = isArray(previousValues) ? [...previousValues] : [previousValues];    
     return currentValues;
   }
 
-  handleChange(event, id) {
+  handleChange(event, option) {
     const {field} = this.props;
     const {onChange} = field;
     const values = this.getCurrentValues();
-
+    let afterChange = values;
+    
     if (event.target.checked) {
-      values.push(id);
-    }
-    else {
-      values.splice(values.indexOf(id), 1);
+      afterChange.push(option);
+    } else {
+      afterChange = afterChange.filter(value => value.id !== option.id);
     }
 
-    return onChange(values);
+    return onChange(afterChange);
   }
 
   render() {
     const {label, options, field} = this.props;
-    const {onBlur} = field;
     const values = this.getCurrentValues();
     const ids = values.map(value => value.id);
 
@@ -61,7 +59,7 @@ class MultiCheckboxField extends React.Component {
                 {...field}
                 type="checkbox"
                 onChange={event => this.handleChange(event, option)}
-                onBlur={() => onBlur(values)}
+                onBlur={(e) => e.preventDefault()}
                 checked={isChecked}
                 value={option.id}
               />
