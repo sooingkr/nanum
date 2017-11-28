@@ -24,4 +24,4 @@ const AppView = () => (
 );
 
 ReactDOM.render(<AppView/>, document.getElementById('root'));
-registerServiceWorker();
+// registerServiceWorker();
