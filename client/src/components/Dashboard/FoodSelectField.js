@@ -25,7 +25,7 @@ class FoodSelectField extends Component {
         onBlurResetsInput={false}
         optionComponent={FoodSelectOption}
         loadOptions={this.fetchFoodOptions}
-        placeholder="Search for your food"
+        placeholder="식품명을 입력하세요."
         clearable={false}
         filterOption={() => true}
       />

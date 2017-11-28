@@ -5,7 +5,6 @@ import {
   Row,
   Col,
 } from 'react-bootstrap';
-import { isEmpty } from 'lodash';
 import UserInfoContainer from './UserInfoContainer';
 import FoodIntakeTrackingContainer from './FoodIntakeTrackingContainer';
 import FoodSuggestionContainer from './FoodSuggestionContainer';
@@ -26,10 +25,7 @@ class Dashboard extends Component {
 
     return (
       <div className="dashboard">
-        { alert &&
-          !isEmpty(alert) &&
-          <Alert message={alert.message} type={alert.type} />
-        }
+        <Alert message={alert.message} type={alert.type} />
         <Grid>
           <Row className="dashboard-search">
             <Col sm={12}>

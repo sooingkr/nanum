@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { HashRouter as Router } from 'react-router-dom';
-import registerServiceWorker from './registerServiceWorker';
 import { store } from './utils/AppUtils';
 import ScrollToTop from './components/Common/ScrollToTop';
 import App from './containers/App/App';

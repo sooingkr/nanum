@@ -1,4 +1,4 @@
-import { random, times } from 'lodash';
+import { times } from 'lodash';
 import Food1 from '../../assets/images/mock/food1.jpg';
 import Food2 from '../../assets/images/mock/food2.jpg';
 import Food3 from '../../assets/images/mock/food3.jpg';

@@ -10,6 +10,7 @@ let SearchForm = ({ handleSubmit, onExpand }) => (
     <Form horizontal onSubmit={handleSubmit}>
       <Field name="foodQuery"
             className="search-form__input"
+            placeholder="제품명"
             component="input"
             type="text"
       />

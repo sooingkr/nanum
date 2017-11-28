@@ -5,8 +5,6 @@
 
 import React from "react";
 import { Image } from "react-bootstrap";
-import { Link } from "react-router-dom";
-
 import DashboardImg from '../../assets/images/promotion_image1.png';
 import ChatboxImg from '../../assets/images/promotion_image2.png';
 

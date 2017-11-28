@@ -121,7 +121,10 @@ const actions = {
 export const initialState = {
   queryTime: "",
   error: null,
-  alert: {},
+  alert: {
+    message: '회원정보가 없습니다. 정보를 넣어주세요.',
+    type: 'danger',
+  },
   currentUser: {},
   breakfast: [],
   lunch: [],
@@ -151,10 +154,10 @@ const reducer = createReducer(initialState, {
     breakfast = addSelectedState(breakfast);
     lunch = addSelectedState(lunch);
     dinner = addSelectedState(dinner);
-
+    
     return {
       ...state,
-      alert: payload.alert,
+      alert: payload.alert || state.alert,
       currentUser: payload.currentUser,
       breakfast,
       lunch,

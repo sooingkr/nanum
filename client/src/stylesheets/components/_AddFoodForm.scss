@@ -53,6 +53,18 @@
     }
   }
 
+  .Select-placeholder {
+    padding-left: 18px;
+  }
+
+  .Select-noresults {
+    display: none;
+  }    
+
+  .Select-menu-outer {
+    border: none;
+  }
+
   legend {
     @include side-padding;
   }
