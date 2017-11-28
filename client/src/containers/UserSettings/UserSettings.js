@@ -10,7 +10,6 @@ class UserSettings extends React.Component {
   }
 
   handleSubmit = (values) => {
-    console.log('handle submit');
     this.props.updateUserSettings(values, this.props.history);
   }
 

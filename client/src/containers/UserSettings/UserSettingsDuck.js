@@ -89,7 +89,6 @@ const updateUserSettings = (userSettings, history) => async (dispatch, getState)
   dispatch(succeedUpdate(settings));
   // Redirect back to dashboard
   history.push('/dashboard');
-  window.location.reload();
 }
 
 // conveniently export actions
@@ -109,7 +108,7 @@ export const initialState = {
   firstName: '',
   lastName: '',
   birthYear: null,
-  gender: '',
+  gender: 'NA',
   weight: null,
   height: null,
 };
