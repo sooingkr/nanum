@@ -37,7 +37,6 @@
   }
   
   .add-food-form .Select-menu-outer {
-    width: calc(100% - 52px);
     width: 100%;
   }
 }
@@ -58,9 +57,5 @@
     padding: 0;
     margin: 0 auto;
     max-width: 268px;
-  }
-
-  .add-food-form .Select-menu-outer {
-    width: calc(100% - 52px);
   }
 }

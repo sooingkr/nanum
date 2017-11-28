@@ -24,6 +24,9 @@ export class FoodIntakeTrackingContainer extends Component {
   }
 
   renderEditButtons = () => {
+    const { when: { breakfast, lunch, dinner }} = this.props.foodIntakeTracking;
+    const isEditable = breakfast.length > 0 && lunch.length > 0 && dinner.length > 0;
+
     if (this.props.isEditMode) {
       return (
         <div className="food-intake__edit">
@@ -53,7 +56,7 @@ export class FoodIntakeTrackingContainer extends Component {
         <button 
           className="button button--link"
           type="button"
-          onClick={this.props.enterEdit}
+          onClick={() => { isEditable && this.props.enterEdit()}}
           >
           Edit
         </button>
