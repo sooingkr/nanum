@@ -44,7 +44,7 @@ const failRemoveFoods = (error) => createAction(actionTypes.failRemoveFoods, { e
 const failSubmitFoods = (error) => createAction(actionTypes.failSubmitFoods, { error });
 const succeedRemoveFoods = (foodsToRemove) => createAction(actionTypes.succeedRemoveFoods, { foodsToRemove });
 const succeedSubmitFoods = () => createAction(actionTypes.succeedSubmitFoods);
-const markRemoveFood = (foodId, mealTime) => createAction(actionTypes.markRemoveFood, { id: foodId, mealTime });
+const markRemoveFood = (foodId, mealTime) => createAction(actionTypes.markRemoveFood, { id: foodId, meal: mealTime });
 const addFood = (food, mealTime) => dispatch => {
   dispatch(createAction(actionTypes.addFood, {food, mealTime}))
 };
@@ -148,9 +148,7 @@ export const initialState = {
 const reducer = createReducer(initialState, {
   [actionTypes.initialize]: (state, payload) => {
     let { breakfast, lunch, dinner } = payload;
-    const caloriesCurrent = reduce(union(breakfast, lunch, dinner), (sum, intake) => {
-      return sum + intake.foodInfo.calories;
-    }, 0);
+    const caloriesCurrent = calculateCalories(breakfast, lunch, dinner);
     breakfast = addSelectedState(breakfast);
     lunch = addSelectedState(lunch);
     dinner = addSelectedState(dinner);
@@ -223,7 +221,7 @@ const reducer = createReducer(initialState, {
     }
   },
   [actionTypes.markRemoveFood]: (state, payload) => {
-    const newIntakes = state[payload.mealTime].map(intake => {
+    const newIntakes = state[payload.meal].map(intake => {
       if (intake.id === payload.id) {
         return { ...intake, selected: true };
       } else {
@@ -232,7 +230,7 @@ const reducer = createReducer(initialState, {
     });
     return {
       ...state,
-      [payload.mealTime]: newIntakes,
+      [payload.meal]: newIntakes,
       toBeRemoved: [
         ...state.toBeRemoved,
         payload,
@@ -250,14 +248,24 @@ const reducer = createReducer(initialState, {
     }
   },
   [actionTypes.succeedRemoveFoods]: (state, payload) => {
-    const ids = payload.foodsToRemove.map(food => food.id);
-    const filterFunc = food => ids.indexOf(food.id) !== -1;
+    const idMap = food => food.id;
+    const mealFilter = meal => food => food.meal === meal;
+    const idFilter = ids => food => ids.indexOf(food.id) === -1;
+    const breakfastIds = payload.foodsToRemove.filter(mealFilter('breakfast')).map(idMap);
+    const lunchIds = payload.foodsToRemove.filter(mealFilter('lunch')).map(idMap);
+    const dinnerIds = payload.foodsToRemove.filter(mealFilter('dinner')).map(idMap);
+    const newBreakfast = state.breakfast.filter(idFilter(breakfastIds));
+    const newLunch = state.lunch.filter(idFilter(lunchIds));
+    const newDinner = state.dinner.filter(idFilter(dinnerIds));
+    const caloriesCurrent = calculateCalories(newBreakfast, newLunch, newDinner);
+
     return {
       ...state,
       error: null,
-      breakfast: state.breakfast.filter(filterFunc),
-      lunch: state.lunch.filter(filterFunc),
-      dinner: state.dinner.filter(filterFunc),
+      breakfast: newBreakfast,
+      lunch: newLunch,
+      dinner: newDinner,
+      caloriesCurrent,
     }
   },
   [actionTypes.failRemoveFoods]: (state, payload) => {
@@ -329,7 +337,7 @@ function constructIntakeRemovePayload (foodsToRemove) {
   return foodsToRemove.map(food => {
     return {
       ...food,
-      meal: food.mealTime.toUpperCase()
+      meal: food.meal.toUpperCase()
     }
   })
 }
@@ -337,4 +345,10 @@ function constructIntakeRemovePayload (foodsToRemove) {
 function addSelectedState (intakes) {
   if (!intakes) return null;
   return intakes.map(intake => ({ ...intake, selected: false }) );
+}
+
+function calculateCalories (breakfast, lunch, dinner) {
+  return reduce(union(breakfast, lunch, dinner), (sum, intake) => {
+    return sum + intake.foodInfo.calories;
+  }, 0);
 }
