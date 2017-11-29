@@ -7,13 +7,42 @@
       border-bottom: 1px solid #d0d2d3;
     }
 
-    &.is-selected .food-intake-item__name {
-      color: $green;
+    &.is-selected {
+      display: none;
+    }
+
+    &.food-intake-item--removable {
+      cursor: pointer;
     }
   }
-  
-  .food-intake-item--removable {
-    cursor: pointer;
+
+  .food-intake-item--removable .food-intake-item__image {
+    position: relative;
+
+    &:before,
+    &:after {
+      position: absolute;
+      content: ' ';
+      display: block;
+    }
+
+    &:before {
+      width: 12px;
+      height: 3px;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #e34c4c;
+    }
+
+    &:after {
+      width: 100%;
+      height: 100%;
+      top: 0;
+      border: 1px solid #e34c4c;
+      border-radius: 50%;
+      background-color: rgba(227, 76, 76, 0.5);
+    }
   }  
   
   .food-intake-item__image {

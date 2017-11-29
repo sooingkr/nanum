@@ -43,7 +43,10 @@ export class FoodIntakeTrackingContainer extends Component {
           <button
             className="button button--link"
             type="button"
-            onClick={this.props.removeFoods}
+            onClick={() => {
+              this.props.removeFoods();
+              this.props.quitEdit();
+            }}
             >
             Ok
           </button>

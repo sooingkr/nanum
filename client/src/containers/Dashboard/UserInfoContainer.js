@@ -22,17 +22,16 @@ export class UserInfoContainer extends Component {
   render() {
     const user = this.props.user;
     const { gender, firstName, lastName, diseases, interests } = user;
+    const userDisplayName = (firstName || lastName) ? `${lastName}${firstName}` : '김해섭';
     const genderIcon = isMale(gender) ? MaleIcon : FemaleIcon;
     const hasNoInfo = !diseases || !interests;
     return (
       <div className="user-info">
         <div className="user-info__heading">
-          { (firstName || lastName) &&
-            <div className="user-info__name">
-              <h2>{lastName}{firstName}</h2>
-              <img src={genderIcon} alt={gender} />
-            </div>
-          }
+          <div className="user-info__name">
+            <h2>{userDisplayName}</h2>
+            <img src={genderIcon} alt={gender} />
+          </div>
           <Link 
             to="/user/setting" 
             className="user-info__edit button button--link">Edit

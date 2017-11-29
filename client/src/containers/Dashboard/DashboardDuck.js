@@ -77,13 +77,16 @@ const initialize = (queryTime) => async (dispatch, getState) => {
 const removeFoods = () => async (dispatch, getState) => {
   const foodsToRemove = getState()[storeName].toBeRemoved;
   const foodIntakePayload = constructIntakeRemovePayload(foodsToRemove);
+  let response;
   try {
-    await FoodService.removeFoods(foodIntakePayload);
+    response = await FoodService.removeFoods(foodIntakePayload);
   } catch (err) {
     dispatch(failRemoveFoods(err));
   }
 
-  dispatch(succeedRemoveFoods(foodsToRemove));
+  if (isObject(response)) {
+    dispatch(succeedRemoveFoods(foodsToRemove));
+  }
   dispatch(clearRemoveFood());
 }
 
