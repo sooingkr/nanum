@@ -51,6 +51,7 @@
     "react-router-redux": "^4.0.8",
     "react-select": "^1.0.0-rc.10",
     "react-slick": "^0.15.4",
+    "recharts": "^1.0.0-beta.5",
     "redux": "^3.7.2",
     "redux-form": "^7.0.4",
     "redux-logger": "^3.0.6",

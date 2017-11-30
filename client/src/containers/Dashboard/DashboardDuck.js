@@ -31,6 +31,7 @@ export const actionTypes = {
   failRemoveFoods: storeName + '/FAIL_REMOVE_FOODS',
   succeedSubmitFoods: storeName + '/SUCCEED_SUBMIT_FOODS',
   failSubmitFoods: storeName + '/FAIL_SUBMIT_FOODS',
+  updateIngredientsData: storeName + '/UPDATE_INGREDIENTS_DATA',
 };
 
 // Actions creators 
@@ -49,6 +50,7 @@ const addFood = (food, mealTime) => dispatch => {
   dispatch(createAction(actionTypes.addFood, {food, mealTime}))
 };
 const clearAddFood = () => createAction(actionTypes.clearAddFood);
+const updateIngredientsData = (ingredients) => createAction(actionTypes.updateIngredientsData, { ingredients });
 
 // Thunks
 const initialize = (queryTime) => async (dispatch, getState) => {
@@ -72,6 +74,8 @@ const initialize = (queryTime) => async (dispatch, getState) => {
     ...tracking,
     currentUser: userInfo.data,
   }));
+
+  dispatch(updateIngredientsData());
 };
 
 const removeFoods = () => async (dispatch, getState) => {
@@ -118,6 +122,7 @@ const actions = {
   failRemoveFoods,
   submitFoods,
   removeFoods,
+  updateIngredientsData,
 };
 
 // Initial Dashboard state tree
@@ -145,6 +150,7 @@ export const initialState = {
     mealTime: '',
     foods: [],
   },
+  ingredients: [],
 };
 
 // Dashboard reducer
@@ -283,6 +289,19 @@ const reducer = createReducer(initialState, {
       error: payload.error
     }
   },
+  [actionTypes.updateIngredientsData]: (state, payload) => {
+    const data = [
+      { ingredient: '탄수화물', current: mockDatapoint(), fullMark: 100 },
+      { ingredient: '단백질', current: mockDatapoint(), fullMark: 100 },
+      { ingredient: '무기질', current: mockDatapoint(), fullMark: 100 },
+      { ingredient: '비타민', current: mockDatapoint(), fullMark: 100 },
+      { ingredient: '지방', current: mockDatapoint(), fullMark: 100 },
+    ]
+    return {
+      ...state,
+      ingredients: data
+    }
+  },
 });
 
 // Selectors
@@ -305,6 +324,7 @@ const getTime = (state) => state[storeName].queryTime;
 const getLoadingStatus = (state) => state[storeName].isLoading;
 const getEditMode = (state) => state[storeName].isEditMode;
 const getToBeAdded = (state) => state[storeName].toBeAdded;
+const getIngredients = (state) => state[storeName].ingredients;
 
 export const DashboardDuck = {
   storeName,
@@ -324,6 +344,7 @@ export const selectors = {
   getEditMode,
   getReason,
   getToBeAdded,
+  getIngredients,
 }
 
 function constructIntakePayload (foodsToAdd) {
@@ -354,4 +375,8 @@ function calculateCalories (breakfast, lunch, dinner) {
   return reduce(union(breakfast, lunch, dinner), (sum, intake) => {
     return sum + intake.foodInfo.calories;
   }, 0);
+}
+
+function mockDatapoint () {
+  return Math.floor(Math.random() * 101) + 0;
 }
