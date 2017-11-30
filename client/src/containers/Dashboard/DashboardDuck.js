@@ -290,16 +290,8 @@ const reducer = createReducer(initialState, {
     }
   },
   [actionTypes.updateIngredientsData]: (state, payload) => {
-    const data = [
-      { ingredient: '탄수화물', current: mockDatapoint(), fullMark: 100 },
-      { ingredient: '단백질', current: mockDatapoint(), fullMark: 100 },
-      { ingredient: '무기질', current: mockDatapoint(), fullMark: 100 },
-      { ingredient: '비타민', current: mockDatapoint(), fullMark: 100 },
-      { ingredient: '지방', current: mockDatapoint(), fullMark: 100 },
-    ]
     return {
       ...state,
-      ingredients: data
     }
   },
 });
@@ -375,8 +367,4 @@ function calculateCalories (breakfast, lunch, dinner) {
   return reduce(union(breakfast, lunch, dinner), (sum, intake) => {
     return sum + intake.foodInfo.calories;
   }, 0);
-}
-
-function mockDatapoint () {
-  return Math.floor(Math.random() * 101) + 0;
 }
