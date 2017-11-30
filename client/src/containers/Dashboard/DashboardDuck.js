@@ -368,7 +368,3 @@ function calculateCalories (breakfast, lunch, dinner) {
     return sum + intake.foodInfo.calories;
   }, 0);
 }
-
-function mockDatapoint () {
-  return Math.floor(Math.random() * 101) + 0;
-}
