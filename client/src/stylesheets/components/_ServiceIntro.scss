@@ -72,12 +72,12 @@
       @include position(absolute, 0 0 0 0);
       background-color: $service-green-bg;
       max-height: 300px;
-      z-index: -1;
     }
   }
 
   .service-image__intro {
     padding: 40px 0;
+    position: relative;
 
     .img-responsive {
       width: 720px;
@@ -119,6 +119,7 @@
 
   .service-image__intro {
     padding: 30px 0;
+    position: relative;
   }
 
   .service-intro__title {
