@@ -1,5 +1,5 @@
 import React from 'react';
-import { PropTypes } from 'prop-types';
+import PropTypes from 'prop-types';
 import { isArray, isEmpty } from 'lodash';
 import Carousel from '../Common/Carousel';
 import AlternativeFoodItem from './AlternativeFoodItem';
@@ -45,12 +45,12 @@ AlternativeFoodCarousel = NoInfo(
   noInfoCondition, 
   { foods: mockFoodDetails.alternativeFoods },
   '정보를 입력하시면 대체식품을 추천받으실 수 있습니다',
-  '/realAuthentication.do',
-  false,
 )(AlternativeFoodCarousel);
 
 AlternativeFoodCarousel.propTypes = {
-  foods: PropTypes.array
+  foods: PropTypes.array,
+  hasUserInfo: PropTypes.bool,
+  status: PropTypes.number,
 }
 
 export default AlternativeFoodCarousel;

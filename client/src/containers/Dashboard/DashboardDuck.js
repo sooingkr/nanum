@@ -61,16 +61,16 @@ const initialize = (queryTime) => async (dispatch, getState) => {
 
   let tracking = {};
   let userInfo = await UserService.getUserSettings();
-  if(!isObject(userInfo)) { 
-    userInfo = {};
+  if(!isObject(userInfo.data)) { 
+    userInfo.data = {};
   }
-  if (!isEmpty(userInfo)) {
+  if (!isEmpty(userInfo.data)) {
     tracking = await UserService.getDailyReport(queryTime);
   }
 
   dispatch(createAction(actionTypes.initialize, { 
-    ...tracking,
-    currentUser: userInfo,
+    ...tracking.data,
+    currentUser: userInfo.data,
   }));
 };
 
@@ -84,7 +84,7 @@ const removeFoods = () => async (dispatch, getState) => {
     dispatch(failRemoveFoods(err));
   }
 
-  if (isObject(response)) {
+  if (isObject(response.data)) {
     dispatch(succeedRemoveFoods(foodsToRemove));
   }
   dispatch(clearRemoveFood());

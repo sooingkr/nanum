@@ -56,7 +56,7 @@ const searchFood = (foodQuery, page) => async (dispatch, getState) => {
     dispatch(rejectSearch);
   } else {
     // Search success 
-    dispatch(succeedSearch(searchResponse));
+    dispatch(succeedSearch(searchResponse.data));
   }
 }
 

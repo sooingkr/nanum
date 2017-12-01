@@ -19,6 +19,6 @@
   }
 }
 
-select::-ms-expand {
-  display: none;
+::-ms-expand {
+  display: none !important;
 }

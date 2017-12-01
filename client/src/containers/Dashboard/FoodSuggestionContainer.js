@@ -36,6 +36,7 @@ FoodSuggestionContainer = NoInfo(
   mockFoodSuggestions,
   '정보를 입력하시면 오늘의 식품을 추천받으실 수 있습니다',
   '/user/setting',
+  false,
 )(FoodSuggestionContainer);
 
 FoodSuggestionContainer.propTypes = {

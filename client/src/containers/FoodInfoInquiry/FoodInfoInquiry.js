@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-
 import { connect } from 'react-redux';
-
 import { Grid, Row, Col, Image } from 'react-bootstrap';
-
 import FoodDetails from '../../components/FoodInfoInquiry/FoodDetails';
 import FoodDetailCarousel from '../../components/FoodInfoInquiry/FoodDetailCarousel';
 
@@ -16,7 +13,7 @@ class FoodInfoInquiry extends Component {
   }
 
   render() {
-    const { foodDetail } = this.props;
+    const { foodDetail, hasUserInfo, status } = this.props;
     const { diagnosticMessage, alternativeFoods }  = foodDetail;
 
     return (
@@ -36,7 +33,11 @@ class FoodInfoInquiry extends Component {
 
               <div className="food-carousel">
                 <h4 className="food-carousel__title">대체식품 추천 <span className="arrow-icon"></span></h4>
-                <FoodDetailCarousel foods={alternativeFoods}/>
+                <FoodDetailCarousel 
+                  foods={alternativeFoods} 
+                  hasUserInfo={hasUserInfo} 
+                  status={status}
+                />
               </div>
             </Col>
           </Row>
@@ -50,6 +51,8 @@ const mapStateToProps = (state) => {
   const foodInquiryState = state[FoodInquiryDuck.storeName];
   return {
     foodDetail: foodInquiryState.foodDetail,
+    hasUserInfo: foodInquiryState.hasUserInfo,
+    status: foodInquiryState.status,
   }
 };
 

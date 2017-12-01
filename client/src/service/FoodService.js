@@ -4,7 +4,6 @@
 import axios from './config';
 import { DEFAULT_PAGE_SIZE } from '../constants';
 
-// Get API from Mock Server
 const searchFood = async (name, page=0, size=DEFAULT_PAGE_SIZE, sort='createTime,asc') => {
   let response;
 
@@ -20,7 +19,7 @@ const searchFood = async (name, page=0, size=DEFAULT_PAGE_SIZE, sort='createTime
   } catch(error) {
     throw new Error(`UserService error - <searchFood()>: ${error}`);
   }
-  return response.data;
+  return response;
 }
 
 const suggestFood = async (name) => {
@@ -43,13 +42,14 @@ const suggestFood = async (name) => {
 }
 
 const foodDetail = async (foodId) => {
+  let result;
   try {
-    const result = await axios.get(`/foods/details/${foodId}`).then(res => res.data);
-    return result;
-
+    result = await axios.get(`/foods/details/${foodId}`);
   } catch(error) {
     throw new Error(`FoodService error - <foodDetail()>: ${error}`);
   }
+
+  return result;
 }
 
 const removeFoods = async (foodsToRemove) => {
@@ -64,7 +64,7 @@ const removeFoods = async (foodsToRemove) => {
     throw new Error(`FoodService error - <removeFood()>: ${error}`);
   }
 
-  return response.data;
+  return response;
 };
 
 const addFoodIntake = async (foodsToAdd) => {
@@ -75,7 +75,7 @@ const addFoodIntake = async (foodsToAdd) => {
     throw new Error(`UserService error - <addFoodIntake()>: ${error}`);
   }
 
-  return response.data;
+  return response;
 }
 
 export default {

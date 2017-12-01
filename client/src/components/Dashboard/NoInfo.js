@@ -1,27 +1,34 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { makeNoInfoLink } from '../../utils/AppUtils'
 
 const NoInfo = (
   conditionFn, 
   defaultProps={}, 
   label, 
-  link, 
-  isInternal=true
+  link,
+  isExternal,
 ) => (Component) => (props) => {
+  let noInfoObj;
+  if (!link && !isExternal) {
+    noInfoObj = makeNoInfoLink(props.hasUserInfo, props.status)
+  } else {
+    noInfoObj = { link, isExternal };
+  }
   return conditionFn(props) 
   ? (
     <div className="no-info">
       <Component {...props} {...defaultProps} />
-      { isInternal 
+      { noInfoObj.isExternal 
         ? (
-          <Link to={link} className="no-info__message">
-            <p>{label}</p>
-          </Link>
-        )
-        : (
-          <a href={link} className="no-info__message">
+          <a href={noInfoObj.link} className="no-info__message">
             <p>{label}</p>
           </a>
+        )
+        : (
+          <Link to={noInfoObj.link} className="no-info__message">
+            <p>{label}</p>
+          </Link>
         )
       }
       

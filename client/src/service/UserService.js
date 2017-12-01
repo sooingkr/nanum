@@ -36,7 +36,7 @@ const getAvailableDiseases = async () => {
     throw new Error(`UserService error - <getAvailableDiseases()>: ${error}`);
   }
 
-  return response.data;
+  return response;
 }
 
 const getAvailableInterests = async () => {
@@ -47,7 +47,7 @@ const getAvailableInterests = async () => {
     throw new Error(`UserService error - <getAvailableInterests()>: ${error}`);
   }
 
-  return response.data;
+  return response;
 }
 
 const getUserSettings = async () => {
@@ -55,10 +55,9 @@ const getUserSettings = async () => {
   try {
     response = await axios.get('/users/info');
   } catch (error) {
-    response.data = {};
+    return error;
   }
-  
-  return response.data;
+  return response;
 }
 
 const createUserSettings = async (userSettings) => {
@@ -72,7 +71,7 @@ const createUserSettings = async (userSettings) => {
   if (response.status !== 200) {
     response.data = {};
   }
-  return response.data;
+  return response;
 }
 
 const updateUserSettings = async (userSettings) => {
@@ -87,7 +86,7 @@ const updateUserSettings = async (userSettings) => {
     response.data = {};
   }
 
-  return response.data;
+  return response;
 }
 
 export default {
