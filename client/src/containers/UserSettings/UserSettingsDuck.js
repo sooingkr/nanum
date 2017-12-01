@@ -1,4 +1,4 @@
-import { isEmpty } from 'lodash';
+import { isEmpty, isObject } from 'lodash';
 import { createAction, createReducer } from '../../utils/store';
 import UserService from '../../service/UserService';
 
@@ -36,27 +36,35 @@ const initialize = () => async (dispatch) => {
     dispatch(failRequest(err));
   }
 
-  if (isEmpty(userSettings)) {
+  if (!userSettings.data) {
+    userSettings.data = {};
+  }
+
+  if (isEmpty(userSettings.data) || !isObject(userSettings.data)) {
     selectedDiseases = [];
     selectedInterests = [];
     dispatch(toggleInitialFlag(true))
   } else {
-    selectedDiseases = userSettings.diseases;
-    selectedInterests = userSettings.interests;
+    selectedDiseases = userSettings.data.diseases;
+    selectedInterests = userSettings.data.interests;
     dispatch(toggleInitialFlag(false))
   }
 
+  const { 
+    firstName = '', 
+    lastName = '', 
+    gender, height, weight, birthYear } = userSettings.data;
   const settings = {
-    diseases,
-    interests,
+    diseases: diseases.data,
+    interests: interests.data,
     selectedDiseases,
     selectedInterests,
-    firstName: userSettings.firstName,
-    lastName: userSettings.lastName,
-    gender: userSettings.gender,
-    height: userSettings.height,
-    weight: userSettings.weight,
-    birthYear: userSettings.birthYear,
+    firstName,
+    lastName,
+    gender,
+    height,
+    weight,
+    birthYear,
   }
 
   dispatch(succeedGet(settings))
@@ -76,14 +84,15 @@ const updateUserSettings = (userSettings, history) => async (dispatch, getState)
     dispatch(failRequest(err));
   }
 
+  const { diseases, interests, firstName, lastName, gender, weight, height } = response.data;
   const settings = {
-    selectedDiseases: response.diseases,
-    selectedInterests: response.interests,
-    firstName: response.firstName,
-    lastName: response.lastName,
-    gender: response.gender,
-    height: response.height,
-    weight: response.weight,
+    selectedDiseases: diseases,
+    selectedInterests: interests,
+    firstName,
+    lastName,
+    gender,
+    height,
+    weight,
   };
 
   dispatch(succeedUpdate(settings));
