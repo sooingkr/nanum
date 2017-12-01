@@ -18,3 +18,7 @@
     box-shadow: none;
   }
 }
+
+.select::-ms-expand {
+  display: none;
+}
