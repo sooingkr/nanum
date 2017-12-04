@@ -24,8 +24,9 @@ const searchFood = async (name, page=0, size=DEFAULT_PAGE_SIZE, sort='createTime
 
 const suggestFood = async (name) => {
   let result = await searchFood(name);
-  if (result.content.length > 0) {
-    result = result.content.map((suggestion) => {
+  let foodList = result.data.content || [];
+  if (foodList && foodList.length > 0) {
+    foodList = foodList.map((suggestion) => {
       return { 
         label: suggestion.name,
         value: { 
@@ -38,7 +39,7 @@ const suggestFood = async (name) => {
       }
     });
   }
-  return { options: result };
+  return { options: foodList };
 }
 
 const foodDetail = async (foodId) => {

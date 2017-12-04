@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Alert = ({ message, type }) => {
-  const classes = `alert alert--${type}`;
+  const classes = `alert alert--${type.toLowerCase()}`;
   return (
     <div className={classes}>
       <i className="fa fa-exclamation-triangle" aria-hidden="true"></i>
@@ -13,11 +13,11 @@ const Alert = ({ message, type }) => {
   
 Alert.propTypes = {
   message: PropTypes.string.isRequired,
-  type: PropTypes.oneOf(['danger', 'warning']),
+  type: PropTypes.oneOf(['DANGER', 'INFO']),
 }
 
 Alert.defaultProps = {
-  type: 'danger',
+  type: 'DANGER',
 }
 
 export default Alert;

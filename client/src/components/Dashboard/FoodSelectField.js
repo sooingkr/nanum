@@ -11,7 +11,7 @@ class FoodSelectField extends Component {
       return Promise.resolve(new Error('Food name must not be empty'));
     }
     const results = await FoodService.suggestFood(name);
-    return results.data;
+    return results;
   }
 
   render() {

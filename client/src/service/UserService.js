@@ -3,9 +3,9 @@ import { get, filter } from 'lodash';
 
 // DailyReport
 const getDailyReport = async (queryTime) => {
-  let trackingData;
+  let response;
   try {
-    trackingData = await axios.get('/users/daily-report', {
+    response = await axios.get('/users/daily-report', {
       params: {
         queryTime,
       }
@@ -14,17 +14,19 @@ const getDailyReport = async (queryTime) => {
     throw new Error(`UserService error - <getDailyReport()>: ${error}`);
   }
   
+  const trackingData = response.data || {};
+  const foodIntakes = get(trackingData, 'foodIntakes', []);
   return { 
     alert: {
-      type: get(trackingData, 'data.diseaseType'),
-      message: get(trackingData, 'data.diseaseMessage'),
+      type: get(trackingData, 'diseaseMessageType', ''),
+      message: get(trackingData, 'diseaseMessage', ''),
     },
-    breakfast: filter(trackingData.data.foodIntakes, mealFilter('BREAKFAST')),
-    lunch: filter(trackingData.data.foodIntakes, mealFilter('LUNCH')),
-    dinner: filter(trackingData.data.foodIntakes, mealFilter('DINNER')),
-    caloriesTarget: get( trackingData, 'data.caloriesTarget'),
-    foodSuggestions: get(trackingData, 'data.foodInfoSuggestions'),
-    reason: get(trackingData, 'data.reasonSuggest'),
+    breakfast: filter(foodIntakes, mealFilter('BREAKFAST')),
+    lunch: filter(foodIntakes, mealFilter('LUNCH')),
+    dinner: filter(foodIntakes, mealFilter('DINNER')),
+    caloriesTarget: get(trackingData, 'caloriesTarget', null),
+    foodSuggestions: get(trackingData, 'foodInfoSuggestions', ''),
+    reason: get(trackingData, 'reasonSuggest', ''),
   };
 }
 

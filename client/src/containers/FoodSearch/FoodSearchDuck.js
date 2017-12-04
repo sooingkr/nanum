@@ -46,12 +46,12 @@ const searchFood = (foodQuery, page) => async (dispatch, getState) => {
     dispatch(requestSearch(foodQuery));
     searchResponse = shouldFetch 
       ? await FoodService.searchFood(foodQuery, page, DEFAULT_PAGINATE_SIZE) 
-      : { content: [] };
+      : { data: { content: [] } };
   } catch (error) {
     dispatch(failSearch(error));
   }
 
-  if (searchResponse.content.length === 0) {
+  if (searchResponse.data.content.length === 0) {
     // No results, reject
     dispatch(rejectSearch);
   } else {
