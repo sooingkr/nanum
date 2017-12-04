@@ -30,6 +30,14 @@
   }
 }
 
+#nanum .alert--info {
+  background-color: rgba(166, 207, 64, 0.2);
+
+  img {
+    margin-right: 8px;
+  }
+}
+
 #nanum.App--mobile {
   .alert {
     min-width: initial;
