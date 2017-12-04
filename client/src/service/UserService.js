@@ -16,9 +16,10 @@ const getDailyReport = async (queryTime) => {
   
   const trackingData = response.data || {};
   const foodIntakes = get(trackingData, 'foodIntakes', []);
-  return { 
+  return {
     alert: {
-      type: get(trackingData, 'diseaseMessageType', ''),
+      // type: get(trackingData, 'diseaseMessageType', 'INFO'),
+      type: trackingData.diseaseMessageType || 'INFO',
       message: get(trackingData, 'diseaseMessage', ''),
     },
     breakfast: filter(foodIntakes, mealFilter('BREAKFAST')),

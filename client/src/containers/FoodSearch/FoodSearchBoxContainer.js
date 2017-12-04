@@ -12,8 +12,6 @@ class FoodSearchBoxContainer extends Component {
   componentWillMount() {
     const queryParams = QueryString.parse(this.props.location.search);
     if (!isEmpty(queryParams)) {
-      console.log('hello');
-      console.log(queryParams);
       this.props.searchFood(queryParams.foodKeyword);
     }
 
