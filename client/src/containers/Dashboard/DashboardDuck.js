@@ -126,7 +126,7 @@ export const initialState = {
   error: null,
   alert: {
     message: '회원정보가 없습니다. 정보를 넣어주세요.',
-    type: 'DANGER',
+    type: 'INFO',
   },
   currentUser: {},
   breakfast: [],
