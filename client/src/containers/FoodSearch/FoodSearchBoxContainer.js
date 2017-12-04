@@ -5,9 +5,18 @@ import { reset } from 'redux-form';
 import { withRouter } from 'react-router-dom';
 import SearchForm from '../../components/Common/SearchForm';
 import { FoodSearchDuck } from './FoodSearchDuck';
+import QueryString from 'query-string';
+import {isEmpty} from 'lodash';
 
 class FoodSearchBoxContainer extends Component {
   componentWillMount() {
+    const queryParams = QueryString.parse(this.props.location.search);
+    if (!isEmpty(queryParams)) {
+      console.log('hello');
+      console.log(queryParams);
+      this.props.searchFood(queryParams.foodKeyword);
+    }
+
     if (!isSearchRoute(this.props.location.pathname)) {
       this.props.reset('SearchForm');
     }
