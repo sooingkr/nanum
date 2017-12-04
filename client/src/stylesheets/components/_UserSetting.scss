@@ -160,6 +160,10 @@
       opacity: 0;
       margin: 0;
       cursor: pointer;
+
+      &:disabled {
+        cursor: auto;
+      }
     }
   }
   
@@ -168,6 +172,13 @@
     background-color: rgba(0, 192, 60, 0.4);
     color: #4c4c4c;
   }
+
+  .multi-checkbox__box .tooltip {
+    height: 32px;
+    width: 114px;
+    left: 50%;
+    transform: translate(-50%, -60px);
+  }    
 }
 
 #nanum.App--mobile {

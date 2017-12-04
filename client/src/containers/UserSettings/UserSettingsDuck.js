@@ -53,7 +53,9 @@ const initialize = () => async (dispatch) => {
   const { 
     firstName = '', 
     lastName = '', 
-    gender, height, weight, birthYear } = userSettings.data;
+    gender, height, weight, birthYear 
+  } = userSettings.data;
+  
   const settings = {
     diseases: diseases.data,
     interests: interests.data,

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import isUndefined from 'lodash/isUndefined';
 import isArray from 'lodash/isArray';
+import CheckboxField from './CheckboxField';
 
 class MultiCheckboxField extends React.Component {
   constructor(props) {
@@ -40,29 +41,34 @@ class MultiCheckboxField extends React.Component {
     return onChange(afterChange);
   }
 
+  isDisabledValue(value) {
+    return value === '다이어트' || value === '수험생';
+  }
+
   render() {
-    const {label, options, field} = this.props;
+    const {options, field} = this.props;
     const values = this.getCurrentValues();
     const ids = values.map(value => value.id);
-
     return (
       <div className="multi-checkbox form-group">
         {options.map(option => {
           const isChecked = ids.indexOf(option.id) > -1;
+          const isDisabledValue = this.isDisabledValue(option.name);
+          const className = isChecked && !isDisabledValue 
+            ? "multi-checkbox__box checked" 
+            : "multi-checkbox__box";
+
+          const checkboxProps = {
+            field,
+            option,
+            checked: isChecked && !isDisabledValue,
+            disabled: isDisabledValue,
+            handleChange: this.handleChange,
+          }
+          
           return (
-            <div
-              key={option.id}
-              className={isChecked ? "multi-checkbox__box checked" : "multi-checkbox__box"}
-            >
-              <label>{option.name}</label>
-              <input
-                {...field}
-                type="checkbox"
-                onChange={event => this.handleChange(event, option)}
-                onBlur={(e) => e.preventDefault()}
-                checked={isChecked}
-                value={option.id}
-              />
+            <div className={className} key={option.id}>
+              <CheckboxField {...checkboxProps} />
             </div>
           );
         })}
