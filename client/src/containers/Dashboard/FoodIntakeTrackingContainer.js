@@ -15,7 +15,7 @@ import { DashboardDuck, selectors } from './DashboardDuck';
 export class FoodIntakeTrackingContainer extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.submitFoods(this.props.toBeAdded);
+    this.props.submitFoods(this.props.toBeAdded, this.props.queryTime);
   }
 
   handleCloseDialog = () => {
@@ -148,6 +148,7 @@ const mapStateToProps = (state) => ({
   whichDialog: selectors.getWhichDialog(state),
   isEditMode: selectors.getEditMode(state),
   toBeAdded: selectors.getToBeAdded(state),
+  queryTime: selectors.getTime(state),
 });
 
 const mapDispatchToProps = {

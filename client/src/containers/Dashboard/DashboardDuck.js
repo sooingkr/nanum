@@ -98,8 +98,9 @@ const removeFoods = () => async (dispatch, getState) => {
   dispatch(clearRemoveFood());
 }
 
-const submitFoods = (foodsToAdd) => async (dispatch) => {
-  const foodIntakePayload = constructIntakePayload(foodsToAdd);
+const submitFoods = (foodsToAdd, queryTime) => async (dispatch) => {
+  const foodIntakePayload = constructIntakePayload(foodsToAdd, queryTime);
+  console.log(foodIntakePayload);
   try {
     await FoodService.addFoodIntake(foodIntakePayload);
   } catch (err) {
@@ -392,12 +393,13 @@ export const selectors = {
   getNutritionLog,
 }
 
-function constructIntakePayload (foodsToAdd) {
+function constructIntakePayload(foodsToAdd, queryTime) {
   const meal = foodsToAdd.mealTime.toUpperCase();
   return foodsToAdd.foods.map(food => ({
       meal,
       foodId: food.value.id,
       quantity: 1,
+      createdDate: queryTime,
     }
   ))
 }
