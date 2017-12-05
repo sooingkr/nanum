@@ -156,6 +156,7 @@ const mapStateToProps = (state) => ({
     weight: selectors.getWeight(state),
     diseases: selectors.getSelectedDiseases(state),
     interests: selectors.getSelectedInterests(state),
+    allergies: selectors.getSelectedAllergies(state),
   },
   allDiseases: selectors.getAllDiseases(state),
   allInterests: selectors.getAllInterests(state),
