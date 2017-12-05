@@ -5,7 +5,7 @@ import { Image } from 'react-bootstrap';
 
 const AlternativeFoodItem = ({ food: { id, imageUrl, alternativeReason } }) => (
   <div className='food-slider__food'>
-    <Link to={{ pathname: "/product/id/" + id }}>
+    <Link to={`/foods/${id}`}>
       <Image responsive src={imageUrl} alt={id}></Image>
     </Link>
     <div className="food-slider__info" dangerouslySetInnerHTML={{__html: alternativeReason}}></div>
