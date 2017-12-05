@@ -28,9 +28,9 @@ class IngredientsChartContainer extends Component {
       <div className="ingredients-chart">
         <ResponsiveContainer>
           <RadarChart 
-            cx={300} 
-            cy={250} 
-            outerRadius={100} 
+            cx={'50%'} 
+            cy={'50%'} 
+            outerRadius={120} 
             data={data} 
             startAngle={(360 + 90)}
             endAngle={(0 + 90)}

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import InfoLogo from '../../assets/images/icons/info.svg';
 
 const Alert = ({ message, type }) => {
+  if (!type) type = 'INFO';
   const classes = `alert alert--${type.toLowerCase()}`;
   return (
     <div className={classes}>
