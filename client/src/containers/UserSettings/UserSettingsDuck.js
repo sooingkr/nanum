@@ -25,11 +25,12 @@ const succeedUpdate = (userSettings) => createAction(actionTypes.succeedUpdate, 
 // define thunks
 const initialize = () => async (dispatch) => {
   dispatch(requestGet);
-  let userSettings, diseases, interests;
-  let selectedDiseases, selectedInterests;
+  let userSettings, diseases, interests, allergies;
+  let selectedDiseases, selectedInterests, selectedAllergies;
 
   try {
     diseases = await UserService.getAvailableDiseases();
+    allergies = await UserService.getAvailableAllergies();
     interests = await UserService.getAvailableInterests();
     userSettings = await UserService.getUserSettings();
   } catch(err) {
@@ -46,6 +47,7 @@ const initialize = () => async (dispatch) => {
     dispatch(toggleInitialFlag(true))
   } else {
     selectedDiseases = userSettings.data.diseases;
+    selectedAllergies = userSettings.data.allergies;
     selectedInterests = userSettings.data.interests;
     dispatch(toggleInitialFlag(false))
   }
@@ -59,7 +61,9 @@ const initialize = () => async (dispatch) => {
   const settings = {
     diseases: diseases.data,
     interests: interests.data,
+    allergies: allergies.data,
     selectedDiseases,
+    selectedAllergies,
     selectedInterests,
     firstName,
     lastName,
@@ -86,9 +90,10 @@ const updateUserSettings = (userSettings, history) => async (dispatch, getState)
     dispatch(failRequest(err));
   }
 
-  const { diseases, interests, firstName, lastName, gender, weight, height } = response.data;
+  const { diseases, allergies, interests, firstName, lastName, gender, weight, height } = response.data;
   const settings = {
     selectedDiseases: diseases,
+    selectedAllergies: allergies,
     selectedInterests: interests,
     firstName,
     lastName,
@@ -114,6 +119,7 @@ export const initialState = {
   error: null,
   diseases: [],
   interests: [],
+  allergies: [],
   selectedDiseases: [],
   selectedInterests: [],
   firstName: '',
@@ -164,6 +170,7 @@ const reducer = createReducer(initialState, {
 
 // selectors
 const getSelectedDiseases = (state) => state[storeName].selectedDiseases;
+const getSelectedAllergies = (state) => state[storeName].selectedAllergies;
 const getSelectedInterests = (state) => state[storeName].selectedInterests;
 const getAllDiseases = (state) => state[storeName].diseases;
 const getAllInterests = (state) => state[storeName].interests;
@@ -174,9 +181,11 @@ const getBirthYear = (state) => state[storeName].birthYear;
 const getGender = (state) => state[storeName].gender;
 const getWeight = (state) => state[storeName].weight;
 const getHeight = (state) => state[storeName].height;
+const getAllergies = (state) => state[storeName].allergies;
 
 export const selectors = {
   getSelectedDiseases,
+  getSelectedAllergies,
   getSelectedInterests,
   getAllDiseases,
   getAllInterests,
@@ -187,6 +196,7 @@ export const selectors = {
   getGender,
   getWeight,
   getHeight,
+  getAllergies,
 }
 
 export const UserSettingsDuck = {
