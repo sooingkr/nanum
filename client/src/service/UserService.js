@@ -13,7 +13,7 @@ const getDailyReport = async (queryTime) => {
   } catch(error) {
     throw new Error(`UserService error - <getDailyReport()>: ${error}`);
   }
-  
+
   const trackingData = response.data || {};
   const foodIntakes = get(trackingData, 'foodIntakes', []);
   return {
@@ -96,6 +96,17 @@ const updateUserSettings = async (userSettings) => {
   return response;
 }
 
+const getNutritionLog = async () => {
+  let response;
+  try {
+    response = await axios.get('/users/nutrient-last-6days');
+  } catch (error) {
+    throw new Error(`UserService error - <getNutritionLog()>: ${error}`)
+  }
+
+  return response;
+}
+
 export default {
   getDailyReport,
   getAvailableDiseases,
@@ -103,6 +114,7 @@ export default {
   getUserSettings,
   createUserSettings,
   updateUserSettings,
+  getNutritionLog,
 }
 
 function mealFilter(mealTime) {
