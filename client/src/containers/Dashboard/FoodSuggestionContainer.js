@@ -13,21 +13,17 @@ export class FoodSuggestionContainer extends Component {
 
     return (
       <div className="food-suggestion">
-        <div className="food-suggestion__reason">
-          <div>
-            <h3>오늘의 식품</h3>
-
-            <ul>
-              {
-                nutrients.map(item => (
-                  <li key={item.id} className={`${item.selected ? 'selected' : ''}`} onClick={() => selectNutrient(item)}>
-                    {item.text}
-                  </li>
-                ))
-              }
-            </ul>
-          </div>
-        </div>
+        <ul className="food-suggestion__nutrient">
+          {
+            nutrients.map(item => (
+              <li key={item.id}>
+                <div className={`nutrient-item ${item.selected ? 'selected' : ''}`} onClick={() => selectNutrient(item)}>
+                  <span>{item.text}</span> {item.selected && <span>›</span>}
+                </div>
+              </li>
+            ))
+          }
+        </ul>
         <div className="food-suggestion__carousel">
           <FoodSuggestionCarousel data={foodSuggestions}/>
         </div>
