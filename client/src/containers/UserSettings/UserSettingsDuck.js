@@ -114,6 +114,7 @@ export const initialState = {
   error: null,
   diseases: [],
   interests: [],
+  allergies: [],
   selectedDiseases: [],
   selectedInterests: [],
   firstName: '',
@@ -174,6 +175,7 @@ const getBirthYear = (state) => state[storeName].birthYear;
 const getGender = (state) => state[storeName].gender;
 const getWeight = (state) => state[storeName].weight;
 const getHeight = (state) => state[storeName].height;
+const getAllergies = (state) => state[storeName].allergies;
 
 export const selectors = {
   getSelectedDiseases,
@@ -187,6 +189,7 @@ export const selectors = {
   getGender,
   getWeight,
   getHeight,
+  getAllergies,
 }
 
 export const UserSettingsDuck = {
