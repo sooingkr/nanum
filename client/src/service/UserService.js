@@ -18,7 +18,6 @@ const getDailyReport = async (queryTime) => {
   const foodIntakes = get(trackingData, 'foodIntakes', []);
   return {
     alert: {
-      // type: get(trackingData, 'diseaseMessageType', 'INFO'),
       type: trackingData.diseaseMessageType || 'INFO',
       message: get(trackingData, 'diseaseMessage', ''),
     },
@@ -28,6 +27,11 @@ const getDailyReport = async (queryTime) => {
     caloriesTarget: get(trackingData, 'caloriesTarget', null),
     foodSuggestions: get(trackingData, 'foodInfoSuggestions', ''),
     reason: get(trackingData, 'reasonSuggest', ''),
+    proteinTarget: parseInt((trackingData.proteinTarget || 0), 10),
+    sodiumTarget: parseInt((trackingData.sodiumTarget || 0), 10),
+    calciumTarget: parseInt((trackingData.calciumTarget || 0), 10),
+    celluloseTarget: parseInt((trackingData.celluloseTarget || 0), 10),
+    potassiumTarget: parseInt((trackingData.potassiumTarget || 0), 10),
   };
 }
 
