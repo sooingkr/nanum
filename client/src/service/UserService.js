@@ -13,12 +13,11 @@ const getDailyReport = async (queryTime) => {
   } catch(error) {
     throw new Error(`UserService error - <getDailyReport()>: ${error}`);
   }
-  
+
   const trackingData = response.data || {};
   const foodIntakes = get(trackingData, 'foodIntakes', []);
   return {
     alert: {
-      // type: get(trackingData, 'diseaseMessageType', 'INFO'),
       type: trackingData.diseaseMessageType || 'INFO',
       message: get(trackingData, 'diseaseMessage', ''),
     },
@@ -28,6 +27,11 @@ const getDailyReport = async (queryTime) => {
     caloriesTarget: get(trackingData, 'caloriesTarget', null),
     foodSuggestions: get(trackingData, 'foodInfoSuggestions', ''),
     reason: get(trackingData, 'reasonSuggest', ''),
+    proteinTarget: parseInt((trackingData.proteinTarget || 0), 10),
+    sodiumTarget: parseInt((trackingData.sodiumTarget || 0), 10),
+    calciumTarget: parseInt((trackingData.calciumTarget || 0), 10),
+    celluloseTarget: parseInt((trackingData.celluloseTarget || 0), 10),
+    potassiumTarget: parseInt((trackingData.potassiumTarget || 0), 10),
   };
 }
 
@@ -103,6 +107,17 @@ const updateUserSettings = async (userSettings) => {
   return response;
 }
 
+const getNutritionLog = async () => {
+  let response;
+  try {
+    response = await axios.get('/users/nutrient-last-6days');
+  } catch (error) {
+    throw new Error(`UserService error - <getNutritionLog()>: ${error}`)
+  }
+
+  return response;
+}
+
 export default {
   getDailyReport,
   getAvailableDiseases,
@@ -111,6 +126,7 @@ export default {
   getUserSettings,
   createUserSettings,
   updateUserSettings,
+  getNutritionLog,
 }
 
 function mealFilter(mealTime) {

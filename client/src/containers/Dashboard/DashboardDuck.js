@@ -7,6 +7,7 @@ import {
   reduce, 
   isEmpty, 
   isObject, 
+  round,
 } from 'lodash';
 import { createAction, createReducer } from '../../utils/store';
 import UserService from '../../service/UserService';
@@ -31,6 +32,7 @@ export const actionTypes = {
   failRemoveFoods: storeName + '/FAIL_REMOVE_FOODS',
   succeedSubmitFoods: storeName + '/SUCCEED_SUBMIT_FOODS',
   failSubmitFoods: storeName + '/FAIL_SUBMIT_FOODS',
+  updateCurrentIngredients: storeName + '/UPDATE_CURRENT_INGREDIENTS',
   selectNutrient: storeName + '/selectNutrient',
 };
 
@@ -50,6 +52,7 @@ const addFood = (food, mealTime) => dispatch => {
   dispatch(createAction(actionTypes.addFood, {food, mealTime}))
 };
 const clearAddFood = () => createAction(actionTypes.clearAddFood);
+const updateCurrentIngredients = () => createAction(actionTypes.updateCurrentIngredients);
 
 // Thunks
 const initialize = (queryTime) => async (dispatch, getState) => {
@@ -61,18 +64,23 @@ const initialize = (queryTime) => async (dispatch, getState) => {
   dispatch(pickQueryTime(queryTime));
 
   let tracking = {};
+  let nutritionLog = {};
   let userInfo = await UserService.getUserSettings();
   if(!isObject(userInfo.data)) { 
     userInfo.data = {};
   }
   if (!isEmpty(userInfo.data)) {
     tracking = await UserService.getDailyReport(queryTime);
+    nutritionLog = await UserService.getNutritionLog();
   }
 
   dispatch(createAction(actionTypes.initialize, { 
     ...tracking,
-    currentUser: userInfo.data,
+    nutritionLog: nutritionLog.data || {},
+    currentUser: userInfo.data || {},
   }));
+
+  dispatch(updateCurrentIngredients());
 };
 
 const removeFoods = () => async (dispatch, getState) => {
@@ -91,8 +99,8 @@ const removeFoods = () => async (dispatch, getState) => {
   dispatch(clearRemoveFood());
 }
 
-const submitFoods = (foodsToAdd) => async (dispatch) => {
-  const foodIntakePayload = constructIntakePayload(foodsToAdd);
+const submitFoods = (foodsToAdd, queryTime) => async (dispatch) => {
+  const foodIntakePayload = constructIntakePayload(foodsToAdd, queryTime);
   try {
     await FoodService.addFoodIntake(foodIntakePayload);
   } catch (err) {
@@ -125,6 +133,7 @@ const actions = {
   failRemoveFoods,
   submitFoods,
   removeFoods,
+  updateCurrentIngredients,
   selectNutrient,
 };
 
@@ -153,6 +162,23 @@ export const initialState = {
     mealTime: '',
     foods: [],
   },
+  ingredients: {
+    targets: {
+      protein: null,
+      sodium: null,
+      calcium: null,
+      cellulose: null,
+      potassium: null,
+    },
+    current: {
+      protein: 0,
+      sodium: 0,
+      calcium: 0,
+      cellulose: 0,
+      potassium: 0,
+    }
+  },
+  nutritionLog: [],
   nutrients: [
     {
       id: 'all',
@@ -191,9 +217,10 @@ const reducer = createReducer(initialState, {
   [actionTypes.initialize]: (state, payload) => {
     let { breakfast, lunch, dinner } = payload;
     const caloriesCurrent = calculateCalories(breakfast, lunch, dinner);
-    breakfast = addSelectedState(breakfast);
-    lunch = addSelectedState(lunch);
-    dinner = addSelectedState(dinner);
+    const nutritionLog = transformLog(payload.nutritionLog);
+    breakfast = addSelectedState(breakfast) || [];
+    lunch = addSelectedState(lunch) || [];
+    dinner = addSelectedState(dinner) || [];
     
     return {
       ...state,
@@ -207,6 +234,17 @@ const reducer = createReducer(initialState, {
       foodSuggestions: payload.foodSuggestions,
       reason: payload.reason,
       isLoading: false,
+      nutritionLog,
+      ingredients: {
+        ...initialState.ingredients,
+        targets: {
+          protein: payload.proteinTarget,
+          sodium: payload.sodiumTarget,
+          calcium: payload.calciumTarget,
+          cellulose: payload.celluloseTarget,
+          potassium: payload.potassiumTarget,
+        }
+      },
     };
   },
   [actionTypes.pickQueryTime]: (state, payload) => {
@@ -322,6 +360,30 @@ const reducer = createReducer(initialState, {
       error: payload.error
     }
   },
+  [actionTypes.updateCurrentIngredients]: (state, payload) => {
+    let { breakfast, lunch, dinner } = state;
+    const targets = state.ingredients.targets;
+    const allIntakes = union(breakfast, lunch, dinner);
+    const protein = allIntakes.map(mapNutrient('protein')).reduce(sumPair, 0);
+    const sodium = allIntakes.map(mapNutrient('sodium')).reduce(sumPair, 0);
+    const calcium = allIntakes.map(mapNutrient('calcium')).reduce(sumPair, 0);
+    const cellulose = allIntakes.map(mapNutrient('cellulose')).reduce(sumPair, 0);
+    const potassium = allIntakes.map(mapNutrient('potassium')).reduce(sumPair, 0);
+
+    return {
+      ...state,
+      ingredients: {
+        ...state.ingredients,
+        current: {
+          protein: getNutrientPercentage(protein, targets.protein),
+          sodium: getNutrientPercentage(sodium, targets.sodium),
+          calcium: getNutrientPercentage(calcium, targets.calcium),
+          cellulose: getNutrientPercentage(cellulose, targets.cellulose),
+          potassium: getNutrientPercentage(potassium, targets.potassium),
+        }
+      }
+    }
+  },
   [actionTypes.selectNutrient]: (state, { item, foodSuggestions }) => {
     const newSate = { ...state, foodSuggestions };
 
@@ -368,6 +430,8 @@ const getTime = (state) => state[storeName].queryTime;
 const getLoadingStatus = (state) => state[storeName].isLoading;
 const getEditMode = (state) => state[storeName].isEditMode;
 const getToBeAdded = (state) => state[storeName].toBeAdded;
+const getIngredients = (state) => state[storeName].ingredients;
+const getNutritionLog = (state) => state[storeName].nutritionLog;
 const getNutrients = (state) => state[storeName].nutrients;
 
 export const DashboardDuck = {
@@ -388,15 +452,18 @@ export const selectors = {
   getEditMode,
   getReason,
   getToBeAdded,
+  getIngredients,
+  getNutritionLog,
   getNutrients,
 }
 
-function constructIntakePayload (foodsToAdd) {
+function constructIntakePayload(foodsToAdd, queryTime) {
   const meal = foodsToAdd.mealTime.toUpperCase();
   return foodsToAdd.foods.map(food => ({
       meal,
       foodId: food.value.id,
       quantity: 1,
+      createdDate: queryTime,
     }
   ))
 }
@@ -419,4 +486,39 @@ function calculateCalories (breakfast, lunch, dinner) {
   return reduce(union(breakfast, lunch, dinner), (sum, intake) => {
     return sum + intake.foodInfo.calories;
   }, 0);
+}
+
+function transformLog (nutritionLog) {
+  const dayKeys = Object.keys(nutritionLog);
+  let dates = dayKeys.map(key => {
+    return { raw: key, date: new Date(parseInt(key, 10)) }
+  });
+  
+  dates = dates.sort((a, b) => a.date - b.date);
+  if (dayKeys.length === 0) {
+    return [];
+  }
+
+  return dates.map(day => {
+    const dayIntakes = nutritionLog[day.raw];
+    const dayInMonth = moment(day.date, 'x').format('D');
+    const protein = reduce(dayIntakes.map(intake => intake.foodInfo.protein || 0), sumPair, 0);
+    const sodium = reduce(dayIntakes.map(intake => intake.foodInfo.sodium || 0), sumPair, 0);
+    const potassium = reduce(dayIntakes.map(intake => intake.foodInfo.potassium || 0), sumPair, 0);
+    return { day: dayInMonth, protein, sodium, potassium };
+  })
+}
+
+function mapNutrient (nutrientName) {
+  return function (intake) {
+    return intake.foodInfo[nutrientName];
+  }
+}  
+
+function sumPair (a, b) {
+  return parseInt(a, 10) + parseInt(b, 10);
+}
+
+function getNutrientPercentage (current, target) {
+  return round(current / target * 100, 2);
 }

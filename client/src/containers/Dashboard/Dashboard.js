@@ -10,6 +10,8 @@ import FoodIntakeTrackingContainer from './FoodIntakeTrackingContainer';
 import FoodSuggestionContainer from './FoodSuggestionContainer';
 import TimeSelectorContainer from './TimeSelectorContainer';
 import FoodSearchBoxContainer from '../FoodSearch/FoodSearchBoxContainer';
+import IngredientsChartContainer from './IngredientsChartContainer';
+import NutritionLogContainer from './NutritionLogContainer';
 import Alert from '../../components/Common/Alert';
 import Loader from '../../components/Common/Loader';
 import { DashboardDuck, selectors } from './DashboardDuck';
@@ -48,6 +50,14 @@ class Dashboard extends Component {
           <Row className="dashboard-suggestion section section--shadow">
             <Col sm={12}>
               <FoodSuggestionContainer />
+            </Col>
+          </Row>
+          <Row className="dashboard-ingredients-chart">
+            <Col sm={12} md={6} className="section section--shadow">
+              <IngredientsChartContainer />
+            </Col>
+            <Col sm={12} md={6} className="section section--shadow">
+              <NutritionLogContainer />
             </Col>
           </Row>
         </Grid>

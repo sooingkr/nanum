@@ -52,6 +52,22 @@ $dashboard-max-width: 1040px;
   .dashboard-timeSelector.section {
     margin-bottom: 10px;
   }
+
+  .dashboard-ingredients-chart {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .dashboard-ingredients-chart {
+    .section {
+      flex: 1
+    }
+
+    .section:first-child {
+      margin-right: 28px;
+      margin-bottom: 0;
+    }
+  }
 }
 
 #nanum.App--mobile {
@@ -100,5 +116,14 @@ $dashboard-max-width: 1040px;
       border: 1px solid #e6e6e6;
       z-index: 4;
     }
+  }
+
+  .dashboard-ingredients-chart {
+    display: block;
+  }    
+
+  .dashboard-ingredients-chart.section:first-child {
+    margin-right: 0;
+    margin-bottom: 28px;
   }
 }
