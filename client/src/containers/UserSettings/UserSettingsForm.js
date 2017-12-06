@@ -23,6 +23,7 @@ let UserSettingsForm = ({
   selectedInterests,
   allDiseases,
   allInterests,
+  allAllergies,
 }) => {
   return (
     <Form horizontal onSubmit={handleSubmit} className="user-setting__form">
@@ -120,6 +121,19 @@ let UserSettingsForm = ({
       }
       />
     </fieldset>
+
+    <fieldset className="allergies-fields">
+      <legend>알레르기 유발물질</legend>
+      <Field name="allergies" component={props =>
+        <MultiCheckboxField
+          {...props.input}
+          label="Allergies"
+          options={allAllergies}
+          field={props.input}
+        />
+      }
+      />
+    </fieldset>
     <button type="submit" disabled={submitting}>완료</button>
   </Form>
   )
@@ -142,9 +156,11 @@ const mapStateToProps = (state) => ({
     weight: selectors.getWeight(state),
     diseases: selectors.getSelectedDiseases(state),
     interests: selectors.getSelectedInterests(state),
+    allergies: selectors.getSelectedAllergies(state),
   },
   allDiseases: selectors.getAllDiseases(state),
   allInterests: selectors.getAllInterests(state),
+  allAllergies: selectors.getAllergies(state),
 })
 
 UserSettingsForm = connect(mapStateToProps)(UserSettingsForm);

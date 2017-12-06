@@ -46,6 +46,17 @@ const getAvailableDiseases = async () => {
   return response;
 }
 
+const getAvailableAllergies = async () => {
+  let response;
+  try {
+    response = await axios.get('/allergies');
+  } catch (error) {
+    throw new Error(`UserService error - <getAvailableAllergies()>: ${error}`);
+  }
+
+  return response;
+}
+
 const getAvailableInterests = async () => {
   let response;
   try {
@@ -111,6 +122,7 @@ export default {
   getDailyReport,
   getAvailableDiseases,
   getAvailableInterests,
+  getAvailableAllergies,
   getUserSettings,
   createUserSettings,
   updateUserSettings,
