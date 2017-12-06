@@ -64,7 +64,7 @@ class FoodDetails extends Component {
               <Button className="btn-view-haccp" href="http://fresh.ihaccp.or.kr/safety/productDetail.do?productNo=2013021004600255&masterId=24360" title="안전먹거리에서 보기">안전먹거리에서 보기</Button>
             </div>            
           </div>
-          <p className="product__description">설명 텍스트 플레이스홀터 엄청 짧게 그냥 한줄로 부탁. 설명 텍스트 플레이스.</p>
+          <p className="product__description">HACCP 인증된 같은 부류 식품들의 평균치와의 주요 영양소 비교입니다.</p>
         </Row>
       </div>
     )
