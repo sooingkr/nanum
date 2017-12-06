@@ -386,9 +386,9 @@ const reducer = createReducer(initialState, {
     }
   },
   [actionTypes.selectNutrient]: (state, { item, foodSuggestions }) => {
-    const newSate = { ...state, foodSuggestions };
+    const newState = { ...state, foodSuggestions };
 
-    newSate.nutrients.forEach((i, idx) => {
+    newState.nutrients.forEach((i, idx) => {
       i.selected = false;
       if (i.id === item.id) {
         item.idx = idx;
@@ -398,16 +398,15 @@ const reducer = createReducer(initialState, {
     if (item.idx >= 0) {
       item.selected = true;
 
-      newSate.nutrients = [
-        ...newSate.nutrients.slice(0, item.idx),
+      newState.nutrients = [
+        ...newState.nutrients.slice(0, item.idx),
         item,
-        ...newSate.nutrients.slice(item.idx + 1, newSate.nutrients.length)
+        ...newState.nutrients.slice(item.idx + 1, newState.nutrients.length)
       ];
 
       delete item.idx;
     }
-
-    return newSate;
+    return newState;
   },
 });
 
