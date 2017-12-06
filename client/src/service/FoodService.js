@@ -85,4 +85,11 @@ export default {
   foodDetail,
   removeFoods,
   addFoodIntake,
+  nutrients: async nutrient => {
+    try {
+      return axios.get(`/foods/nutrients/${nutrient.id}`)
+    } catch (error) {
+      throw new Error(`FoodService error - <nutrients()>: ${error}`);
+    }
+  },
 }

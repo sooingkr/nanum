@@ -5,22 +5,27 @@ import { isEmpty } from 'lodash';
 import { mockFoodSuggestions } from '../../service/mockAPI/responses';
 import FoodSuggestionCarousel from '../../components/Dashboard/FoodSuggestionCarousel';
 import NoInfo from '../../components/Dashboard/NoInfo';
-import { selectors } from './DashboardDuck';
+import { selectors, DashboardDuck } from './DashboardDuck';
 
 export class FoodSuggestionContainer extends Component {
   render() {
-    const { reason, foodSuggestions } = this.props;
+    const { nutrients, foodSuggestions, selectNutrient } = this.props;
 
     return (
       <div className="food-suggestion">
-        <div className="food-suggestion__reason">
-          <div>
-            <h3>오늘의 식품</h3>
-            <p>{reason}</p>
-          </div>
-        </div>
+        <ul className="food-suggestion__nutrient">
+          {
+            nutrients.map(item => (
+              <li key={item.id}>
+                <div className={`nutrient-item ${item.selected ? 'selected' : ''}`} onClick={() => selectNutrient(item)}>
+                  <span>{item.text}</span> {item.selected && <strong> > </strong>}
+                </div>
+              </li>
+            ))
+          }
+        </ul>
         <div className="food-suggestion__carousel">
-          <FoodSuggestionCarousel data={foodSuggestions}/>
+          <FoodSuggestionCarousel data={foodSuggestions || []}/>
         </div>
       </div>
     );
@@ -47,6 +52,11 @@ FoodSuggestionContainer.propTypes = {
 const mapStateToProps = (state) => ({
   foodSuggestions: selectors.getFoodSuggestions(state),
   reason: selectors.getReason(state),
+  nutrients: selectors.getNutrients(state),
 });
 
-export default connect(mapStateToProps)(FoodSuggestionContainer);
+const mapDispatchToProps = {
+  selectNutrient: DashboardDuck.actions.selectNutrient,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(FoodSuggestionContainer);
