@@ -110,7 +110,7 @@ const submitFoods = (foodsToAdd, queryTime) => async (dispatch) => {
   dispatch(succeedSubmitFoods());
   dispatch(closeDialog());
   dispatch(clearAddFood());
-  dispatch(initialize());
+  dispatch(initialize(queryTime));
 }
 
 const selectNutrient = item => dispatch => {
