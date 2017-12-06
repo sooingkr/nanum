@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { isEmpty } from 'lodash';
+import { isEmpty, round } from 'lodash';
 import moment from 'moment';
 import {
   Area,
@@ -51,13 +51,27 @@ class NutritionLogContainer extends Component {
   }
 
   render () {
-    const { data } = this.props;
+    const { data, todayNutrients} = this.props;
     const formattedData = this.formatData(data);
 
     return (
       <div className="nutrition-log-chart">
         <div className="nutrition-log-chart__date">
           {getDateLabel()}
+        </div>
+        <div className="nutrition-log-chart__recap">
+          <div className="recap-item">
+            <p>{round(todayNutrients.current.protein || 0, 0)}</p>
+            <p>단백질(g)</p>
+          </div>
+          <div className="recap-item">
+            <p>{round(todayNutrients.current.sodium || 0, 0)}</p>
+            <p>나트륨(g)</p>
+          </div>
+          <div className="recap-item">
+            <p>{round(todayNutrients.current.potassium || 0, 0)}</p>
+            <p>칼륨(g)</p>
+          </div>
         </div>
         <ResponsiveContainer>
           <AreaChart data={formattedData} >
@@ -90,7 +104,8 @@ NutritionLogContainer = NoInfo(
 )(NutritionLogContainer);
 
 const mapStateToProps = (state) => ({
-  data: selectors.getNutritionLog(state)
+  data: selectors.getNutritionLog(state),
+  todayNutrients: selectors.getIngredients(state),
 });
 
 export default connect(mapStateToProps)(NutritionLogContainer);

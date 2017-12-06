@@ -1,8 +1,12 @@
 #nanum {
   .nutrition-log-chart {
     max-width: 500px;
+    padding-top: 20px;
     width: 100%;
     height: 360px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   .nutrition-log-chart .recharts-responsive-container {
@@ -36,6 +40,37 @@
       line-height: 14px;
       width: 14px;
       height: 14px;
+    }
+  }
+
+  .nutrition-log-chart__recap {
+    display: flex;
+    margin: 0 auto;
+  }
+
+  .recap-item {
+    color: #212121;
+    text-align: center;
+    margin-right: 10px;
+
+    p {
+      margin-bottom: 0;
+    }
+
+    p:first-child {
+      font-size: 30px;
+      font-weight: 600;
+      line-height: 48px;
+    }
+
+    p:last-child {
+      font-size: 10px;
+      font-weight: 700;
+      color: #9fa3a7;
+    }
+
+    &:last-child {
+      margin-right: 0;
     }
   }
 }

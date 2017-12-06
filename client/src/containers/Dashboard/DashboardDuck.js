@@ -8,7 +8,6 @@ import {
   isEmpty, 
   isObject, 
   round,
-  sortBy,
 } from 'lodash';
 import { createAction, createReducer } from '../../utils/store';
 import UserService from '../../service/UserService';
@@ -101,7 +100,6 @@ const removeFoods = () => async (dispatch, getState) => {
 
 const submitFoods = (foodsToAdd, queryTime) => async (dispatch) => {
   const foodIntakePayload = constructIntakePayload(foodsToAdd, queryTime);
-  console.log(foodIntakePayload);
   try {
     await FoodService.addFoodIntake(foodIntakePayload);
   } catch (err) {
