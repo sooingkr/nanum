@@ -8,6 +8,7 @@ import {
   isEmpty, 
   isObject, 
   round,
+  sortBy,
 } from 'lodash';
 import { createAction, createReducer } from '../../utils/store';
 import UserService from '../../service/UserService';
@@ -426,13 +427,18 @@ function calculateCalories (breakfast, lunch, dinner) {
 
 function transformLog (nutritionLog) {
   const dayKeys = Object.keys(nutritionLog);
+  let dates = dayKeys.map(key => {
+    return { raw: key, date: new Date(parseInt(key, 10)) }
+  });
+  
+  dates = dates.sort((a, b) => a.date - b.date);
   if (dayKeys.length === 0) {
     return [];
   }
 
-  return dayKeys.map(key => {
-    const dayIntakes = nutritionLog[key];
-    const dayInMonth = moment(key).format('D');
+  return dates.map(day => {
+    const dayIntakes = nutritionLog[day.raw];
+    const dayInMonth = moment(day.date, 'x').format('D');
     const protein = reduce(dayIntakes.map(intake => intake.foodInfo.protein || 0), sumPair, 0);
     const sodium = reduce(dayIntakes.map(intake => intake.foodInfo.sodium || 0), sumPair, 0);
     const potassium = reduce(dayIntakes.map(intake => intake.foodInfo.potassium || 0), sumPair, 0);
