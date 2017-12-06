@@ -31,6 +31,7 @@ export const actionTypes = {
   failRemoveFoods: storeName + '/FAIL_REMOVE_FOODS',
   succeedSubmitFoods: storeName + '/SUCCEED_SUBMIT_FOODS',
   failSubmitFoods: storeName + '/FAIL_SUBMIT_FOODS',
+  selectNutrient: storeName + '/selectNutrient',
 };
 
 // Actions creators 
@@ -104,6 +105,12 @@ const submitFoods = (foodsToAdd) => async (dispatch) => {
   dispatch(initialize());
 }
 
+const selectNutrient = item => dispatch => {
+  FoodService.nutrients(item).then(res => {
+    dispatch(createAction(actionTypes.selectNutrient, {item, foodSuggestions: res.data}));
+  });
+};
+
 // conveniently export actions
 const actions = {
   initialize,
@@ -118,6 +125,7 @@ const actions = {
   failRemoveFoods,
   submitFoods,
   removeFoods,
+  selectNutrient,
 };
 
 // Initial Dashboard state tree
@@ -145,6 +153,37 @@ export const initialState = {
     mealTime: '',
     foods: [],
   },
+  nutrients: [
+    {
+      id: 'all',
+      text: '전체보기',
+      selected: true,
+    },{
+      id: 'protein',
+      text: '단백질',
+      selected: false,
+    },
+    {
+      id: 'sodium',
+      text: '나트륨',
+      selected: false,
+    },
+    {
+      id: 'calcium',
+      text: '칼슘',
+      selected: false,
+    },
+    {
+      id: 'cellulose',
+      text: '식이섬유',
+      selected: false,
+    },
+    {
+      id: 'potassium',
+      text: '칼륨',
+      selected: false,
+    }
+  ]
 };
 
 // Dashboard reducer
@@ -283,6 +322,30 @@ const reducer = createReducer(initialState, {
       error: payload.error
     }
   },
+  [actionTypes.selectNutrient]: (state, { item, foodSuggestions }) => {
+    const newSate = { ...state, foodSuggestions };
+
+    newSate.nutrients.forEach((i, idx) => {
+      i.selected = false;
+      if (i.id === item.id) {
+        item.idx = idx;
+      }
+    });
+
+    if (item.idx >= 0) {
+      item.selected = true;
+
+      newSate.nutrients = [
+        ...newSate.nutrients.slice(0, item.idx),
+        item,
+        ...newSate.nutrients.slice(item.idx + 1, newSate.nutrients.length)
+      ];
+
+      delete item.idx;
+    }
+
+    return newSate;
+  },
 });
 
 // Selectors
@@ -305,6 +368,7 @@ const getTime = (state) => state[storeName].queryTime;
 const getLoadingStatus = (state) => state[storeName].isLoading;
 const getEditMode = (state) => state[storeName].isEditMode;
 const getToBeAdded = (state) => state[storeName].toBeAdded;
+const getNutrients = (state) => state[storeName].nutrients;
 
 export const DashboardDuck = {
   storeName,
@@ -324,6 +388,7 @@ export const selectors = {
   getEditMode,
   getReason,
   getToBeAdded,
+  getNutrients,
 }
 
 function constructIntakePayload (foodsToAdd) {
