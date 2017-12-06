@@ -16,15 +16,16 @@ const mockFoodDetails = {
   carbohydrates: 340,
   fat: 201,
   alternativeFoods: [{
-    id: "d3b8d7ba-c451-11e7-abc4-cec278b6b50a",
+    globalId: "d3b8d7ba-c451-11e7-abc4-cec278b6b50a",
     imageUrl: AlternativeFood1,
     alternativeReason: "철분과 비타민A 가 함유된 HACCP 인증 식품인 <a href='/recommendation/#/foods/2'>요거트 그릭</a>을 대체식품으로 추천합니다."
   }, {
-    id: "28146c5c-c452-11e7-abc4-cec278b6b50a",
+    globalId: "28146c5c-c452-11e7-abc4-cec278b6b50a",
     imageUrl: AlternativeFood2,
     alternativeReason: "철분과 비타민A 가 함유된 HACCP 인증 식품인 <a href='/recommendation/#/foods/2'>요거트 그릭</a>을 대체식품으로 추천합니다."
   }]
 }
+
 const foodCarouselSettings = {
   arrows: true,
   dots: false,

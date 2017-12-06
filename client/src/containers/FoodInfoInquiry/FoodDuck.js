@@ -31,6 +31,7 @@ export const getFoodDetailData = (foodId) => async dispatch => {
   try {
     foodDetail = await FoodService.foodDetail(foodId);
     userInfo = await UserService.getUserSettings();
+    console.log(foodDetail);
     dispatch(createAction(actionTypes.getFoodDetail, foodDetail.data));
     if (isObject(userInfo.data) && !isEmpty(userInfo.data)) {
       hasUserInfo = true;

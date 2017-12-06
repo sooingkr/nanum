@@ -10,11 +10,13 @@ class FoodDetails extends Component {
 
     const {
       name, 
-      diagnosticMessage, 
+      message, 
       calories, 
       carbohydrates, 
       proteins, 
-      fat 
+      fat,
+      masterId,
+      productNo,
     } = foodDetail;
 
     return (
@@ -32,8 +34,8 @@ class FoodDetails extends Component {
           </Col>
         </Row>
         <Row>
-          { diagnosticMessage &&
-            <div className="product__foodInfo hidden-xs">{diagnosticMessage}</div>
+          { message &&
+            <div className="product__foodInfo hidden-xs">{message}</div>
           }
           <div className="product__kcalLevel">
             <div className="product__kcalLevel-item">
@@ -61,7 +63,9 @@ class FoodDetails extends Component {
               <div className="kcalLevel__title">지방(g)</div>
             </div>            
             <div className="product__kcalLevel-item">
-              <Button className="btn-view-haccp" href="http://fresh.ihaccp.or.kr/safety/productDetail.do?productNo=2013021004600255&masterId=24360" title="안전먹거리에서 보기">안전먹거리에서 보기</Button>
+              <Button className="btn-view-haccp" href={`/safety/productDetail.do?productNo=${productNo}&masterId=${masterId}`} title="안전먹거리에서 보기">
+                안전먹거리에서 보기
+              </Button>
             </div>            
           </div>
           <p className="product__description">HACCP 인증된 같은 부류 식품들의 평균치와의 주요 영양소 비교입니다.</p>
@@ -72,14 +76,7 @@ class FoodDetails extends Component {
 }
 
 FoodDetails.propsType = {
-  foodDetail: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    nutrientInfo: PropTypes.string.isRequired,
-    calories: PropTypes.number.isRequired,
-    carbohydrates: PropTypes.number.isRequired,
-    proteins: PropTypes.number.isRequired,
-    fat: PropTypes.number.isRequired
-  }).isRequired
+  foodDetail: PropTypes.object.isRequired
 };
 
 export default FoodDetails;
