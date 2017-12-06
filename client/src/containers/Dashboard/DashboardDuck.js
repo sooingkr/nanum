@@ -106,7 +106,9 @@ const submitFoods = (foodsToAdd) => async (dispatch) => {
 }
 
 const selectNutrient = item => dispatch => {
-  dispatch(createAction(actionTypes.selectNutrient, item));
+  FoodService.nutrients(item).then(res => {
+    dispatch(createAction(actionTypes.selectNutrient, {item, foodSuggestions: res.data}));
+  });
 };
 
 // conveniently export actions
@@ -153,7 +155,7 @@ export const initialState = {
   },
   nutrients: [
     {
-      id: 'show-all',
+      id: 'all',
       text: '전체보기',
       selected: true,
     },{
@@ -320,8 +322,8 @@ const reducer = createReducer(initialState, {
       error: payload.error
     }
   },
-  [actionTypes.selectNutrient]: (state, item) => {
-    const newSate = { ...state };
+  [actionTypes.selectNutrient]: (state, { item, foodSuggestions }) => {
+    const newSate = { ...state, foodSuggestions };
 
     newSate.nutrients.forEach((i, idx) => {
       i.selected = false;
@@ -330,7 +332,7 @@ const reducer = createReducer(initialState, {
       }
     });
 
-    if (item) {
+    if (item.idx >= 0) {
       item.selected = true;
 
       newSate.nutrients = [

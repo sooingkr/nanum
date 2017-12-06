@@ -18,14 +18,14 @@ export class FoodSuggestionContainer extends Component {
             nutrients.map(item => (
               <li key={item.id}>
                 <div className={`nutrient-item ${item.selected ? 'selected' : ''}`} onClick={() => selectNutrient(item)}>
-                  <span>{item.text}</span> {item.selected && <span>›</span>}
+                  <span>{item.text}</span> {item.selected && <strong> > </strong>}
                 </div>
               </li>
             ))
           }
         </ul>
         <div className="food-suggestion__carousel">
-          <FoodSuggestionCarousel data={foodSuggestions}/>
+          <FoodSuggestionCarousel data={foodSuggestions || []}/>
         </div>
       </div>
     );
