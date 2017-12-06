@@ -85,9 +85,13 @@ export default {
   foodDetail,
   removeFoods,
   addFoodIntake,
-  nutrients: async nutrient => {
+  nutrients: async (nutrient, queryDate) => {
     try {
-      return axios.get(`/foods/nutrients/${nutrient.id}`)
+      return axios.get(`/foods/nutrients/${nutrient.id}`, {
+        params: {
+          queryDate,
+        }
+      })
     } catch (error) {
       throw new Error(`FoodService error - <nutrients()>: ${error}`);
     }

@@ -113,8 +113,9 @@ const submitFoods = (foodsToAdd, queryTime) => async (dispatch) => {
   dispatch(initialize(queryTime));
 }
 
-const selectNutrient = item => dispatch => {
-  FoodService.nutrients(item).then(res => {
+const selectNutrient = item => (dispatch, getState) => {
+  const queryDate = getState()[storeName].queryTime;
+  FoodService.nutrients(item, queryDate).then(res => {
     dispatch(createAction(actionTypes.selectNutrient, {item, foodSuggestions: res.data}));
   });
 };
