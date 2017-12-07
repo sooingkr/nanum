@@ -6,6 +6,7 @@ import { mockFoodSuggestions } from '../../service/mockAPI/responses';
 import FoodSuggestionCarousel from '../../components/Dashboard/FoodSuggestionCarousel';
 import NoInfo from '../../components/Dashboard/NoInfo';
 import { selectors, DashboardDuck } from './DashboardDuck';
+import {isMobileVersion} from '../../utils/AppUtils';
 
 export class FoodSuggestionContainer extends Component {
   render() {
@@ -18,7 +19,7 @@ export class FoodSuggestionContainer extends Component {
             nutrients.map(item => (
               <li key={item.id}>
                 <div className={`nutrient-item ${item.selected ? 'selected' : ''}`} onClick={() => selectNutrient(item)}>
-                  <span>{item.text}</span> {item.selected && <strong> > </strong>}
+                  <span>{item.text}</span> {item.selected && !isMobileVersion() && <strong> > </strong>}
                 </div>
               </li>
             ))

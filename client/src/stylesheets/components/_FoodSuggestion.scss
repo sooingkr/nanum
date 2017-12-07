@@ -55,5 +55,31 @@
       font-size: ms(0);
       font-weight: 400;
     }
-  }    
+  }
+
+  .food-suggestion__nutrient {
+    overflow: hidden;
+    width: 100%;
+    max-width: none;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+
+    li {
+      display: inline-block;
+      padding: 0 10px 10px 10px;
+    }
+
+    .nutrient-item {
+      :hover {
+        background-color: transparent;
+        color: #96b647;
+      }
+    }
+
+    .selected {
+      background-color: transparent;
+      color: #96b647;
+    }
+  }
 }
