@@ -15,6 +15,7 @@ import NutritionLogContainer from './NutritionLogContainer';
 import Alert from '../../components/Common/Alert';
 import Loader from '../../components/Common/Loader';
 import { DashboardDuck, selectors } from './DashboardDuck';
+import {isMobileVersion} from '../../utils/AppUtils';
 
 class Dashboard extends Component {
   componentWillMount() {
@@ -27,13 +28,18 @@ class Dashboard extends Component {
 
     return (
       <div className="dashboard">
-        <Alert message={alert.message} type={alert.type} />
+        {!isMobileVersion() &&
+        <Alert message={alert.message} type={alert.type}/>
+        }
         <Grid>
           <Row className="dashboard-search">
             <Col sm={12}>
               <FoodSearchBoxContainer />
             </Col>
           </Row>
+          {isMobileVersion() &&
+          <Alert message={alert.message} type={alert.type}/>
+          }
           <Row className="dashboard-timeSelector section">
             <Col sm={12}>
               <TimeSelectorContainer />

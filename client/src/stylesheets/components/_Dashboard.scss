@@ -94,7 +94,7 @@ $dashboard-max-width: 1040px;
   }
 
   .dashboard-search {
-    margin-bottom: 150px;
+    padding-bottom: 15px;
   }
 
   .dashboard div[class^="col"] {
@@ -120,10 +120,10 @@ $dashboard-max-width: 1040px;
 
   .dashboard-ingredients-chart {
     display: block;
-  }    
+  }
 
   .dashboard-ingredients-chart.section:first-child {
     margin-right: 0;
-    margin-bottom: 28px;
+    margin-bottom: 0;
   }
 }
