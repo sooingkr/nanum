@@ -50,11 +50,11 @@ class IngredientsChartContainer extends Component {
     } = data.targets;
 
     return [
-      { ingredient: `단백질 (${protein} g)`, current: data.current.protein, fullMark: 100, name: '단백질' },
-      { ingredient: `나트륨 (${sodium} g)`, current: data.current.sodium, fullMark: 100, name: '나트륨' },
-      { ingredient: `칼슘 (${calcium} g)`, current: data.current.calcium, fullMark: 100, name: '칼슘' },
-      { ingredient: `식이섬유 (${cellulose} g)`, current: data.current.cellulose, fullMark: 100, name: '식이섬유' },
-      { ingredient: `칼륨 (${potassium} g)`, current: data.current.potassium, fullMark: 100, name: '칼륨' },
+      {ingredient: `단백질 (${protein} mg)`, current: data.current.protein, fullMark: 100, name: '단백질'},
+      {ingredient: `나트륨 (${sodium} mg)`, current: data.current.sodium, fullMark: 100, name: '나트륨'},
+      {ingredient: `칼슘 (${calcium} mg)`, current: data.current.calcium, fullMark: 100, name: '칼슘'},
+      {ingredient: `식이섬유 (${cellulose} mg)`, current: data.current.cellulose, fullMark: 100, name: '식이섬유'},
+      {ingredient: `칼륨 (${potassium} mg)`, current: data.current.potassium, fullMark: 100, name: '칼륨'},
     ]
   }
 

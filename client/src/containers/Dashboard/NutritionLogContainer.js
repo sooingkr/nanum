@@ -62,15 +62,15 @@ class NutritionLogContainer extends Component {
         <div className="nutrition-log-chart__recap">
           <div className="recap-item">
             <p>{round(todayNutrients.current.protein || 0, 0)}</p>
-            <p>단백질(g)</p>
+            <p>단백질(mg)</p>
           </div>
           <div className="recap-item">
             <p>{round(todayNutrients.current.sodium || 0, 0)}</p>
-            <p>나트륨(g)</p>
+            <p>나트륨(mg)</p>
           </div>
           <div className="recap-item">
             <p>{round(todayNutrients.current.potassium || 0, 0)}</p>
-            <p>칼륨(g)</p>
+            <p>칼륨(mg)</p>
           </div>
         </div>
         <ResponsiveContainer>

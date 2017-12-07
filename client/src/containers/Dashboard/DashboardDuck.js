@@ -85,6 +85,7 @@ const initialize = (queryTime) => async (dispatch, getState) => {
 
 const removeFoods = () => async (dispatch, getState) => {
   const foodsToRemove = getState()[storeName].toBeRemoved;
+  const queryTime = getState()[storeName].queryTime;
   const foodIntakePayload = constructIntakeRemovePayload(foodsToRemove);
   let response;
   try {
@@ -95,6 +96,7 @@ const removeFoods = () => async (dispatch, getState) => {
 
   if (isObject(response.data)) {
     dispatch(succeedRemoveFoods(foodsToRemove));
+    dispatch(initialize(queryTime));
   }
   dispatch(clearRemoveFood());
 }
