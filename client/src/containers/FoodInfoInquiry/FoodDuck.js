@@ -50,7 +50,6 @@ export const getFoodDetailData = (foodId) => async dispatch => {
   
 };
 
-
 // conveniently export actions
 export const actions = {
   getFoodDetailData
@@ -60,8 +59,6 @@ export const actions = {
 const reducer = createReducer(initialState, {
   [actionTypes.getFoodDetail]: (state, foodDetail) => {
     const averageNutrientFood = averageNutrients(foodDetail.categoryCode);
-    console.log(foodDetail);
-    console.log();
     if (averageNutrientFood) {
       foodDetail.carbohydratesDifferent = foodDetail.carbohydrates - averageNutrientFood.carbohydrates;
       foodDetail.proteinsDifferent = foodDetail.proteins - averageNutrientFood.protein;

@@ -12,6 +12,15 @@ class FoodInfoInquiry extends Component {
     getFoodDetailData(match.params.id);
   }
 
+  componentWillReceiveProps(nextProps) {
+    const {match: {params: {id}}} = nextProps;
+    const {getFoodDetailData, match} = this.props;
+
+    if (id !== match.params.id) {
+      getFoodDetailData(id);
+    }
+  }
+
   render() {
     const { foodDetail, hasUserInfo, status } = this.props;
     const { diagnosticMessage, alternativeFoods }  = foodDetail;
