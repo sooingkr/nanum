@@ -1,0 +1,980 @@
+{
+  "____": {
+    "categoryCode": "____",
+    "carbohydrates": "____",
+    "protein": "___",
+    "fat": "__"
+  },
+  "C0121030000000": {
+    "categoryCode": "C0121030000000",
+    "carbohydrates": "31000",
+    "protein": "2000",
+    "fat": "0"
+  },
+  "C0114170100000": {
+    "categoryCode": "C0114170100000",
+    "carbohydrates": "1000",
+    "protein": "1000",
+    "fat": "0"
+  },
+  "C0202030000000": {
+    "categoryCode": "C0202030000000",
+    "carbohydrates": "0",
+    "protein": "0",
+    "fat": "0"
+  },
+  "C0126010000000": {
+    "categoryCode": "C0126010000000",
+    "carbohydrates": "0",
+    "protein": "0",
+    "fat": "0"
+  },
+  "C0112060000000": {
+    "categoryCode": "C0112060000000",
+    "carbohydrates": "0",
+    "protein": "0",
+    "fat": "0"
+  },
+  "C0128010000000": {
+    "categoryCode": "C0128010000000",
+    "carbohydrates": "0",
+    "protein": "0",
+    "fat": "0"
+  },
+  "C0123030000000": {
+    "categoryCode": "C0123030000000",
+    "carbohydrates": "0",
+    "protein": "0",
+    "fat": "0"
+  },
+  "C0121060100000": {
+    "categoryCode": "C0121060100000",
+    "carbohydrates": "0",
+    "protein": "0",
+    "fat": "0"
+  },
+  "C0129060000000": {
+    "categoryCode": "C0129060000000",
+    "carbohydrates": "0",
+    "protein": "0",
+    "fat": "0"
+  },
+  "C0114010000000": {
+    "categoryCode": "C0114010000000",
+    "carbohydrates": "0",
+    "protein": "0",
+    "fat": "58666"
+  },
+  "C0114080100000": {
+    "categoryCode": "C0114080100000",
+    "carbohydrates": "0",
+    "protein": "0",
+    "fat": "33437000"
+  },
+  "C0114030000000": {
+    "categoryCode": "C0114030000000",
+    "carbohydrates": "0",
+    "protein": "0",
+    "fat": "48888"
+  },
+  "C0114200000000": {
+    "categoryCode": "C0114200000000",
+    "carbohydrates": "0",
+    "protein": "0",
+    "fat": "50181"
+  },
+  "C0114110100000": {
+    "categoryCode": "C0114110100000",
+    "carbohydrates": "0",
+    "protein": "0",
+    "fat": "51454"
+  },
+  "C0108010000000": {
+    "categoryCode": "C0108010000000",
+    "carbohydrates": "0",
+    "protein": "0",
+    "fat": "0"
+  },
+  "C0129030300000": {
+    "categoryCode": "C0129030300000",
+    "carbohydrates": "0",
+    "protein": "0",
+    "fat": "0"
+  },
+  "C0106020000000": {
+    "categoryCode": "C0106020000000",
+    "carbohydrates": "0",
+    "protein": "0",
+    "fat": "0"
+  },
+  "C0105010000000": {
+    "categoryCode": "C0105010000000",
+    "carbohydrates": "100000",
+    "protein": "0",
+    "fat": "0"
+  },
+  "C0125010400000": {
+    "categoryCode": "C0125010400000",
+    "carbohydrates": "17000",
+    "protein": "0",
+    "fat": "0"
+  },
+  "C0104010000000": {
+    "categoryCode": "C0104010000000",
+    "carbohydrates": "15500",
+    "protein": "55",
+    "fat": "0"
+  },
+  "C0126020000000": {
+    "categoryCode": "C0126020000000",
+    "carbohydrates": "0",
+    "protein": "0",
+    "fat": "0"
+  },
+  "C0116010000000": {
+    "categoryCode": "C0116010000000",
+    "carbohydrates": "0",
+    "protein": "0",
+    "fat": "0"
+  },
+  "C0125010500000": {
+    "categoryCode": "C0125010500000",
+    "carbohydrates": "0",
+    "protein": "0",
+    "fat": "0"
+  },
+  "C0125010200000": {
+    "categoryCode": "C0125010200000",
+    "carbohydrates": "0",
+    "protein": "0",
+    "fat": "0"
+  },
+  "C0129090000000": {
+    "categoryCode": "C0129090000000",
+    "carbohydrates": "12000",
+    "protein": "0",
+    "fat": "6500"
+  },
+  "C0114060100000": {
+    "categoryCode": "C0114060100000",
+    "carbohydrates": "333",
+    "protein": "0",
+    "fat": "51833"
+  },
+  "C0113050000000": {
+    "categoryCode": "C0113050000000",
+    "carbohydrates": "0",
+    "protein": "0",
+    "fat": "0"
+  },
+  "C0101030000000": {
+    "categoryCode": "C0101030000000",
+    "carbohydrates": "19461",
+    "protein": "0",
+    "fat": "0"
+  },
+  "C0120130000000": {
+    "categoryCode": "C0120130000000",
+    "carbohydrates": "0",
+    "protein": "0",
+    "fat": "0"
+  },
+  "C0124030000000": {
+    "categoryCode": "C0124030000000",
+    "carbohydrates": "0",
+    "protein": "0",
+    "fat": "0"
+  },
+  "C0124040000000": {
+    "categoryCode": "C0124040000000",
+    "carbohydrates": "0",
+    "protein": "0",
+    "fat": "0"
+  },
+  "C0129120600000": {
+    "categoryCode": "C0129120600000",
+    "carbohydrates": "0",
+    "protein": "0",
+    "fat": "0"
+  },
+  "C0110020000000": {
+    "categoryCode": "C0110020000000",
+    "carbohydrates": "79000",
+    "protein": "0",
+    "fat": "0"
+  },
+  "C0117010000000": {
+    "categoryCode": "C0117010000000",
+    "carbohydrates": "500",
+    "protein": "200",
+    "fat": "0"
+  },
+  "C0117020000000": {
+    "categoryCode": "C0117020000000",
+    "carbohydrates": "550",
+    "protein": "100",
+    "fat": "0"
+  },
+  "C0120060000000": {
+    "categoryCode": "C0120060000000",
+    "carbohydrates": "0",
+    "protein": "0",
+    "fat": "0"
+  },
+  "C0119050600000": {
+    "categoryCode": "C0119050600000",
+    "carbohydrates": "0",
+    "protein": "0",
+    "fat": "0"
+  },
+  "C0119010000000": {
+    "categoryCode": "C0119010000000",
+    "carbohydrates": "0",
+    "protein": "0",
+    "fat": "0"
+  },
+  "C0119070000000": {
+    "categoryCode": "C0119070000000",
+    "carbohydrates": "9500",
+    "protein": "6000",
+    "fat": "3500"
+  },
+  "C0114040000000": {
+    "categoryCode": "C0114040000000",
+    "carbohydrates": "0",
+    "protein": "0",
+    "fat": "0"
+  },
+  "C0114140000000": {
+    "categoryCode": "C0114140000000",
+    "carbohydrates": "0",
+    "protein": "0",
+    "fat": "12728375"
+  },
+  "C0121060200000": {
+    "categoryCode": "C0121060200000",
+    "carbohydrates": "0",
+    "protein": "0",
+    "fat": "0"
+  },
+  "C0107030000000": {
+    "categoryCode": "C0107030000000",
+    "carbohydrates": "99000",
+    "protein": "0",
+    "fat": "0"
+  },
+  "C0129120300000": {
+    "categoryCode": "C0129120300000",
+    "carbohydrates": "0",
+    "protein": "0",
+    "fat": "0"
+  },
+  "C0130080200000": {
+    "categoryCode": "C0130080200000",
+    "carbohydrates": "0",
+    "protein": "0",
+    "fat": "0"
+  },
+  "C0119030000000": {
+    "categoryCode": "C0119030000000",
+    "carbohydrates": "0",
+    "protein": "0",
+    "fat": "0"
+  },
+  "C0114160000000": {
+    "categoryCode": "C0114160000000",
+    "carbohydrates": "0",
+    "protein": "0",
+    "fat": "0"
+  },
+  "C0114170200000": {
+    "categoryCode": "C0114170200000",
+    "carbohydrates": "0",
+    "protein": "0",
+    "fat": "0"
+  },
+  "C0130020200000": {
+    "categoryCode": "C0130020200000",
+    "carbohydrates": "0",
+    "protein": "0",
+    "fat": "0"
+  },
+  "C0124020000000": {
+    "categoryCode": "C0124020000000",
+    "carbohydrates": "0",
+    "protein": "0",
+    "fat": "0"
+  },
+  "C0125010300000": {
+    "categoryCode": "C0125010300000",
+    "carbohydrates": "0",
+    "protein": "0",
+    "fat": "0"
+  },
+  "C0202040000000": {
+    "categoryCode": "C0202040000000",
+    "carbohydrates": "5000",
+    "protein": "5000",
+    "fat": "350"
+  },
+  "C0202050200000": {
+    "categoryCode": "C0202050200000",
+    "carbohydrates": "17200",
+    "protein": "14400",
+    "fat": "6500"
+  },
+  "C0129100200000": {
+    "categoryCode": "C0129100200000",
+    "carbohydrates": "0",
+    "protein": "0",
+    "fat": "0"
+  },
+  "C0202080100000": {
+    "categoryCode": "C0202080100000",
+    "carbohydrates": "0",
+    "protein": "5000",
+    "fat": "3250"
+  },
+  "C0127060000000": {
+    "categoryCode": "C0127060000000",
+    "carbohydrates": "0",
+    "protein": "0",
+    "fat": "0"
+  },
+  "C0129120100000": {
+    "categoryCode": "C0129120100000",
+    "carbohydrates": "0",
+    "protein": "0",
+    "fat": "0"
+  },
+  "C0202010100000": {
+    "categoryCode": "C0202010100000",
+    "carbohydrates": "3000",
+    "protein": "35000",
+    "fat": "13500"
+  },
+  "C0121010100000": {
+    "categoryCode": "C0121010100000",
+    "carbohydrates": "5875",
+    "protein": "250",
+    "fat": "25"
+  },
+  "C0129130300000": {
+    "categoryCode": "C0129130300000",
+    "carbohydrates": "73000",
+    "protein": "11500",
+    "fat": "1250"
+  },
+  "C0130030000000": {
+    "categoryCode": "C0130030000000",
+    "carbohydrates": "44050",
+    "protein": "2640",
+    "fat": "137"
+  },
+  "C0201180200000": {
+    "categoryCode": "C0201180200000",
+    "carbohydrates": "0",
+    "protein": "0",
+    "fat": "0"
+  },
+  "C0103020100000": {
+    "categoryCode": "C0103020100000",
+    "carbohydrates": "14888",
+    "protein": "2375",
+    "fat": "439166"
+  },
+  "C0105020000000": {
+    "categoryCode": "C0105020000000",
+    "carbohydrates": "100000",
+    "protein": "0",
+    "fat": "0"
+  },
+  "C0118020200000": {
+    "categoryCode": "C0118020200000",
+    "carbohydrates": "0",
+    "protein": "0",
+    "fat": "0"
+  },
+  "C0118050000000": {
+    "categoryCode": "C0118050000000",
+    "carbohydrates": "6000",
+    "protein": "0",
+    "fat": "0"
+  },
+  "C0110010000000": {
+    "categoryCode": "C0110010000000",
+    "carbohydrates": "76500",
+    "protein": "0",
+    "fat": "125"
+  },
+  "C0129130200000": {
+    "categoryCode": "C0129130200000",
+    "carbohydrates": "75500",
+    "protein": "11000",
+    "fat": "550"
+  },
+  "C0117030000000": {
+    "categoryCode": "C0117030000000",
+    "carbohydrates": "8666",
+    "protein": "0",
+    "fat": "3716"
+  },
+  "C0129130100000": {
+    "categoryCode": "C0129130100000",
+    "carbohydrates": "78750",
+    "protein": "9250",
+    "fat": "837"
+  },
+  "C0118060200000": {
+    "categoryCode": "C0118060200000",
+    "carbohydrates": "7409",
+    "protein": "45",
+    "fat": "22"
+  },
+  "C0129010200000": {
+    "categoryCode": "C0129010200000",
+    "carbohydrates": "9800",
+    "protein": "2400",
+    "fat": "4870"
+  },
+  "C0201180300000": {
+    "categoryCode": "C0201180300000",
+    "carbohydrates": "0",
+    "protein": "2000",
+    "fat": "5025"
+  },
+  "C0110070000000": {
+    "categoryCode": "C0110070000000",
+    "carbohydrates": "75600",
+    "protein": "0",
+    "fat": "180"
+  },
+  "C0103020300000": {
+    "categoryCode": "C0103020300000",
+    "carbohydrates": "14333",
+    "protein": "2333",
+    "fat": "7343"
+  },
+  "C0113010000000": {
+    "categoryCode": "C0113010000000",
+    "carbohydrates": "2687",
+    "protein": "7450",
+    "fat": "3109"
+  },
+  "C0116020000000": {
+    "categoryCode": "C0116020000000",
+    "carbohydrates": "12266",
+    "protein": "312",
+    "fat": "0"
+  },
+  "C0101020000000": {
+    "categoryCode": "C0101020000000",
+    "carbohydrates": "15080",
+    "protein": "384",
+    "fat": "1126"
+  },
+  "C0103020600000": {
+    "categoryCode": "C0103020600000",
+    "carbohydrates": "15333",
+    "protein": "666",
+    "fat": "8500"
+  },
+  "C0101040000000": {
+    "categoryCode": "C0101040000000",
+    "carbohydrates": "21200",
+    "protein": "200",
+    "fat": "740"
+  },
+  "C0118020100000": {
+    "categoryCode": "C0118020100000",
+    "carbohydrates": "24170",
+    "protein": "78",
+    "fat": "0"
+  },
+  "C0103010400000": {
+    "categoryCode": "C0103010400000",
+    "carbohydrates": "16000",
+    "protein": "1000",
+    "fat": "1500"
+  },
+  "C0116030000000": {
+    "categoryCode": "C0116030000000",
+    "carbohydrates": "13812",
+    "protein": "453",
+    "fat": "600"
+  },
+  "C0118010100000": {
+    "categoryCode": "C0118010100000",
+    "carbohydrates": "17000",
+    "protein": "0",
+    "fat": "0"
+  },
+  "C0104030000000": {
+    "categoryCode": "C0104030000000",
+    "carbohydrates": "38250",
+    "protein": "500",
+    "fat": "0"
+  },
+  "C0103020400000": {
+    "categoryCode": "C0103020400000",
+    "carbohydrates": "20000",
+    "protein": "2000",
+    "fat": "6500"
+  },
+  "C0201060100000": {
+    "categoryCode": "C0201060100000",
+    "carbohydrates": "0",
+    "protein": "2000",
+    "fat": "350"
+  },
+  "C0129040000000": {
+    "categoryCode": "C0129040000000",
+    "carbohydrates": "30000",
+    "protein": "1666",
+    "fat": "416"
+  },
+  "C0118060100000": {
+    "categoryCode": "C0118060100000",
+    "carbohydrates": "20284",
+    "protein": "120",
+    "fat": "212"
+  },
+  "C0119050000000": {
+    "categoryCode": "C0119050000000",
+    "carbohydrates": "24666",
+    "protein": "4666",
+    "fat": "3491"
+  },
+  "C0202010000000": {
+    "categoryCode": "C0202010000000",
+    "carbohydrates": "6000",
+    "protein": "7333",
+    "fat": "5066"
+  },
+  "C0121050100000": {
+    "categoryCode": "C0121050100000",
+    "carbohydrates": "62000",
+    "protein": "12500",
+    "fat": "5425"
+  },
+  "C0108020000000": {
+    "categoryCode": "C0108020000000",
+    "carbohydrates": "55500",
+    "protein": "350",
+    "fat": "3150"
+  },
+  "C0129040100000": {
+    "categoryCode": "C0129040100000",
+    "carbohydrates": "22550",
+    "protein": "970",
+    "fat": "60"
+  },
+  "C0125010100000": {
+    "categoryCode": "C0125010100000",
+    "carbohydrates": "0",
+    "protein": "0",
+    "fat": "0"
+  },
+  "C0201020100000": {
+    "categoryCode": "C0201020100000",
+    "carbohydrates": "19000",
+    "protein": "2000",
+    "fat": "4750"
+  },
+  "C0130010100000": {
+    "categoryCode": "C0130010100000",
+    "carbohydrates": "55937",
+    "protein": "113025455",
+    "fat": "1953"
+  },
+  "C0201020300000": {
+    "categoryCode": "C0201020300000",
+    "carbohydrates": "0",
+    "protein": "6000",
+    "fat": "1650"
+  },
+  "C0118040100000": {
+    "categoryCode": "C0118040100000",
+    "carbohydrates": "16071",
+    "protein": "333",
+    "fat": "76"
+  },
+  "C0130010000000": {
+    "categoryCode": "C0130010000000",
+    "carbohydrates": "51220",
+    "protein": "6817",
+    "fat": "1651"
+  },
+  "C0117000000000": {
+    "categoryCode": "C0117000000000",
+    "carbohydrates": "10343",
+    "protein": "1200",
+    "fat": "1102"
+  },
+  "C0115060000000": {
+    "categoryCode": "C0115060000000",
+    "carbohydrates": "85670",
+    "protein": "10745",
+    "fat": "795"
+  },
+  "C0119050100000": {
+    "categoryCode": "C0119050100000",
+    "carbohydrates": "14950",
+    "protein": "4300",
+    "fat": "2082"
+  },
+  "C0202010400000": {
+    "categoryCode": "C0202010400000",
+    "carbohydrates": "0",
+    "protein": "3500",
+    "fat": "6925"
+  },
+  "C0122020000000": {
+    "categoryCode": "C0122020000000",
+    "carbohydrates": "1000",
+    "protein": "0",
+    "fat": "3350"
+  },
+  "C0129050000000": {
+    "categoryCode": "C0129050000000",
+    "carbohydrates": "3361",
+    "protein": "1725",
+    "fat": "1319"
+  },
+  "C0117040000000": {
+    "categoryCode": "C0117040000000",
+    "carbohydrates": "14263",
+    "protein": "1484",
+    "fat": "922"
+  },
+  "C0119050200000": {
+    "categoryCode": "C0119050200000",
+    "carbohydrates": "23500",
+    "protein": "9000",
+    "fat": "4850"
+  },
+  "C0118030400000": {
+    "categoryCode": "C0118030400000",
+    "carbohydrates": "25333",
+    "protein": "1500",
+    "fat": "583"
+  },
+  "C0202060000000": {
+    "categoryCode": "C0202060000000",
+    "carbohydrates": "7620",
+    "protein": "10571",
+    "fat": "8562"
+  },
+  "C0118030200000": {
+    "categoryCode": "C0118030200000",
+    "carbohydrates": "13114",
+    "protein": "5468",
+    "fat": "2847"
+  },
+  "C0201180100000": {
+    "categoryCode": "C0201180100000",
+    "carbohydrates": "19000",
+    "protein": "3000",
+    "fat": "7875"
+  },
+  "C0130020000000": {
+    "categoryCode": "C0130020000000",
+    "carbohydrates": "65000",
+    "protein": "21000",
+    "fat": "1050"
+  },
+  "C0105030000000": {
+    "categoryCode": "C0105030000000",
+    "carbohydrates": "74250",
+    "protein": "0",
+    "fat": "150"
+  },
+  "C0114050100000": {
+    "categoryCode": "C0114050100000",
+    "carbohydrates": "461",
+    "protein": "4285",
+    "fat": "51270"
+  },
+  "C0119060000000": {
+    "categoryCode": "C0119060000000",
+    "carbohydrates": "53000",
+    "protein": "357913941",
+    "fat": "1428"
+  },
+  "C0119020000000": {
+    "categoryCode": "C0119020000000",
+    "carbohydrates": "11238",
+    "protein": "3584",
+    "fat": "3373"
+  },
+  "C0119040000000": {
+    "categoryCode": "C0119040000000",
+    "carbohydrates": "11292",
+    "protein": "2621",
+    "fat": "1303"
+  },
+  "C0201040400000": {
+    "categoryCode": "C0201040400000",
+    "carbohydrates": "18000",
+    "protein": "5266",
+    "fat": "5600"
+  },
+  "C0112020000000": {
+    "categoryCode": "C0112020000000",
+    "carbohydrates": "4700",
+    "protein": "3181",
+    "fat": "3381"
+  },
+  "C0201060200000": {
+    "categoryCode": "C0201060200000",
+    "carbohydrates": "10533",
+    "protein": "4066",
+    "fat": "3425"
+  },
+  "C0129160000000": {
+    "categoryCode": "C0129160000000",
+    "carbohydrates": "25350",
+    "protein": "5056130",
+    "fat": "1493"
+  },
+  "C0130040000000": {
+    "categoryCode": "C0130040000000",
+    "carbohydrates": "71000",
+    "protein": "2000",
+    "fat": "4800"
+  },
+  "C0120100000000": {
+    "categoryCode": "C0120100000000",
+    "carbohydrates": "26500",
+    "protein": "3800",
+    "fat": "650"
+  },
+  "C0120150000000": {
+    "categoryCode": "C0120150000000",
+    "carbohydrates": "28000",
+    "protein": "10000",
+    "fat": "800"
+  },
+  "C0126030000000": {
+    "categoryCode": "C0126030000000",
+    "carbohydrates": "3000",
+    "protein": "8000",
+    "fat": "650"
+  },
+  "C0103020700000": {
+    "categoryCode": "C0103020700000",
+    "carbohydrates": "22894",
+    "protein": "2748",
+    "fat": "35840"
+  },
+  "C0125010000000": {
+    "categoryCode": "C0125010000000",
+    "carbohydrates": "1833",
+    "protein": "95",
+    "fat": "18"
+  },
+  "C0114190000000": {
+    "categoryCode": "C0114190000000",
+    "carbohydrates": "14800",
+    "protein": "1200",
+    "fat": "40410"
+  },
+  "C0202080200000": {
+    "categoryCode": "C0202080200000",
+    "carbohydrates": "0",
+    "protein": "21000",
+    "fat": "8575"
+  },
+  "C0115010000000": {
+    "categoryCode": "C0115010000000",
+    "carbohydrates": "85206",
+    "protein": "11047",
+    "fat": "2471"
+  },
+  "C0115030000000": {
+    "categoryCode": "C0115030000000",
+    "carbohydrates": "25888",
+    "protein": "888",
+    "fat": "428"
+  },
+  "C0115050000000": {
+    "categoryCode": "C0115050000000",
+    "carbohydrates": "62157",
+    "protein": "12210",
+    "fat": "8660"
+  },
+  "C0130080000000": {
+    "categoryCode": "C0130080000000",
+    "carbohydrates": "72529",
+    "protein": "7277",
+    "fat": "3567"
+  },
+  "C0123020000000": {
+    "categoryCode": "C0123020000000",
+    "carbohydrates": "4000",
+    "protein": "1333",
+    "fat": "0"
+  },
+  "C0130080400000": {
+    "categoryCode": "C0130080400000",
+    "carbohydrates": "50342",
+    "protein": "5942",
+    "fat": "4278"
+  },
+  "C0102030000000": {
+    "categoryCode": "C0102030000000",
+    "carbohydrates": "35346",
+    "protein": "13359",
+    "fat": "10252"
+  },
+  "C0120080000000": {
+    "categoryCode": "C0120080000000",
+    "carbohydrates": "14833",
+    "protein": "6200",
+    "fat": "800"
+  },
+  "C0102020000000": {
+    "categoryCode": "C0102020000000",
+    "carbohydrates": "86105",
+    "protein": "7368",
+    "fat": "1141"
+  },
+  "C0101010000000": {
+    "categoryCode": "C0101010000000",
+    "carbohydrates": "26358",
+    "protein": "2781",
+    "fat": "11032"
+  },
+  "C0115020000000": {
+    "categoryCode": "C0115020000000",
+    "carbohydrates": "95241",
+    "protein": "11693",
+    "fat": "1903"
+  },
+  "C0112010000000": {
+    "categoryCode": "C0112010000000",
+    "carbohydrates": "11337",
+    "protein": "6649",
+    "fat": "1407"
+  },
+  "C0121020000000": {
+    "categoryCode": "C0121020000000",
+    "carbohydrates": "26580",
+    "protein": "4734",
+    "fat": "2866"
+  },
+  "C0130070000000": {
+    "categoryCode": "C0130070000000",
+    "carbohydrates": "5111",
+    "protein": "12000",
+    "fat": "5338"
+  },
+  "C0122010000000": {
+    "categoryCode": "C0122010000000",
+    "carbohydrates": "11642",
+    "protein": "845",
+    "fat": "10689"
+  },
+  "C0118010200000": {
+    "categoryCode": "C0118010200000",
+    "carbohydrates": "19830",
+    "protein": "886",
+    "fat": "52"
+  },
+  "C0120140000000": {
+    "categoryCode": "C0120140000000",
+    "carbohydrates": "24083",
+    "protein": "5714",
+    "fat": "1934"
+  },
+  "C0202020000000": {
+    "categoryCode": "C0202020000000",
+    "carbohydrates": "19000",
+    "protein": "11111",
+    "fat": "8933"
+  },
+  "C0113040000000": {
+    "categoryCode": "C0113040000000",
+    "carbohydrates": "15833",
+    "protein": "6333",
+    "fat": "3709"
+  },
+  "C0130070200000": {
+    "categoryCode": "C0130070200000",
+    "carbohydrates": "2883",
+    "protein": "15318",
+    "fat": "5896"
+  },
+  "C0121040200000": {
+    "categoryCode": "C0121040200000",
+    "carbohydrates": "19450",
+    "protein": "5550",
+    "fat": "4072"
+  },
+  "C0202080000000": {
+    "categoryCode": "C0202080000000",
+    "carbohydrates": "15000",
+    "protein": "26666",
+    "fat": "5800"
+  },
+  "C0130060000000": {
+    "categoryCode": "C0130060000000",
+    "carbohydrates": "1892391",
+    "protein": "47791",
+    "fat": "52246"
+  },
+  "C0121070000000": {
+    "categoryCode": "C0121070000000",
+    "carbohydrates": "69500",
+    "protein": "8000",
+    "fat": "3700"
+  },
+  "C0120030000000": {
+    "categoryCode": "C0120030000000",
+    "carbohydrates": "0",
+    "protein": "0",
+    "fat": "0"
+  },
+  "C0129180200000": {
+    "categoryCode": "C0129180200000",
+    "carbohydrates": "30256",
+    "protein": "6716",
+    "fat": "2477"
+  },
+  "C0129180100000": {
+    "categoryCode": "C0129180100000",
+    "carbohydrates": "29142",
+    "protein": "6880",
+    "fat": "3564"
+  },
+  "C0102010000000": {
+    "categoryCode": "C0102010000000",
+    "carbohydrates": "44750",
+    "protein": "7383",
+    "fat": "25389"
+  },
+  "C0202010300000": {
+    "categoryCode": "C0202010300000",
+    "carbohydrates": "1333",
+    "protein": "8500",
+    "fat": "9533"
+  },
+  "C0118010300000": {
+    "categoryCode": "C0118010300000",
+    "carbohydrates": "21718",
+    "protein": "275",
+    "fat": "123"
+  },
+  "C0202020100000": {
+    "categoryCode": "C0202020100000",
+    "carbohydrates": "4363",
+    "protein": "7565",
+    "fat": "7972"
+  },
+  "C0115040000000": {
+    "categoryCode": "C0115040000000",
+    "carbohydrates": "72263",
+    "protein": "9474",
+    "fat": "11815"
+  }
+}

@@ -5,13 +5,18 @@ import { isObject, isEmpty } from 'lodash';
 import { createAction, createReducer } from '../../utils/store';
 import FoodService from '../../service/FoodService';
 import UserService from '../../service/UserService';
+import {averageNutrients} from '../../utils/AppUtils';
 
 // import service
 
 export const storeName = 'FoodInquiryDuck';
 
 export const initialState = {
-  foodDetail: {},
+  foodDetail: {
+    carbohydratesDifferent: 0,
+    proteinsDifferent: 0,
+    fatDifferent: 0,
+  },
   hasUserInfo: false,
   status: null,
 };
@@ -31,8 +36,7 @@ export const getFoodDetailData = (foodId) => async dispatch => {
   try {
     foodDetail = await FoodService.foodDetail(foodId);
     userInfo = await UserService.getUserSettings();
-    console.log(foodDetail);
-    dispatch(createAction(actionTypes.getFoodDetail, foodDetail.data));
+    dispatch(createAction(actionTypes.getFoodDetail, {...initialState.foodDetail, ...foodDetail.data}));
     if (isObject(userInfo.data) && !isEmpty(userInfo.data)) {
       hasUserInfo = true;
     }
@@ -55,6 +59,14 @@ export const actions = {
 
 const reducer = createReducer(initialState, {
   [actionTypes.getFoodDetail]: (state, foodDetail) => {
+    const averageNutrientFood = averageNutrients(foodDetail.categoryCode);
+    console.log(foodDetail);
+    console.log();
+    if (averageNutrientFood) {
+      foodDetail.carbohydratesDifferent = foodDetail.carbohydrates - averageNutrientFood.carbohydrates;
+      foodDetail.proteinsDifferent = foodDetail.proteins - averageNutrientFood.protein;
+      foodDetail.fatDifferent = foodDetail.fat - averageNutrientFood.fat;
+    }
     return {
       ...state,
       foodDetail,

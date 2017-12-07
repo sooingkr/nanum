@@ -17,6 +17,9 @@ class FoodDetails extends Component {
       fat,
       masterId,
       productNo,
+      carbohydratesDifferent,
+      proteinsDifferent,
+      fatDifferent,
     } = foodDetail;
 
     return (
@@ -41,7 +44,7 @@ class FoodDetails extends Component {
             <div className="product__kcalLevel-item">
               <div className="kcalLevel__diff">
                 <span>평균대비</span>
-                <span>-360</span>
+                <span>{carbohydratesDifferent}</span>
               </div>
               <div className="kcalLevel__number">{carbohydrates}</div>
               <div className="kcalLevel__title">탄수화물(g)</div>
@@ -49,7 +52,7 @@ class FoodDetails extends Component {
             <div className="product__kcalLevel-item">
               <div className="kcalLevel__diff">
                 <span>평균대비</span>
-                <span>-60</span>
+                <span>{proteinsDifferent}</span>
               </div>
               <div className="kcalLevel__number">{proteins}</div>
               <div className="kcalLevel__title">단백질(g)</div>
@@ -57,7 +60,7 @@ class FoodDetails extends Component {
             <div className="product__kcalLevel-item">
               <div className="kcalLevel__diff">
                 <span>평균대비</span>
-                <span>+5</span>
+                <span>{fatDifferent}</span>
               </div>
               <div className="kcalLevel__number">{fat}</div>
               <div className="kcalLevel__title">지방(g)</div>

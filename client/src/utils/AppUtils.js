@@ -1,5 +1,7 @@
 import configureStore from '../store/configureStore';
 import {toggleModal as toggleModalAction} from '../containers/App/AppDuck';
+import AverageNutrients from '../assets/average-nutrients.json';
+import {findKey} from 'lodash';
 
 // app store
 export const store = configureStore();
@@ -31,4 +33,8 @@ export function makeNoInfoLink(hasUserInfo, status) {
 
 export function hasAuthRedirectUrl(response) {
   return /realAuthentication.do/.test(response);
+}
+
+export function averageNutrients(categoryCode) {
+  return AverageNutrients[categoryCode];
 }
