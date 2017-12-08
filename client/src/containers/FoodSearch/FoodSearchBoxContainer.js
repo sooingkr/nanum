@@ -12,7 +12,7 @@ class FoodSearchBoxContainer extends Component {
   componentWillMount() {
     const queryParams = QueryString.parse(this.props.location.search);
     if (!isEmpty(queryParams)) {
-      this.props.searchFood(queryParams.foodKeyword);
+      this.props.searchFoodFirstPage(queryParams.foodKeyword);
     }
 
     if (!isSearchRoute(this.props.location.pathname)) {
@@ -22,7 +22,7 @@ class FoodSearchBoxContainer extends Component {
 
   handleSubmit = (values) => {
     const currentLocation = this.props.location.pathname;
-    this.props.searchFood(values.foodQuery);
+    this.props.searchFoodFirstPage(values.foodQuery);
     
     // If not in search result page
     if (!isSearchRoute(currentLocation)) {
@@ -73,7 +73,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   cacheQuery: FoodSearchDuck.actions.requestSearch,
-  searchFood: FoodSearchDuck.actions.searchFood,
+  searchFoodScroll: FoodSearchDuck.actions.searchFoodScroll,
+  searchFoodFirstPage: FoodSearchDuck.actions.searchFoodFirstPage,
   reset,
 }
 

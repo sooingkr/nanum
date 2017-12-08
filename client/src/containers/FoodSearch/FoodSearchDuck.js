@@ -21,7 +21,7 @@ const rejectSearch = createAction(actionTypes.rejectSearch);
 const resetSearch = createAction(actionTypes.resetSearch);
 
 // define thunks
-const searchFood = (foodQuery, page) => async (dispatch, getState) => {
+const searchFoodScroll = (foodQuery, page) => async (dispatch, getState) => {
   const currentState = getState()[storeName];
   const cachedQuery = currentState.foodQuery;
   const currentPage = currentState.list.page;
@@ -34,8 +34,8 @@ const searchFood = (foodQuery, page) => async (dispatch, getState) => {
   const shouldFetch = hasNextPage && (
     (isNewQuery && foodQuery !== '') // new, non-blank query
     || (!isNewQuery && page !== currentPage && foodQuery !== '')); // same query, new page
-  
-  // If query is different from previous query, 
+
+  // If query is different from previous query,
   // reset redux store
   if (isNewQuery) {
     dispatch(resetSearch);
@@ -60,13 +60,32 @@ const searchFood = (foodQuery, page) => async (dispatch, getState) => {
   }
 }
 
+const searchFoodFirstPage = (foodQuery) => async (dispatch) => {
+  let searchResponse = {data: {content: []}};
+  try {
+    dispatch(requestSearch(foodQuery));
+    searchResponse = await FoodService.searchFood(foodQuery);
+  } catch (error) {
+    dispatch(failSearch(error));
+  }
+
+  if (searchResponse.data.content.length === 0) {
+    // No results, reject
+    dispatch(rejectSearch);
+  } else {
+    // Search success
+    dispatch(succeedSearch(searchResponse.data));
+  }
+}
+
 // conveniently export actions
 export const actions = {
   requestSearch,
   failSearch,
   succeedSearch,
-  searchFood,
+  searchFoodScroll: searchFoodScroll,
   resetSearch,
+  searchFoodFirstPage: searchFoodFirstPage
 };
 
 export const initialState = {

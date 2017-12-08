@@ -38,7 +38,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  loadNextPage: FoodSearchDuck.actions.searchFood,
+  loadNextPage: FoodSearchDuck.actions.searchFoodScroll,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FoodSearchResultContainer);
