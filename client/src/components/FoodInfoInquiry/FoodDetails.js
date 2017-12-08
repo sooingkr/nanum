@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { isEmpty } from 'lodash';
 import { Row, Col, Button } from 'react-bootstrap';
+import {convertMgToGam} from '../../utils/AppUtils';
 
 class FoodDetails extends Component {
   render () {
@@ -44,25 +45,25 @@ class FoodDetails extends Component {
             <div className="product__kcalLevel-item">
               <div className="kcalLevel__diff">
                 <span>평균대비</span>
-                <span>{carbohydratesDifferent}</span>
+                <span>{convertMgToGam(carbohydratesDifferent)}</span>
               </div>
-              <div className="kcalLevel__number">{carbohydrates}</div>
+              <div className="kcalLevel__number">{convertMgToGam(carbohydrates)}</div>
               <div className="kcalLevel__title">탄수화물(g)</div>
             </div>
             <div className="product__kcalLevel-item">
               <div className="kcalLevel__diff">
                 <span>평균대비</span>
-                <span>{proteinsDifferent}</span>
+                <span>{convertMgToGam(proteinsDifferent)}</span>
               </div>
-              <div className="kcalLevel__number">{proteins}</div>
+              <div className="kcalLevel__number">{convertMgToGam(proteins)}</div>
               <div className="kcalLevel__title">단백질(g)</div>
             </div>            
             <div className="product__kcalLevel-item">
               <div className="kcalLevel__diff">
                 <span>평균대비</span>
-                <span>{fatDifferent}</span>
+                <span>{convertMgToGam(fatDifferent)}</span>
               </div>
-              <div className="kcalLevel__number">{fat}</div>
+              <div className="kcalLevel__number">{convertMgToGam(fat)}</div>
               <div className="kcalLevel__title">지방(g)</div>
             </div>            
             <div className="product__kcalLevel-item">

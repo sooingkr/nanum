@@ -7,14 +7,14 @@ export class FoodSearchResultContainer extends Component {
   onPaginateLoad = () => {
     this.props.loadNextPage(this.props.foodQuery);
   }
-
   render() {
-    const { 
+    const {
       hasNextPage,
       isLoading,
       list,
       hasError,
     } = this.props;
+    console.log(list);
 
     return (
       <SearchResultList

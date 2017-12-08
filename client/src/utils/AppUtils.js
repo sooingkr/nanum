@@ -37,3 +37,7 @@ export function hasAuthRedirectUrl(response) {
 export function averageNutrients(categoryCode) {
   return AverageNutrients[categoryCode];
 }
+
+export function convertMgToGam(value) {
+  return Number.parseFloat((value / 1000).toFixed(1));
+}

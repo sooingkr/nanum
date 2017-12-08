@@ -12,6 +12,7 @@ import {
 } from 'recharts';
 import NoInfo from '../../components/Dashboard/NoInfo';
 import { selectors } from './DashboardDuck';
+import {convertMgToGam} from '../../utils/AppUtils';
 
 const mockIngredientsData = [
   { ingredient: '단백질', current: mockDatapoint(), fullMark: 100, name: '단백질' },
@@ -50,11 +51,36 @@ class IngredientsChartContainer extends Component {
     } = data.targets;
 
     return [
-      {ingredient: `단백질 (${protein} mg)`, current: data.current.protein, fullMark: 100, name: '단백질'},
-      {ingredient: `나트륨 (${sodium} mg)`, current: data.current.sodium, fullMark: 100, name: '나트륨'},
-      {ingredient: `칼슘 (${calcium} mg)`, current: data.current.calcium, fullMark: 100, name: '칼슘'},
-      {ingredient: `식이섬유 (${cellulose} mg)`, current: data.current.cellulose, fullMark: 100, name: '식이섬유'},
-      {ingredient: `칼륨 (${potassium} mg)`, current: data.current.potassium, fullMark: 100, name: '칼륨'},
+      {
+        ingredient: `단백질 (${convertMgToGam(protein)} g)`,
+        current: convertMgToGam(data.current.protein),
+        fullMark: 100,
+        name: '단백질'
+      },
+      {
+        ingredient: `나트륨 (${convertMgToGam(sodium)} g)`,
+        current: convertMgToGam(data.current.sodium),
+        fullMark: 100,
+        name: '나트륨'
+      },
+      {
+        ingredient: `칼슘 (${convertMgToGam(calcium)} g)`,
+        current: convertMgToGam(data.current.calcium),
+        fullMark: 100,
+        name: '칼슘'
+      },
+      {
+        ingredient: `식이섬유 (${convertMgToGam(cellulose)} g)`,
+        current: convertMgToGam(data.current.cellulose),
+        fullMark: 100,
+        name: '식이섬유'
+      },
+      {
+        ingredient: `칼륨 (${convertMgToGam(potassium)} g)`,
+        current: convertMgToGam(data.current.potassium),
+        fullMark: 100,
+        name: '칼륨'
+      },
     ]
   }
 

@@ -12,6 +12,7 @@ import {
 import { createAction, createReducer } from '../../utils/store';
 import UserService from '../../service/UserService';
 import FoodService from '../../service/FoodService';
+import {convertMgToGam} from '../../utils/AppUtils';
 
 const storeName = 'Dashboard';
 
@@ -221,6 +222,11 @@ const reducer = createReducer(initialState, {
     let { breakfast, lunch, dinner } = payload;
     const caloriesCurrent = calculateCalories(breakfast, lunch, dinner);
     const nutritionLog = transformLog(payload.nutritionLog);
+    nutritionLog.forEach(function (val) {
+      val.protein = convertMgToGam(val.protein);
+      val.sodium = convertMgToGam(val.sodium);
+      val.potassium = convertMgToGam(val.potassium);
+    });
     breakfast = addSelectedState(breakfast) || [];
     lunch = addSelectedState(lunch) || [];
     dinner = addSelectedState(dinner) || [];

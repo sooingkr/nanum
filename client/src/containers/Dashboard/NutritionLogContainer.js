@@ -13,6 +13,7 @@ import {
 } from 'recharts';
 import NoInfo from '../../components/Dashboard/NoInfo';
 import { selectors } from './DashboardDuck';
+import {convertMgToGam} from '../../utils/AppUtils';
 
 const mockNutritionLog = [
   { day: '17', protein: mockDatapoint(), sodium: mockDatapoint(), potassium: mockDatapoint()},
@@ -61,16 +62,16 @@ class NutritionLogContainer extends Component {
         </div>
         <div className="nutrition-log-chart__recap">
           <div className="recap-item">
-            <p>{round(todayNutrients.current.protein || 0, 0)}</p>
-            <p>단백질(mg)</p>
+            <p>{convertMgToGam(round(todayNutrients.current.protein || 0, 0))}</p>
+            <p>단백질(g)</p>
           </div>
           <div className="recap-item">
-            <p>{round(todayNutrients.current.sodium || 0, 0)}</p>
-            <p>나트륨(mg)</p>
+            <p>{convertMgToGam(round(todayNutrients.current.sodium || 0, 0))}</p>
+            <p>나트륨(g)</p>
           </div>
           <div className="recap-item">
-            <p>{round(todayNutrients.current.potassium || 0, 0)}</p>
-            <p>칼륨(mg)</p>
+            <p>{convertMgToGam(round(todayNutrients.current.potassium || 0, 0))}</p>
+            <p>칼륨(g)</p>
           </div>
         </div>
         <ResponsiveContainer>
