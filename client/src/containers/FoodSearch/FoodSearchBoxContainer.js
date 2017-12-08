@@ -9,7 +9,9 @@ import QueryString from 'query-string';
 import {isEmpty} from 'lodash';
 
 class FoodSearchBoxContainer extends Component {
+
   componentWillMount() {
+    console.log(this.props.location);
     const queryParams = QueryString.parse(this.props.location.search);
     if (!isEmpty(queryParams)) {
       this.props.searchFoodFirstPage(queryParams.foodKeyword);
@@ -22,13 +24,13 @@ class FoodSearchBoxContainer extends Component {
 
   handleSubmit = (values) => {
     const currentLocation = this.props.location.pathname;
+    this.props.history.push(`/search?foodKeyword=${values.foodQuery}`);
     this.props.searchFoodFirstPage(values.foodQuery);
-    
+
     // If not in search result page
     if (!isSearchRoute(currentLocation)) {
       // Navigate to search result page
       this.props.cacheQuery(values.foodQuery);
-      this.props.history.push('/search');
     }
   }
 
