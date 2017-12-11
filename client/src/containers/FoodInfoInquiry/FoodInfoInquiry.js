@@ -28,18 +28,23 @@ class FoodInfoInquiry extends Component {
     return (
       <div className="product">
         <Grid fluid>
-          <Row>
+          <Row className="product-content">
             { diagnosticMessage &&
               <Col md={12}>
                 <div className="product__foodInfo visible-xs">{diagnosticMessage}</div>
               </Col>
             }
-            <Col md={7}>
-              <Image className="product__image" src={foodDetail.imageUrl} alt={foodDetail.name} responsive></Image>
-            </Col>
-            <Col md={5} className='product-detail__wrapper'>
+            <div className="product-half">
+              <div className="product__image" style={
+                {
+                  backgroundImage: `url(${foodDetail.imageUrl})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center'
+                }}>
+              </div>
+            </div>
+            <div className='product-half product-detail__wrapper'>
               <FoodDetails foodDetail={foodDetail}></FoodDetails>
-
               <div className="food-carousel">
                 <h4 className="food-carousel__title">대체식품 추천 <span className="arrow-icon"></span></h4>
                 <FoodDetailCarousel 
@@ -48,7 +53,7 @@ class FoodInfoInquiry extends Component {
                   status={status}
                 />
               </div>
-            </Col>
+            </div>
           </Row>
         </Grid>
       </div>
