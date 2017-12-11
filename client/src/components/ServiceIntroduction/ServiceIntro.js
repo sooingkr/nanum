@@ -9,7 +9,7 @@ import DashboardImg from '../../assets/images/promotion_image1.png';
 import ChatboxImg from '../../assets/images/promotion_image2.png';
 
 const ServiceIntro = ({isMobile}) => {
-  const authenLink = isMobile ? '/mobile/realAuthentication.do' : '/realAuthentication.do';
+  const authenLink = isMobile ? '/mobile/realAuthentication.do?redirectUrl=%2Fmobile%2Fmain.do' : '/realAuthentication.do';
   return (
     <div className="service-intro">
       <div className="service-intro__info">
