@@ -27,8 +27,7 @@ const ServiceIntro = ({isMobile}) => {
           문구를 출력하여 다른 대체식품을 추천해줍니다.
         </p>
         <div className="service-intro__btn">
-          <a className="btn btn-default button-green" href={authenLink} target="_blank"
-             title="로그인하기">로그인하기</a>
+          <a className="btn btn-default button-green" href={authenLink} title="로그인하기">로그인하기</a>
         </div>        
       </div>
       <div className="service-intro__image">
