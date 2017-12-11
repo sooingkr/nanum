@@ -7,7 +7,7 @@ const SearchResultItem = ({ id, name, manufacturer, imageUrl }) => (
   <div className="search-result-item">
     <Link to={'/foods/' + id}>
       <div className="search-result-item__image">
-        <Image src={imageUrl} />
+        <Image src={imageUrl} responsive />
       </div>
       <div className="search-result-item__content">
         <h3 className="search-result-item__name">{name}</h3>

@@ -7,6 +7,7 @@ export class FoodSearchResultContainer extends Component {
   onPaginateLoad = () => {
     this.props.loadNextPage(this.props.foodQuery);
   }
+
   render() {
     const {
       hasNextPage,
@@ -14,7 +15,6 @@ export class FoodSearchResultContainer extends Component {
       list,
       hasError,
     } = this.props;
-    console.log(list);
 
     return (
       <SearchResultList

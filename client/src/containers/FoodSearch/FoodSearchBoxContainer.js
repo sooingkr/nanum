@@ -5,6 +5,7 @@ import { reset } from 'redux-form';
 import { withRouter } from 'react-router-dom';
 import SearchForm from '../../components/Common/SearchForm';
 import { FoodSearchDuck } from './FoodSearchDuck';
+import { isMobileVersion } from '../../utils/AppUtils';
 import QueryString from 'query-string';
 import {isEmpty} from 'lodash';
 
@@ -12,10 +13,10 @@ class FoodSearchBoxContainer extends Component {
 
   componentWillMount() {
     console.log(this.props.location);
-    // const queryParams = QueryString.parse(this.props.location.search);
-    // if (!isEmpty(queryParams)) {
-    //   this.props.searchFoodFirstPage(queryParams.foodKeyword);
-    // }
+    const queryParams = QueryString.parse(this.props.location.search);
+    if (!isEmpty(queryParams)) {
+      this.props.searchFoodFirstPage(queryParams.foodKeyword);
+    }
 
     if (!isSearchRoute(this.props.location.pathname)) {
       this.props.reset('SearchForm');
@@ -24,7 +25,16 @@ class FoodSearchBoxContainer extends Component {
 
   handleSubmit = (values) => {
     const currentLocation = this.props.location.pathname;
-    this.props.history.push(`/search?foodKeyword=${values.foodQuery}`);
+    const nextPageLink = isMobileVersion() 
+      ? `/mobile/search?foodKeyword=${values.foodQuery}`
+      : `/search?foodKeyword=${values.foodQuery}`;
+
+    const queryParams = QueryString.parse(this.props.location.search);
+    
+    if (queryParams.foodKeyword !== values.foodQuery) {
+      this.props.history.push(nextPageLink);
+    }
+    
     this.props.searchFoodFirstPage(values.foodQuery);
 
     // If not in search result page

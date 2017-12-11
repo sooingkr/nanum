@@ -15,19 +15,19 @@ const SearchResultList = ({ list }) => {
     <div className="search-result-list">
       { list &&
         list.length > 0 && 
-        <Row>
+        <div className="list-grid">
           { list.map( (item, idx) => (
-              <Col key={item.id + '-' + idx} xs={12} sm={4} md={3}>
-                <SearchResultItem 
-                  id={item.id}
-                  name={item.name}
-                  manufacturer={item.manufacturer}
-                  imageUrl={item.imageUrl}
-                />
-              </Col>
+            <div key={item.id + idx} className="list-grid__item">
+              <SearchResultItem 
+                id={item.id}
+                name={item.name}
+                manufacturer={item.manufacturer}
+                imageUrl={item.imageUrl}
+              />
+            </div>
             )
           )}
-        </Row>
+        </div>
       }
     </div>
   )

@@ -4,6 +4,25 @@
   padding-right: 0;
 }
 
+#nanum {
+  .list-grid {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .list-grid > .list-grid__item {
+    flex: 0 0 25%;
+  }
+
+}
+
 .search-result-list {
   overflow-x: hidden;
+}
+
+#nanum.App--mobile {
+  .list-grid {
+    display: block;
+    padding-top: 32px;
+  }
 }

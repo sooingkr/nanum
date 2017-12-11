@@ -11,6 +11,7 @@ export const actionTypes = {
   failSearch: storeName + '/FAIL_FOOD_SEARCH',
   succeedSearch: storeName + '/SUCCEED_FOOD_SEARCH',
   resetSearch: storeName + '/RESET_FOOD_SEARCH',
+  clearSearchList: storeName + '/CLEAR_SEARCH_LIST',
 };
 
 // define actions
@@ -19,6 +20,7 @@ const failSearch = (error) => createAction(actionTypes.failSearch, { error });
 const succeedSearch = (results) => createAction(actionTypes.succeedSearch, { ...results });
 const rejectSearch = createAction(actionTypes.rejectSearch);
 const resetSearch = createAction(actionTypes.resetSearch);
+const clearSearchList = createAction(actionTypes.clearSearchList);
 
 // define thunks
 const searchFoodScroll = (foodQuery, page) => async (dispatch, getState) => {
@@ -60,11 +62,19 @@ const searchFoodScroll = (foodQuery, page) => async (dispatch, getState) => {
   }
 }
 
-const searchFoodFirstPage = (foodQuery) => async (dispatch) => {
+const searchFoodFirstPage = (foodQuery) => async (dispatch, getState) => {
   let searchResponse = {data: {content: []}};
+  const currentState = getState()[storeName];
+
+  const cachedQuery = currentState.foodQuery;
+  const isNewQuery = cachedQuery !== foodQuery;
+
   try {
     dispatch(requestSearch(foodQuery));
-    searchResponse = await FoodService.searchFood(foodQuery);
+    if (isNewQuery) {
+      dispatch(clearSearchList);
+      searchResponse = await FoodService.searchFood(foodQuery);
+    } 
   } catch (error) {
     dispatch(failSearch(error));
   }
@@ -85,7 +95,8 @@ export const actions = {
   succeedSearch,
   searchFoodScroll: searchFoodScroll,
   resetSearch,
-  searchFoodFirstPage: searchFoodFirstPage
+  searchFoodFirstPage: searchFoodFirstPage,
+  clearSearchList
 };
 
 export const initialState = {
@@ -154,6 +165,17 @@ const reducer = createReducer(initialState, {
         page: state.list.page + 1,
         hasNextPage: !payload.last,
         total: payload.totalElements,
+      },
+    }
+  },
+  [actionTypes.clearSearchList]: (state) => {
+    return {
+      ...state,
+      list: {
+        hits: [],
+        hasNextPage: true,
+        page: -1,
+        total: null,
       },
     }
   }
