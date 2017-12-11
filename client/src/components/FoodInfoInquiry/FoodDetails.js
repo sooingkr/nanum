@@ -21,6 +21,7 @@ class FoodDetails extends Component {
       carbohydratesDifferent,
       proteinsDifferent,
       fatDifferent,
+      manufacturer,
     } = foodDetail;
 
     return (
@@ -34,7 +35,7 @@ class FoodDetails extends Component {
           </Col>
           <Col lg={5} className="product__kcal">
             <strong>{calories}</strong> kcal
-            <div className="small__title hidden-xs">캔모아</div>
+            <div className="small__title hidden-xs">{manufacturer}</div>
           </Col>
         </Row>
         <Row>
