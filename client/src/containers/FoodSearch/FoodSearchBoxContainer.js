@@ -10,9 +10,7 @@ import QueryString from 'query-string';
 import {isEmpty} from 'lodash';
 
 class FoodSearchBoxContainer extends Component {
-
   componentWillMount() {
-    console.log(this.props.location);
     const queryParams = QueryString.parse(this.props.location.search);
     if (!isEmpty(queryParams)) {
       this.props.searchFoodFirstPage(queryParams.foodKeyword);

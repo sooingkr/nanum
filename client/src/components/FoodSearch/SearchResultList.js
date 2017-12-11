@@ -1,10 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
-import { 
-  Row,
-  Col,
-} from 'react-bootstrap';
 import SearchResultItem from './SearchResultItem';
 import withLoader from '../HOCs/withLoader';
 import withPagination from '../HOCs/withPagination';

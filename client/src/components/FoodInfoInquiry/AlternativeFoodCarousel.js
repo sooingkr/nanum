@@ -69,8 +69,7 @@ AlternativeFoodCarousel = NoInfo(
 
 AlternativeFoodCarousel.propTypes = {
   foods: PropTypes.array,
-  hasUserInfo: PropTypes.bool,
-  status: PropTypes.number,
+  hasUserInfo: PropTypes.bool
 }
 
 export default AlternativeFoodCarousel;

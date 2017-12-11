@@ -40,6 +40,7 @@ export const getFoodDetailData = (foodId) => async dispatch => {
     if (isObject(userInfo.data) && !isEmpty(userInfo.data)) {
       hasUserInfo = true;
     }
+    
     dispatch(createAction(actionTypes.getUserInfo, { 
       hasUserInfo, 
       status: userInfo.status || userInfo.response.status
