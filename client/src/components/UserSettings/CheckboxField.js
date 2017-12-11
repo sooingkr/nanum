@@ -46,7 +46,7 @@ class CheckboxField extends React.Component {
         <input
           {...field}
           type="checkbox"
-          onChange={event => handleChange(event, option)}
+          onChange={event => handleChange(event, option, disabled)}
           onBlur={(e) => e.preventDefault()}
           checked={checked && !disabled}
           value={option.id}

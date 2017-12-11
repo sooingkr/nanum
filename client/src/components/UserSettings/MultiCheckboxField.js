@@ -26,12 +26,18 @@ class MultiCheckboxField extends React.Component {
     return currentValues;
   }
 
-  handleChange(event, option) {
+  handleChange(event, option, disabled) {
     const {field} = this.props;
     const {onChange} = field;
     const values = this.getCurrentValues();
+    console.log(field);
+    console.log(values);
+    console.log(disabled);
+    if (disabled) {
+      return;
+    }
     let afterChange = values;
-    
+
     if (event.target.checked) {
       afterChange.push(option);
     } else {
