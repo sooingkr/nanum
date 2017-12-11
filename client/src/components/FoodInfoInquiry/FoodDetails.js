@@ -30,7 +30,7 @@ class FoodDetails extends Component {
           <Col lg={7}>
             <h2 className="product__title">
               {name}
-              <div className="small__title visible-xs">캔모아</div>
+              <div className="small__title visible-xs">{manufacturer}</div>
             </h2>
           </Col>
           <Col lg={5} className="product__kcal">
