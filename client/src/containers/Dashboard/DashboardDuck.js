@@ -205,7 +205,7 @@ export const initialState = {
     },
     {
       id: 'cellulose',
-      text: '식이섬유',
+      text: '탄수화물',
       selected: false,
     },
     {

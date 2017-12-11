@@ -18,7 +18,7 @@ const mockIngredientsData = [
   { ingredient: '단백질', current: mockDatapoint(), fullMark: 100, name: '단백질' },
   { ingredient: '나트륨', current: mockDatapoint(), fullMark: 100, name: '나트륨' },
   { ingredient: '칼슘', current: mockDatapoint(), fullMark: 100, name: '칼슘' },
-  { ingredient: '식이섬유', current: mockDatapoint(), fullMark: 100, name: '식이섬유' },
+  { ingredient: '탄수화물', current: mockDatapoint(), fullMark: 100, name: '탄수화물' },
   { ingredient: '칼륨', current: mockDatapoint(), fullMark: 100, name: '칼륨' },
 ]
 
@@ -70,10 +70,10 @@ class IngredientsChartContainer extends Component {
         name: '칼슘'
       },
       {
-        ingredient: `식이섬유 (${convertMgToGam(cellulose)} g)`,
+        ingredient: `탄수화물 (${convertMgToGam(cellulose)} g)`,
         current: convertMgToGam(data.current.cellulose),
         fullMark: 100,
-        name: '식이섬유'
+        name: '탄수화물'
       },
       {
         ingredient: `칼륨 (${convertMgToGam(potassium)} g)`,
