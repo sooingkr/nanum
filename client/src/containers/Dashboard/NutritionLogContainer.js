@@ -52,13 +52,13 @@ class NutritionLogContainer extends Component {
   }
 
   render () {
-    const { data, todayNutrients} = this.props;
+    const { data, todayNutrients, queryTime} = this.props;
     const formattedData = this.formatData(data);
 
     return (
       <div className="nutrition-log-chart">
         <div className="nutrition-log-chart__date">
-          {getDateLabel()}
+          {getDateLabel(queryTime)}
         </div>
         <div className="nutrition-log-chart__recap">
           <div className="recap-item">
@@ -107,6 +107,7 @@ NutritionLogContainer = NoInfo(
 const mapStateToProps = (state) => ({
   data: selectors.getNutritionLog(state),
   todayNutrients: selectors.getIngredients(state),
+  queryTime: selectors.getTime(state),
 });
 
 export default connect(mapStateToProps)(NutritionLogContainer);
@@ -115,7 +116,6 @@ function mockDatapoint () {
   return Math.floor(Math.random() * 1001) + 0;
 }
 
-function getDateLabel () {
-  let today = new Date();
-  return `${moment(today).subtract(6, 'days').format('DD MMM')} - ${moment(today).format('DD MMM')}`
+function getDateLabel (queryTime) {
+  return `${moment(queryTime).subtract(6, 'days').format('DD MMM')} - ${moment(queryTime).format('DD MMM')}`
 }

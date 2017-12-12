@@ -72,7 +72,7 @@ const initialize = (queryTime) => async (dispatch, getState) => {
   }
   if (!isEmpty(userInfo.data)) {
     tracking = await UserService.getDailyReport(queryTime);
-    nutritionLog = await UserService.getNutritionLog();
+    nutritionLog = await UserService.getNutritionLog(queryTime);
   }
 
   dispatch(createAction(actionTypes.initialize, { 

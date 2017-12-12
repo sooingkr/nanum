@@ -107,10 +107,14 @@ const updateUserSettings = async (userSettings) => {
   return response;
 }
 
-const getNutritionLog = async () => {
+const getNutritionLog = async (queryTime) => {
   let response;
   try {
-    response = await axios.get('/users/nutrient-last-6days');
+    response = await axios.get('/users/nutrients', {
+      params: {
+        queryTime
+      }
+    });
   } catch (error) {
     throw new Error(`UserService error - <getNutritionLog()>: ${error}`)
   }
