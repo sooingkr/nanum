@@ -35,6 +35,7 @@ export const actionTypes = {
   failSubmitFoods: storeName + '/FAIL_SUBMIT_FOODS',
   updateCurrentIngredients: storeName + '/UPDATE_CURRENT_INGREDIENTS',
   selectNutrient: storeName + '/selectNutrient',
+  updateNutrientsToday: storeName + '/NUTRIENTS_TODAY_UPDATE',
 };
 
 // Actions creators 
@@ -54,6 +55,7 @@ const addFood = (food, mealTime) => dispatch => {
 };
 const clearAddFood = () => createAction(actionTypes.clearAddFood);
 const updateCurrentIngredients = () => createAction(actionTypes.updateCurrentIngredients);
+const updateNutrientsToday = () => createAction(actionTypes.updateNutrientsToday);
 
 // Thunks
 const initialize = (queryTime) => async (dispatch, getState) => {
@@ -74,7 +76,6 @@ const initialize = (queryTime) => async (dispatch, getState) => {
     tracking = await UserService.getDailyReport(queryTime);
     nutritionLog = await UserService.getNutritionLog(queryTime);
   }
-
   dispatch(createAction(actionTypes.initialize, { 
     ...tracking,
     nutritionLog: nutritionLog.data || {},
@@ -82,6 +83,7 @@ const initialize = (queryTime) => async (dispatch, getState) => {
   }));
 
   dispatch(updateCurrentIngredients());
+  dispatch(updateNutrientsToday());
 };
 
 const removeFoods = () => async (dispatch, getState) => {
@@ -213,7 +215,13 @@ export const initialState = {
       text: '칼륨',
       selected: false,
     }
-  ]
+  ],
+  nutrientsToday: {
+    protein: 0,
+    sodium: 0,
+    calcium: 0,
+    cellulose: 0,
+  }
 };
 
 // Dashboard reducer
@@ -416,6 +424,27 @@ const reducer = createReducer(initialState, {
     }
     return newState;
   },
+  [actionTypes.updateNutrientsToday]: (state, payload) => {
+    let { breakfast, lunch, dinner } = state;
+    const allIntakes = union(breakfast, lunch, dinner);
+    console.log(allIntakes);
+    const protein = allIntakes.map(mapNutrient('protein')).reduce(sumPair, 0);
+    const sodium = allIntakes.map(mapNutrient('sodium')).reduce(sumPair, 0);
+    const calcium = allIntakes.map(mapNutrient('calcium')).reduce(sumPair, 0);
+    const cellulose = allIntakes.map(mapNutrient('cellulose')).reduce(sumPair, 0);
+    const potassium = allIntakes.map(mapNutrient('potassium')).reduce(sumPair, 0);
+
+    return {
+      ...state,
+      nutrientsToday: {
+        protein: protein,
+        sodium: sodium,
+        calcium: calcium,
+        cellulose: cellulose,
+        potassium: potassium,
+      }
+    };
+  },
 });
 
 // Selectors
@@ -441,6 +470,7 @@ const getToBeAdded = (state) => state[storeName].toBeAdded;
 const getIngredients = (state) => state[storeName].ingredients;
 const getNutritionLog = (state) => state[storeName].nutritionLog;
 const getNutrients = (state) => state[storeName].nutrients;
+const getNutrientsToday = (state) => state[storeName].nutrientsToday;
 
 export const DashboardDuck = {
   storeName,
@@ -463,6 +493,7 @@ export const selectors = {
   getIngredients,
   getNutritionLog,
   getNutrients,
+  getNutrientsToday,
 }
 
 function constructIntakePayload(foodsToAdd, queryTime) {

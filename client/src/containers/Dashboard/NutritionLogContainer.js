@@ -52,7 +52,7 @@ class NutritionLogContainer extends Component {
   }
 
   render () {
-    const { data, todayNutrients, queryTime} = this.props;
+    const { data, nutrientsToday, queryTime} = this.props;
     const formattedData = this.formatData(data);
 
     return (
@@ -62,15 +62,15 @@ class NutritionLogContainer extends Component {
         </div>
         <div className="nutrition-log-chart__recap">
           <div className="recap-item">
-            <p>{convertMgToGam(round(todayNutrients.current.protein || 0, 0))}</p>
+            <p>{convertMgToGam(nutrientsToday.protein)}</p>
             <p>단백질(g)</p>
           </div>
           <div className="recap-item">
-            <p>{convertMgToGam(round(todayNutrients.current.sodium || 0, 0))}</p>
+            <p>{convertMgToGam(nutrientsToday.sodium)}</p>
             <p>나트륨(g)</p>
           </div>
           <div className="recap-item">
-            <p>{convertMgToGam(round(todayNutrients.current.potassium || 0, 0))}</p>
+            <p>{convertMgToGam(nutrientsToday.potassium)}</p>
             <p>칼륨(g)</p>
           </div>
         </div>
@@ -106,7 +106,7 @@ NutritionLogContainer = NoInfo(
 
 const mapStateToProps = (state) => ({
   data: selectors.getNutritionLog(state),
-  todayNutrients: selectors.getIngredients(state),
+  nutrientsToday: selectors.getNutrientsToday(state),
   queryTime: selectors.getTime(state),
 });
 
