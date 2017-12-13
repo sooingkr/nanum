@@ -66,12 +66,23 @@
     p:last-child {
       font-size: 10px;
       font-weight: 700;
-      color: #9fa3a7;
     }
 
     &:last-child {
       margin-right: 0;
-    }
+    }    
+  }
+
+  p.protein {
+    color: #f8ac39;    
+  }
+
+  p.sodium {
+    color: #e66e65;
+  }
+
+  p.potassium {
+    color: #69c7d6;    
   }
 }
 

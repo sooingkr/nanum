@@ -10,6 +10,7 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
+  YAxis,
 } from 'recharts';
 import NoInfo from '../../components/Dashboard/NoInfo';
 import { selectors } from './DashboardDuck';
@@ -36,9 +37,9 @@ const CustomTooltip = (props) => {
   if (active) {
     return (
       <div className="nutrition-log-chart-tooltip">
-        <p>{external[payload[0].dataKey] + ' : '}<span>{payload[0].value}</span></p>
-        <p>{external[payload[1].dataKey] + ' : '}<span>{payload[1].value}</span></p>
-        <p>{external[payload[2].dataKey] + ' : '}<span>{payload[2].value}</span></p>
+        <p className="protein">{external[payload[0].dataKey] + ' : '}<span>{payload[0].value}</span></p>
+        <p className="sodium">{external[payload[1].dataKey] + ' : '}<span>{payload[1].value}</span></p>
+        <p className="potassium">{external[payload[2].dataKey] + ' : '}<span>{payload[2].value}</span></p>
       </div>
     );
   }
@@ -62,26 +63,27 @@ class NutritionLogContainer extends Component {
         </div>
         <div className="nutrition-log-chart__recap">
           <div className="recap-item">
-            <p>{convertMgToGam(nutrientsToday.protein)}</p>
-            <p>단백질(g)</p>
+            <p className="protein">{convertMgToGam(nutrientsToday.protein)}</p>
+            <p className="protein">단백질(g)</p>
           </div>
           <div className="recap-item">
-            <p>{convertMgToGam(nutrientsToday.sodium)}</p>
-            <p>나트륨(g)</p>
+            <p className="sodium">{convertMgToGam(nutrientsToday.sodium)}</p>
+            <p className="sodium">나트륨(g)</p>
           </div>
           <div className="recap-item">
-            <p>{convertMgToGam(nutrientsToday.potassium)}</p>
-            <p>칼륨(g)</p>
+            <p className="potassium">{convertMgToGam(nutrientsToday.potassium)}</p>
+            <p className="potassium">칼륨(g)</p>
           </div>
         </div>
         <ResponsiveContainer>
           <AreaChart data={formattedData} >
             <XAxis dataKey="day" />
-            <CartesianGrid />
+            <YAxis/>
+            <CartesianGrid strokeDasharray="3 3"/>
             <Tooltip content={<CustomTooltip external={tooltipLabels} />} />
-            <Area dataKey="protein" stroke="#69c7d6" fill="#69c7d6" fillOpacity={0.6} strokeWidth={2} yAxisId={0} isAnimationActive={false} />
-            <Area dataKey="sodium" stroke="#e66e65" fill="#e66e65" fillOpacity={0.6} strokeWidth={2} yAxisId={1} isAnimationActive={false} />
-            <Area dataKey="potassium" stroke="#f8ac39" fill="#f8ac39" fillOpacity={0.6} strokeWidth={2} yAxisId={2} isAnimationActive={false} />
+            <Area dataKey="protein" stackId="1" stroke="#f8ac39" fill="#f8ac39" fillOpacity={0.6} strokeWidth={2} isAnimationActive={false} />
+            <Area dataKey="sodium" stackId="1" stroke="#e66e65" fill="#e66e65" fillOpacity={0.6} strokeWidth={2} isAnimationActive={false} />
+            <Area dataKey="potassium" stackId="1" stroke="#69c7d6" fill="#69c7d6" fillOpacity={0.6} strokeWidth={2} isAnimationActive={false} />
           </AreaChart>
         </ResponsiveContainer>
       </div>
