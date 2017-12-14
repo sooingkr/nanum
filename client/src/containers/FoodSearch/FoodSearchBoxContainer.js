@@ -48,8 +48,7 @@ class FoodSearchBoxContainer extends Component {
     return (
       <div className="food-search__box">
         <SearchForm onSubmit={this.handleSubmit} />
-        { total &&
-          foodQuery !== '' &&
+        { foodQuery !== '' &&
           isSearchRoute(this.props.location.pathname) &&
           <div className="food-search__total">
             <span className="content">

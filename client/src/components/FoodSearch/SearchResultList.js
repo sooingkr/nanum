@@ -6,25 +6,31 @@ import withLoader from '../HOCs/withLoader';
 import withPagination from '../HOCs/withPagination';
 import withInfiniteScroll from '../HOCs/withInfiniteScroll';
 
+const renderSearchResultList = (list) => {
+  console.log(list && list.length > 0);
+  if (list && list.length > 0) {
+    return list.map( (item, idx) => (
+        <div key={item.id + idx} className="list-grid__item">
+          <SearchResultItem 
+            id={item.id}
+            name={item.name}
+            manufacturer={item.manufacturer}
+            imageUrl={item.imageUrl}
+          />
+        </div>
+        )
+      )
+  } else {
+    return <span className="list-grid__text">검색결과가 없습니다.</span>;
+  }
+}
+
 const SearchResultList = ({ list }) => {
   return (
     <div className="search-result-list">
-      { list &&
-        list.length > 0 && 
-        <div className="list-grid">
-          { list.map( (item, idx) => (
-            <div key={item.id + idx} className="list-grid__item">
-              <SearchResultItem 
-                id={item.id}
-                name={item.name}
-                manufacturer={item.manufacturer}
-                imageUrl={item.imageUrl}
-              />
-            </div>
-            )
-          )}
-        </div>
-      }
+      <div className="list-grid">
+        {renderSearchResultList(list)}
+      </div>
     </div>
   )
 }

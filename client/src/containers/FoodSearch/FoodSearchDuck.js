@@ -108,7 +108,7 @@ export const initialState = {
     hits: [],
     hasNextPage: true,
     page: -1,
-    total: null,
+    total: 0,
   },
 };
 
@@ -147,7 +147,7 @@ const reducer = createReducer(initialState, {
         hits: [],
         hasNextPage: true,
         page: -1,
-        total: null,
+        total: 0,
       },
     }
   },
@@ -175,7 +175,7 @@ const reducer = createReducer(initialState, {
         hits: [],
         hasNextPage: true,
         page: -1,
-        total: null,
+        total: 0,
       },
     }
   }
