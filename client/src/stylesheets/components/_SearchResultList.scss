@@ -8,10 +8,20 @@
   .list-grid {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
   }
 
   .list-grid > .list-grid__item {
     flex: 0 0 25%;
+  }
+
+  .img-default:before {
+    content: ' ';
+    display: block;
+    position: absolute;
+    width: 480px;
+    height: 360px;
+    background-image: url(https://images.pexels.com/photos/46239/salmon-dish-food-meal-46239.jpeg?w=940&h=650&auto=compress&cs=tinysrgb);
   }
 
 }
