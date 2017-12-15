@@ -35,17 +35,11 @@ const handleError = error => {
 
 // Add a response interceptor
 client.interceptors.response.use(response => {
-  console.log(response);
-  // const { headers, data }= response;
-  // console.log(isContentTypeHtml(headers['content-type']));  
-  // console.log(data);
-  // console.log(typeof data);
-  // if (isContentTypeHtml(headers['content-type']) && isRequiredLogin(data)) {
-    // console.log('okie');
-    // window.location.href = '/';
-    // return;
-  // }
-  // response, handleError
+  const { headers, data }= response;
+  if (isContentTypeHtml(headers['content-type']) && isRequiredLogin(data)) {
+    window.location.href = '#introduce';
+    return Promise.reject(response);
+  }
   return response;
 }, handleError);
 
