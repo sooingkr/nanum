@@ -427,7 +427,6 @@ const reducer = createReducer(initialState, {
   [actionTypes.updateNutrientsToday]: (state, payload) => {
     let { breakfast, lunch, dinner } = state;
     const allIntakes = union(breakfast, lunch, dinner);
-    console.log(allIntakes);
     const protein = allIntakes.map(mapNutrient('protein')).reduce(sumPair, 0);
     const sodium = allIntakes.map(mapNutrient('sodium')).reduce(sumPair, 0);
     const calcium = allIntakes.map(mapNutrient('calcium')).reduce(sumPair, 0);

@@ -9,11 +9,11 @@
     position: relative;
     transition: min-height .3s ease;
     text-align: center;
+    height: 200px;    
   
     img {
       width: 100%;
       transition: max-height .3s ease;
-      height: 200px;
     }
   }
   
