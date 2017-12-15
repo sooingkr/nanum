@@ -34,7 +34,30 @@ const handleError = error => {
 };
 
 // Add a response interceptor
-client.interceptors.response.use(response => response, handleError);
+client.interceptors.response.use(response => {
+  console.log(response);
+  // const { headers, data }= response;
+  // console.log(isContentTypeHtml(headers['content-type']));  
+  // console.log(data);
+  // console.log(typeof data);
+  // if (isContentTypeHtml(headers['content-type']) && isRequiredLogin(data)) {
+    // console.log('okie');
+    // window.location.href = '/';
+    // return;
+  // }
+  // response, handleError
+  return response;
+}, handleError);
+
+// client.interceptors.response.use(response => response, handleError);
+
+function isContentTypeHtml(contentType) {
+  return contentType === 'text/html;charset=UTF-8';
+}
+
+function isRequiredLogin(string) {
+  return string.indexOf('location.href = "/realAuthentication.do?') !== -1;
+}
 
 if(process.env.NODE_ENV === 'mock') {
   // When in mock api mode, add some default delay to simulate network
