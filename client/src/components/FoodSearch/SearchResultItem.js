@@ -5,10 +5,10 @@ import { Image } from 'react-bootstrap';
 
 const SearchResultItem = ({ id, name, manufacturer, imageUrl }) => (
   <div className="search-result-item">
-    <Link to={'/foods/' + id}>
-      <div className="search-result-item__image">
-        <Image src={imageUrl} responsive onError={(e) => e.target.src='http://via.placeholder.com/350x150'} />
-      </div>
+    <Link to={'/foods/' + id} style={{ background: `url(${imageUrl})`, 'background-size': 'cover' }} onError={(e) => e.target.src='http://via.placeholder.com/350x150'}>
+      {/* <div className="search-result-item__image">
+        <Image src={imageUrl} onError={(e) => e.target.src='http://via.placeholder.com/350x150'} responsive />
+      </div> */}
       <div className="search-result-item__content">
         <h3 className="search-result-item__name">{name}</h3>
         <h4 className="search-result-item__manufacturer">{manufacturer}</h4>

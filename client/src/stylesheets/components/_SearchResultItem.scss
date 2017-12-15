@@ -3,13 +3,19 @@
   
   .search-result-item {
     position: relative;
+
+    a {
+      background: url(http://via.placeholder.com/350x150);
+      background-size: cover;
+      display: block;
+      height: 200px;
+    }
   }
   
   .search-result-item__image {
     position: relative;
     transition: min-height .3s ease;
     text-align: center;
-    height: 200px;    
   
     img {
       width: 100%;

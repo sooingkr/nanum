@@ -7,7 +7,6 @@ import withPagination from '../HOCs/withPagination';
 import withInfiniteScroll from '../HOCs/withInfiniteScroll';
 
 const renderSearchResultList = (list) => {
-  console.log(list && list.length > 0);
   if (list && list.length > 0) {
     return list.map( (item, idx) => (
         <div key={item.id + idx} className="list-grid__item">
