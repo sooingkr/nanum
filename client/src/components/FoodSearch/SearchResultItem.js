@@ -7,7 +7,7 @@ const SearchResultItem = ({ id, name, manufacturer, imageUrl }) => (
   <div className="search-result-item">
     <Link to={'/foods/' + id}>
       <div className="search-result-item__image">
-        <Image src={imageUrl} responsive className="img-default"/>
+        <Image src={imageUrl} responsive onError={(e) => e.target.src='http://via.placeholder.com/350x150'} />
       </div>
       <div className="search-result-item__content">
         <h3 className="search-result-item__name">{name}</h3>
