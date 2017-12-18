@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Grid, Row, Col, Image } from 'react-bootstrap';
+import { Grid, Row, Col } from 'react-bootstrap';
 import FoodDetails from '../../components/FoodInfoInquiry/FoodDetails';
 import FoodDetailCarousel from '../../components/FoodInfoInquiry/FoodDetailCarousel';
 

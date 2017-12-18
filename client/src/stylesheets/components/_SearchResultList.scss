@@ -8,7 +8,6 @@
   .list-grid {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
   }
 
   .list-grid > .list-grid__item {
@@ -24,5 +23,6 @@
   .list-grid {
     display: block;
     padding-top: 32px;
+    justify-content: center;
   }
 }

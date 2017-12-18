@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { isEmpty, round } from 'lodash';
+import { isEmpty } from 'lodash';
 import moment from 'moment';
 import {
   Area,
