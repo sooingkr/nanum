@@ -35,15 +35,14 @@ export const getFoodDetailData = (foodId) => async dispatch => {
 
   try {
     foodDetail = await FoodService.foodDetail(foodId);
-    userInfo = await UserService.getUserSettings();
     dispatch(createAction(actionTypes.getFoodDetail, {...initialState.foodDetail, ...foodDetail.data}));
-    if (isObject(userInfo.data) && !isEmpty(userInfo.data)) {
+    if (foodDetail.data.isAuthenticate) {
       hasUserInfo = true;
     }
     
     dispatch(createAction(actionTypes.getUserInfo, { 
-      hasUserInfo, 
-      status: userInfo.status || userInfo.response.status
+      hasUserInfo,
+      status: foodDetail.data.isAuthenticate
     }));
   } catch (err) {
     dispatch(createAction(actionTypes.failGetFoodDetail));
