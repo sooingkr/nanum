@@ -13,6 +13,11 @@
   .list-grid > .list-grid__item {
     flex: 0 0 25%;
   }
+
+  .list-grid > .list-grid__text {
+    flex: 1;
+    text-align: center;
+  }
 }
 
 .search-result-list {
