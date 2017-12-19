@@ -59,7 +59,7 @@ let UserSettingsForm = ({
           name="height"
           className="text-input"
           component="input"
-          type="text"
+          type="number"
           validate={validateNumber}
           placeholder="키"
         />
@@ -67,7 +67,7 @@ let UserSettingsForm = ({
           name="weight"
           className="text-input"
           component="input"
-          type="text"
+          type="number"
           validate={validateNumber}
           placeholder="몸무게"
         />
