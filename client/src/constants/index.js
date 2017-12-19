@@ -8,7 +8,7 @@ export const STORAGE_ID = 'user_id';
 export const STORAGE_TOKEN = 'Authorization';
 
 // services
-export const DEFAULT_PAGE_SIZE = 30;
+export const DEFAULT_PAGE_SIZE = 12;
 
 // UI
-export const DEFAULT_PAGINATE_SIZE = 30;
+export const DEFAULT_PAGINATE_SIZE = 12;
