@@ -2,22 +2,22 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { reduxForm, Field } from 'redux-form';
-import { 
-  Form, FormGroup, 
+import {
+  Form, FormGroup,
 } from 'react-bootstrap';
 import MultiCheckboxField from '../../components/UserSettings/MultiCheckboxField';
 import RadioField from '../../components/UserSettings/RadioField';
 import { selectors } from './UserSettingsDuck';
 
 // Form validators
-const validateNumber = value => 
+const validateNumber = value =>
   value && isNaN(Number(value)) ? 'Must be a number' : undefined;
 
 let UserSettingsForm = ({
-  handleSubmit, 
-  pristine, 
-  reset, 
-  submitting, 
+  handleSubmit,
+  pristine,
+  reset,
+  submitting,
   fieldList: { diseases, interests },
   selectedDiseases,
   selectedInterests,
@@ -54,6 +54,24 @@ let UserSettingsForm = ({
           step="1"
         />
       </FormGroup>
+      <FormGroup>
+        <Field
+          name="height"
+          className="text-input"
+          component="input"
+          type="text"
+          validate={validateNumber}
+          placeholder="키"
+        />
+        <Field
+          name="weight"
+          className="text-input"
+          component="input"
+          type="text"
+          validate={validateNumber}
+          placeholder="몸무게"
+        />
+      </FormGroup>
       <FormGroup className="align-left">
         <label>
           <Field
@@ -79,24 +97,6 @@ let UserSettingsForm = ({
     </fieldset>
     <fieldset className="diseases-fields">
       <legend>질병 유무 확인란</legend>
-      <FormGroup>
-        <Field
-          name="height"
-          className="text-input"
-          component="input"
-          type="text"
-          validate={validateNumber}
-          placeholder="키"
-        />
-        <Field
-          name="weight"
-          className="text-input"
-          component="input"
-          type="text"
-          validate={validateNumber}
-          placeholder="몸무게"
-        />
-      </FormGroup>
       <p>해당하는 질병을 선택해 주세요. (한개 이상 선택 가능)</p>
       <Field name="diseases" component={props =>
         <MultiCheckboxField
