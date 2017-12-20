@@ -90,6 +90,7 @@ class IngredientsChartContainer extends Component {
 
     return (
       <div className="ingredients-chart">
+        <span className="title">일일 권장섭취량</span>
         <ResponsiveContainer>
           <RadarChart 
             cx={'50%'} 
@@ -118,6 +119,7 @@ class IngredientsChartContainer extends Component {
             />
           </RadarChart>
         </ResponsiveContainer>
+        <span className="source">보건복지부 (2015)</span>
       </div>
     );
   }
