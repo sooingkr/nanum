@@ -85,7 +85,7 @@ class IngredientsChartContainer extends Component {
   }
 
   render () {
-    const { data } = this.props;
+    const { data, sourceCalories } = this.props;
     const formattedData = this.formatData(data);
 
     return (
@@ -119,7 +119,7 @@ class IngredientsChartContainer extends Component {
             />
           </RadarChart>
         </ResponsiveContainer>
-        <span className="source">보건복지부 (2015)</span>
+        <span className="source">{sourceCalories}</span>
       </div>
     );
   }
@@ -141,7 +141,8 @@ IngredientsChartContainer = NoInfo(
 )(IngredientsChartContainer);
 
 const mapStateToProps = (state) => ({
-  data: selectors.getIngredients(state)
+  data: selectors.getIngredients(state),
+  sourceCalories: selectors.getSourceCalories(state),
 });
 
 export default connect(mapStateToProps)(IngredientsChartContainer);

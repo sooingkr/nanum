@@ -221,7 +221,8 @@ export const initialState = {
     sodium: 0,
     calcium: 0,
     cellulose: 0,
-  }
+  },
+  sourceCalories: ''
 };
 
 // Dashboard reducer
@@ -262,6 +263,7 @@ const reducer = createReducer(initialState, {
           potassium: payload.potassiumTarget,
         }
       },
+      sourceCalories: payload.sourceCalories
     };
   },
   [actionTypes.pickQueryTime]: (state, payload) => {
@@ -470,6 +472,7 @@ const getIngredients = (state) => state[storeName].ingredients;
 const getNutritionLog = (state) => state[storeName].nutritionLog;
 const getNutrients = (state) => state[storeName].nutrients;
 const getNutrientsToday = (state) => state[storeName].nutrientsToday;
+const getSourceCalories = (state) => state[storeName].sourceCalories;
 
 export const DashboardDuck = {
   storeName,
@@ -493,6 +496,7 @@ export const selectors = {
   getNutritionLog,
   getNutrients,
   getNutrientsToday,
+  getSourceCalories,
 }
 
 function constructIntakePayload(foodsToAdd, queryTime) {

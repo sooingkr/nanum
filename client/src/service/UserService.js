@@ -32,6 +32,7 @@ const getDailyReport = async (queryTime) => {
     calciumTarget: parseInt((trackingData.calciumTarget || 0), 10),
     celluloseTarget: parseInt((trackingData.celluloseTarget || 0), 10),
     potassiumTarget: parseInt((trackingData.potassiumTarget || 0), 10),
+    sourceCalories: trackingData.sourceCalories
   };
 }
 
