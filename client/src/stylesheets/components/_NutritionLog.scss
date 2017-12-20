@@ -11,7 +11,7 @@
 
   .nutrition-log-chart .recharts-responsive-container {
     height: 210px !important;
-  }    
+  }
 
   .nutrition-log-chart-tooltip {
     color: $black-2;
@@ -29,17 +29,34 @@
     font-weight: 700;
     color: #292929;
     font-size: 10px;
+    text-align: right;
 
     &:before {
       position: absolute;
       display: block;
       color: #ffc80a;
-      left: 0;
+      right: 85px;
       content: '\f073';
       font-family: 'FontAwesome';
-      line-height: 14px;
+      line-height: 10px;
       width: 14px;
       height: 14px;
+    }
+  }
+
+  .nutrition-log-chart__title {
+    position: absolute;
+
+    &.first {
+      left: 15px;
+      top: 20px;
+    }
+
+    &.second {
+      font-size: 14px;
+      top: 45px;
+      left: 50%;
+      transform: translateX(-50%);
     }
   }
 
@@ -70,11 +87,11 @@
 
     &:last-child {
       margin-right: 0;
-    }    
+    }
   }
 
   p.protein {
-    color: #f8ac39;    
+    color: #f8ac39;
   }
 
   p.sodium {
@@ -82,7 +99,7 @@
   }
 
   p.potassium {
-    color: #69c7d6;    
+    color: #69c7d6;
   }
 }
 
@@ -90,4 +107,13 @@
   .nutrition-log-chart {
     width: 100%;
   }
+
+  .nutrition-log-chart__title.first {
+    font-size: 14px;
+  }
+
+  .nutrition-log-chart__title.second {
+    font-size: 10px;
+  }
+
 }

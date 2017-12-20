@@ -61,6 +61,12 @@ class NutritionLogContainer extends Component {
         <div className="nutrition-log-chart__date">
           {getDateLabel(queryTime)}
         </div>
+        <h3 className="nutrition-log-chart__title first">
+          주간 섭취량
+        </h3>
+        <h3 className="nutrition-log-chart__title second">
+          오늘 섭취량
+        </h3>
         <div className="nutrition-log-chart__recap">
           <div className="recap-item">
             <p className="protein">{convertMgToGam(nutrientsToday.protein)}</p>
@@ -100,7 +106,7 @@ const noInfoCondition = (props) => {
 }
 
 NutritionLogContainer = NoInfo(
-  noInfoCondition, 
+  noInfoCondition,
   null,
   '정보를 입력하시면 오늘의 식품을 추천받으실 수 있습니다',
   '/user/setting',
