@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { reduxForm, Field } from 'redux-form';
+import { reduxForm, Field, formValueSelector } from 'redux-form';
 import {
   Form, FormGroup,
 } from 'react-bootstrap';
@@ -9,9 +9,53 @@ import MultiCheckboxField from '../../components/UserSettings/MultiCheckboxField
 import RadioField from '../../components/UserSettings/RadioField';
 import { selectors } from './UserSettingsDuck';
 
-// Form validators
-const validateNumber = value =>
-  value && isNaN(Number(value)) ? 'Must be a number' : undefined;
+const errorMessages = {
+  required: '필수정보를 입력하셔야 합니다',
+  minBirthYear: '태어난 해는 1900년 이후만 입력할 수 있습니다'
+}
+
+const validate = values => {
+  const errors = {}
+  if (!values.firstName) {
+    errors.firstName = errorMessages.required
+    return errors;
+  }
+  if (!values.lastName) {
+    errors.lastName = errorMessages.required
+    return errors;
+  }
+  if (!values.gender) {
+    errors.gender = errorMessages.required
+    return errors;
+  }
+
+  if (!values.birthYear) {
+    errors.birthYear = errorMessages.required
+    return errors;
+  } else if (values.birthYear < 1900) {
+    errors.birthYear = errorMessages.minBirthYear
+    return errors;
+  }
+  return errors
+}
+
+const renderField = ({
+  input,
+  label,
+  type,
+  meta: { touched, error },
+  ...rest
+}) => {
+  const errorClass = error ? 'error' : '';
+  return (
+    <input
+      {...input}
+      className={`${errorClass} ${rest.className}`}
+      placeholder={rest.placeholder}
+      type={type}
+    />
+  )
+}
 
 let UserSettingsForm = ({
   handleSubmit,
@@ -24,6 +68,7 @@ let UserSettingsForm = ({
   allDiseases,
   allInterests,
   allAllergies,
+  userGender,
 }) => {
   return (
     <Form horizontal onSubmit={handleSubmit} className="user-setting__form">
@@ -33,21 +78,21 @@ let UserSettingsForm = ({
         <Field
           name="firstName"
           className="text-input"
-          component="input"
+          component={renderField}
           type="text"
           placeholder="이름"
         />
         <Field
           name="lastName"
           className="text-input"
-          component="input"
+          component={renderField}
           type="text"
           placeholder="성"
         />
         <Field
           name="birthYear"
           className="text-input"
-          component="input"
+          component={renderField}
           type="number"
           placeholder="생년 (예: 1988)"
           min="1"
@@ -60,7 +105,6 @@ let UserSettingsForm = ({
           className="text-input"
           component="input"
           type="number"
-          validate={validateNumber}
           placeholder="키"
         />
         <Field
@@ -68,7 +112,6 @@ let UserSettingsForm = ({
           className="text-input"
           component="input"
           type="number"
-          validate={validateNumber}
           placeholder="몸무게"
         />
       </FormGroup>
@@ -104,19 +147,23 @@ let UserSettingsForm = ({
           label="Diseases"
           options={allDiseases}
           field={props.input}
+          onlyOne={false}
         />
       }
       />
     </fieldset>
     <fieldset className="interests-fields">
       <legend>관심 분야</legend>
-      <p>해당하는 관심사를 선택해 주세요. (한개 이상 선택 가능)</p>
+      <p>해당하는 관심사를 하나만 선택해 주세요.</p>
       <Field name="interests" component={props =>
         <MultiCheckboxField
           {...props.input}
           label="Interests"
           options={allInterests}
           field={props.input}
+          onlyOne
+          userGender={userGender}
+          exclude={userGender === 'MALE' ? '임산부' : ''}
         />
       }
       />
@@ -130,6 +177,7 @@ let UserSettingsForm = ({
           label="Allergies"
           options={allAllergies}
           field={props.input}
+          onlyOne={false}
         />
       }
       />
@@ -143,6 +191,17 @@ UserSettingsForm = reduxForm({
   form: 'UserSettingsForm',
   fieldList: ['diseases', 'interests'],
   enableReinitialize: true,
+  validate,
+  onSubmitFail: function (errors) {
+    const message = errors[Object.keys(errors)[0]];
+    const errorEl = document.querySelector(
+      Object.keys(errors).map(fieldName => `[name="${fieldName}"]`).join(',')
+    );
+    if (errorEl && errorEl.focus) {
+      errorEl.focus(); // this scrolls without visible scroll
+    }
+    window.alert(message);
+  }
 })(UserSettingsForm);
 
 // Get initial values from store
@@ -161,6 +220,7 @@ const mapStateToProps = (state) => ({
   allDiseases: selectors.getAllDiseases(state),
   allInterests: selectors.getAllInterests(state),
   allAllergies: selectors.getAllergies(state),
+  userGender: formValueSelector('UserSettingsForm')(state, 'gender'),
 })
 
 UserSettingsForm = connect(mapStateToProps)(UserSettingsForm);

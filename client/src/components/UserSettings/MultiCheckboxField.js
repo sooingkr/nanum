@@ -22,20 +22,31 @@ class MultiCheckboxField extends React.Component {
       previousValues = initialValue;
     }
 
-    let currentValues = isArray(previousValues) ? [...previousValues] : [previousValues];    
+    let currentValues = isArray(previousValues) ? [...previousValues] : [previousValues];
     return currentValues;
   }
 
   handleChange(event, option, disabled) {
-    const {field} = this.props;
+    const {field, exclude} = this.props;
     const {onChange} = field;
     const values = this.getCurrentValues();
+    const hasValue = values.length !== 0;
+
     if (disabled) {
+      return;
+    }
+
+    if (exclude && exclude === option.label) {
+      window.alert('남성은 임산부 관심분야를 선택할 수 없습니다');
       return;
     }
     let afterChange = values;
 
     if (event.target.checked) {
+      if (hasValue) {
+        window.alert('해당하는 관심사를 하나만 선택해 주세요');
+        return;
+      }
       afterChange.push(option);
     } else {
       afterChange = afterChange.filter(value => value.id !== option.id);
@@ -57,8 +68,8 @@ class MultiCheckboxField extends React.Component {
         {options.map(option => {
           const isChecked = ids.indexOf(option.id) > -1;
           const isDisabledValue = this.isDisabledValue(option.name);
-          const className = isChecked && !isDisabledValue 
-            ? "multi-checkbox__box checked" 
+          const className = isChecked && !isDisabledValue
+            ? "multi-checkbox__box checked"
             : "multi-checkbox__box";
 
           const checkboxProps = {
@@ -68,7 +79,7 @@ class MultiCheckboxField extends React.Component {
             disabled: isDisabledValue,
             handleChange: this.handleChange,
           }
-          
+
           return (
             <div className={className} key={option.id}>
               <CheckboxField {...checkboxProps} />

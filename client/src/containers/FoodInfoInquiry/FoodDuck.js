@@ -1,10 +1,8 @@
 /**
  * Created by yenhua on 11/2/17.
  */
-import { isObject, isEmpty } from 'lodash';
 import { createAction, createReducer } from '../../utils/store';
 import FoodService from '../../service/FoodService';
-import UserService from '../../service/UserService';
 import {averageNutrients} from '../../utils/AppUtils';
 
 // import service
@@ -30,7 +28,7 @@ export const actionTypes = {
 
 // define thunks
 export const getFoodDetailData = (foodId) => async dispatch => {
-  let foodDetail, userInfo;
+  let foodDetail;
   let hasUserInfo = false;
 
   try {
@@ -39,15 +37,15 @@ export const getFoodDetailData = (foodId) => async dispatch => {
     if (foodDetail.data.isAuthenticate) {
       hasUserInfo = true;
     }
-    
-    dispatch(createAction(actionTypes.getUserInfo, { 
+
+    dispatch(createAction(actionTypes.getUserInfo, {
       hasUserInfo,
       status: foodDetail.data.isAuthenticate
     }));
   } catch (err) {
     dispatch(createAction(actionTypes.failGetFoodDetail));
   }
-  
+
 };
 
 // conveniently export actions
