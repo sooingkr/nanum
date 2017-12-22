@@ -56,12 +56,9 @@ export const actions = {
 
 const reducer = createReducer(initialState, {
   [actionTypes.getFoodDetail]: (state, foodDetail) => {
-    const averageNutrientFood = averageNutrients(foodDetail.categoryCode);
-    if (averageNutrientFood) {
-      foodDetail.carbohydratesDifferent = foodDetail.carbohydrates - averageNutrientFood.carbohydrates;
-      foodDetail.proteinsDifferent = foodDetail.proteins - averageNutrientFood.protein;
-      foodDetail.fatDifferent = foodDetail.fat - averageNutrientFood.fat;
-    }
+    foodDetail.carbohydratesDifferent = foodDetail.carbohydrates - foodDetail.avgCarbohydrates;
+    foodDetail.proteinsDifferent = foodDetail.proteins - foodDetail.avgProteins;
+    foodDetail.fatDifferent = foodDetail.fat - foodDetail.avgFat;
     return {
       ...state,
       foodDetail,
