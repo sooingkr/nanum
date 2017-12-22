@@ -1,4 +1,4 @@
-#nanum { 
+#nanum {
   .ingredients-chart {
     max-width: 500px;
     width: 100%;
@@ -6,8 +6,9 @@
 
     .title {
       padding-left: 10px;
-      padding-top: 10px;
+      padding-top: 20px;
       display: block;
+      font-size: 14px;
     }
 
     .source {
@@ -16,6 +17,7 @@
       right: 5px;
       padding-bottom: 10px;
       padding-right: 10px;
+      font-size: 9px;
     }
   }
 
@@ -47,5 +49,23 @@
 #nanum.App--mobile {
   .ingredients-chart {
     width: 100%;
+
+    .title {
+      padding-left: 65px;
+    }
+
+    .source {
+      right: 54px;
+    }
+  }
+
+  .ingredients-chart > .recharts-responsive-container {
+    transform: scale(0.8);
+  }
+
+  .dashboard-ingredients-chart .section:first-child {
+    padding: 0;
+    margin-right: -50px;
+    margin-left: -50px;
   }
 }

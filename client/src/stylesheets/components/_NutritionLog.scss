@@ -46,6 +46,7 @@
 
   .nutrition-log-chart__title {
     position: absolute;
+    font-size: 14px;
 
     &.first {
       left: 15px;
@@ -53,7 +54,6 @@
     }
 
     &.second {
-      font-size: 14px;
       top: 45px;
       left: 50%;
       transform: translateX(-50%);
