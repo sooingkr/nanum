@@ -62,7 +62,8 @@
 
   .nutrition-log-chart__recap {
     display: flex;
-    margin: 0 auto;
+    width: 100%;
+    justify-content: center;
   }
 
   .recap-item {
