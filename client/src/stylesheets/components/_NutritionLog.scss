@@ -11,6 +11,7 @@
 
   .nutrition-log-chart .recharts-responsive-container {
     height: 210px !important;
+    margin-left: -20px;
   }
 
   .nutrition-log-chart-tooltip {
@@ -107,6 +108,10 @@
 #nanum.App--mobile {
   .nutrition-log-chart {
     width: 100%;
+  }
+
+  .nutrition-log-chart .recharts-responsive-container {
+    margin-left: -30px;   
   }
 
   .nutrition-log-chart__title.first {
