@@ -27,11 +27,16 @@ const getDailyReport = async (queryTime) => {
     caloriesTarget: get(trackingData, 'caloriesTarget', null),
     foodSuggestions: get(trackingData, 'foodInfoSuggestions', ''),
     reason: get(trackingData, 'reasonSuggest', ''),
-    proteinTarget: parseInt((trackingData.proteinTarget || 0), 10),
-    sodiumTarget: parseInt((trackingData.sodiumTarget || 0), 10),
-    calciumTarget: parseInt((trackingData.calciumTarget || 0), 10),
-    celluloseTarget: parseInt((trackingData.celluloseTarget || 0), 10),
-    potassiumTarget: parseInt((trackingData.potassiumTarget || 0), 10),
+    // proteinTarget: parseInt((trackingData.proteinTarget || 0), 10),
+    // sodiumTarget: parseInt((trackingData.sodiumTarget || 0), 10),
+    // calciumTarget: parseInt((trackingData.calciumTarget || 0), 10),
+    // celluloseTarget: parseInt((trackingData.celluloseTarget || 0), 10),
+    // potassiumTarget: parseInt((trackingData.potassiumTarget || 0), 10),
+    proteinTarget: trackingData.proteinTarget || 0,
+    sodiumTarget: trackingData.sodiumTarget || 0,
+    calciumTarget: trackingData.calciumTarget || 0,
+    celluloseTarget: trackingData.celluloseTarget || 0,
+    potassiumTarget: trackingData.potassiumTarget || 0,
     sourceCalories: trackingData.sourceCalories
   };
 }

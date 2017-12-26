@@ -7,7 +7,6 @@ import {
   reduce, 
   isEmpty, 
   isObject, 
-  round,
 } from 'lodash';
 import { createAction, createReducer } from '../../utils/store';
 import UserService from '../../service/UserService';
@@ -239,7 +238,7 @@ const reducer = createReducer(initialState, {
     breakfast = addSelectedState(breakfast) || [];
     lunch = addSelectedState(lunch) || [];
     dinner = addSelectedState(dinner) || [];
-    
+
     return {
       ...state,
       alert: payload.alert || state.alert,
@@ -381,7 +380,6 @@ const reducer = createReducer(initialState, {
   },
   [actionTypes.updateCurrentIngredients]: (state, payload) => {
     let { breakfast, lunch, dinner } = state;
-    const targets = state.ingredients.targets;
     const allIntakes = union(breakfast, lunch, dinner);
     const protein = allIntakes.map(mapNutrient('protein')).reduce(sumPair, 0);
     const sodium = allIntakes.map(mapNutrient('sodium')).reduce(sumPair, 0);
@@ -394,11 +392,11 @@ const reducer = createReducer(initialState, {
       ingredients: {
         ...state.ingredients,
         current: {
-          protein: getNutrientPercentage(protein, targets.protein),
-          sodium: getNutrientPercentage(sodium, targets.sodium),
-          calcium: getNutrientPercentage(calcium, targets.calcium),
-          cellulose: getNutrientPercentage(cellulose, targets.cellulose),
-          potassium: getNutrientPercentage(potassium, targets.potassium),
+          protein: protein,
+          sodium: sodium,
+          calcium: calcium,
+          cellulose: cellulose,
+          potassium: potassium,
         }
       }
     }
@@ -555,12 +553,9 @@ function mapNutrient (nutrientName) {
   return function (intake) {
     return intake.foodInfo[nutrientName];
   }
-}  
+}
 
 function sumPair (a, b) {
   return parseInt(a, 10) + parseInt(b, 10);
 }
 
-function getNutrientPercentage (current, target) {
-  return round(current / target * 100, 2);
-}

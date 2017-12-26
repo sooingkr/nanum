@@ -3,9 +3,6 @@
  */
 import { createAction, createReducer } from '../../utils/store';
 import FoodService from '../../service/FoodService';
-import {averageNutrients} from '../../utils/AppUtils';
-
-// import service
 
 export const storeName = 'FoodInquiryDuck';
 
