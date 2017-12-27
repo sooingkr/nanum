@@ -163,7 +163,7 @@ let UserSettingsForm = ({
           field={props.input}
           onlyOne
           userGender={userGender}
-          exclude={userGender === 'MALE' ? '임산부' : ''}
+          exclude='임산부'
         />
       }
       />

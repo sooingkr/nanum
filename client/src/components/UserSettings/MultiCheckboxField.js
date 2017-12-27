@@ -36,10 +36,11 @@ class MultiCheckboxField extends React.Component {
       return;
     }
 
-    if (exclude && exclude === option.label) {
+    if (exclude && exclude === option.name) {
       window.alert('남성은 임산부 관심분야를 선택할 수 없습니다');
       return;
     }
+    
     let afterChange = values;
 
     if (event.target.checked) {
