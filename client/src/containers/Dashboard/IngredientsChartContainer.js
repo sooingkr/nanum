@@ -92,11 +92,9 @@ class IngredientsChartContainer extends Component {
       <div className="ingredients-chart">
         <span className="title">일일 권장섭취량</span>
         <ResponsiveContainer>
-          <RadarChart 
-            cx={'50%'} 
-            cy={'50%'} 
-            outerRadius={120} 
-            data={formattedData} 
+          <RadarChart
+            outerRadius={120}
+            data={formattedData}
             startAngle={(360 + 90)}
             endAngle={(0 + 90)}
           >
