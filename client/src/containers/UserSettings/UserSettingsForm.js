@@ -57,6 +57,23 @@ const renderField = ({
   )
 }
 
+const renderMultiCheckboxField = ({
+  input,
+  ...rest
+}) => {
+  return (
+    <MultiCheckboxField
+      {...input}
+      label={rest.label}
+      options={rest.options}
+      field={input}
+      userGender={rest.userGender}
+      exclude={rest.userGender === 'MALE' ? '임산부' : ''}
+      multi={rest.multi}
+    />
+  )
+}
+
 let UserSettingsForm = ({
   handleSubmit,
   pristine,
@@ -141,45 +158,37 @@ let UserSettingsForm = ({
     <fieldset className="diseases-fields">
       <legend>질병 유무 확인란</legend>
       <p>해당하는 질병을 선택해 주세요. (한개 이상 선택 가능)</p>
-      <Field name="diseases" component={props =>
-        <MultiCheckboxField
-          {...props.input}
-          label="Diseases"
-          options={allDiseases}
-          field={props.input}
-          multi
-        />
-      }
+      <Field
+        name="diseases"
+        label="Diseases"
+        options={allDiseases}
+        multi
+        userGender={userGender}
+        component={renderMultiCheckboxField}
       />
     </fieldset>
     <fieldset className="interests-fields">
       <legend>관심 분야</legend>
       <p>해당하는 관심사를 하나만 선택해 주세요.</p>
-      <Field name="interests" component={props =>
-        <MultiCheckboxField
-          {...props.input}
-          label="Interests"
-          options={allInterests}
-          field={props.input}
-          userGender={userGender}
-          exclude={userGender === 'MALE' ? '임산부' : ''}
-          multi={false}
-        />
-      }
+      <Field
+        name="interests"
+        label="Interests"
+        options={allInterests}
+        multi={false}
+        userGender={userGender}
+        component={renderMultiCheckboxField}
       />
     </fieldset>
 
     <fieldset className="allergies-fields">
       <legend>알레르기 유발물질</legend>
-      <Field name="allergies" component={props =>
-        <MultiCheckboxField
-          {...props.input}
-          label="Allergies"
-          options={allAllergies}
-          field={props.input}
-          multi
-        />
-      }
+      <Field
+        name="allergies"
+        label="Allergies"
+        options={allAllergies}
+        multi
+        userGender={userGender}
+        component={renderMultiCheckboxField}
       />
     </fieldset>
     <button type="submit" disabled={submitting}>완료</button>
