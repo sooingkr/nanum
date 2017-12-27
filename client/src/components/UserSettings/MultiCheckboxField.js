@@ -27,10 +27,10 @@ class MultiCheckboxField extends React.Component {
   }
 
   handleChange(event, option, disabled) {
-    const {field, exclude} = this.props;
+    const {field, exclude, multi} = this.props;
     const {onChange} = field;
     const values = this.getCurrentValues();
-    const hasValue = values.length !== 0;
+    const hasValue = !multi && values.length !== 0;
 
     if (disabled) {
       return;
@@ -40,7 +40,7 @@ class MultiCheckboxField extends React.Component {
       window.alert('남성은 임산부 관심분야를 선택할 수 없습니다');
       return;
     }
-    
+
     let afterChange = values;
 
     if (event.target.checked) {

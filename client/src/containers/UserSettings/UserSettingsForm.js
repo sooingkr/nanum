@@ -147,7 +147,7 @@ let UserSettingsForm = ({
           label="Diseases"
           options={allDiseases}
           field={props.input}
-          onlyOne={false}
+          multi
         />
       }
       />
@@ -161,9 +161,9 @@ let UserSettingsForm = ({
           label="Interests"
           options={allInterests}
           field={props.input}
-          onlyOne
           userGender={userGender}
-          exclude='임산부'
+          exclude={userGender === 'MALE' ? '임산부' : ''}
+          multi={false}
         />
       }
       />
@@ -177,7 +177,7 @@ let UserSettingsForm = ({
           label="Allergies"
           options={allAllergies}
           field={props.input}
-          onlyOne={false}
+          multi
         />
       }
       />
