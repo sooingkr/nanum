@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { reduxForm, Field, formValueSelector } from 'redux-form';
+import { reduxForm, Field, formValueSelector, change } from 'redux-form';
 import {
   Form, FormGroup,
 } from 'react-bootstrap';
@@ -74,11 +74,19 @@ const renderMultiCheckboxField = ({
   )
 }
 
+const handleGenderChange = (event, dispatch, currentGender) => {
+  const newGender = event.target.value;
+  if (newGender === 'MALE' && currentGender === 'FEMALE') {
+    dispatch(change('UserSettingsForm', 'interests', []))
+  }
+}
+
 let UserSettingsForm = ({
   handleSubmit,
   pristine,
   reset,
   submitting,
+  dispatch,
   fieldList: { diseases, interests },
   selectedDiseases,
   selectedInterests,
@@ -140,6 +148,7 @@ let UserSettingsForm = ({
             component={RadioField}
             value="MALE"
             type="radio"
+            onChange={(e) => handleGenderChange(e, dispatch, userGender)}
           />
           <span>남성</span>
         </label>
@@ -150,6 +159,7 @@ let UserSettingsForm = ({
             component={RadioField}
             value="FEMALE"
             type="radio"
+            onChange={(e) => handleGenderChange(e, dispatch, userGender)}
           />
           <span>여성</span>
         </label>
