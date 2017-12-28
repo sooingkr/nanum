@@ -15,11 +15,11 @@ import { selectors } from './DashboardDuck';
 import {convertMgToGam} from '../../utils/AppUtils';
 
 const mockIngredientsData = [
-  { ingredient: '탄수화물', current: mockDatapoint(), fullMark: 100, name: '탄수화물' },
-  { ingredient: '단백질', current: mockDatapoint(), fullMark: 100, name: '단백질' },
-  { ingredient: '지방', current: mockDatapoint(), fullMark: 100, name: '지방' },
-  { ingredient: '나트륨', current: mockDatapoint(), fullMark: 100, name: '나트륨' },
-  { ingredient: '콜레스테롤', current: mockDatapoint(), fullMark: 100, name: '콜레스테롤' },
+  { ingredient: '탄수화물', percentage: 25, current: mockDatapoint(), fullMark: 100, name: '탄수화물' },
+  { ingredient: '단백질', percentage: 40, current: mockDatapoint(), fullMark: 100, name: '단백질' },
+  { ingredient: '지방', percentage: 32, current: mockDatapoint(), fullMark: 100, name: '지방' },
+  { ingredient: '나트륨', percentage: 28, current: mockDatapoint(), fullMark: 100, name: '나트륨' },
+  { ingredient: '콜레스테롤', percentage: 86, current: mockDatapoint(), fullMark: 100, name: '콜레스테롤' },
 ]
 
 const CustomTooltip = (props) => {
@@ -43,11 +43,6 @@ class IngredientsChartContainer extends Component {
     }
 
     const {
-      // protein = 0,
-      // sodium = 0,
-      // calcium = 0,
-      // cellulose = 0,
-      // potassium = 0,
       carbohydrate = 0,
       protein = 0,
       fat = 0,
@@ -57,51 +52,36 @@ class IngredientsChartContainer extends Component {
 
     return [
       {
-        // ingredient: `단백질 (${convertMgToGam(protein)} g)`,
-        // current: convertMgToGam(data.current.protein),
-        // fullMark: 100,
-        // name: '단백질'
         ingredient: `탄수화물 (${convertMgToGam(carbohydrate)} g)`,
+        percentage: getPercentage(data.current.carbohydrate, carbohydrate),
         current: convertMgToGam(data.current.carbohydrate),
         fullMark: 100,
         name: '탄수화물'
       },
       {
-        // ingredient: `나트륨 (${convertMgToGam(sodium)} g)`,
-        // current: convertMgToGam(data.current.sodium),
-        // fullMark: 100,
-        // name: '나트륨'
         ingredient: `단백질 (${convertMgToGam(protein)} g)`,
+        percentage: getPercentage(data.current.protein, protein),
         current: convertMgToGam(data.current.protein),
         fullMark: 100,
         name: '단백질'
       },
       {
-        // ingredient: `칼슘 (${convertMgToGam(calcium)} g)`,
-        // current: convertMgToGam(data.current.calcium),
-        // fullMark: 100,
-        // name: '칼슘'
         ingredient: `지방 (${convertMgToGam(fat)} g)`,
+        percentage: getPercentage(data.current.fat, fat),
         current: convertMgToGam(data.current.fat),
         fullMark: 100,
         name: '지방'
       },
       {
-        // ingredient: `탄수화물 (${convertMgToGam(cellulose)} g)`,
-        // current: convertMgToGam(data.current.cellulose),
-        // fullMark: 100,
-        // name: '탄수화물'
         ingredient: `나트륨 (${convertMgToGam(sodium)} g)`,
+        percentage: getPercentage(data.current.sodium, sodium),
         current: convertMgToGam(data.current.sodium),
         fullMark: 100,
         name: '나트륨'
       },
       {
-        // ingredient: `칼륨 (${convertMgToGam(potassium)} g)`,
-        // current: convertMgToGam(data.current.potassium),
-        // fullMark: 100,
-        // name: '칼륨'
         ingredient: `콜레스테롤 (${convertMgToGam(cholesterol)} g)`,
+        percentage: getPercentage(data.current.cholesterol, cholesterol),
         current: convertMgToGam(data.current.cholesterol),
         fullMark: 100,
         name: '콜레스테롤'
@@ -133,7 +113,7 @@ class IngredientsChartContainer extends Component {
             <Tooltip content={<CustomTooltip external={formattedData} />}/>
             <Radar
               name='Nutrient'
-              dataKey='current'
+              dataKey='percentage'
               stroke='#00c03c'
               fill='#00c03c'
               fillOpacity={0.6}
@@ -169,6 +149,13 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps)(IngredientsChartContainer);
+
+function getPercentage (value, target) {
+  if (value > target) {
+    value = target;
+  }
+  return Math.floor((value / target) * 100)
+}
 
 function mockDatapoint () {
   return Math.floor(Math.random() * 101) + 0;
