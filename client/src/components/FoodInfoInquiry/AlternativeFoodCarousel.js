@@ -12,8 +12,8 @@ const mockFoodDetails = {
   imageUrl: "https://images.pexels.com/photos/46239/salmon-dish-food-meal-46239.jpeg?w=940&h=650&auto=compress&cs=tinysrgb",
   diagnosticMessage: "임산부인 김레클 님에게 좋지 않은 비타민 c 와 비타민 e 가 다량 함유된 제품입니다. 김레클 님에게 추천하지 않습니다.",
   calories: 1200,
-  proteins: 102,
-  carbohydrates: 340,
+  protein: 102,
+  carbohydrate: 340,
   fat: 201,
   alternativeFoods: [{
     globalId: "d3b8d7ba-c451-11e7-abc4-cec278b6b50a",
@@ -34,11 +34,11 @@ const foodCarouselSettings = {
   slidesToShow: 2,
   slidesToScroll: 1,
   responsive: [
-    { 
-      breakpoint: 480, 
-      settings: { 
-        slidesToShow: 2, 
-        vertical: true, 
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 2,
+        vertical: true,
         arrows: false
       }
     }
@@ -62,7 +62,7 @@ const noInfoCondition = (props) => {
 }
 
 AlternativeFoodCarousel = NoInfo(
-  noInfoCondition, 
+  noInfoCondition,
   { foods: mockFoodDetails.alternativeFoods },
   '정보를 입력하시면 대체식품을 추천받으실 수 있습니다',
 )(AlternativeFoodCarousel);

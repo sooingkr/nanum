@@ -10,16 +10,16 @@ class FoodDetails extends Component {
     if (isEmpty(foodDetail)) return null;
 
     const {
-      name, 
-      message, 
-      calories, 
-      carbohydrates, 
-      proteins, 
+      name,
+      message,
+      calories,
+      carbohydrate,
+      protein,
       fat,
       masterId,
       productNo,
-      carbohydratesDifferent,
-      proteinsDifferent,
+      carbohydrateDifferent,
+      proteinDifferent,
       fatDifferent,
       manufacturer,
     } = foodDetail;
@@ -46,19 +46,19 @@ class FoodDetails extends Component {
             <div className="product__kcalLevel-item">
               <div className="kcalLevel__diff">
                 <span>평균대비</span>
-                <span>{convertMgToGam(carbohydratesDifferent)}</span>
+                <span>{convertMgToGam(carbohydrateDifferent)}</span>
               </div>
-              <div className="kcalLevel__number">{convertMgToGam(carbohydrates)}</div>
+              <div className="kcalLevel__number">{convertMgToGam(carbohydrate)}</div>
               <div className="kcalLevel__title">탄수화물(g)</div>
             </div>
             <div className="product__kcalLevel-item">
               <div className="kcalLevel__diff">
                 <span>평균대비</span>
-                <span>{convertMgToGam(proteinsDifferent)}</span>
+                <span>{convertMgToGam(proteinDifferent)}</span>
               </div>
-              <div className="kcalLevel__number">{convertMgToGam(proteins)}</div>
+              <div className="kcalLevel__number">{convertMgToGam(protein)}</div>
               <div className="kcalLevel__title">단백질(g)</div>
-            </div>            
+            </div>
             <div className="product__kcalLevel-item">
               <div className="kcalLevel__diff">
                 <span>평균대비</span>
@@ -66,12 +66,12 @@ class FoodDetails extends Component {
               </div>
               <div className="kcalLevel__number">{convertMgToGam(fat)}</div>
               <div className="kcalLevel__title">지방(g)</div>
-            </div>            
+            </div>
             <div className="product__kcalLevel-item">
               <Button className="btn-view-haccp" href={`/safety/productDetail.do?productNo=${productNo}&masterId=${masterId}`} title="안전먹거리에서 보기">
                 안전먹거리에서 보기
               </Button>
-            </div>            
+            </div>
           </div>
           <p className="product__description">HACCP 인증된 같은 부류 식품들의 평균치와의 주요 영양소 비교입니다.</p>
         </Row>

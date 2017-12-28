@@ -8,8 +8,8 @@ export const storeName = 'FoodInquiryDuck';
 
 export const initialState = {
   foodDetail: {
-    carbohydratesDifferent: 0,
-    proteinsDifferent: 0,
+    carbohydrateDifferent: 0,
+    proteinDifferent: 0,
     fatDifferent: 0,
   },
   hasUserInfo: false,
@@ -53,8 +53,8 @@ export const actions = {
 
 const reducer = createReducer(initialState, {
   [actionTypes.getFoodDetail]: (state, foodDetail) => {
-    foodDetail.carbohydratesDifferent = foodDetail.carbohydrates - foodDetail.avgCarbohydrates;
-    foodDetail.proteinsDifferent = foodDetail.proteins - foodDetail.avgProteins;
+    foodDetail.carbohydrateDifferent = foodDetail.carbohydrate - foodDetail.avgCarbohydrate;
+    foodDetail.proteinDifferent = foodDetail.protein - foodDetail.avgProtein;
     foodDetail.fatDifferent = foodDetail.fat - foodDetail.avgFat;
     return {
       ...state,
