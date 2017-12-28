@@ -2,11 +2,11 @@
  * Created by manhvu on 9/28/17.
  */
 import moment from 'moment';
-import { 
-  union, 
-  reduce, 
-  isEmpty, 
-  isObject, 
+import {
+  union,
+  reduce,
+  isEmpty,
+  isObject,
 } from 'lodash';
 import { createAction, createReducer } from '../../utils/store';
 import UserService from '../../service/UserService';
@@ -37,10 +37,10 @@ export const actionTypes = {
   updateNutrientsToday: storeName + '/NUTRIENTS_TODAY_UPDATE',
 };
 
-// Actions creators 
+// Actions creators
 const openDialog = (mealTime) => createAction(actionTypes.openDialog, { mealTime });
 const closeDialog = () => createAction(actionTypes.closeDialog);
-const pickQueryTime = (queryTime) => createAction(actionTypes.pickQueryTime, { queryTime });  
+const pickQueryTime = (queryTime) => createAction(actionTypes.pickQueryTime, { queryTime });
 const enterEdit = () => createAction(actionTypes.enterEdit);
 const quitEdit = () => createAction(actionTypes.quitEdit);
 const clearRemoveFood = () => createAction(actionTypes.clearRemoveFood);
@@ -68,14 +68,14 @@ const initialize = (queryTime) => async (dispatch, getState) => {
   let tracking = {};
   let nutritionLog = {};
   let userInfo = await UserService.getUserSettings();
-  if(!isObject(userInfo.data)) { 
+  if(!isObject(userInfo.data)) {
     userInfo.data = {};
   }
   if (!isEmpty(userInfo.data)) {
     tracking = await UserService.getDailyReport(queryTime);
     nutritionLog = await UserService.getNutritionLog(queryTime);
   }
-  dispatch(createAction(actionTypes.initialize, { 
+  dispatch(createAction(actionTypes.initialize, {
     ...tracking,
     nutritionLog: nutritionLog.data || {},
     currentUser: userInfo.data || {},
@@ -169,18 +169,23 @@ export const initialState = {
   },
   ingredients: {
     targets: {
+      // protein: null,
+      // sodium: null,
+      // calcium: null,
+      // cellulose: null,
+      // potassium: null,
+      carbohydrate: null,
       protein: null,
+      fat: null,
       sodium: null,
-      calcium: null,
-      cellulose: null,
-      potassium: null,
+      cholesterol: null,
     },
     current: {
+      carbohydrate: 0,
       protein: 0,
+      fat: 0,
       sodium: 0,
-      calcium: 0,
-      cellulose: 0,
-      potassium: 0,
+      cholesterol: 0,
     }
   },
   nutritionLog: [],
@@ -190,36 +195,33 @@ export const initialState = {
       text: '전체보기',
       selected: true,
     },{
+      id: 'carbohydrate',
+      text: '탄수화물',
+      selected: false,
+    },{
       id: 'protein',
       text: '단백질',
       selected: false,
-    },
-    {
+    },{
+      id: 'fat',
+      text: '지방',
+      selected: false,
+    },{
       id: 'sodium',
       text: '나트륨',
       selected: false,
     },
     {
-      id: 'calcium',
-      text: '칼슘',
-      selected: false,
-    },
-    {
-      id: 'cellulose',
-      text: '탄수화물',
-      selected: false,
-    },
-    {
-      id: 'potassium',
-      text: '칼륨',
+      id: 'cholesterol',
+      text: '콜레스테롤',
       selected: false,
     }
   ],
   nutrientsToday: {
+    carbohydrate: 0,
     protein: 0,
+    fat: 0,
     sodium: 0,
-    calcium: 0,
-    cellulose: 0,
   },
   sourceCalories: ''
 };
@@ -231,9 +233,9 @@ const reducer = createReducer(initialState, {
     const caloriesCurrent = calculateCalories(breakfast, lunch, dinner);
     const nutritionLog = transformLog(payload.nutritionLog);
     nutritionLog.forEach(function (val) {
+      val.carbohydrate = convertMgToGam(val.carbohydrate);
       val.protein = convertMgToGam(val.protein);
-      val.sodium = convertMgToGam(val.sodium);
-      val.potassium = convertMgToGam(val.potassium);
+      val.fat = convertMgToGam(val.fat);
     });
     breakfast = addSelectedState(breakfast) || [];
     lunch = addSelectedState(lunch) || [];
@@ -255,11 +257,11 @@ const reducer = createReducer(initialState, {
       ingredients: {
         ...initialState.ingredients,
         targets: {
+          carbohydrate: payload.carbohydrateTarget,
           protein: payload.proteinTarget,
+          fat: payload.fatTarget,
           sodium: payload.sodiumTarget,
-          calcium: payload.calciumTarget,
-          cellulose: payload.celluloseTarget,
-          potassium: payload.potassiumTarget,
+          cholesterol: payload.cholesterolTarget
         }
       },
       sourceCalories: payload.sourceCalories
@@ -293,7 +295,7 @@ const reducer = createReducer(initialState, {
         foods: [
           ...state.toBeAdded.foods,
           payload.food,
-        ]        
+        ]
       }
     }
   },
@@ -381,22 +383,22 @@ const reducer = createReducer(initialState, {
   [actionTypes.updateCurrentIngredients]: (state, payload) => {
     let { breakfast, lunch, dinner } = state;
     const allIntakes = union(breakfast, lunch, dinner);
+    const carbohydrate = allIntakes.map(mapNutrient('carbohydrate')).reduce(sumPair, 0);
     const protein = allIntakes.map(mapNutrient('protein')).reduce(sumPair, 0);
+    const fat = allIntakes.map(mapNutrient('fat')).reduce(sumPair, 0);
     const sodium = allIntakes.map(mapNutrient('sodium')).reduce(sumPair, 0);
-    const calcium = allIntakes.map(mapNutrient('calcium')).reduce(sumPair, 0);
-    const cellulose = allIntakes.map(mapNutrient('cellulose')).reduce(sumPair, 0);
-    const potassium = allIntakes.map(mapNutrient('potassium')).reduce(sumPair, 0);
+    const cholesterol = allIntakes.map(mapNutrient('cholesterol')).reduce(sumPair, 0);
 
     return {
       ...state,
       ingredients: {
         ...state.ingredients,
         current: {
+          carbohydrate: carbohydrate,
           protein: protein,
+          fat: fat,
           sodium: sodium,
-          calcium: calcium,
-          cellulose: cellulose,
-          potassium: potassium,
+          cholesterol: cholesterol,
         }
       }
     }
@@ -427,20 +429,20 @@ const reducer = createReducer(initialState, {
   [actionTypes.updateNutrientsToday]: (state, payload) => {
     let { breakfast, lunch, dinner } = state;
     const allIntakes = union(breakfast, lunch, dinner);
+    const carbohydrate = allIntakes.map(mapNutrient('carbohydrate')).reduce(sumPair, 0);
     const protein = allIntakes.map(mapNutrient('protein')).reduce(sumPair, 0);
+    const fat = allIntakes.map(mapNutrient('fat')).reduce(sumPair, 0);
     const sodium = allIntakes.map(mapNutrient('sodium')).reduce(sumPair, 0);
-    const calcium = allIntakes.map(mapNutrient('calcium')).reduce(sumPair, 0);
-    const cellulose = allIntakes.map(mapNutrient('cellulose')).reduce(sumPair, 0);
-    const potassium = allIntakes.map(mapNutrient('potassium')).reduce(sumPair, 0);
+    const cholesterol = allIntakes.map(mapNutrient('cholesterol')).reduce(sumPair, 0);
 
     return {
       ...state,
       nutrientsToday: {
+        carbohydrate: carbohydrate,
         protein: protein,
+        fat: fat,
         sodium: sodium,
-        calcium: calcium,
-        cellulose: cellulose,
-        potassium: potassium,
+        cholesterol: cholesterol,
       }
     };
   },
@@ -475,7 +477,7 @@ const getSourceCalories = (state) => state[storeName].sourceCalories;
 export const DashboardDuck = {
   storeName,
   reducer,
-  actions, 
+  actions,
 };
 
 export const selectors = {
@@ -533,7 +535,7 @@ function transformLog (nutritionLog) {
   let dates = dayKeys.map(key => {
     return { raw: key, date: new Date(parseInt(key, 10)) }
   });
-  
+
   dates = dates.sort((a, b) => a.date - b.date);
   if (dayKeys.length === 0) {
     return [];
@@ -542,10 +544,10 @@ function transformLog (nutritionLog) {
   return dates.map(day => {
     const dayIntakes = nutritionLog[day.raw];
     const dayInMonth = moment(day.date, 'x').format('D');
+    const carbohydrate = reduce(dayIntakes.map(intake => intake.foodInfo.carbohydrate || 0), sumPair, 0);
     const protein = reduce(dayIntakes.map(intake => intake.foodInfo.protein || 0), sumPair, 0);
-    const sodium = reduce(dayIntakes.map(intake => intake.foodInfo.sodium || 0), sumPair, 0);
-    const potassium = reduce(dayIntakes.map(intake => intake.foodInfo.potassium || 0), sumPair, 0);
-    return { day: dayInMonth, protein, sodium, potassium };
+    const fat = reduce(dayIntakes.map(intake => intake.foodInfo.fat || 0), sumPair, 0);
+    return { day: dayInMonth, carbohydrate, protein, fat };
   })
 }
 
@@ -558,4 +560,3 @@ function mapNutrient (nutrientName) {
 function sumPair (a, b) {
   return parseInt(a, 10) + parseInt(b, 10);
 }
-

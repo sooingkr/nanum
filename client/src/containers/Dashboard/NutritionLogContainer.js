@@ -17,18 +17,18 @@ import { selectors } from './DashboardDuck';
 import {convertMgToGam} from '../../utils/AppUtils';
 
 const mockNutritionLog = [
-  { day: '17', protein: mockDatapoint(), sodium: mockDatapoint(), potassium: mockDatapoint()},
-  { day: '18', protein: mockDatapoint(), sodium: mockDatapoint(), potassium: mockDatapoint()},
-  { day: '19', protein: mockDatapoint(), sodium: mockDatapoint(), potassium: mockDatapoint()},
-  { day: '20', protein: mockDatapoint(), sodium: mockDatapoint(), potassium: mockDatapoint()},
-  { day: '21', protein: mockDatapoint(), sodium: mockDatapoint(), potassium: mockDatapoint()},
-  { day: '22', protein: mockDatapoint(), sodium: mockDatapoint(), potassium: mockDatapoint()},
+  { day: '17', carbohydrate: mockDatapoint(), protein: mockDatapoint(), fat: mockDatapoint()},
+  { day: '18', carbohydrate: mockDatapoint(), protein: mockDatapoint(), fat: mockDatapoint()},
+  { day: '19', carbohydrate: mockDatapoint(), protein: mockDatapoint(), fat: mockDatapoint()},
+  { day: '20', carbohydrate: mockDatapoint(), protein: mockDatapoint(), fat: mockDatapoint()},
+  { day: '21', carbohydrate: mockDatapoint(), protein: mockDatapoint(), fat: mockDatapoint()},
+  { day: '22', carbohydrate: mockDatapoint(), protein: mockDatapoint(), fat: mockDatapoint()},
 ]
 
 const tooltipLabels = {
+  carbohydrate: '탄수화물',
   protein: '단백질',
-  sodium: '나트륨',
-  potassium: '칼륨',
+  fat: '지방',
 }
 
 const CustomTooltip = (props) => {
@@ -37,9 +37,9 @@ const CustomTooltip = (props) => {
   if (active) {
     return (
       <div className="nutrition-log-chart-tooltip">
-        <p className="protein">{external[payload[0].dataKey] + ' : '}<span>{payload[0].value}</span></p>
-        <p className="sodium">{external[payload[1].dataKey] + ' : '}<span>{payload[1].value}</span></p>
-        <p className="potassium">{external[payload[2].dataKey] + ' : '}<span>{payload[2].value}</span></p>
+        <p className="carbohydrate">{external[payload[0].dataKey] + ' : '}<span>{payload[0].value}</span></p>
+        <p className="protein">{external[payload[1].dataKey] + ' : '}<span>{payload[1].value}</span></p>
+        <p className="fat">{external[payload[2].dataKey] + ' : '}<span>{payload[2].value}</span></p>
       </div>
     );
   }
@@ -69,16 +69,16 @@ class NutritionLogContainer extends Component {
         </h3>
         <div className="nutrition-log-chart__recap">
           <div className="recap-item">
+            <p className="carbohydrate">{convertMgToGam(nutrientsToday.carbohydrate)}</p>
+            <p className="carbohydrate">탄수화물(g)</p>
+          </div>
+          <div className="recap-item">
             <p className="protein">{convertMgToGam(nutrientsToday.protein)}</p>
             <p className="protein">단백질(g)</p>
           </div>
           <div className="recap-item">
-            <p className="sodium">{convertMgToGam(nutrientsToday.sodium)}</p>
-            <p className="sodium">나트륨(g)</p>
-          </div>
-          <div className="recap-item">
-            <p className="potassium">{convertMgToGam(nutrientsToday.potassium)}</p>
-            <p className="potassium">칼륨(g)</p>
+            <p className="fat">{convertMgToGam(nutrientsToday.fat)}</p>
+            <p className="fat">지방(g)</p>
           </div>
         </div>
         <ResponsiveContainer>
@@ -87,9 +87,9 @@ class NutritionLogContainer extends Component {
             <YAxis/>
             <CartesianGrid strokeDasharray="3 3"/>
             <Tooltip content={<CustomTooltip external={tooltipLabels} />} />
-            <Area dataKey="protein" stackId="1" stroke="#f8ac39" fill="#f8ac39" fillOpacity={0.6} strokeWidth={2} isAnimationActive={false} />
-            <Area dataKey="sodium" stackId="1" stroke="#e66e65" fill="#e66e65" fillOpacity={0.6} strokeWidth={2} isAnimationActive={false} />
-            <Area dataKey="potassium" stackId="1" stroke="#69c7d6" fill="#69c7d6" fillOpacity={0.6} strokeWidth={2} isAnimationActive={false} />
+            <Area dataKey="carbohydrate" stackId="1" stroke="#f8ac39" fill="#f8ac39" fillOpacity={0.6} strokeWidth={2} isAnimationActive={false} />
+            <Area dataKey="protein" stackId="1" stroke="#e66e65" fill="#e66e65" fillOpacity={0.6} strokeWidth={2} isAnimationActive={false} />
+            <Area dataKey="fat" stackId="1" stroke="#69c7d6" fill="#69c7d6" fillOpacity={0.6} strokeWidth={2} isAnimationActive={false} />
           </AreaChart>
         </ResponsiveContainer>
       </div>
