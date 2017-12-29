@@ -11,7 +11,8 @@ import { selectors } from './UserSettingsDuck';
 
 const errorMessages = {
   required: '필수정보를 입력하셔야 합니다',
-  minBirthYear: '태어난 해는 1900년 이후만 입력할 수 있습니다'
+  minBirthYear: '태어난 해는 1900년 이후만 입력할 수 있습니다',
+  maxBirthYear: '태어난 해는 이번 해 이전만 입력할 수 있습니다',
 }
 
 const validate = values => {
@@ -35,6 +36,8 @@ const validate = values => {
   } else if (values.birthYear < 1900) {
     errors.birthYear = errorMessages.minBirthYear
     return errors;
+  } else if (values.birthYear > new Date().getFullYear()) {
+    errors.birthYear = errorMessages.maxBirthYear
   }
   return errors
 }
