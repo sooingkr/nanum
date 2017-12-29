@@ -169,11 +169,6 @@ export const initialState = {
   },
   ingredients: {
     targets: {
-      // protein: null,
-      // sodium: null,
-      // calcium: null,
-      // cellulose: null,
-      // potassium: null,
       carbohydrate: null,
       protein: null,
       fat: null,
@@ -463,7 +458,17 @@ const getShowDialog = (state) => state[storeName].showDialog;
 const getWhichDialog = (state) => state[storeName].whichDialog;
 const getFoodSuggestions = (state) => state[storeName].foodSuggestions;
 const getReason = (state) => state[storeName].reason;
-const getAlert = (state) => state[storeName].alert;
+const getAlert = (state) => {
+  const diseases = state[storeName].currentUser.diseases;
+  const userHasDiseases = diseases && diseases.length > 0;
+  if (!userHasDiseases) {
+    return {
+      message: '질병을 선택하시면 안내 메세지를 보실 수 있습니다.',
+      type: 'INFO',
+    }
+  }
+  return state[storeName].alert
+};
 const getTime = (state) => state[storeName].queryTime;
 const getLoadingStatus = (state) => state[storeName].isLoading;
 const getEditMode = (state) => state[storeName].isEditMode;
