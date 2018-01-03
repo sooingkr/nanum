@@ -63,29 +63,28 @@ const searchFoodScroll = (foodQuery, page) => async (dispatch, getState) => {
 }
 
 const searchFoodFirstPage = (foodQuery) => async (dispatch, getState) => {
+
   let searchResponse = {data: {content: []}};
   const currentState = getState()[storeName];
 
-  const cachedQuery = currentState.foodQuery;
-  const isNewQuery = cachedQuery !== foodQuery;
-
-  try {
-    dispatch(requestSearch(foodQuery));
-    if (isNewQuery) {
-      dispatch(clearSearchList);
+  dispatch(requestSearch(foodQuery));
+  dispatch(clearSearchList);
+  if (!currentState.isLoading) {
+    try {
       searchResponse = await FoodService.searchFood(foodQuery);
-    } 
-  } catch (error) {
-    dispatch(failSearch(error));
+    } catch (error) {
+      dispatch(failSearch(error));
+    }
+
+    if (searchResponse.data.content.length === 0) {
+      // No results, reject
+      dispatch(rejectSearch);
+    } else {
+      // Search success
+      dispatch(succeedSearch(searchResponse.data));
+    }
   }
 
-  if (searchResponse.data.content.length === 0) {
-    // No results, reject
-    dispatch(rejectSearch);
-  } else {
-    // Search success
-    dispatch(succeedSearch(searchResponse.data));
-  }
 }
 
 // conveniently export actions
