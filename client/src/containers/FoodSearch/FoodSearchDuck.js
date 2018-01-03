@@ -12,6 +12,7 @@ export const actionTypes = {
   succeedSearch: storeName + '/SUCCEED_FOOD_SEARCH',
   resetSearch: storeName + '/RESET_FOOD_SEARCH',
   clearSearchList: storeName + '/CLEAR_SEARCH_LIST',
+  callFromPage: storeName + '/CALL_FROM_PAGE',
 };
 
 // define actions
@@ -19,8 +20,9 @@ const requestSearch = (foodQuery) => createAction(actionTypes.requestSearch, { f
 const failSearch = (error) => createAction(actionTypes.failSearch, { error });
 const succeedSearch = (results) => createAction(actionTypes.succeedSearch, { ...results });
 const rejectSearch = createAction(actionTypes.rejectSearch);
-const resetSearch = createAction(actionTypes.resetSearch);
+const resetSearch = () => createAction(actionTypes.resetSearch);
 const clearSearchList = createAction(actionTypes.clearSearchList);
+const callFromPage = page => createAction(actionTypes.callFromPage, {callFromPage: page});
 
 // define thunks
 const searchFoodScroll = (foodQuery, page) => async (dispatch, getState) => {
@@ -35,7 +37,9 @@ const searchFoodScroll = (foodQuery, page) => async (dispatch, getState) => {
   const isNewQuery = cachedQuery !== foodQuery;
   const shouldFetch = hasNextPage && (
     (isNewQuery && foodQuery !== '') // new, non-blank query
-    || (!isNewQuery && page !== currentPage && foodQuery !== '')); // same query, new page
+    || (!isNewQuery && page !== currentPage && foodQuery !== ''))
+    && !currentState.isLoading
+    && currentPage !== page;
 
   // If query is different from previous query,
   // reset redux store
@@ -46,9 +50,29 @@ const searchFoodScroll = (foodQuery, page) => async (dispatch, getState) => {
   let searchResponse;
   try {
     dispatch(requestSearch(foodQuery));
-    searchResponse = shouldFetch 
-      ? await FoodService.searchFood(foodQuery, page, DEFAULT_PAGINATE_SIZE) 
-      : { data: { content: [] } };
+    searchResponse = shouldFetch ? await FoodService.searchFood(foodQuery, page, DEFAULT_PAGINATE_SIZE) : {data: {content: []}};
+  } catch (error) {
+    dispatch(failSearch(error));
+  }
+
+  if (shouldFetch) {
+    if (searchResponse.data.content.length === 0) {
+      // No results, reject
+      dispatch(rejectSearch);
+    } else {
+      // Search success
+      dispatch(succeedSearch(searchResponse.data));
+    }
+  }
+}
+
+const searchFoodFirstPage = (foodQuery) => async (dispatch, getState) => {
+  let searchResponse = {data: {content: []}};
+
+  dispatch(clearSearchList);
+  try {
+    dispatch(requestSearch(foodQuery));
+    searchResponse = await FoodService.searchFood(foodQuery);
   } catch (error) {
     dispatch(failSearch(error));
   }
@@ -57,32 +81,8 @@ const searchFoodScroll = (foodQuery, page) => async (dispatch, getState) => {
     // No results, reject
     dispatch(rejectSearch);
   } else {
-    // Search success 
+    // Search success
     dispatch(succeedSearch(searchResponse.data));
-  }
-}
-
-const searchFoodFirstPage = (foodQuery) => async (dispatch, getState) => {
-
-  let searchResponse = {data: {content: []}};
-  const currentState = getState()[storeName];
-
-  dispatch(requestSearch(foodQuery));
-  dispatch(clearSearchList);
-  if (!currentState.isLoading) {
-    try {
-      searchResponse = await FoodService.searchFood(foodQuery);
-    } catch (error) {
-      dispatch(failSearch(error));
-    }
-
-    if (searchResponse.data.content.length === 0) {
-      // No results, reject
-      dispatch(rejectSearch);
-    } else {
-      // Search success
-      dispatch(succeedSearch(searchResponse.data));
-    }
   }
 
 }
@@ -95,7 +95,8 @@ export const actions = {
   searchFoodScroll: searchFoodScroll,
   resetSearch,
   searchFoodFirstPage: searchFoodFirstPage,
-  clearSearchList
+  clearSearchList,
+  callFromPage
 };
 
 export const initialState = {
@@ -109,6 +110,7 @@ export const initialState = {
     page: -1,
     total: 0,
   },
+  callFromPage: ''
 };
 
 const reducer = createReducer(initialState, {
@@ -176,6 +178,12 @@ const reducer = createReducer(initialState, {
         page: -1,
         total: 0,
       },
+    }
+  },
+  [actionTypes.callFromPage]: (state, payload) => {
+    return {
+      ...state,
+      ...payload
     }
   }
 });

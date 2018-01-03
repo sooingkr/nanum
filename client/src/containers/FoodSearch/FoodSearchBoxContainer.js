@@ -10,7 +10,13 @@ import QueryString from 'query-string';
 import {isEmpty} from 'lodash';
 
 class FoodSearchBoxContainer extends Component {
+
+  constructor(props) {
+    super(props);
+  }
+
   componentWillMount() {
+    this.props.setCallFromPage('Search');
     const queryParams = QueryString.parse(this.props.location.search);
     if (!isEmpty(queryParams)) {
       this.props.searchFoodFirstPage(queryParams.foodKeyword);
@@ -23,17 +29,18 @@ class FoodSearchBoxContainer extends Component {
 
   handleSubmit = (values) => {
     const currentLocation = this.props.location.pathname;
-    const nextPageLink = isMobileVersion() 
+    const nextPageLink = isMobileVersion()
       ? `/mobile/search?foodKeyword=${values.foodQuery}`
       : `/search?foodKeyword=${values.foodQuery}`;
 
     const queryParams = QueryString.parse(this.props.location.search);
-    
     if (queryParams.foodKeyword !== values.foodQuery) {
       this.props.history.push(nextPageLink);
     }
-    
-    this.props.searchFoodFirstPage(values.foodQuery);
+
+    if (this.props.callFromPage === 'dashboard') {
+      this.props.searchFoodFirstPage(values.foodQuery);
+    }
 
     // If not in search result page
     if (!isSearchRoute(currentLocation)) {
@@ -77,6 +84,7 @@ const mapStateToProps = (state) => {
   return {
     foodQuery: foodState.foodQuery,
     total: foodState.list.total,
+    callFromPage: foodState.callFromPage,
   }
 };
 
@@ -84,6 +92,7 @@ const mapDispatchToProps = {
   cacheQuery: FoodSearchDuck.actions.requestSearch,
   searchFoodScroll: FoodSearchDuck.actions.searchFoodScroll,
   searchFoodFirstPage: FoodSearchDuck.actions.searchFoodFirstPage,
+  setCallFromPage: FoodSearchDuck.actions.callFromPage,
   reset,
 }
 

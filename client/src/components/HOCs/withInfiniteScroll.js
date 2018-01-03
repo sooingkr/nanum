@@ -27,20 +27,7 @@ const withInfiniteScroll = (conditionFn) => (Component) => {
     }
     
     handleScroll() {
-      const windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
-      const body = document.body;
-      const html = document.documentElement;
-      const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight,  html.scrollHeight, html.offsetHeight);
-      const windowBottom = windowHeight + window.pageYOffset;
-      if (windowBottom >= docHeight) {
-        this.setState({
-          isWindowBottom: true
-        });
-      } else {
-        this.setState({
-          isWindowBottom: false
-        });
-      }
+      if (window.location.href.indexOf('search?foodKeyword') === -1) return;
       conditionFn(this.props) && throttle(this.props.onPaginateLoad, 16)();
     }
   

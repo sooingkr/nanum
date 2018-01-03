@@ -15,10 +15,13 @@ import NutritionLogContainer from './NutritionLogContainer';
 import Alert from '../../components/Common/Alert';
 import Loader from '../../components/Common/Loader';
 import { DashboardDuck, selectors } from './DashboardDuck';
+import {FoodSearchDuck} from '../FoodSearch/FoodSearchDuck.js';
 import {isMobileVersion} from '../../utils/AppUtils';
 
 class Dashboard extends Component {
   componentWillMount() {
+    this.props.resetSearch();
+    this.props.callFromPage('dashboard');
     this.props.init();
   }
 
@@ -79,6 +82,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   init: DashboardDuck.actions.initialize,
+  resetSearch: FoodSearchDuck.actions.resetSearch,
+  callFromPage: FoodSearchDuck.actions.callFromPage,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(
