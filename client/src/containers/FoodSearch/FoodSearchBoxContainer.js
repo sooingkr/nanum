@@ -16,7 +16,6 @@ class FoodSearchBoxContainer extends Component {
   }
 
   componentWillMount() {
-    this.props.setCallFromPage('Search');
     const queryParams = QueryString.parse(this.props.location.search);
     if (!isEmpty(queryParams)) {
       this.props.searchFoodFirstPage(queryParams.foodKeyword);
@@ -38,9 +37,7 @@ class FoodSearchBoxContainer extends Component {
       this.props.history.push(nextPageLink);
     }
 
-    if (this.props.callFromPage === 'dashboard') {
-      this.props.searchFoodFirstPage(values.foodQuery);
-    }
+    this.props.searchFoodFirstPage(values.foodQuery);
 
     // If not in search result page
     if (!isSearchRoute(currentLocation)) {
@@ -84,7 +81,6 @@ const mapStateToProps = (state) => {
   return {
     foodQuery: foodState.foodQuery,
     total: foodState.list.total,
-    callFromPage: foodState.callFromPage,
   }
 };
 
@@ -92,7 +88,6 @@ const mapDispatchToProps = {
   cacheQuery: FoodSearchDuck.actions.requestSearch,
   searchFoodScroll: FoodSearchDuck.actions.searchFoodScroll,
   searchFoodFirstPage: FoodSearchDuck.actions.searchFoodFirstPage,
-  setCallFromPage: FoodSearchDuck.actions.callFromPage,
   reset,
 }
 

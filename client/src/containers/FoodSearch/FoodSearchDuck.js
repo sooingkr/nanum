@@ -12,7 +12,6 @@ export const actionTypes = {
   succeedSearch: storeName + '/SUCCEED_FOOD_SEARCH',
   resetSearch: storeName + '/RESET_FOOD_SEARCH',
   clearSearchList: storeName + '/CLEAR_SEARCH_LIST',
-  callFromPage: storeName + '/CALL_FROM_PAGE',
 };
 
 // define actions
@@ -22,7 +21,6 @@ const succeedSearch = (results) => createAction(actionTypes.succeedSearch, { ...
 const rejectSearch = createAction(actionTypes.rejectSearch);
 const resetSearch = () => createAction(actionTypes.resetSearch);
 const clearSearchList = createAction(actionTypes.clearSearchList);
-const callFromPage = page => createAction(actionTypes.callFromPage, {callFromPage: page});
 
 // define thunks
 const searchFoodScroll = (foodQuery, page) => async (dispatch, getState) => {
@@ -38,8 +36,7 @@ const searchFoodScroll = (foodQuery, page) => async (dispatch, getState) => {
   const shouldFetch = hasNextPage && (
     (isNewQuery && foodQuery !== '') // new, non-blank query
     || (!isNewQuery && page !== currentPage && foodQuery !== ''))
-    && !currentState.isLoading
-    && currentPage !== page;
+    && !currentState.isLoading;
 
   // If query is different from previous query,
   // reset redux store
@@ -67,24 +64,26 @@ const searchFoodScroll = (foodQuery, page) => async (dispatch, getState) => {
 }
 
 const searchFoodFirstPage = (foodQuery) => async (dispatch, getState) => {
-  let searchResponse = {data: {content: []}};
+  const currentState = getState()[storeName];
+  if (!currentState.isLoading) {
+    let searchResponse = {data: {content: []}};
 
-  dispatch(clearSearchList);
-  try {
-    dispatch(requestSearch(foodQuery));
-    searchResponse = await FoodService.searchFood(foodQuery);
-  } catch (error) {
-    dispatch(failSearch(error));
+    try {
+      dispatch(requestSearch(foodQuery));
+      dispatch(clearSearchList);
+      searchResponse = await FoodService.searchFood(foodQuery);
+    } catch (error) {
+      dispatch(failSearch(error));
+    }
+
+    if (searchResponse.data.content.length === 0) {
+      // No results, reject
+      dispatch(rejectSearch);
+    } else {
+      // Search success
+      dispatch(succeedSearch(searchResponse.data));
+    }
   }
-
-  if (searchResponse.data.content.length === 0) {
-    // No results, reject
-    dispatch(rejectSearch);
-  } else {
-    // Search success
-    dispatch(succeedSearch(searchResponse.data));
-  }
-
 }
 
 // conveniently export actions
@@ -96,7 +95,6 @@ export const actions = {
   resetSearch,
   searchFoodFirstPage: searchFoodFirstPage,
   clearSearchList,
-  callFromPage
 };
 
 export const initialState = {
@@ -178,12 +176,6 @@ const reducer = createReducer(initialState, {
         page: -1,
         total: 0,
       },
-    }
-  },
-  [actionTypes.callFromPage]: (state, payload) => {
-    return {
-      ...state,
-      ...payload
     }
   }
 });
