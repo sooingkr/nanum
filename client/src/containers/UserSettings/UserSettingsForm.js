@@ -9,6 +9,7 @@ import MultiCheckboxField from '../../components/UserSettings/MultiCheckboxField
 import RadioField from '../../components/UserSettings/RadioField';
 import { selectors } from './UserSettingsDuck';
 
+
 const errorMessages = {
   required: '필수정보를 입력하셔야 합니다',
   minBirthYear: '태어난 해는 1900년 이후만 입력할 수 있습니다',
@@ -39,6 +40,7 @@ const validate = values => {
   } else if (values.birthYear > new Date().getFullYear()) {
     errors.birthYear = errorMessages.maxBirthYear
   }
+
   return errors
 }
 
@@ -84,6 +86,12 @@ const handleGenderChange = (event, dispatch, currentGender) => {
   }
 }
 
+const handleChangeFieldNumber = (event, newValue, preValue) => {
+  if (isNaN(newValue)) {
+    event.preventDefault();
+  }
+}
+
 let UserSettingsForm = ({
   handleSubmit,
   pristine,
@@ -125,6 +133,7 @@ let UserSettingsForm = ({
           placeholder="생년 (예: 1988)"
           min="1"
           step="1"
+          onChange={handleChangeFieldNumber}
         />
       </FormGroup>
       <FormGroup>
@@ -134,6 +143,7 @@ let UserSettingsForm = ({
           component="input"
           type="number"
           placeholder="키"
+          onChange={handleChangeFieldNumber}
         />
         <Field
           name="weight"
@@ -141,6 +151,7 @@ let UserSettingsForm = ({
           component="input"
           type="number"
           placeholder="몸무게"
+          onChange={handleChangeFieldNumber}
         />
       </FormGroup>
       <FormGroup className="align-left">
