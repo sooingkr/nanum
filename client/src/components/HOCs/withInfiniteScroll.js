@@ -25,6 +25,10 @@ const withInfiniteScroll = (conditionFn) => (Component) => {
     componentWillMount() {
       window.removeEventListener("scroll", this.handleScroll);
     }
+
+    componentWillUnmount() {
+      window.removeEventListener("scroll", this.handleScroll);
+    }
     
     handleScroll() {
       if (window.location.href.indexOf('search?foodKeyword') === -1) return;
