@@ -46,7 +46,7 @@ const searchFoodScroll = (foodQuery, page) => async (dispatch, getState) => {
 
   let searchResponse;
   try {
-    dispatch(requestSearch(foodQuery));
+    shouldFetch && dispatch(requestSearch(foodQuery));
     searchResponse = shouldFetch ? await FoodService.searchFood(foodQuery, page, DEFAULT_PAGINATE_SIZE) : {data: {content: []}};
   } catch (error) {
     dispatch(failSearch(error));
