@@ -180,7 +180,7 @@ let UserSettingsForm = ({
       </FormGroup>
     </fieldset>
     <fieldset className="diseases-fields">
-      <legend>질병 유무 확인란</legend>
+      <legend>질병 정보</legend>
       <p>해당하는 질병을 선택해 주세요. (한개 이상 선택 가능)</p>
       <Field
         name="diseases"

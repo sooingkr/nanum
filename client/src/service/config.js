@@ -21,6 +21,7 @@ client.interceptors.response.use(response => {
   const { headers, data }= response;
   if (isContentTypeHtml(headers['content-type']) && isRequiredLogin(data)) {
     window.location.href = '#introduce';
+    window.location.reload();
     return Promise.reject(response);
   }
   return response;
